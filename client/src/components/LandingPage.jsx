@@ -1,12 +1,17 @@
 import React, { useState } from 'react';
 import { 
-  Sparkles, BrainCircuit, ShieldAlert, ArrowRight, TrendingUp, ShieldCheck, Zap, Sliders, Layers, Target, BarChart2, Activity, Lock, Cpu
+  Sparkles, BrainCircuit, ArrowRight, TrendingUp, ShieldCheck, Zap, Sliders, Layers, Target, Lock, Cpu
 } from 'lucide-react';
-import { SignedIn, SignedOut, SignUpButton } from '@clerk/clerk-react';
+import { useUser } from '@clerk/clerk-react';
 
 export default function LandingPage({ setActiveTab, onOpenAuthModal }) {
-  const clerkPubKey = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY;
-  const isClerkActive = clerkPubKey && !clerkPubKey.includes('your_clerk_publishable_key_here');
+  let isSignedIn = false;
+  try {
+    const clerk = useUser();
+    isSignedIn = clerk?.isSignedIn;
+  } catch (e) {
+    // Graceful fallback
+  }
 
   // Compounding Interest Slider States (Real-time dynamic SVG curve)
   const [sipAmount, setSipAmount] = useState(35000);
@@ -81,9 +86,9 @@ export default function LandingPage({ setActiveTab, onOpenAuthModal }) {
           Turn Finfluencer Noise into <span className="bg-gradient-to-r from-indigo-400 via-cyan-400 to-emerald-400 bg-clip-text text-transparent">Actionable Wealth</span>
         </h1>
 
-        {/* Exactly ONE Large Rounded Call-to-Action Button Wrapped in Clerk's SignUpButton */}
+        {/* Large Rounded Call-to-Action Button */}
         <div className="mt-12 mb-[120px] flex justify-center">
-          <SignedIn>
+          {isSignedIn ? (
             <button 
               onClick={() => setActiveTab('dashboard')}
               className="px-10 py-5 bg-gradient-to-r from-indigo-600 via-blue-600 to-cyan-500 hover:from-indigo-500 hover:to-cyan-400 text-white font-bold text-lg sm:text-xl rounded-full shadow-[0_10px_35px_rgba(99,102,241,0.45)] hover:shadow-[0_15px_45px_rgba(99,102,241,0.65)] hover:scale-105 transition-all duration-300 flex items-center justify-center gap-3 cursor-pointer border border-white/20"
@@ -91,15 +96,15 @@ export default function LandingPage({ setActiveTab, onOpenAuthModal }) {
               <span>Launch Dashboard</span>
               <ArrowRight className="w-6 h-6" />
             </button>
-          </SignedIn>
-          <SignedOut>
-            <SignUpButton mode="modal">
-              <button className="px-10 py-5 bg-gradient-to-r from-indigo-600 via-blue-600 to-cyan-500 hover:from-indigo-500 hover:to-cyan-400 text-white font-bold text-lg sm:text-xl rounded-full shadow-[0_10px_35px_rgba(99,102,241,0.45)] hover:shadow-[0_15px_45px_rgba(99,102,241,0.65)] hover:scale-105 transition-all duration-300 flex items-center justify-center gap-3 cursor-pointer border border-white/20">
-                <span>Get Started Free</span>
-                <ArrowRight className="w-6 h-6" />
-              </button>
-            </SignUpButton>
-          </SignedOut>
+          ) : (
+            <button 
+              onClick={() => onOpenAuthModal('signup')}
+              className="px-10 py-5 bg-gradient-to-r from-indigo-600 via-blue-600 to-cyan-500 hover:from-indigo-500 hover:to-cyan-400 text-white font-bold text-lg sm:text-xl rounded-full shadow-[0_10px_35px_rgba(99,102,241,0.45)] hover:shadow-[0_15px_45px_rgba(99,102,241,0.65)] hover:scale-105 transition-all duration-300 flex items-center justify-center gap-3 cursor-pointer border border-white/20"
+            >
+              <span>Get Started Free (Sign Up)</span>
+              <ArrowRight className="w-6 h-6" />
+            </button>
+          )}
         </div>
 
       </section>
