@@ -135,17 +135,9 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col justify-between selection:bg-indigo-500 selection:text-white relative overflow-x-hidden">
+    <div className="dashboard-viewport font-sans relative">
       
-      {/* INTERACTIVE MOUSE-TRACKING AMBIENT GLOW LAYER */}
-      <div 
-        className="pointer-events-none fixed inset-0 z-0 transition-opacity duration-500"
-        style={{
-          background: `radial-gradient(600px circle at ${mousePos.x}px ${mousePos.y}px, rgba(99, 102, 241, 0.12), rgba(16, 185, 129, 0.08) 50%, transparent 80%)`
-        }}
-      />
-
-      {/* Navigation Header */}
+      {/* Navigation Header (Fixed 60px height) */}
       <Navbar
         activeTab={activeTab}
         setActiveTab={setActiveTab}
@@ -159,7 +151,7 @@ export default function App() {
       />
 
       {/* Main Content Viewport: JS SPA App Content Container */}
-      <main id="app-content" className="flex-1 pt-20 relative z-10">
+      <main id="app-content" className="flex-1 overflow-y-auto p-4 md:p-6 lg:p-8 max-w-7xl w-full mx-auto space-y-6">
         {activeTab === 'landing' && (
           <LandingPage
             setActiveTab={setActiveTab}
@@ -189,10 +181,10 @@ export default function App() {
             onOpenRiskModal={() => setIsRiskModalOpen(true)}
           />
         )}
+        
+        {/* Footer */}
+        <Footer setActiveTab={setActiveTab} />
       </main>
-
-      {/* Footer */}
-      <Footer setActiveTab={setActiveTab} />
 
       {/* Modals */}
       <AuthModal
