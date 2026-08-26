@@ -101,7 +101,7 @@ export default function App() {
   const [authMode, setAuthMode] = useState('login');
   const [isRiskModalOpen, setIsRiskModalOpen] = useState(false);
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
-  const [isMiracleOpen, setIsMiracleOpen] = useState(false);
+  const [isMiracleOpen, setIsMiracleOpen] = useState(true);
 
   useEffect(() => {
     async function syncRisk() {
@@ -154,12 +154,12 @@ export default function App() {
         setTheme={setTheme}
         onOpenRiskModal={() => setIsRiskModalOpen(true)}
         onOpenAuthModal={handleOpenAuthModal}
-        onOpenMiracle={() => setIsMiracleOpen(true)}
+        onOpenMiracle={() => setIsMiracleOpen(!isMiracleOpen)}
         onLogout={handleLogout}
       />
 
-      {/* Main Content View */}
-      <main className="flex-1 pt-20 relative z-10">
+      {/* Main Content View with Dynamic Left Margin for Miracle Dedicated Panel */}
+      <main className={`flex-1 pt-20 relative z-10 transition-all duration-300 ${isMiracleOpen ? 'pl-0 lg:pl-[430px]' : 'pl-0'}`}>
         {activeTab === 'landing' && (
           <LandingPage
             setActiveTab={setActiveTab}
