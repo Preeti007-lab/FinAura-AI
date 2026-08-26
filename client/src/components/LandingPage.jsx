@@ -180,14 +180,14 @@ export default function LandingPage({ setActiveTab, onOpenAuthModal, onOpenRiskM
       <section id="hero" className="flex flex-col items-center justify-center text-center max-w-3xl mx-auto pt-8 pb-10 mb-24 scroll-mt-24">
         
         {/* Section Header Tag */}
-        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-md bg-[var(--bg-card-inner)] border border-[var(--border-card)] text-indigo-400 text-xs font-bold shadow-md mb-6 mx-auto justify-center font-mono">
-          <Sparkles className="w-3.5 h-3.5 text-cyan-400 animate-pulse" />
-          <span>SECTION 01 // WEALTHTECH OVERVIEW</span>
+        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-bold shadow-md mb-6 mx-auto justify-center font-mono">
+          <Sparkles className="w-3.5 h-3.5 text-emerald-400 animate-pulse" />
+          <span>SECTION 01 // INSTITUTIONAL WEALTHTECH OVERVIEW</span>
         </div>
 
         {/* Headline */}
-        <h1 className="text-4xl sm:text-6xl font-extrabold tracking-tight text-[var(--text-main)] leading-tight max-w-3xl mx-auto text-center">
-          Turn Finfluencer Noise into <span className="bg-gradient-to-r from-indigo-400 via-cyan-400 to-emerald-400 bg-clip-text text-transparent">Actionable Wealth</span>
+        <h1 className="text-4xl sm:text-6xl font-extrabold tracking-tight text-[var(--text-main)] leading-tight max-w-3xl mx-auto text-center font-['Outfit']">
+          Turn Finfluencer Noise into <span className="bg-gradient-to-r from-emerald-400 via-teal-300 to-cyan-400 bg-clip-text text-transparent">Actionable Wealth</span>
         </h1>
 
         {/* Short Precise Subtext */}
@@ -210,14 +210,14 @@ export default function LandingPage({ setActiveTab, onOpenAuthModal, onOpenRiskM
           {isSignedIn ? (
             <button 
               onClick={() => setActiveTab('dashboard')}
-              className="px-6 py-2.5 bg-gradient-to-r from-indigo-600 via-blue-600 to-cyan-500 hover:from-indigo-500 hover:to-cyan-400 text-white font-bold text-xs rounded-full shadow hover:scale-105 transition-all flex items-center justify-center gap-2 cursor-pointer border border-white/20"
+              className="btn-emerald text-xs py-3 px-6 cursor-pointer border border-emerald-400/30"
             >
               <span>Launch Dashboard</span>
               <ArrowRight className="w-3.5 h-3.5" />
             </button>
           ) : (
             <SignUpButton mode="modal">
-              <button className="px-6 py-2.5 bg-gradient-to-r from-indigo-600 via-blue-600 to-cyan-500 hover:from-indigo-500 hover:to-cyan-400 text-white font-bold text-xs rounded-full shadow hover:scale-105 transition-all flex items-center justify-center gap-2 cursor-pointer border border-white/20">
+              <button className="btn-emerald text-xs py-3 px-6 cursor-pointer border border-emerald-400/30">
                 <span>Get Started Free</span>
                 <ArrowRight className="w-3.5 h-3.5" />
               </button>

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Sparkles, BrainCircuit, LayoutDashboard, Target, Home, Sun, Moon, Laptop, Menu, X, FolderGit2, Layers } from 'lucide-react';
+import { Sparkles, BrainCircuit, LayoutDashboard, Target, Home, Sun, Moon, Laptop, Menu, X, FolderGit2, Layers, ShieldCheck } from 'lucide-react';
 import { SignedIn, SignedOut, SignInButton, SignUpButton, UserButton, useUser } from '@clerk/clerk-react';
 
 export default function Navbar({ activeTab, setActiveTab, user, theme, setTheme, onOpenRiskModal, onOpenMiracle }) {
@@ -17,28 +17,28 @@ export default function Navbar({ activeTab, setActiveTab, user, theme, setTheme,
   };
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 backdrop-blur-xl bg-[var(--bg-card)]/95 border-b border-[var(--border-card)] px-4 lg:px-8 py-2.5 transition-all shadow-xl">
+    <header className="fixed top-0 left-0 right-0 z-50 backdrop-blur-2xl bg-[var(--bg-card)]/95 border-b border-[var(--border-card)] px-4 lg:px-8 py-2.5 transition-all shadow-xl">
       <div className="max-w-7xl mx-auto flex items-center justify-between gap-4">
         
-        {/* FAR-LEFT: Logo & Site Title */}
+        {/* FAR-LEFT: Logo & Brand Identity */}
         <div 
           onClick={() => handleNavClick('landing')}
           className="flex items-center gap-3 cursor-pointer group shrink-0"
         >
-          <div className="w-9 h-9 rounded-xl bg-gradient-to-tr from-indigo-600 via-purple-600 to-cyan-500 p-0.5 flex items-center justify-center shadow-md group-hover:scale-105 transition-transform">
+          <div className="w-9 h-9 rounded-xl bg-gradient-to-tr from-emerald-500 via-teal-500 to-cyan-500 p-0.5 flex items-center justify-center shadow-md group-hover:scale-105 transition-transform">
             <div className="w-full h-full bg-[var(--bg-card)] rounded-[10px] flex items-center justify-center">
-              <Sparkles className="w-4.5 h-4.5 text-cyan-400 group-hover:rotate-12 transition-transform" />
+              <Sparkles className="w-4.5 h-4.5 text-emerald-400 group-hover:rotate-12 transition-transform" />
             </div>
           </div>
 
           <div className="text-left">
             <div className="flex items-center gap-1.5">
               <span className="font-extrabold text-base sm:text-lg tracking-wider text-[var(--text-main)] font-['Outfit'] uppercase">CREDOMETRICS</span>
-              <span className="text-[10px] font-bold px-1.5 py-0.5 rounded bg-indigo-500/20 text-indigo-400 border border-indigo-500/30 uppercase tracking-wider">AI</span>
+              <span className="text-[10px] font-bold px-1.5 py-0.5 rounded bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 uppercase tracking-wider font-mono">AI</span>
             </div>
             <div className="text-[10px] font-semibold text-[var(--text-muted)] flex items-center gap-1">
               <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-              <span>Anti-Hype WealthTech</span>
+              <span>Institutional WealthTech</span>
             </div>
           </div>
         </div>
@@ -65,7 +65,7 @@ export default function Navbar({ activeTab, setActiveTab, user, theme, setTheme,
                 : 'text-[var(--text-muted)] hover:text-[var(--text-main)] hover:bg-[var(--bg-card-hover)]'
             }`}
           >
-            <Layers className="w-3.5 h-3.5 text-cyan-400" />
+            <BrainCircuit className="w-3.5 h-3.5 text-cyan-400" />
             <span>Features</span>
           </button>
 
@@ -97,9 +97,9 @@ export default function Navbar({ activeTab, setActiveTab, user, theme, setTheme,
             onClick={() => {
               if (onOpenMiracle) onOpenMiracle();
             }}
-            className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-extrabold text-amber-300 bg-gradient-to-r from-indigo-900/90 to-purple-900/90 border border-purple-500/40 hover:border-amber-400/60 shadow-md hover:scale-105 transition-all ml-1"
+            className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-extrabold text-emerald-300 bg-emerald-950/80 border border-emerald-500/40 hover:border-emerald-400 shadow-md hover:scale-105 transition-all ml-1"
           >
-            <Sparkles className="w-3.5 h-3.5 text-amber-400 animate-pulse" />
+            <Sparkles className="w-3.5 h-3.5 text-emerald-400 animate-pulse" />
             <span>Miracle AI</span>
             <span className="text-[9px] bg-emerald-500/20 text-emerald-300 px-1 py-0.2 rounded font-mono uppercase">Chat</span>
           </button>
@@ -108,13 +108,13 @@ export default function Navbar({ activeTab, setActiveTab, user, theme, setTheme,
         {/* FAR-RIGHT: Theme Control, Clerk Auth & Mobile Hamburger */}
         <div className="flex items-center gap-2.5 shrink-0">
           
-          {/* Theme Option Switcher */}
+          {/* Theme Switcher */}
           <div className="flex items-center bg-[var(--bg-card-inner)] p-1 rounded-xl border border-[var(--border-card)] text-xs hidden sm:flex">
             <button
               onClick={() => setTheme('light')}
               title="Light Theme"
               className={`p-1.5 rounded-lg transition-all ${
-                theme === 'light' ? 'bg-indigo-600 text-white shadow-sm' : 'text-[var(--text-muted)] hover:text-[var(--text-main)]'
+                theme === 'light' ? 'bg-emerald-600 text-white shadow-sm' : 'text-[var(--text-muted)] hover:text-[var(--text-main)]'
               }`}
             >
               <Sun className="w-3.5 h-3.5" />
@@ -123,7 +123,7 @@ export default function Navbar({ activeTab, setActiveTab, user, theme, setTheme,
               onClick={() => setTheme('dark')}
               title="Dark Theme"
               className={`p-1.5 rounded-lg transition-all ${
-                theme === 'dark' ? 'bg-indigo-600 text-white shadow-sm' : 'text-[var(--text-muted)] hover:text-[var(--text-main)]'
+                theme === 'dark' ? 'bg-emerald-600 text-white shadow-sm' : 'text-[var(--text-muted)] hover:text-[var(--text-main)]'
               }`}
             >
               <Moon className="w-3.5 h-3.5" />
@@ -132,7 +132,7 @@ export default function Navbar({ activeTab, setActiveTab, user, theme, setTheme,
               onClick={() => setTheme('system')}
               title="System Theme"
               className={`p-1.5 rounded-lg transition-all ${
-                theme === 'system' ? 'bg-indigo-600 text-white shadow-sm' : 'text-[var(--text-muted)] hover:text-[var(--text-main)]'
+                theme === 'system' ? 'bg-emerald-600 text-white shadow-sm' : 'text-[var(--text-muted)] hover:text-[var(--text-main)]'
               }`}
             >
               <Laptop className="w-3.5 h-3.5" />
@@ -143,7 +143,7 @@ export default function Navbar({ activeTab, setActiveTab, user, theme, setTheme,
             <div className="flex items-center gap-2">
               <div 
                 onClick={onOpenRiskModal}
-                className="hidden sm:flex items-center gap-2 px-3 py-1.5 rounded-xl bg-[var(--bg-card-inner)] border border-[var(--border-card)] text-xs cursor-pointer hover:border-indigo-500 transition-all"
+                className="hidden sm:flex items-center gap-2 px-3 py-1.5 rounded-xl bg-[var(--bg-card-inner)] border border-[var(--border-card)] text-xs cursor-pointer hover:border-emerald-500 transition-all"
               >
                 <span className="font-bold text-[var(--text-main)]">{clerkUser?.fullName || user?.name || 'Verified Investor'}</span>
                 <span className="badge badge-green text-[9px] py-0 px-1.5">Risk: {user?.riskProfile?.score || 68}</span>
@@ -155,20 +155,20 @@ export default function Navbar({ activeTab, setActiveTab, user, theme, setTheme,
           <SignedOut>
             <div className="flex items-center gap-2">
               <SignInButton mode="modal">
-                <button className="btn-glass text-xs py-1.5 px-3 cursor-pointer">
+                <button className="btn-slate text-xs py-1.5 px-3 cursor-pointer">
                   Log In
                 </button>
               </SignInButton>
 
               <SignUpButton mode="modal">
-                <button className="btn-primary text-xs py-1.5 px-3.5 cursor-pointer">
+                <button className="btn-emerald text-xs py-1.5 px-3.5 cursor-pointer">
                   Sign Up
                 </button>
               </SignUpButton>
             </div>
           </SignedOut>
 
-          {/* MOBILE HAMBURGER MENU BUTTON (Visible under md 768px) */}
+          {/* MOBILE HAMBURGER MENU BUTTON */}
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             className="md:hidden p-2 text-[var(--text-main)] bg-[var(--bg-card-inner)] rounded-xl border border-[var(--border-card)] transition-colors"
@@ -199,7 +199,7 @@ export default function Navbar({ activeTab, setActiveTab, user, theme, setTheme,
               activeTab === 'features' || activeTab === 'analyzer' ? 'active-nav' : 'text-[var(--text-muted)] hover:bg-[var(--bg-card-inner)]'
             }`}
           >
-            <Layers className="w-4 h-4 text-cyan-400" />
+            <BrainCircuit className="w-4 h-4 text-cyan-400" />
             <span>Features View</span>
           </button>
 
@@ -228,10 +228,10 @@ export default function Navbar({ activeTab, setActiveTab, user, theme, setTheme,
               setIsMobileMenuOpen(false);
               if (onOpenMiracle) onOpenMiracle();
             }}
-            className="flex items-center justify-between px-4 py-2.5 rounded-xl text-xs font-extrabold text-amber-300 bg-gradient-to-r from-indigo-900/90 to-purple-900/90 border border-purple-500/40"
+            className="flex items-center justify-between px-4 py-2.5 rounded-xl text-xs font-extrabold text-emerald-300 bg-emerald-950/80 border border-emerald-500/40"
           >
             <div className="flex items-center gap-2">
-              <Sparkles className="w-4 h-4 text-amber-400 animate-pulse" />
+              <Sparkles className="w-4 h-4 text-emerald-400 animate-pulse" />
               <span>Miracle AI Assistant</span>
             </div>
             <span className="text-[9px] bg-emerald-500/20 text-emerald-300 px-1.5 py-0.5 rounded font-mono uppercase">Chat</span>
