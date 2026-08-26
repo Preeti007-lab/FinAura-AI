@@ -1,6 +1,6 @@
 import React from 'react';
 import { Shield, Sparkles, BrainCircuit, LayoutDashboard, Target, LogOut, Home, Layers, User } from 'lucide-react';
-import { SignedIn, SignedOut, SignInButton, UserButton, useUser } from '@clerk/clerk-react';
+import { SignedIn, SignedOut, SignInButton, UserButton } from '@clerk/clerk-react';
 
 export default function Navbar({ activeTab, setActiveTab, user, onOpenRiskModal, onOpenAuthModal, onLogout }) {
   const clerkPubKey = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY;
@@ -10,7 +10,7 @@ export default function Navbar({ activeTab, setActiveTab, user, onOpenRiskModal,
     <header className="fixed top-0 left-0 right-0 z-50 backdrop-blur-xl bg-[#0a0f1d]/90 border-b border-[#1e293b] px-4 lg:px-8 py-3 transition-all">
       <div className="max-w-7xl mx-auto flex items-center justify-between gap-4">
         
-        {/* FAR-LEFT: Brand Logo & Institutional Badge */}
+        {/* FAR-LEFT: Clean Bold Uppercase Logo (CREDOMETRICS) */}
         <div 
           onClick={() => setActiveTab('landing')}
           className="flex items-center gap-3 cursor-pointer group shrink-0"
@@ -23,7 +23,7 @@ export default function Navbar({ activeTab, setActiveTab, user, onOpenRiskModal,
 
           <div className="text-left">
             <div className="flex items-center gap-1.5">
-              <span className="font-extrabold text-lg tracking-tight text-white font-['Outfit']">FinAura</span>
+              <span className="font-extrabold text-lg tracking-wider text-white font-['Outfit'] uppercase">CREDOMETRICS</span>
               <span className="text-[10px] font-bold px-1.5 py-0.5 rounded bg-indigo-500/20 text-indigo-300 border border-indigo-500/30 uppercase tracking-wider">AI</span>
             </div>
             <div className="text-[10px] font-semibold text-slate-400 flex items-center gap-1">

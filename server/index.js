@@ -80,7 +80,7 @@ app.get('/api/dashboard', authMiddleware, (req, res) => {
 app.get('/api/health', (req, res) => {
   res.json({
     status: 'online',
-    app: 'FinAura AI WealthTech Platform',
+    app: 'CredoMetrics AI WealthTech Platform',
     clerkAuth: !!process.env.CLERK_SECRET_KEY,
     timestamp: new Date(),
     environment: process.env.NODE_ENV || 'development',
@@ -109,7 +109,7 @@ app.use((req, res, next) => {
 // Only listen if executed directly (Render / Local), not when imported as Vercel serverless function
 if (require.main === module || !process.env.VERCEL) {
   app.listen(PORT, () => {
-    console.log(`🚀 FinAura AI Server running at http://localhost:${PORT}`);
+    console.log(`🚀 CredoMetrics AI Server running at http://localhost:${PORT}`);
   });
 }
 

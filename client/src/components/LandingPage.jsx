@@ -166,7 +166,7 @@ export default function LandingPage({ setActiveTab, onOpenAuthModal }) {
             <div className="flex items-center justify-between border-b border-[#1e293b] pb-4">
               <div className="flex items-center gap-3">
                 <span className="w-3 h-3 rounded-full bg-emerald-400 animate-pulse" />
-                <span className="text-sm font-bold text-white font-['Outfit']">FinAura Consolidated Dashboard</span>
+                <span className="text-sm font-bold text-white font-['Outfit']">CredoMetrics Consolidated Dashboard</span>
               </div>
               <span className="badge badge-green">+25.0% Net Return</span>
             </div>
@@ -617,13 +617,13 @@ export default function LandingPage({ setActiveTab, onOpenAuthModal }) {
         <div className="space-y-6">
           <div className="text-center space-y-1">
             <span className="text-xs font-bold uppercase tracking-wider text-slate-400">REAL-WORLD APPLICATION RESULTS</span>
-            <h2 className="text-3xl font-extrabold text-white font-['Outfit']">Before vs After FinAura</h2>
+            <h2 className="text-3xl font-extrabold text-white font-['Outfit']">Before vs After CredoMetrics</h2>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-12 gap-6 items-center">
             <div className="md:col-span-5 bento-card p-6 border-rose-500/30 text-left bg-[#170e17] rounded-lg space-y-4">
               <div className="flex items-center justify-between border-b border-rose-500/20 pb-3">
-                <span className="badge badge-red text-xs">BEFORE FINAURA</span>
+                <span className="badge badge-red text-xs">BEFORE CREDOMETRICS</span>
                 <span className="text-xs font-extrabold text-rose-400 font-['Outfit']">THE NOISE</span>
               </div>
               <div className="space-y-2.5 text-xs text-slate-300">
@@ -652,7 +652,7 @@ export default function LandingPage({ setActiveTab, onOpenAuthModal }) {
 
             <div className="md:col-span-5 bento-card p-6 border-emerald-500/40 text-left bg-[#0e1c17] rounded-lg space-y-4">
               <div className="flex items-center justify-between border-b border-emerald-500/20 pb-3">
-                <span className="badge badge-green text-xs">AFTER FINAURA</span>
+                <span className="badge badge-green text-xs">AFTER CREDOMETRICS</span>
                 <span className="text-xs font-extrabold text-emerald-400 font-['Outfit']">ACTIONABLE WEALTH</span>
               </div>
               <div className="space-y-2.5 text-xs text-slate-200">
