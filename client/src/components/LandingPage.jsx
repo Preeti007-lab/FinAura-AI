@@ -72,7 +72,7 @@ export default function LandingPage({ setActiveTab, onOpenAuthModal }) {
 
   const { totalInvested, finalCorpus, totalGain, pathD, areaD, lastPoint } = calculateCompounding();
 
-  // Financial Terms Flashcards Data with Distinct Colour Markings
+  // Financial Terms Flashcards Data with Distinct Colour Markings & Uniform Sans-Serif Font
   const financialFlashcards = [
     {
       id: 'rule72',
@@ -149,12 +149,12 @@ export default function LandingPage({ setActiveTab, onOpenAuthModal }) {
   ];
 
   return (
-    <div className="w-full min-h-screen text-[var(--text-main)] px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto text-center">
+    <div className="w-full min-h-screen text-[var(--text-main)] px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto text-center font-sans">
       
       {/* ========================================================================= */}
-      {/* SECTION 1: SPACIOUS CENTER-JUSTIFIED HERO VIEW                            */}
+      {/* SECTION 1: SPACIOUS UNIFORM HERO VIEW (ELONGATED SPACING)                 */}
       {/* ========================================================================= */}
-      <section className="flex flex-col items-center justify-center text-center max-w-4xl mx-auto pt-24 pb-12 mb-36">
+      <section className="flex flex-col items-center justify-center text-center max-w-4xl mx-auto pt-28 pb-16 mb-40">
         
         {/* Center Badge Pill */}
         <div className="inline-flex items-center gap-2.5 px-4 py-2 rounded-full bg-[var(--bg-card-inner)] border border-[var(--border-card)] text-indigo-400 text-xs font-bold shadow-md mb-8">
@@ -162,13 +162,13 @@ export default function LandingPage({ setActiveTab, onOpenAuthModal }) {
           <span>INSTITUTIONAL WEALTHTECH & ANTI-HYPE AI PLATFORM</span>
         </div>
 
-        {/* Massive Center Headline */}
-        <h1 className="text-5xl sm:text-7xl lg:text-8xl font-black tracking-tight text-[var(--text-main)] leading-[1.08] font-['Outfit'] max-w-4xl mx-auto text-center">
+        {/* Massive Center Headline - Uniform Sans-Serif Typography */}
+        <h1 className="text-5xl sm:text-7xl lg:text-8xl font-extrabold tracking-tight text-[var(--text-main)] leading-[1.1] max-w-4xl mx-auto text-center">
           Turn Finfluencer Noise into <span className="bg-gradient-to-r from-indigo-400 via-cyan-400 to-emerald-400 bg-clip-text text-transparent">Actionable Wealth</span>
         </h1>
 
         {/* Center CTA Button */}
-        <div className="mt-12 flex justify-center">
+        <div className="mt-14 flex justify-center">
           {isSignedIn ? (
             <button 
               onClick={() => setActiveTab('dashboard')}
@@ -190,34 +190,34 @@ export default function LandingPage({ setActiveTab, onOpenAuthModal }) {
       </section>
 
       {/* ========================================================================= */}
-      {/* SECTION 2: PROOF COUNTERS (CENTER JUSTIFIED)                              */}
+      {/* SECTION 2: PROOF COUNTERS (ELONGATED SPACING)                            */}
       {/* ========================================================================= */}
-      <section className="mb-36">
+      <section className="mb-40">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           
-          <div className="bg-[var(--bg-card)] border border-[var(--border-card)] rounded-[8px] p-10 flex flex-col items-center justify-center text-center shadow-lg hover:border-emerald-500/50 transition-all">
-            <div className="text-5xl sm:text-6xl font-extrabold text-emerald-400 font-['Outfit'] tracking-tight">
+          <div className="bg-[var(--bg-card)] border border-[var(--border-card)] rounded-[8px] p-12 flex flex-col items-center justify-center text-center shadow-lg hover:border-emerald-500/50 transition-all">
+            <div className="text-5xl sm:text-6xl font-extrabold text-emerald-400 tracking-tight">
               $48M+
             </div>
-            <div className="text-sm font-bold text-[var(--text-muted)] uppercase tracking-widest mt-3">
+            <div className="text-sm font-bold text-[var(--text-muted)] uppercase tracking-widest mt-4">
               Assets Verified
             </div>
           </div>
 
-          <div className="bg-[var(--bg-card)] border border-[var(--border-card)] rounded-[8px] p-10 flex flex-col items-center justify-center text-center shadow-lg hover:border-indigo-500/50 transition-all">
-            <div className="text-5xl sm:text-6xl font-extrabold text-indigo-400 font-['Outfit'] tracking-tight">
+          <div className="bg-[var(--bg-card)] border border-[var(--border-card)] rounded-[8px] p-12 flex flex-col items-center justify-center text-center shadow-lg hover:border-indigo-500/50 transition-all">
+            <div className="text-5xl sm:text-6xl font-extrabold text-indigo-400 tracking-tight">
               14,200+
             </div>
-            <div className="text-sm font-bold text-[var(--text-muted)] uppercase tracking-widest mt-3">
+            <div className="text-sm font-bold text-[var(--text-muted)] uppercase tracking-widest mt-4">
               Portfolios Protected
             </div>
           </div>
 
-          <div className="bg-[var(--bg-card)] border border-[var(--border-card)] rounded-[8px] p-10 flex flex-col items-center justify-center text-center shadow-lg hover:border-cyan-400/50 transition-all">
-            <div className="text-5xl sm:text-6xl font-extrabold text-cyan-400 font-['Outfit'] tracking-tight">
+          <div className="bg-[var(--bg-card)] border border-[var(--border-card)] rounded-[8px] p-12 flex flex-col items-center justify-center text-center shadow-lg hover:border-cyan-400/50 transition-all">
+            <div className="text-5xl sm:text-6xl font-extrabold text-cyan-400 tracking-tight">
               98.4%
             </div>
-            <div className="text-sm font-bold text-[var(--text-muted)] uppercase tracking-widest mt-3">
+            <div className="text-sm font-bold text-[var(--text-muted)] uppercase tracking-widest mt-4">
               Filtering Accuracy
             </div>
           </div>
@@ -228,16 +228,16 @@ export default function LandingPage({ setActiveTab, onOpenAuthModal }) {
       {/* ========================================================================= */}
       {/* SECTION 3: COLOUR-MARKED 3D FINANCIAL TERM FLASHCARDS DECK                */}
       {/* ========================================================================= */}
-      <section className="mb-36 space-y-10">
+      <section className="mb-40 space-y-12">
         
-        <div className="text-center max-w-2xl mx-auto space-y-2">
+        <div className="text-center max-w-2xl mx-auto space-y-3">
           <div className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-indigo-400 justify-center">
             <BookOpen className="w-4 h-4" /> INTERACTIVE FINANCIAL CONCEPTS
           </div>
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-[var(--text-main)] font-['Outfit']">
+          <h2 className="text-3xl sm:text-4xl font-extrabold text-[var(--text-main)]">
             Core Wealth Flashcards (Colour-Coded Boundaries)
           </h2>
-          <p className="text-xs sm:text-sm text-[var(--text-muted)] font-medium">
+          <p className="text-sm text-[var(--text-muted)] font-medium">
             Click any flashcard to flip and reveal exact formulas, calculations, and financial takeaways.
           </p>
         </div>
@@ -248,7 +248,7 @@ export default function LandingPage({ setActiveTab, onOpenAuthModal }) {
             <div 
               key={fc.id}
               onClick={() => toggleFlip(fc.id)}
-              className="perspective-1000 h-[300px] w-full cursor-pointer group"
+              className="perspective-1000 h-[320px] w-full cursor-pointer group"
             >
               <div 
                 className={`relative w-full h-full duration-500 transform-style-3d transition-transform ${
@@ -257,53 +257,53 @@ export default function LandingPage({ setActiveTab, onOpenAuthModal }) {
               >
                 
                 {/* FRONT SIDE */}
-                <div className={`absolute inset-0 w-full h-full backface-hidden rounded-[8px] p-6 flex flex-col justify-between text-left bg-[var(--bg-card)] ${fc.colorClass}`}>
+                <div className={`absolute inset-0 w-full h-full backface-hidden rounded-[8px] p-7 flex flex-col justify-between text-left bg-[var(--bg-card)] ${fc.colorClass}`}>
                   <div className="flex items-center justify-between">
-                    <span className="text-[10px] font-bold uppercase tracking-wider text-indigo-400 px-2 py-0.5 rounded bg-indigo-500/10 border border-indigo-500/20">
+                    <span className="text-[11px] font-bold uppercase tracking-wider text-indigo-400 px-2.5 py-0.5 rounded bg-indigo-500/10 border border-indigo-500/20">
                       {fc.category}
                     </span>
-                    <span className="text-[10px] font-bold text-emerald-400 px-2 py-0.5 rounded bg-emerald-500/10 border border-emerald-500/20">
+                    <span className="text-[11px] font-bold text-emerald-400 px-2.5 py-0.5 rounded bg-emerald-500/10 border border-emerald-500/20">
                       {fc.badge}
                     </span>
                   </div>
 
-                  <div className="my-auto space-y-2">
-                    <h3 className="text-xl font-bold text-[var(--text-main)] font-['Outfit']">
+                  <div className="my-auto space-y-3">
+                    <h3 className="text-2xl font-bold text-[var(--text-main)]">
                       {fc.term}
                     </h3>
-                    <p className="text-xs text-[var(--text-muted)] font-medium leading-relaxed">
+                    <p className="text-sm text-[var(--text-muted)] font-medium leading-relaxed">
                       {fc.question}
                     </p>
-                    <div className="p-2.5 rounded bg-[var(--bg-card-inner)] border border-[var(--border-card)] text-xs font-mono text-cyan-300 font-semibold">
+                    <div className="p-3 rounded bg-[var(--bg-card-inner)] border border-[var(--border-card)] text-xs font-mono text-cyan-300 font-semibold">
                       {fc.formula}
                     </div>
                   </div>
 
                   <div className="pt-3 border-t border-[var(--border-card)] flex items-center justify-between text-xs font-bold text-indigo-400 group-hover:translate-x-0.5 transition-transform">
                     <span>Click to Flip Answer</span>
-                    <RotateCw className="w-3.5 h-3.5" />
+                    <RotateCw className="w-4 h-4" />
                   </div>
                 </div>
 
                 {/* BACK SIDE */}
-                <div className={`absolute inset-0 w-full h-full backface-hidden rotate-y-180 rounded-[8px] p-6 flex flex-col justify-between text-left bg-[var(--bg-card-inner)] ${fc.colorClass}`}>
+                <div className={`absolute inset-0 w-full h-full backface-hidden rotate-y-180 rounded-[8px] p-7 flex flex-col justify-between text-left bg-[var(--bg-card-inner)] ${fc.colorClass}`}>
                   <div className="flex items-center justify-between border-b border-[var(--border-card)] pb-2">
-                    <span className="text-[11px] font-bold text-emerald-400 font-['Outfit']">
+                    <span className="text-xs font-bold text-emerald-400">
                       Formula & Calculation
                     </span>
-                    <span className="text-[10px] text-[var(--text-muted)]">Verified Rule</span>
+                    <span className="text-[11px] text-[var(--text-muted)]">Verified Rule</span>
                   </div>
 
-                  <div className="my-auto space-y-2 text-xs text-[var(--text-main)] leading-relaxed font-medium">
+                  <div className="my-auto space-y-3 text-xs sm:text-sm text-[var(--text-main)] leading-relaxed font-medium">
                     <p className="whitespace-pre-line">{fc.answer}</p>
-                    <div className="p-2 rounded bg-emerald-500/10 border border-emerald-500/20 text-[11px] text-emerald-300 font-bold">
+                    <div className="p-2.5 rounded bg-emerald-500/10 border border-emerald-500/20 text-xs text-emerald-300 font-bold">
                       {fc.calculativeInsight}
                     </div>
                   </div>
 
                   <div className="pt-3 border-t border-[var(--border-card)] flex items-center justify-between text-xs font-bold text-emerald-400">
                     <span>Click to Return to Question</span>
-                    <RotateCw className="w-3.5 h-3.5" />
+                    <RotateCw className="w-4 h-4" />
                   </div>
                 </div>
 
@@ -317,14 +317,14 @@ export default function LandingPage({ setActiveTab, onOpenAuthModal }) {
       {/* ========================================================================= */}
       {/* SECTION 4: CALCULATIVE FINANCIAL CONCEPTS WITH REAL IMAGES                */}
       {/* ========================================================================= */}
-      <section className="mb-36 space-y-10">
+      <section className="mb-40 space-y-12">
         
-        <div className="text-center max-w-xl mx-auto space-y-2">
+        <div className="text-center max-w-xl mx-auto space-y-3">
           <span className="text-xs font-bold uppercase tracking-wider text-emerald-400">DATA-BACKED FINANCIAL GUIDANCE</span>
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-[var(--text-main)] font-['Outfit']">
+          <h2 className="text-3xl sm:text-4xl font-extrabold text-[var(--text-main)]">
             Investing, Saving & Budgeting Principles
           </h2>
-          <p className="text-xs text-[var(--text-muted)] font-medium">
+          <p className="text-sm text-[var(--text-muted)] font-medium">
             Calculative framework for disciplined wealth compounding and risk mitigation.
           </p>
         </div>
@@ -332,15 +332,15 @@ export default function LandingPage({ setActiveTab, onOpenAuthModal }) {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           
           {/* Card 1: Investing */}
-          <div className="bento-module-card p-6 text-left space-y-5 flex flex-col justify-between">
+          <div className="bento-module-card p-8 text-left space-y-6 flex flex-col justify-between">
             <div className="space-y-4">
               <div className="flex items-center justify-between">
-                <span className="badge badge-green text-[10px]">Investing Matrix</span>
+                <span className="badge badge-green text-[11px]">Investing Matrix</span>
                 <TrendingUp className="w-5 h-5 text-indigo-400" />
               </div>
 
               <div>
-                <h3 className="text-xl font-bold text-[var(--text-main)] font-['Outfit']">
+                <h3 className="text-xl font-bold text-[var(--text-main)]">
                   Asset Allocation & CAGR
                 </h3>
                 <p className="text-xs text-[var(--text-muted)] mt-1">
@@ -349,7 +349,7 @@ export default function LandingPage({ setActiveTab, onOpenAuthModal }) {
               </div>
 
               {/* Real Financial Image: Wealth Compounding Chart */}
-              <div className="relative w-full h-44 rounded-lg overflow-hidden border border-[var(--border-card)]">
+              <div className="relative w-full h-52 rounded-lg overflow-hidden border border-[var(--border-card)]">
                 <img 
                   src="/images/wealth_compounding.jpg" 
                   alt="Wealth Compounding Exponential Chart" 
@@ -357,7 +357,7 @@ export default function LandingPage({ setActiveTab, onOpenAuthModal }) {
                 />
               </div>
 
-              <ul className="space-y-2 text-xs text-[var(--text-muted)] font-semibold">
+              <ul className="space-y-2.5 text-xs text-[var(--text-muted)] font-semibold">
                 <li className="flex items-center gap-2">
                   <span className="w-1.5 h-1.5 rounded-full bg-indigo-400 shrink-0" />
                   <span><strong>Rule of 72:</strong> Capital doubles in 72 ÷ CAGR yrs</span>
@@ -371,15 +371,15 @@ export default function LandingPage({ setActiveTab, onOpenAuthModal }) {
           </div>
 
           {/* Card 2: Saving */}
-          <div className="bento-module-card p-6 text-left space-y-5 flex flex-col justify-between">
+          <div className="bento-module-card p-8 text-left space-y-6 flex flex-col justify-between">
             <div className="space-y-4">
               <div className="flex items-center justify-between">
-                <span className="badge badge-blue text-[10px]">Savings Vault</span>
+                <span className="badge badge-blue text-[11px]">Savings Vault</span>
                 <ShieldCheck className="w-5 h-5 text-emerald-400" />
               </div>
 
               <div>
-                <h3 className="text-xl font-bold text-[var(--text-main)] font-['Outfit']">
+                <h3 className="text-xl font-bold text-[var(--text-main)]">
                   Asset Allocation Vault
                 </h3>
                 <p className="text-xs text-[var(--text-muted)] mt-1">
@@ -388,7 +388,7 @@ export default function LandingPage({ setActiveTab, onOpenAuthModal }) {
               </div>
 
               {/* Real Financial Image: Asset Vault */}
-              <div className="relative w-full h-44 rounded-lg overflow-hidden border border-[var(--border-card)]">
+              <div className="relative w-full h-52 rounded-lg overflow-hidden border border-[var(--border-card)]">
                 <img 
                   src="/images/asset_vault.jpg" 
                   alt="Asset Allocation Vault Portfolio Breakdown" 
@@ -396,7 +396,7 @@ export default function LandingPage({ setActiveTab, onOpenAuthModal }) {
                 />
               </div>
 
-              <ul className="space-y-2 text-xs text-[var(--text-muted)] font-semibold">
+              <ul className="space-y-2.5 text-xs text-[var(--text-muted)] font-semibold">
                 <li className="flex items-center gap-2">
                   <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 shrink-0" />
                   <span><strong>Buffer Target:</strong> 6x Monthly Essential Needs</span>
@@ -410,15 +410,15 @@ export default function LandingPage({ setActiveTab, onOpenAuthModal }) {
           </div>
 
           {/* Card 3: Anti-Hype AI Audit */}
-          <div className="bento-module-card p-6 text-left space-y-5 flex flex-col justify-between">
+          <div className="bento-module-card p-8 text-left space-y-6 flex flex-col justify-between">
             <div className="space-y-4">
               <div className="flex items-center justify-between">
-                <span className="badge badge-amber text-[10px]">Anti-Hype AI</span>
+                <span className="badge badge-amber text-[11px]">Anti-Hype AI</span>
                 <BrainCircuit className="w-5 h-5 text-cyan-400" />
               </div>
 
               <div>
-                <h3 className="text-xl font-bold text-[var(--text-main)] font-['Outfit']">
+                <h3 className="text-xl font-bold text-[var(--text-main)]">
                   AI Financial Stock Audit
                 </h3>
                 <p className="text-xs text-[var(--text-muted)] mt-1">
@@ -427,7 +427,7 @@ export default function LandingPage({ setActiveTab, onOpenAuthModal }) {
               </div>
 
               {/* Real Financial Image: AI Radar */}
-              <div className="relative w-full h-44 rounded-lg overflow-hidden border border-[var(--border-card)]">
+              <div className="relative w-full h-52 rounded-lg overflow-hidden border border-[var(--border-card)]">
                 <img 
                   src="/images/ai_radar.jpg" 
                   alt="AI Financial Stock Audit Shield" 
@@ -435,7 +435,7 @@ export default function LandingPage({ setActiveTab, onOpenAuthModal }) {
                 />
               </div>
 
-              <ul className="space-y-2 text-xs text-[var(--text-muted)] font-semibold">
+              <ul className="space-y-2.5 text-xs text-[var(--text-muted)] font-semibold">
                 <li className="flex items-center gap-2">
                   <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 shrink-0" />
                   <span><strong>50/30/20 Rule:</strong> 50% Needs, 30% Wants, 20% SIPs</span>
@@ -455,12 +455,12 @@ export default function LandingPage({ setActiveTab, onOpenAuthModal }) {
       {/* ========================================================================= */}
       {/* SECTION 5: INTERACTIVE FORECASTING PLAYGROUND                             */}
       {/* ========================================================================= */}
-      <section className="mb-36">
-        <div className="bg-[var(--bg-card)] border border-[var(--border-card)] rounded-[8px] p-8 sm:p-12 shadow-xl text-left">
+      <section className="mb-40">
+        <div className="bg-[var(--bg-card)] border border-[var(--border-card)] rounded-[8px] p-8 sm:p-14 shadow-xl text-left">
           
-          <div className="flex items-center gap-2 mb-8 justify-center text-center">
+          <div className="flex items-center gap-2 mb-10 justify-center text-center">
             <Sliders className="w-5 h-5 text-emerald-400" />
-            <h2 className="text-2xl sm:text-3xl font-extrabold text-[var(--text-main)] font-['Outfit']">
+            <h2 className="text-2xl sm:text-3xl font-extrabold text-[var(--text-main)]">
               Interactive Compounding Playground
             </h2>
           </div>
@@ -468,7 +468,7 @@ export default function LandingPage({ setActiveTab, onOpenAuthModal }) {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
             
             {/* Slider Controls */}
-            <div className="lg:col-span-5 space-y-6 bg-[var(--bg-card-inner)] p-6 rounded-[8px] border border-[var(--border-card)]">
+            <div className="lg:col-span-5 space-y-6 bg-[var(--bg-card-inner)] p-8 rounded-[8px] border border-[var(--border-card)]">
               
               <div className="space-y-2">
                 <div className="flex justify-between items-center text-xs font-bold">
@@ -518,9 +518,9 @@ export default function LandingPage({ setActiveTab, onOpenAuthModal }) {
                 />
               </div>
 
-              <div className="p-4 rounded-[8px] bg-emerald-500/10 border border-emerald-500/30 flex justify-between items-center">
+              <div className="p-5 rounded-[8px] bg-emerald-500/10 border border-emerald-500/30 flex justify-between items-center">
                 <div>
-                  <div className="text-[10px] font-bold text-[var(--text-muted)] uppercase tracking-wider">Projected Corpus</div>
+                  <div className="text-[11px] font-bold text-[var(--text-muted)] uppercase tracking-wider">Projected Corpus</div>
                   <div className="text-2xl font-extrabold text-emerald-400 font-mono mt-0.5">
                     ₹{(finalCorpus / 100000).toFixed(2)} Lakhs
                   </div>
@@ -534,13 +534,13 @@ export default function LandingPage({ setActiveTab, onOpenAuthModal }) {
             </div>
 
             {/* Dynamic Real-Time Bending SVG Chart */}
-            <div className="lg:col-span-7 space-y-3">
+            <div className="lg:col-span-7 space-y-4">
               <div className="flex justify-between items-center text-xs font-bold text-[var(--text-muted)] uppercase">
                 <span>DYNAMIC GROWTH CURVE ({horizonYears} YRS)</span>
                 <span className="text-emerald-400 font-mono">{cagrRate}% CAGR RATE</span>
               </div>
 
-              <div className="relative w-full h-80 bg-[var(--bg-card-inner)] p-4 rounded-[8px] border border-[var(--border-card)] flex items-center justify-center overflow-hidden">
+              <div className="relative w-full h-88 bg-[var(--bg-card-inner)] p-5 rounded-[8px] border border-[var(--border-card)] flex items-center justify-center overflow-hidden">
                 <svg className="w-full h-full" viewBox="0 0 500 220" preserveAspectRatio="none">
                   <defs>
                     <linearGradient id="curveLineGrad" x1="0" y1="0" x2="1" y2="0">
@@ -578,7 +578,7 @@ export default function LandingPage({ setActiveTab, onOpenAuthModal }) {
                   )}
                 </svg>
 
-                <div className="absolute top-3 right-3 bg-[var(--bg-card)] px-3 py-1 rounded border border-emerald-500/30 text-emerald-400 font-mono text-xs font-bold">
+                <div className="absolute top-4 right-4 bg-[var(--bg-card)] px-3.5 py-1.5 rounded border border-emerald-500/30 text-emerald-400 font-mono text-xs font-bold">
                   ₹{(finalCorpus / 100000).toFixed(2)} Lakhs
                 </div>
               </div>
@@ -592,23 +592,23 @@ export default function LandingPage({ setActiveTab, onOpenAuthModal }) {
       {/* ========================================================================= */}
       {/* SECTION 6: ORGANIZED BENTO FEATURE MODULES                                */}
       {/* ========================================================================= */}
-      <section className="mb-36">
+      <section className="mb-40">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           
           <div 
             onClick={() => setActiveTab('analyzer')}
-            className="bento-module-card p-8 flex flex-col justify-between text-left cursor-pointer group"
+            className="bento-module-card p-8 flex flex-col justify-between text-left cursor-pointer group min-h-[340px]"
           >
             <div className="space-y-4">
               <div className="w-10 h-10 rounded-[8px] bg-indigo-500/10 border border-indigo-500/30 flex items-center justify-center">
                 <BrainCircuit className="w-5 h-5 text-indigo-400" />
               </div>
               
-              <h3 className="text-xl font-bold text-[var(--text-main)] font-['Outfit']">
+              <h3 className="text-xl font-bold text-[var(--text-main)]">
                 Anti-Hype AI Detection
               </h3>
 
-              <ul className="space-y-2 text-xs text-[var(--text-muted)] font-semibold">
+              <ul className="space-y-2.5 text-xs text-[var(--text-muted)] font-semibold">
                 <li className="flex items-center gap-2">
                   <span className="w-1.5 h-1.5 rounded-full bg-indigo-400 shrink-0" />
                   <span>Real-time Groq LLM social audit</span>
@@ -632,18 +632,18 @@ export default function LandingPage({ setActiveTab, onOpenAuthModal }) {
 
           <div 
             onClick={() => setActiveTab('dashboard')}
-            className="bento-module-card p-8 flex flex-col justify-between text-left cursor-pointer group"
+            className="bento-module-card p-8 flex flex-col justify-between text-left cursor-pointer group min-h-[340px]"
           >
             <div className="space-y-4">
               <div className="w-10 h-10 rounded-[8px] bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center">
                 <Layers className="w-5 h-5 text-emerald-400" />
               </div>
 
-              <h3 className="text-xl font-bold text-[var(--text-main)] font-['Outfit']">
+              <h3 className="text-xl font-bold text-[var(--text-main)]">
                 Consolidated Asset Vault
               </h3>
 
-              <ul className="space-y-2 text-xs text-[var(--text-muted)] font-semibold">
+              <ul className="space-y-2.5 text-xs text-[var(--text-muted)] font-semibold">
                 <li className="flex items-center gap-2">
                   <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 shrink-0" />
                   <span>Single-pane multi-asset vault</span>
@@ -667,18 +667,18 @@ export default function LandingPage({ setActiveTab, onOpenAuthModal }) {
 
           <div 
             onClick={() => setActiveTab('goals')}
-            className="bento-module-card p-8 flex flex-col justify-between text-left cursor-pointer group"
+            className="bento-module-card p-8 flex flex-col justify-between text-left cursor-pointer group min-h-[340px]"
           >
             <div className="space-y-4">
               <div className="w-10 h-10 rounded-[8px] bg-cyan-500/10 border border-cyan-500/30 flex items-center justify-center">
                 <Target className="w-5 h-5 text-cyan-400" />
               </div>
 
-              <h3 className="text-xl font-bold text-[var(--text-main)] font-['Outfit']">
+              <h3 className="text-xl font-bold text-[var(--text-main)]">
                 Automated Goal Engine
               </h3>
 
-              <ul className="space-y-2 text-xs text-[var(--text-muted)] font-semibold">
+              <ul className="space-y-2.5 text-xs text-[var(--text-muted)] font-semibold">
                 <li className="flex items-center gap-2">
                   <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 shrink-0" />
                   <span>Inflation-adjusted target goals</span>
@@ -704,7 +704,7 @@ export default function LandingPage({ setActiveTab, onOpenAuthModal }) {
       </section>
 
       {/* FOOTER BADGES */}
-      <footer className="pb-16 pt-8 border-t border-[var(--border-card)] flex flex-col sm:flex-row items-center justify-between gap-6 text-xs font-semibold text-[var(--text-muted)]">
+      <footer className="pb-20 pt-10 border-t border-[var(--border-card)] flex flex-col sm:flex-row items-center justify-between gap-6 text-xs font-semibold text-[var(--text-muted)]">
         <div className="flex items-center gap-2">
           <Lock className="w-4 h-4 text-emerald-400" />
           <span>256-Bit Institutional Grade Encryption</span>

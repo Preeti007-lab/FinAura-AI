@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
 
 :root {
   --bg-canvas: #0a0f1d;
@@ -19,8 +19,8 @@
   --text-muted: #94a3b8;
   --text-dim: #64748b;
 
-  --font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
-  --font-heading: 'Outfit', sans-serif;
+  --font-family: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-heading: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
 }
 
 /* Light Theme Variable Overrides */
@@ -41,6 +41,7 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  font-family: var(--font-family) !important;
 }
 
 html {
@@ -51,11 +52,27 @@ html {
 body {
   background-color: var(--bg-canvas) !important;
   color: var(--text-main);
-  font-family: var(--font-family);
+  font-family: var(--font-family) !important;
   min-height: 100vh;
   overflow-x: hidden;
-  line-height: 1.5;
+  line-height: 1.6;
   transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+/* Elongated Section & Card Spacing */
+.elongated-hero {
+  padding-top: 100px;
+  padding-bottom: 80px;
+  margin-bottom: 140px;
+}
+
+.elongated-section {
+  margin-bottom: 140px;
+}
+
+.elongated-card {
+  padding: 36px !important;
+  min-height: 340px;
 }
 
 /* 3D Flip Card Perspective Utilities */
