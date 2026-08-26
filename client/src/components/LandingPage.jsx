@@ -80,7 +80,6 @@ export default function LandingPage({ setActiveTab, onOpenAuthModal, onOpenRiskM
       colorClass: 'card-border-indigo',
       term: 'Rule of 72',
       badge: 'Doubling Speed',
-      badgeClass: 'badge-blue',
       formula: 'Years to Double = 72 ÷ CAGR',
       question: 'How fast will your investment double at 12% annual CAGR?',
       answer: '72 ÷ 12 = 6 Years. Your capital doubles every 6 years. At 15% CAGR, it doubles in 4.8 years.',
@@ -92,7 +91,6 @@ export default function LandingPage({ setActiveTab, onOpenAuthModal, onOpenRiskM
       colorClass: 'card-border-amber',
       term: '50 / 30 / 20 Rule',
       badge: 'Cashflow Rule',
-      badgeClass: 'badge-amber',
       formula: '50% Needs + 30% Wants + 20% Wealth SIPs',
       question: 'How should monthly net salary be strictly allocated?',
       answer: '• 50% Essential Needs (Rent, Groceries, EMIs)\n• 30% Lifestyle Wants (Dining, Travel)\n• 20% Automated Wealth SIPs (Equities, Debt)',
@@ -104,7 +102,6 @@ export default function LandingPage({ setActiveTab, onOpenAuthModal, onOpenRiskM
       colorClass: 'card-border-emerald',
       term: 'Emergency Buffer Ratio',
       badge: 'Liquidity Guard',
-      badgeClass: 'badge-green',
       formula: 'Buffer = 6 × (Monthly Fixed Needs + EMIs)',
       question: 'How much liquid cash must be reserved before investing?',
       answer: 'Exactly 6 months of total fixed obligations stored in 30% Bank Savings + 70% Liquid Mutual Funds.',
@@ -116,7 +113,6 @@ export default function LandingPage({ setActiveTab, onOpenAuthModal, onOpenRiskM
       colorClass: 'card-border-rose',
       term: 'Sharpe Ratio',
       badge: 'Alpha Metric',
-      badgeClass: 'badge-red',
       formula: 'Sharpe = (Portfolio Return - RiskFree Rate) ÷ Volatility',
       question: 'How do institutional funds measure risk-adjusted return?',
       answer: 'A Sharpe ratio > 1.0 indicates solid excess return per unit of volatility; > 2.0 indicates institutional excellence.',
@@ -128,7 +124,6 @@ export default function LandingPage({ setActiveTab, onOpenAuthModal, onOpenRiskM
       colorClass: 'card-border-cyan',
       term: 'Real Rate of Return',
       badge: 'CPI Inflation',
-      badgeClass: 'badge-cyan',
       formula: 'Real Return = Nominal CAGR - CPI Inflation (6%)',
       question: 'Why do traditional bank FDs fail to grow real wealth?',
       answer: 'If FD yields 6.5% interest and CPI inflation is 6.0%, your net real return after 30% tax is negative (-1.45%).',
@@ -140,7 +135,6 @@ export default function LandingPage({ setActiveTab, onOpenAuthModal, onOpenRiskM
       colorClass: 'card-border-violet',
       term: '100 Minus Age Rule',
       badge: 'Asset Allocation',
-      badgeClass: 'badge-blue',
       formula: 'Equity Target % = 100 - Current Age',
       question: 'How should your asset allocation shift as you age?',
       answer: 'At age 30: 70% Equities, 20% Debt, 10% Gold/Cash. At age 50: 50% Equities, 40% Debt, 10% Gold/Cash.',
@@ -152,23 +146,23 @@ export default function LandingPage({ setActiveTab, onOpenAuthModal, onOpenRiskM
     <div className="w-full min-h-screen text-[var(--text-main)] px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto text-center font-sans">
       
       {/* ========================================================================= */}
-      {/* SECTION 1: SPACIOUS CENTER-JUSTIFIED HERO VIEW                            */}
+      {/* SECTION 01 // OVERVIEW HERO VIEW                                         */}
       {/* ========================================================================= */}
       <section className="flex flex-col items-center justify-center text-center max-w-4xl mx-auto pt-28 pb-16 mb-40">
         
-        {/* Center Badge Pill */}
+        {/* Section Header Tag */}
         <div className="inline-flex items-center gap-2.5 px-4 py-2 rounded-full bg-[var(--bg-card-inner)] border border-[var(--border-card)] text-indigo-400 text-xs font-bold shadow-md mb-8 mx-auto justify-center">
           <Sparkles className="w-4 h-4 text-cyan-400 animate-pulse" />
-          <span>INSTITUTIONAL WEALTHTECH & ANTI-HYPE AI PLATFORM</span>
+          <span className="uppercase tracking-widest font-mono">SECTION 01 // WEALTHTECH OVERVIEW</span>
         </div>
 
-        {/* Massive Center Headline */}
+        {/* Center Headline */}
         <h1 className="text-5xl sm:text-7xl lg:text-8xl font-extrabold tracking-tight text-[var(--text-main)] leading-[1.1] max-w-4xl mx-auto text-center">
           Turn Finfluencer Noise into <span className="bg-gradient-to-r from-indigo-400 via-cyan-400 to-emerald-400 bg-clip-text text-transparent">Actionable Wealth</span>
         </h1>
 
         {/* Center Subtext */}
-        <p className="mt-6 text-base sm:text-xl text-[var(--text-muted)] font-medium max-w-2xl mx-auto leading-relaxed text-center">
+        <p className="mt-8 text-base sm:text-xl text-[var(--text-muted)] font-medium max-w-2xl mx-auto leading-relaxed text-center">
           A disciplined, quantitative wealth management engine. Eliminate social hype, profile institutional risk, consolidate multi-asset vaults, and automate goal SIPs.
         </p>
 
@@ -194,13 +188,22 @@ export default function LandingPage({ setActiveTab, onOpenAuthModal, onOpenRiskM
 
       </section>
 
+      {/* SECTION DIVIDER */}
+      <div className="w-full border-t border-[var(--border-card)] my-12" />
+
       {/* ========================================================================= */}
-      {/* SECTION 2: PROOF COUNTERS (STRICT CENTER ALIGNMENT)                       */}
+      {/* SECTION 02 // PROOF COUNTERS METRICS                                     */}
       {/* ========================================================================= */}
       <section className="mb-40">
+        <div className="text-center max-w-xl mx-auto mb-10">
+          <span className="text-xs font-mono font-bold text-indigo-400 uppercase tracking-widest px-3 py-1 rounded bg-indigo-500/10 border border-indigo-500/20">
+            SECTION 02 // VERIFIED INSTITUTIONAL PROOF
+          </span>
+        </div>
+
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           
-          <div className="bg-[var(--bg-card)] border border-[var(--border-card)] rounded-[8px] p-12 flex flex-col items-center justify-center text-center shadow-lg hover:border-emerald-500/50 transition-all">
+          <div className="bg-[var(--bg-card)] border border-[var(--border-card)] rounded-[12px] p-12 flex flex-col items-center justify-center text-center shadow-lg hover:border-emerald-500/50 transition-all">
             <div className="text-5xl sm:text-6xl font-extrabold text-emerald-400 tracking-tight">
               $48M+
             </div>
@@ -209,7 +212,7 @@ export default function LandingPage({ setActiveTab, onOpenAuthModal, onOpenRiskM
             </div>
           </div>
 
-          <div className="bg-[var(--bg-card)] border border-[var(--border-card)] rounded-[8px] p-12 flex flex-col items-center justify-center text-center shadow-lg hover:border-indigo-500/50 transition-all">
+          <div className="bg-[var(--bg-card)] border border-[var(--border-card)] rounded-[12px] p-12 flex flex-col items-center justify-center text-center shadow-lg hover:border-indigo-500/50 transition-all">
             <div className="text-5xl sm:text-6xl font-extrabold text-indigo-400 tracking-tight">
               14,200+
             </div>
@@ -218,7 +221,7 @@ export default function LandingPage({ setActiveTab, onOpenAuthModal, onOpenRiskM
             </div>
           </div>
 
-          <div className="bg-[var(--bg-card)] border border-[var(--border-card)] rounded-[8px] p-12 flex flex-col items-center justify-center text-center shadow-lg hover:border-cyan-400/50 transition-all">
+          <div className="bg-[var(--bg-card)] border border-[var(--border-card)] rounded-[12px] p-12 flex flex-col items-center justify-center text-center shadow-lg hover:border-cyan-400/50 transition-all">
             <div className="text-5xl sm:text-6xl font-extrabold text-cyan-400 tracking-tight">
               98.4%
             </div>
@@ -230,15 +233,18 @@ export default function LandingPage({ setActiveTab, onOpenAuthModal, onOpenRiskM
         </div>
       </section>
 
+      {/* SECTION DIVIDER */}
+      <div className="w-full border-t border-[var(--border-card)] my-12" />
+
       {/* ========================================================================= */}
-      {/* SECTION 3: FINANCIAL JOURNEY PHASE 1 - RISK PROFILING ENGINE              */}
+      {/* SECTION 03 // FINANCIAL JOURNEY PHASE 1 - RISK PROFILING ENGINE          */}
       {/* ========================================================================= */}
       <section className="mb-40 space-y-12">
         
         <div className="text-center max-w-2xl mx-auto space-y-3">
-          <div className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-indigo-400 justify-center">
-            <Compass className="w-4 h-4" /> FINANCIAL JOURNEY PHASE 1
-          </div>
+          <span className="text-xs font-mono font-bold text-indigo-400 uppercase tracking-widest px-3 py-1 rounded bg-indigo-500/10 border border-indigo-500/20">
+            SECTION 03 // FINANCIAL JOURNEY PHASE 1
+          </span>
           <h2 className="text-3xl sm:text-5xl font-extrabold text-[var(--text-main)] text-center">
             Institutional Risk Profiling
           </h2>
@@ -247,11 +253,12 @@ export default function LandingPage({ setActiveTab, onOpenAuthModal, onOpenRiskM
           </p>
         </div>
 
-        <div className="bg-[var(--bg-card)] border border-[var(--border-card)] rounded-[8px] p-8 sm:p-14 shadow-xl text-center max-w-5xl mx-auto">
+        {/* Systematic 50/50 Uniform Card */}
+        <div className="bg-[var(--bg-card)] border border-[var(--border-card)] rounded-[12px] p-8 sm:p-12 shadow-xl text-center max-w-5xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
             
-            {/* Visual Risk Journey Image */}
-            <div className="lg:col-span-6 relative w-full h-80 rounded-lg overflow-hidden border border-[var(--border-card)] shadow-md">
+            {/* Uniform Visual Photo Container (16:9 Aspect Ratio) */}
+            <div className="lg:col-span-6 relative w-full aspect-[16/9] rounded-[10px] overflow-hidden border border-[var(--border-card)] shadow-md">
               <img 
                 src="/images/risk_journey.jpg" 
                 alt="Institutional Risk Profile Gauge & Spectrum" 
@@ -262,7 +269,7 @@ export default function LandingPage({ setActiveTab, onOpenAuthModal, onOpenRiskM
               </div>
             </div>
 
-            {/* Content & Action Points */}
+            {/* Matching Uniform Text Container */}
             <div className="lg:col-span-6 space-y-6 text-center flex flex-col items-center">
               <div className="w-12 h-12 rounded-xl bg-indigo-500/10 border border-indigo-500/30 flex items-center justify-center mx-auto">
                 <ShieldCheck className="w-6 h-6 text-indigo-400" />
@@ -277,13 +284,13 @@ export default function LandingPage({ setActiveTab, onOpenAuthModal, onOpenRiskM
               </p>
 
               <div className="w-full grid grid-cols-2 gap-3 text-xs font-bold text-[var(--text-main)]">
-                <div className="p-3 rounded bg-[var(--bg-card-inner)] border border-[var(--border-card)] text-center">
+                <div className="p-3.5 rounded bg-[var(--bg-card-inner)] border border-[var(--border-card)] text-center">
                   <div className="text-[10px] text-[var(--text-muted)] uppercase">Max Drawdown</div>
-                  <div className="text-rose-400 text-sm mt-0.5">-15% Limit</div>
+                  <div className="text-rose-400 text-sm mt-1 font-bold">-15% Limit</div>
                 </div>
-                <div className="p-3 rounded bg-[var(--bg-card-inner)] border border-[var(--border-card)] text-center">
+                <div className="p-3.5 rounded bg-[var(--bg-card-inner)] border border-[var(--border-card)] text-center">
                   <div className="text-[10px] text-[var(--text-muted)] uppercase">Equity Band</div>
-                  <div className="text-emerald-400 text-sm mt-0.5">70% Target</div>
+                  <div className="text-emerald-400 text-sm mt-1 font-bold">70% Target</div>
                 </div>
               </div>
 
@@ -303,15 +310,18 @@ export default function LandingPage({ setActiveTab, onOpenAuthModal, onOpenRiskM
 
       </section>
 
+      {/* SECTION DIVIDER */}
+      <div className="w-full border-t border-[var(--border-card)] my-12" />
+
       {/* ========================================================================= */}
-      {/* SECTION 4: FINANCIAL JOURNEY PHASE 2 - PORTFOLIO CONSOLIDATION VAULT     */}
+      {/* SECTION 04 // FINANCIAL JOURNEY PHASE 2 - PORTFOLIO CONSOLIDATION VAULT   */}
       {/* ========================================================================= */}
       <section className="mb-40 space-y-12">
         
         <div className="text-center max-w-2xl mx-auto space-y-3">
-          <div className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-emerald-400 justify-center">
-            <Layers className="w-4 h-4" /> FINANCIAL JOURNEY PHASE 2
-          </div>
+          <span className="text-xs font-mono font-bold text-emerald-400 uppercase tracking-widest px-3 py-1 rounded bg-emerald-500/10 border border-emerald-500/20">
+            SECTION 04 // FINANCIAL JOURNEY PHASE 2
+          </span>
           <h2 className="text-3xl sm:text-5xl font-extrabold text-[var(--text-main)] text-center">
             Multi-Asset Portfolio Consolidation
           </h2>
@@ -320,10 +330,11 @@ export default function LandingPage({ setActiveTab, onOpenAuthModal, onOpenRiskM
           </p>
         </div>
 
-        <div className="bg-[var(--bg-card)] border border-[var(--border-card)] rounded-[8px] p-8 sm:p-14 shadow-xl text-center max-w-5xl mx-auto">
+        {/* Systematic 50/50 Uniform Card */}
+        <div className="bg-[var(--bg-card)] border border-[var(--border-card)] rounded-[12px] p-8 sm:p-12 shadow-xl text-center max-w-5xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
             
-            {/* Content & Action Points */}
+            {/* Matching Uniform Text Container */}
             <div className="lg:col-span-6 space-y-6 text-center flex flex-col items-center order-2 lg:order-1">
               <div className="w-12 h-12 rounded-xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center mx-auto">
                 <PieChart className="w-6 h-6 text-emerald-400" />
@@ -337,18 +348,18 @@ export default function LandingPage({ setActiveTab, onOpenAuthModal, onOpenRiskM
                 Track true net worth in real-time. Automated rebalancing alerts warn you when equity allocation drifts beyond your target risk tolerance.
               </p>
 
-              <div className="w-full grid grid-cols-3 gap-2 text-xs font-bold text-[var(--text-main)]">
-                <div className="p-2.5 rounded bg-[var(--bg-card-inner)] border border-[var(--border-card)] text-center">
-                  <div className="text-[10px] text-slate-400">Stocks</div>
-                  <div className="text-indigo-400 mt-0.5">45%</div>
+              <div className="w-full grid grid-cols-3 gap-3 text-xs font-bold text-[var(--text-main)]">
+                <div className="p-3 rounded bg-[var(--bg-card-inner)] border border-[var(--border-card)] text-center">
+                  <div className="text-[10px] text-slate-400 uppercase">Stocks</div>
+                  <div className="text-indigo-400 text-sm mt-1 font-bold">45%</div>
                 </div>
-                <div className="p-2.5 rounded bg-[var(--bg-card-inner)] border border-[var(--border-card)] text-center">
-                  <div className="text-[10px] text-slate-400">MFs</div>
-                  <div className="text-emerald-400 mt-0.5">30%</div>
+                <div className="p-3 rounded bg-[var(--bg-card-inner)] border border-[var(--border-card)] text-center">
+                  <div className="text-[10px] text-slate-400 uppercase">MFs</div>
+                  <div className="text-emerald-400 text-sm mt-1 font-bold">30%</div>
                 </div>
-                <div className="p-2.5 rounded bg-[var(--bg-card-inner)] border border-[var(--border-card)] text-center">
-                  <div className="text-[10px] text-slate-400">Gold/Debt</div>
-                  <div className="text-amber-400 mt-0.5">25%</div>
+                <div className="p-3 rounded bg-[var(--bg-card-inner)] border border-[var(--border-card)] text-center">
+                  <div className="text-[10px] text-slate-400 uppercase">Gold/Debt</div>
+                  <div className="text-amber-400 text-sm mt-1 font-bold">25%</div>
                 </div>
               </div>
 
@@ -361,8 +372,8 @@ export default function LandingPage({ setActiveTab, onOpenAuthModal, onOpenRiskM
               </button>
             </div>
 
-            {/* Visual Portfolio Consolidation Image */}
-            <div className="lg:col-span-6 relative w-full h-80 rounded-lg overflow-hidden border border-[var(--border-card)] shadow-md order-1 lg:order-2">
+            {/* Uniform Visual Photo Container (16:9 Aspect Ratio) */}
+            <div className="lg:col-span-6 relative w-full aspect-[16/9] rounded-[10px] overflow-hidden border border-[var(--border-card)] shadow-md order-1 lg:order-2">
               <img 
                 src="/images/portfolio_journey.jpg" 
                 alt="Multi-Asset Portfolio Consolidation Vault Dashboard" 
@@ -378,15 +389,18 @@ export default function LandingPage({ setActiveTab, onOpenAuthModal, onOpenRiskM
 
       </section>
 
+      {/* SECTION DIVIDER */}
+      <div className="w-full border-t border-[var(--border-card)] my-12" />
+
       {/* ========================================================================= */}
-      {/* SECTION 5: FINANCIAL JOURNEY PHASE 3 - GOAL-BASED SIP PLANNING ENGINE     */}
+      {/* SECTION 05 // FINANCIAL JOURNEY PHASE 3 - GOAL-BASED SIP PLANNING ENGINE  */}
       {/* ========================================================================= */}
       <section className="mb-40 space-y-12">
         
         <div className="text-center max-w-2xl mx-auto space-y-3">
-          <div className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-cyan-400 justify-center">
-            <Target className="w-4 h-4" /> FINANCIAL JOURNEY PHASE 3
-          </div>
+          <span className="text-xs font-mono font-bold text-cyan-400 uppercase tracking-widest px-3 py-1 rounded bg-cyan-500/10 border border-cyan-500/20">
+            SECTION 05 // FINANCIAL JOURNEY PHASE 3
+          </span>
           <h2 className="text-3xl sm:text-5xl font-extrabold text-[var(--text-main)] text-center">
             Goal-Based Wealth Accumulation
           </h2>
@@ -395,11 +409,12 @@ export default function LandingPage({ setActiveTab, onOpenAuthModal, onOpenRiskM
           </p>
         </div>
 
-        <div className="bg-[var(--bg-card)] border border-[var(--border-card)] rounded-[8px] p-8 sm:p-14 shadow-xl text-center max-w-5xl mx-auto">
+        {/* Systematic 50/50 Uniform Card */}
+        <div className="bg-[var(--bg-card)] border border-[var(--border-card)] rounded-[12px] p-8 sm:p-12 shadow-xl text-center max-w-5xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
             
-            {/* Visual Goal Planning Roadmap Image */}
-            <div className="lg:col-span-6 relative w-full h-80 rounded-lg overflow-hidden border border-[var(--border-card)] shadow-md">
+            {/* Uniform Visual Photo Container (16:9 Aspect Ratio) */}
+            <div className="lg:col-span-6 relative w-full aspect-[16/9] rounded-[10px] overflow-hidden border border-[var(--border-card)] shadow-md">
               <img 
                 src="/images/goal_journey.jpg" 
                 alt="Financial Goal Planning Roadmap & Milestones" 
@@ -410,7 +425,7 @@ export default function LandingPage({ setActiveTab, onOpenAuthModal, onOpenRiskM
               </div>
             </div>
 
-            {/* Content & Action Points */}
+            {/* Matching Uniform Text Container */}
             <div className="lg:col-span-6 space-y-6 text-center flex flex-col items-center">
               <div className="w-12 h-12 rounded-xl bg-cyan-500/10 border border-cyan-500/30 flex items-center justify-center mx-auto">
                 <Target className="w-6 h-6 text-cyan-400" />
@@ -425,13 +440,13 @@ export default function LandingPage({ setActiveTab, onOpenAuthModal, onOpenRiskM
               </p>
 
               <div className="w-full grid grid-cols-2 gap-3 text-xs font-bold text-[var(--text-main)]">
-                <div className="p-3 rounded bg-[var(--bg-card-inner)] border border-[var(--border-card)] text-center">
+                <div className="p-3.5 rounded bg-[var(--bg-card-inner)] border border-[var(--border-card)] text-center">
                   <div className="text-[10px] text-[var(--text-muted)] uppercase">Retirement SIP</div>
-                  <div className="text-cyan-400 text-sm mt-0.5">₹45,000 / mo</div>
+                  <div className="text-cyan-400 text-sm mt-1 font-bold">₹45,000 / mo</div>
                 </div>
-                <div className="p-3 rounded bg-[var(--bg-card-inner)] border border-[var(--border-card)] text-center">
+                <div className="p-3.5 rounded bg-[var(--bg-card-inner)] border border-[var(--border-card)] text-center">
                   <div className="text-[10px] text-[var(--text-muted)] uppercase">Home Downpayment</div>
-                  <div className="text-amber-400 text-sm mt-0.5">₹25,000 / mo</div>
+                  <div className="text-amber-400 text-sm mt-1 font-bold">₹25,000 / mo</div>
                 </div>
               </div>
 
@@ -449,15 +464,18 @@ export default function LandingPage({ setActiveTab, onOpenAuthModal, onOpenRiskM
 
       </section>
 
+      {/* SECTION DIVIDER */}
+      <div className="w-full border-t border-[var(--border-card)] my-12" />
+
       {/* ========================================================================= */}
-      {/* SECTION 6: COLOUR-MARKED 3D FINANCIAL TERM FLASHCARDS DECK                */}
+      {/* SECTION 06 // COLOUR-MARKED 3D FINANCIAL TERM FLASHCARDS DECK             */}
       {/* ========================================================================= */}
       <section className="mb-40 space-y-12">
         
         <div className="text-center max-w-2xl mx-auto space-y-3">
-          <div className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-indigo-400 justify-center">
-            <BookOpen className="w-4 h-4" /> INTERACTIVE FINANCIAL CONCEPTS
-          </div>
+          <span className="text-xs font-mono font-bold text-violet-400 uppercase tracking-widest px-3 py-1 rounded bg-violet-500/10 border border-violet-500/20">
+            SECTION 06 // INTERACTIVE CONCEPTS
+          </span>
           <h2 className="text-3xl sm:text-4xl font-extrabold text-[var(--text-main)] text-center">
             Core Wealth Flashcards (Colour-Coded Boundaries)
           </h2>
@@ -481,7 +499,7 @@ export default function LandingPage({ setActiveTab, onOpenAuthModal, onOpenRiskM
               >
                 
                 {/* FRONT SIDE */}
-                <div className={`absolute inset-0 w-full h-full backface-hidden rounded-[8px] p-7 flex flex-col justify-between text-left bg-[var(--bg-card)] ${fc.colorClass}`}>
+                <div className={`absolute inset-0 w-full h-full backface-hidden rounded-[12px] p-7 flex flex-col justify-between text-left bg-[var(--bg-card)] ${fc.colorClass}`}>
                   <div className="flex items-center justify-between">
                     <span className="text-[11px] font-bold uppercase tracking-wider text-indigo-400 px-2.5 py-0.5 rounded bg-indigo-500/10 border border-indigo-500/20">
                       {fc.category}
@@ -510,7 +528,7 @@ export default function LandingPage({ setActiveTab, onOpenAuthModal, onOpenRiskM
                 </div>
 
                 {/* BACK SIDE */}
-                <div className={`absolute inset-0 w-full h-full backface-hidden rotate-y-180 rounded-[8px] p-7 flex flex-col justify-between text-left bg-[var(--bg-card-inner)] ${fc.colorClass}`}>
+                <div className={`absolute inset-0 w-full h-full backface-hidden rotate-y-180 rounded-[12px] p-7 flex flex-col justify-between text-left bg-[var(--bg-card-inner)] ${fc.colorClass}`}>
                   <div className="flex items-center justify-between border-b border-[var(--border-card)] pb-2">
                     <span className="text-xs font-bold text-emerald-400">
                       Formula & Calculation
@@ -538,25 +556,30 @@ export default function LandingPage({ setActiveTab, onOpenAuthModal, onOpenRiskM
 
       </section>
 
+      {/* SECTION DIVIDER */}
+      <div className="w-full border-t border-[var(--border-card)] my-12" />
+
       {/* ========================================================================= */}
-      {/* SECTION 7: CALCULATIVE FINANCIAL CONCEPTS WITH REAL IMAGES                */}
+      {/* SECTION 07 // CALCULATIVE FINANCIAL CONCEPTS WITH UNIFORM IMAGES          */}
       {/* ========================================================================= */}
       <section className="mb-40 space-y-12">
         
         <div className="text-center max-w-xl mx-auto space-y-3">
-          <span className="text-xs font-bold uppercase tracking-wider text-emerald-400">DATA-BACKED FINANCIAL GUIDANCE</span>
+          <span className="text-xs font-mono font-bold text-amber-400 uppercase tracking-widest px-3 py-1 rounded bg-amber-500/10 border border-amber-500/20">
+            SECTION 07 // WEALTH BUILDING PRINCIPLES
+          </span>
           <h2 className="text-3xl sm:text-4xl font-extrabold text-[var(--text-main)] text-center">
-            Investing, Saving & Budgeting Principles
+            Investing, Saving & Budgeting Framework
           </h2>
           <p className="text-sm text-[var(--text-muted)] font-medium text-center">
-            Calculative framework for disciplined wealth compounding and risk mitigation.
+            Calculative principles for disciplined wealth compounding and risk mitigation.
           </p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           
           {/* Card 1: Investing */}
-          <div className="bento-module-card p-8 text-left space-y-6 flex flex-col justify-between">
+          <div className="bento-module-card p-8 text-left space-y-6 flex flex-col justify-between rounded-[12px]">
             <div className="space-y-4">
               <div className="flex items-center justify-between">
                 <span className="badge badge-green text-[11px]">Investing Matrix</span>
@@ -572,8 +595,8 @@ export default function LandingPage({ setActiveTab, onOpenAuthModal, onOpenRiskM
                 </p>
               </div>
 
-              {/* Real Financial Image: Wealth Compounding Chart */}
-              <div className="relative w-full h-52 rounded-lg overflow-hidden border border-[var(--border-card)]">
+              {/* Uniform Image Container (16:9 Aspect Ratio) */}
+              <div className="relative w-full aspect-[16/9] rounded-[8px] overflow-hidden border border-[var(--border-card)]">
                 <img 
                   src="/images/wealth_compounding.jpg" 
                   alt="Wealth Compounding Exponential Chart" 
@@ -595,7 +618,7 @@ export default function LandingPage({ setActiveTab, onOpenAuthModal, onOpenRiskM
           </div>
 
           {/* Card 2: Saving */}
-          <div className="bento-module-card p-8 text-left space-y-6 flex flex-col justify-between">
+          <div className="bento-module-card p-8 text-left space-y-6 flex flex-col justify-between rounded-[12px]">
             <div className="space-y-4">
               <div className="flex items-center justify-between">
                 <span className="badge badge-blue text-[11px]">Savings Vault</span>
@@ -611,8 +634,8 @@ export default function LandingPage({ setActiveTab, onOpenAuthModal, onOpenRiskM
                 </p>
               </div>
 
-              {/* Real Financial Image: Asset Vault */}
-              <div className="relative w-full h-52 rounded-lg overflow-hidden border border-[var(--border-card)]">
+              {/* Uniform Image Container (16:9 Aspect Ratio) */}
+              <div className="relative w-full aspect-[16/9] rounded-[8px] overflow-hidden border border-[var(--border-card)]">
                 <img 
                   src="/images/asset_vault.jpg" 
                   alt="Asset Allocation Vault Portfolio Breakdown" 
@@ -634,7 +657,7 @@ export default function LandingPage({ setActiveTab, onOpenAuthModal, onOpenRiskM
           </div>
 
           {/* Card 3: Anti-Hype AI Audit */}
-          <div className="bento-module-card p-8 text-left space-y-6 flex flex-col justify-between">
+          <div className="bento-module-card p-8 text-left space-y-6 flex flex-col justify-between rounded-[12px]">
             <div className="space-y-4">
               <div className="flex items-center justify-between">
                 <span className="badge badge-amber text-[11px]">Anti-Hype AI</span>
@@ -650,8 +673,8 @@ export default function LandingPage({ setActiveTab, onOpenAuthModal, onOpenRiskM
                 </p>
               </div>
 
-              {/* Real Financial Image: AI Radar */}
-              <div className="relative w-full h-52 rounded-lg overflow-hidden border border-[var(--border-card)]">
+              {/* Uniform Image Container (16:9 Aspect Ratio) */}
+              <div className="relative w-full aspect-[16/9] rounded-[8px] overflow-hidden border border-[var(--border-card)]">
                 <img 
                   src="/images/ai_radar.jpg" 
                   alt="AI Financial Stock Audit Shield" 
@@ -676,11 +699,20 @@ export default function LandingPage({ setActiveTab, onOpenAuthModal, onOpenRiskM
 
       </section>
 
+      {/* SECTION DIVIDER */}
+      <div className="w-full border-t border-[var(--border-card)] my-12" />
+
       {/* ========================================================================= */}
-      {/* SECTION 8: INTERACTIVE FORECASTING PLAYGROUND                             */}
+      {/* SECTION 08 // INTERACTIVE FORECASTING PLAYGROUND                          */}
       {/* ========================================================================= */}
       <section className="mb-40">
-        <div className="bg-[var(--bg-card)] border border-[var(--border-card)] rounded-[8px] p-8 sm:p-14 shadow-xl text-left">
+        <div className="text-center max-w-xl mx-auto mb-10">
+          <span className="text-xs font-mono font-bold text-cyan-400 uppercase tracking-widest px-3 py-1 rounded bg-cyan-500/10 border border-cyan-500/20">
+            SECTION 08 // DYNAMIC COMPOUNDING ENGINE
+          </span>
+        </div>
+
+        <div className="bg-[var(--bg-card)] border border-[var(--border-card)] rounded-[12px] p-8 sm:p-14 shadow-xl text-left">
           
           <div className="flex items-center gap-2 mb-10 justify-center text-center">
             <Sliders className="w-5 h-5 text-emerald-400" />
@@ -692,7 +724,7 @@ export default function LandingPage({ setActiveTab, onOpenAuthModal, onOpenRiskM
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
             
             {/* Slider Controls */}
-            <div className="lg:col-span-5 space-y-6 bg-[var(--bg-card-inner)] p-8 rounded-[8px] border border-[var(--border-card)]">
+            <div className="lg:col-span-5 space-y-6 bg-[var(--bg-card-inner)] p-8 rounded-[10px] border border-[var(--border-card)]">
               
               <div className="space-y-2">
                 <div className="flex justify-between items-center text-xs font-bold">
@@ -764,7 +796,7 @@ export default function LandingPage({ setActiveTab, onOpenAuthModal, onOpenRiskM
                 <span className="text-emerald-400 font-mono">{cagrRate}% CAGR RATE</span>
               </div>
 
-              <div className="relative w-full h-88 bg-[var(--bg-card-inner)] p-5 rounded-[8px] border border-[var(--border-card)] flex items-center justify-center overflow-hidden">
+              <div className="relative w-full h-88 bg-[var(--bg-card-inner)] p-5 rounded-[10px] border border-[var(--border-card)] flex items-center justify-center overflow-hidden">
                 <svg className="w-full h-full" viewBox="0 0 500 220" preserveAspectRatio="none">
                   <defs>
                     <linearGradient id="curveLineGrad" x1="0" y1="0" x2="1" y2="0">
@@ -813,15 +845,24 @@ export default function LandingPage({ setActiveTab, onOpenAuthModal, onOpenRiskM
         </div>
       </section>
 
+      {/* SECTION DIVIDER */}
+      <div className="w-full border-t border-[var(--border-card)] my-12" />
+
       {/* ========================================================================= */}
-      {/* SECTION 9: ORGANIZED BENTO FEATURE MODULES                                */}
+      {/* SECTION 09 // ORGANIZED BENTO FEATURE MODULES                             */}
       {/* ========================================================================= */}
       <section className="mb-40">
+        <div className="text-center max-w-xl mx-auto mb-10">
+          <span className="text-xs font-mono font-bold text-indigo-400 uppercase tracking-widest px-3 py-1 rounded bg-indigo-500/10 border border-indigo-500/20">
+            SECTION 09 // PLATFORM CAPABILITIES
+          </span>
+        </div>
+
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           
           <div 
             onClick={() => setActiveTab('analyzer')}
-            className="bento-module-card p-8 flex flex-col justify-between text-left cursor-pointer group min-h-[340px]"
+            className="bento-module-card p-8 flex flex-col justify-between text-left cursor-pointer group min-h-[340px] rounded-[12px]"
           >
             <div className="space-y-4">
               <div className="w-10 h-10 rounded-[8px] bg-indigo-500/10 border border-indigo-500/30 flex items-center justify-center">
@@ -856,7 +897,7 @@ export default function LandingPage({ setActiveTab, onOpenAuthModal, onOpenRiskM
 
           <div 
             onClick={() => setActiveTab('dashboard')}
-            className="bento-module-card p-8 flex flex-col justify-between text-left cursor-pointer group min-h-[340px]"
+            className="bento-module-card p-8 flex flex-col justify-between text-left cursor-pointer group min-h-[340px] rounded-[12px]"
           >
             <div className="space-y-4">
               <div className="w-10 h-10 rounded-[8px] bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center">
@@ -891,7 +932,7 @@ export default function LandingPage({ setActiveTab, onOpenAuthModal, onOpenRiskM
 
           <div 
             onClick={() => setActiveTab('goals')}
-            className="bento-module-card p-8 flex flex-col justify-between text-left cursor-pointer group min-h-[340px]"
+            className="bento-module-card p-8 flex flex-col justify-between text-left cursor-pointer group min-h-[340px] rounded-[12px]"
           >
             <div className="space-y-4">
               <div className="w-10 h-10 rounded-[8px] bg-cyan-500/10 border border-cyan-500/30 flex items-center justify-center">
