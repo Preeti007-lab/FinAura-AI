@@ -71,7 +71,7 @@ export default function LandingPage({ setActiveTab, onOpenAuthModal, onOpenRiskM
 
   const { totalInvested, finalCorpus, totalGain, pathD, areaD, lastPoint } = calculateCompounding();
 
-  // Financial Terms Flashcards Data
+  // Financial Terms Flashcards Data with Short Precise Takeaways
   const financialFlashcards = [
     {
       id: 'rule72',
@@ -80,9 +80,9 @@ export default function LandingPage({ setActiveTab, onOpenAuthModal, onOpenRiskM
       term: 'Rule of 72',
       badge: 'Doubling Speed',
       formula: 'Years to Double = 72 ÷ CAGR',
-      question: 'How fast will your investment double at 12% annual CAGR?',
-      answer: '72 ÷ 12 = 6 Years. Your capital doubles every 6 years. At 15% CAGR, it doubles in 4.8 years.',
-      calculativeInsight: '★ Key Takeaway: Elevating CAGR from 10% to 15% cuts doubling time from 7.2 yrs to 4.8 yrs.'
+      question: 'How fast will an investment double at 12% CAGR?',
+      answer: '• 72 ÷ 12 = 6 Years to double capital.\n• At 15% CAGR = 4.8 Years.',
+      calculativeInsight: '★ 15% CAGR cuts doubling time to 4.8 yrs.'
     },
     {
       id: 'rule503020',
@@ -91,9 +91,9 @@ export default function LandingPage({ setActiveTab, onOpenAuthModal, onOpenRiskM
       term: '50 / 30 / 20 Rule',
       badge: 'Cashflow Rule',
       formula: '50% Needs + 30% Wants + 20% Wealth SIPs',
-      question: 'How should monthly net salary be strictly allocated?',
-      answer: '• 50% Essential Needs (Rent, Groceries, EMIs)\n• 30% Lifestyle Wants (Dining, Travel)\n• 20% Automated Wealth SIPs (Equities, Debt)',
-      calculativeInsight: '★ Key Takeaway: Cap total fixed debt/EMIs to < 30% of net monthly income.'
+      question: 'How should monthly salary be allocated?',
+      answer: '• 50% Essential Needs\n• 30% Lifestyle Wants\n• 20% Automated Wealth SIPs',
+      calculativeInsight: '★ Fixed Debt / EMIs capped to < 30% net income.'
     },
     {
       id: 'emergencyFund',
@@ -101,10 +101,10 @@ export default function LandingPage({ setActiveTab, onOpenAuthModal, onOpenRiskM
       colorClass: 'card-border-emerald',
       term: 'Emergency Buffer Ratio',
       badge: 'Liquidity Guard',
-      formula: 'Buffer = 6 × (Monthly Fixed Needs + EMIs)',
-      question: 'How much liquid cash must be reserved before investing?',
-      answer: 'Exactly 6 months of total fixed obligations stored in 30% Bank Savings + 70% Liquid Mutual Funds.',
-      calculativeInsight: '★ Key Takeaway: Prevents forced liquidation of equities during temporary market dips.'
+      formula: 'Buffer = 6 × (Fixed Needs + EMIs)',
+      question: 'How much liquid cash to reserve before investing?',
+      answer: '• 6 Months fixed obligations buffer.\n• 30% Bank Savings + 70% Liquid MFs.',
+      calculativeInsight: '★ Prevents forced selling during market dips.'
     },
     {
       id: 'sharpeRatio',
@@ -112,10 +112,10 @@ export default function LandingPage({ setActiveTab, onOpenAuthModal, onOpenRiskM
       colorClass: 'card-border-rose',
       term: 'Sharpe Ratio',
       badge: 'Alpha Metric',
-      formula: 'Sharpe = (Portfolio Return - RiskFree Rate) ÷ Volatility',
+      formula: 'Sharpe = (Return - RiskFree) ÷ Volatility',
       question: 'How do institutional funds measure risk-adjusted return?',
-      answer: 'A Sharpe ratio > 1.0 indicates solid excess return per unit of volatility; > 2.0 indicates institutional excellence.',
-      calculativeInsight: '★ Key Takeaway: High return paired with extreme drawdown yields an inferior Sharpe score.'
+      answer: '• Sharpe > 1.0 = Strong excess return.\n• Sharpe > 2.0 = Institutional excellence.',
+      calculativeInsight: '★ High volatility yields lower Sharpe score.'
     },
     {
       id: 'inflationShield',
@@ -124,9 +124,9 @@ export default function LandingPage({ setActiveTab, onOpenAuthModal, onOpenRiskM
       term: 'Real Rate of Return',
       badge: 'CPI Inflation',
       formula: 'Real Return = Nominal CAGR - CPI Inflation (6%)',
-      question: 'Why do traditional bank FDs fail to grow real wealth?',
-      answer: 'If FD yields 6.5% interest and CPI inflation is 6.0%, your net real return after 30% tax is negative (-1.45%).',
-      calculativeInsight: '★ Key Takeaway: Equities & broad index funds are essential to outpace long-term CPI inflation.'
+      question: 'Why do traditional bank FDs fail to grow wealth?',
+      answer: '• 6.5% FD - 6.0% CPI - 30% Tax.\n• Net real return = -1.45% negative yield.',
+      calculativeInsight: '★ Equities required to beat long-term CPI inflation.'
     },
     {
       id: 'assetAlloc',
@@ -135,9 +135,9 @@ export default function LandingPage({ setActiveTab, onOpenAuthModal, onOpenRiskM
       term: '100 Minus Age Rule',
       badge: 'Asset Allocation',
       formula: 'Equity Target % = 100 - Current Age',
-      question: 'How should your asset allocation shift as you age?',
-      answer: 'At age 30: 70% Equities, 20% Debt, 10% Gold/Cash. At age 50: 50% Equities, 40% Debt, 10% Gold/Cash.',
-      calculativeInsight: '★ Key Takeaway: Rebalance annually to lock in profits and maintain target risk score.'
+      question: 'How should asset mix shift over time?',
+      answer: '• Age 30: 70% Equity, 20% Debt, 10% Gold.\n• Age 50: 50% Equity, 40% Debt, 10% Gold.',
+      calculativeInsight: '★ Rebalance annually to lock in profits.'
     }
   ];
 
@@ -145,36 +145,31 @@ export default function LandingPage({ setActiveTab, onOpenAuthModal, onOpenRiskM
     <div className="w-full min-h-screen text-[var(--text-main)] px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto text-center font-sans">
       
       {/* REAL-TIME LIVE MARKET TICKER WIDGET */}
-      <div className="w-full bg-[var(--bg-card-inner)] border-b border-[var(--border-card)] py-2.5 px-4 mb-8 overflow-hidden rounded-[8px] text-center">
-        <div className="flex items-center justify-center text-xs font-mono gap-6 overflow-x-auto whitespace-nowrap scrollbar-none mx-auto">
-          <div className="flex items-center gap-2">
+      <div className="w-full bg-[var(--bg-card-inner)] border-b border-[var(--border-card)] py-2 px-4 mb-8 overflow-hidden rounded-[8px] text-center">
+        <div className="flex items-center justify-center text-xs font-mono gap-5 overflow-x-auto whitespace-nowrap scrollbar-none mx-auto">
+          <div className="flex items-center gap-1.5">
             <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping" />
-            <span className="font-bold text-[var(--text-muted)]">MARKETS LIVE:</span>
+            <span className="font-bold text-[var(--text-muted)]">MARKETS:</span>
           </div>
-          <div className="flex items-center gap-1.5 text-emerald-400 font-bold">
+          <div className="flex items-center gap-1 text-emerald-400 font-bold">
             <span>NIFTY 50</span>
             <span>22,645.70</span>
-            <span className="text-[10px] bg-emerald-500/10 px-1 rounded">▲ +0.69%</span>
+            <span className="text-[10px] bg-emerald-500/10 px-1 rounded">▲+0.69%</span>
           </div>
-          <div className="flex items-center gap-1.5 text-emerald-400 font-bold">
+          <div className="flex items-center gap-1 text-emerald-400 font-bold">
             <span>S&P 500</span>
             <span>5,214.85</span>
-            <span className="text-[10px] bg-emerald-500/10 px-1 rounded">▲ +0.93%</span>
+            <span className="text-[10px] bg-emerald-500/10 px-1 rounded">▲+0.93%</span>
           </div>
-          <div className="flex items-center gap-1.5 text-cyan-400 font-bold">
+          <div className="flex items-center gap-1 text-cyan-400 font-bold">
             <span>NASDAQ</span>
             <span>16,420.30</span>
-            <span className="text-[10px] bg-cyan-500/10 px-1 rounded">▲ +1.21%</span>
+            <span className="text-[10px] bg-cyan-500/10 px-1 rounded">▲+1.21%</span>
           </div>
-          <div className="flex items-center gap-1.5 text-amber-400 font-bold">
+          <div className="flex items-center gap-1 text-amber-400 font-bold">
             <span>GOLD</span>
             <span>$2,348.60</span>
-            <span className="text-[10px] bg-amber-500/10 px-1 rounded">▲ +0.95%</span>
-          </div>
-          <div className="flex items-center gap-1.5 text-indigo-400 font-bold">
-            <span>BITCOIN</span>
-            <span>$67,420.00</span>
-            <span className="text-[10px] bg-indigo-500/10 px-1 rounded">▲ +2.10%</span>
+            <span className="text-[10px] bg-amber-500/10 px-1 rounded">▲+0.95%</span>
           </div>
         </div>
       </div>
@@ -182,48 +177,48 @@ export default function LandingPage({ setActiveTab, onOpenAuthModal, onOpenRiskM
       {/* ========================================================================= */}
       {/* SECTION 01 // OVERVIEW HERO VIEW                                         */}
       {/* ========================================================================= */}
-      <section className="flex flex-col items-center justify-center text-center max-w-4xl mx-auto pt-16 pb-16 mb-40">
+      <section className="flex flex-col items-center justify-center text-center max-w-3xl mx-auto pt-10 pb-12 mb-32">
         
-        {/* Section Header Tag */}
-        <div className="inline-flex items-center gap-2.5 px-4 py-2 rounded-full bg-[var(--bg-card-inner)] border border-[var(--border-card)] text-indigo-400 text-xs font-bold shadow-md mb-8 mx-auto justify-center">
-          <Sparkles className="w-4 h-4 text-cyan-400 animate-pulse" />
-          <span className="uppercase tracking-widest font-mono">SECTION 01 // WEALTHTECH OVERVIEW</span>
+        {/* Section Header Tag - Uniform Pill Size */}
+        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-md bg-[var(--bg-card-inner)] border border-[var(--border-card)] text-indigo-400 text-xs font-bold shadow-md mb-6 mx-auto justify-center font-mono">
+          <Sparkles className="w-3.5 h-3.5 text-cyan-400 animate-pulse" />
+          <span>SECTION 01 // WEALTHTECH OVERVIEW</span>
         </div>
 
-        {/* Center Headline */}
-        <h1 className="text-5xl sm:text-7xl lg:text-8xl font-extrabold tracking-tight text-[var(--text-main)] leading-[1.1] max-w-4xl mx-auto text-center">
+        {/* Headline */}
+        <h1 className="text-4xl sm:text-6xl font-extrabold tracking-tight text-[var(--text-main)] leading-tight max-w-3xl mx-auto text-center">
           Turn Finfluencer Noise into <span className="bg-gradient-to-r from-indigo-400 via-cyan-400 to-emerald-400 bg-clip-text text-transparent">Actionable Wealth</span>
         </h1>
 
-        {/* Center Subtext */}
-        <p className="mt-8 text-base sm:text-xl text-[var(--text-muted)] font-medium max-w-2xl mx-auto leading-relaxed text-center">
-          A disciplined, quantitative wealth management engine. Eliminate social hype, profile institutional risk, consolidate multi-asset vaults, and automate goal SIPs.
+        {/* Short Precise Subtext */}
+        <p className="mt-4 text-sm sm:text-base text-[var(--text-muted)] font-semibold max-w-xl mx-auto text-center">
+          Risk Profiling • Multi-Asset Vault • Goal SIPs • AI Social Audit
         </p>
 
-        {/* Hero Visual Ticker Banner */}
-        <div className="mt-10 mb-8 w-full max-w-3xl aspect-[16/9] rounded-[12px] overflow-hidden border border-[var(--border-card)] shadow-2xl mx-auto">
+        {/* Moderate Sized Hero Visual Banner */}
+        <div className="mt-8 mb-6 w-full max-w-md h-44 sm:h-52 rounded-[10px] overflow-hidden border border-[var(--border-card)] shadow-lg mx-auto">
           <img 
             src="/images/ticker_banner.jpg" 
-            alt="Real-time Financial Stock Market Ticker Banner" 
+            alt="Real-time Stock Market Banner" 
             className="w-full h-full object-cover hover:scale-105 transition-transform duration-300 mx-auto"
           />
         </div>
 
         {/* Center CTA Buttons */}
-        <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4 mx-auto">
+        <div className="mt-6 flex flex-col sm:flex-row items-center justify-center gap-3 mx-auto">
           {isSignedIn ? (
             <button 
               onClick={() => setActiveTab('dashboard')}
-              className="px-10 py-5 bg-gradient-to-r from-indigo-600 via-blue-600 to-cyan-500 hover:from-indigo-500 hover:to-cyan-400 text-white font-bold text-lg sm:text-xl rounded-full shadow-[0_10px_35px_rgba(99,102,241,0.45)] hover:scale-105 transition-all duration-300 flex items-center justify-center gap-3 cursor-pointer border border-white/20"
+              className="px-8 py-3.5 bg-gradient-to-r from-indigo-600 via-blue-600 to-cyan-500 hover:from-indigo-500 hover:to-cyan-400 text-white font-bold text-sm rounded-full shadow-lg hover:scale-105 transition-all flex items-center justify-center gap-2 cursor-pointer border border-white/20"
             >
               <span>Launch Dashboard</span>
-              <ArrowRight className="w-6 h-6" />
+              <ArrowRight className="w-4 h-4" />
             </button>
           ) : (
             <SignUpButton mode="modal">
-              <button className="px-10 py-5 bg-gradient-to-r from-indigo-600 via-blue-600 to-cyan-500 hover:from-indigo-500 hover:to-cyan-400 text-white font-bold text-lg sm:text-xl rounded-full shadow-[0_10px_35px_rgba(99,102,241,0.45)] hover:scale-105 transition-all duration-300 flex items-center justify-center gap-3 cursor-pointer border border-white/20">
+              <button className="px-8 py-3.5 bg-gradient-to-r from-indigo-600 via-blue-600 to-cyan-500 hover:from-indigo-500 hover:to-cyan-400 text-white font-bold text-sm rounded-full shadow-lg hover:scale-105 transition-all flex items-center justify-center gap-2 cursor-pointer border border-white/20">
                 <span>Get Started Free</span>
-                <ArrowRight className="w-6 h-6" />
+                <ArrowRight className="w-4 h-4" />
               </button>
             </SignUpButton>
           )}
@@ -232,43 +227,43 @@ export default function LandingPage({ setActiveTab, onOpenAuthModal, onOpenRiskM
       </section>
 
       {/* SECTION DIVIDER */}
-      <div className="w-full border-t border-[var(--border-card)] my-12" />
+      <div className="w-full border-t border-[var(--border-card)] my-8" />
 
       {/* ========================================================================= */}
-      {/* SECTION 02 // PROOF COUNTERS METRICS                                     */}
+      {/* SECTION 02 // PROOF METRICS                                              */}
       {/* ========================================================================= */}
-      <section className="mb-40 text-center">
-        <div className="text-center max-w-xl mx-auto mb-10">
-          <span className="text-xs font-mono font-bold text-indigo-400 uppercase tracking-widest px-3 py-1 rounded bg-indigo-500/10 border border-indigo-500/20 mx-auto">
-            SECTION 02 // VERIFIED INSTITUTIONAL PROOF
+      <section className="mb-32 text-center">
+        <div className="text-center max-w-xl mx-auto mb-8">
+          <span className="text-xs font-mono font-bold text-indigo-400 uppercase tracking-wider px-3 py-1 rounded bg-indigo-500/10 border border-indigo-500/20 mx-auto">
+            SECTION 02 // VERIFIED PROOF
           </span>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           
-          <div className="bg-[var(--bg-card)] border border-[var(--border-card)] rounded-[12px] p-12 flex flex-col items-center justify-center text-center shadow-lg hover:border-emerald-500/50 transition-all">
-            <div className="text-5xl sm:text-6xl font-extrabold text-emerald-400 tracking-tight text-center">
+          <div className="bg-[var(--bg-card)] border border-[var(--border-card)] rounded-[10px] p-8 flex flex-col items-center justify-center text-center shadow-md hover:border-emerald-500/50 transition-all">
+            <div className="text-4xl sm:text-5xl font-extrabold text-emerald-400 tracking-tight text-center">
               $48M+
             </div>
-            <div className="text-sm font-bold text-[var(--text-muted)] uppercase tracking-widest mt-4 text-center">
+            <div className="text-xs font-bold text-[var(--text-muted)] uppercase tracking-wider mt-2 text-center">
               Assets Verified
             </div>
           </div>
 
-          <div className="bg-[var(--bg-card)] border border-[var(--border-card)] rounded-[12px] p-12 flex flex-col items-center justify-center text-center shadow-lg hover:border-indigo-500/50 transition-all">
-            <div className="text-5xl sm:text-6xl font-extrabold text-indigo-400 tracking-tight text-center">
+          <div className="bg-[var(--bg-card)] border border-[var(--border-card)] rounded-[10px] p-8 flex flex-col items-center justify-center text-center shadow-md hover:border-indigo-500/50 transition-all">
+            <div className="text-4xl sm:text-5xl font-extrabold text-indigo-400 tracking-tight text-center">
               14,200+
             </div>
-            <div className="text-sm font-bold text-[var(--text-muted)] uppercase tracking-widest mt-4 text-center">
+            <div className="text-xs font-bold text-[var(--text-muted)] uppercase tracking-wider mt-2 text-center">
               Portfolios Protected
             </div>
           </div>
 
-          <div className="bg-[var(--bg-card)] border border-[var(--border-card)] rounded-[12px] p-12 flex flex-col items-center justify-center text-center shadow-lg hover:border-cyan-400/50 transition-all">
-            <div className="text-5xl sm:text-6xl font-extrabold text-cyan-400 tracking-tight text-center">
+          <div className="bg-[var(--bg-card)] border border-[var(--border-card)] rounded-[10px] p-8 flex flex-col items-center justify-center text-center shadow-md hover:border-cyan-400/50 transition-all">
+            <div className="text-4xl sm:text-5xl font-extrabold text-cyan-400 tracking-tight text-center">
               98.4%
             </div>
-            <div className="text-sm font-bold text-[var(--text-muted)] uppercase tracking-widest mt-4 text-center">
+            <div className="text-xs font-bold text-[var(--text-muted)] uppercase tracking-wider mt-2 text-center">
               Filtering Accuracy
             </div>
           </div>
@@ -277,73 +272,69 @@ export default function LandingPage({ setActiveTab, onOpenAuthModal, onOpenRiskM
       </section>
 
       {/* SECTION DIVIDER */}
-      <div className="w-full border-t border-[var(--border-card)] my-12" />
+      <div className="w-full border-t border-[var(--border-card)] my-8" />
 
       {/* ========================================================================= */}
-      {/* SECTION 03 // FINANCIAL JOURNEY PHASE 1 - RISK PROFILING ENGINE          */}
+      {/* SECTION 03 // RISK PROFILING ENGINE                                       */}
       {/* ========================================================================= */}
-      <section className="mb-40 space-y-12 text-center">
+      <section className="mb-32 space-y-8 text-center">
         
-        <div className="text-center max-w-2xl mx-auto space-y-3">
-          <span className="text-xs font-mono font-bold text-indigo-400 uppercase tracking-widest px-3 py-1 rounded bg-indigo-500/10 border border-indigo-500/20 mx-auto">
-            SECTION 03 // FINANCIAL JOURNEY PHASE 1
+        <div className="text-center max-w-xl mx-auto space-y-2">
+          <span className="text-xs font-mono font-bold text-indigo-400 uppercase tracking-wider px-3 py-1 rounded bg-indigo-500/10 border border-indigo-500/20 mx-auto">
+            SECTION 03 // RISK PROFILING
           </span>
-          <h2 className="text-3xl sm:text-5xl font-extrabold text-[var(--text-main)] text-center">
-            Institutional Risk Profiling
+          <h2 className="text-2xl sm:text-4xl font-extrabold text-[var(--text-main)] text-center">
+            Institutional Risk Banding
           </h2>
-          <p className="text-sm sm:text-base text-[var(--text-muted)] font-medium text-center">
-            Determine your exact risk tolerance score before allocating capital to equities or debt.
+          <p className="text-xs sm:text-sm text-[var(--text-muted)] font-semibold text-center">
+            SEBI/SEC Risk Scoring • Max Loss Limits • Equity Asset Target
           </p>
         </div>
 
-        {/* Systematic 50/50 Uniform Card */}
-        <div className="bg-[var(--bg-card)] border border-[var(--border-card)] rounded-[12px] p-8 sm:p-12 shadow-xl text-center max-w-5xl mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center justify-center">
+        {/* Moderate Sized Card */}
+        <div className="bg-[var(--bg-card)] border border-[var(--border-card)] rounded-[10px] p-6 sm:p-8 shadow-lg text-center max-w-4xl mx-auto">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center justify-center">
             
-            {/* Uniform Visual Photo Container */}
-            <div className="lg:col-span-6 relative w-full aspect-[16/9] rounded-[10px] overflow-hidden border border-[var(--border-card)] shadow-md mx-auto">
+            {/* Moderate Sized Photo Container */}
+            <div className="lg:col-span-6 relative w-full max-w-md h-44 sm:h-52 rounded-[8px] overflow-hidden border border-[var(--border-card)] shadow-md mx-auto">
               <img 
                 src="/images/risk_journey.jpg" 
-                alt="Institutional Risk Profile Gauge & Spectrum" 
+                alt="Institutional Risk Profile Gauge" 
                 className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
               />
-              <div className="absolute bottom-3 left-3 bg-[#0a0f1d]/90 px-3.5 py-1.5 rounded border border-indigo-500/40 text-indigo-300 text-xs font-mono font-bold">
-                Risk Score: 68 / 100 (Growth)
+              <div className="absolute bottom-2 left-2 bg-[#0a0f1d]/90 px-2.5 py-1 rounded border border-indigo-500/40 text-indigo-300 text-[11px] font-mono font-bold">
+                Score: 68/100 (Growth)
               </div>
             </div>
 
-            {/* Matching Uniform Text Container */}
-            <div className="lg:col-span-6 space-y-6 text-center flex flex-col items-center justify-center mx-auto">
-              <div className="w-12 h-12 rounded-xl bg-indigo-500/10 border border-indigo-500/30 flex items-center justify-center mx-auto">
-                <ShieldCheck className="w-6 h-6 text-indigo-400" />
+            {/* Content & Action */}
+            <div className="lg:col-span-6 space-y-4 text-center flex flex-col items-center justify-center mx-auto">
+              <div className="w-10 h-10 rounded-lg bg-indigo-500/10 border border-indigo-500/30 flex items-center justify-center mx-auto">
+                <ShieldCheck className="w-5 h-5 text-indigo-400" />
               </div>
 
-              <h3 className="text-2xl font-bold text-[var(--text-main)] text-center">
-                Quantified Risk Band Assessment
+              <h3 className="text-xl font-bold text-[var(--text-main)] text-center">
+                Quantified Risk Limits
               </h3>
 
-              <p className="text-xs sm:text-sm text-[var(--text-muted)] leading-relaxed text-center">
-                Our algorithm evaluates market drawdown tolerance, investment horizon, and loss limits according to SEBI/SEC institutional framework guidelines.
-              </p>
-
-              <div className="w-full grid grid-cols-2 gap-3 text-xs font-bold text-[var(--text-main)] text-center">
-                <div className="p-3.5 rounded bg-[var(--bg-card-inner)] border border-[var(--border-card)] text-center">
-                  <div className="text-[10px] text-[var(--text-muted)] uppercase text-center">Max Drawdown</div>
-                  <div className="text-rose-400 text-sm mt-1 font-bold text-center">-15% Limit</div>
+              <div className="w-full grid grid-cols-2 gap-2 text-xs font-bold text-[var(--text-main)] text-center">
+                <div className="p-2.5 rounded bg-[var(--bg-card-inner)] border border-[var(--border-card)] text-center">
+                  <div className="text-[10px] text-[var(--text-muted)] uppercase text-center">Drawdown Limit</div>
+                  <div className="text-rose-400 text-xs mt-0.5 font-bold text-center">-15% Cap</div>
                 </div>
-                <div className="p-3.5 rounded bg-[var(--bg-card-inner)] border border-[var(--border-card)] text-center">
-                  <div className="text-[10px] text-[var(--text-muted)] uppercase text-center">Equity Band</div>
-                  <div className="text-emerald-400 text-sm mt-1 font-bold text-center">70% Target</div>
+                <div className="p-2.5 rounded bg-[var(--bg-card-inner)] border border-[var(--border-card)] text-center">
+                  <div className="text-[10px] text-[var(--text-muted)] uppercase text-center">Equity Mix</div>
+                  <div className="text-emerald-400 text-xs mt-0.5 font-bold text-center">70% Target</div>
                 </div>
               </div>
 
               {onOpenRiskModal && (
                 <button
                   onClick={onOpenRiskModal}
-                  className="px-8 py-3.5 bg-indigo-600 hover:bg-indigo-500 text-white font-bold text-sm rounded-lg shadow-lg hover:scale-105 transition-all flex items-center justify-center gap-2 cursor-pointer border border-indigo-400/30 mx-auto"
+                  className="px-6 py-2.5 bg-indigo-600 hover:bg-indigo-500 text-white font-bold text-xs rounded-lg shadow hover:scale-105 transition-all flex items-center justify-center gap-1.5 cursor-pointer border border-indigo-400/30 mx-auto"
                 >
-                  <span>Take 2-Min Risk Assessment</span>
-                  <ArrowRight className="w-4 h-4" />
+                  <span>2-Min Risk Quiz</span>
+                  <ArrowRight className="w-3.5 h-3.5" />
                 </button>
               )}
             </div>
@@ -354,76 +345,72 @@ export default function LandingPage({ setActiveTab, onOpenAuthModal, onOpenRiskM
       </section>
 
       {/* SECTION DIVIDER */}
-      <div className="w-full border-t border-[var(--border-card)] my-12" />
+      <div className="w-full border-t border-[var(--border-card)] my-8" />
 
       {/* ========================================================================= */}
-      {/* SECTION 04 // BRAND NEW FEATURE: AI TAX OPTIMIZER & WEALTH ADVISOR       */}
+      {/* SECTION 04 // AI TAX OPTIMIZER & WEALTH ADVISOR                          */}
       {/* ========================================================================= */}
-      <section className="mb-40 space-y-12 text-center">
+      <section className="mb-32 space-y-8 text-center">
         
-        <div className="text-center max-w-2xl mx-auto space-y-3">
-          <span className="text-xs font-mono font-bold text-amber-400 uppercase tracking-widest px-3 py-1 rounded bg-amber-500/10 border border-amber-500/20 mx-auto">
-            SECTION 04 // AI TAX OPTIMIZER & WEALTH ADVISOR
+        <div className="text-center max-w-xl mx-auto space-y-2">
+          <span className="text-xs font-mono font-bold text-amber-400 uppercase tracking-wider px-3 py-1 rounded bg-amber-500/10 border border-amber-500/20 mx-auto">
+            SECTION 04 // AI TAX OPTIMIZER
           </span>
-          <h2 className="text-3xl sm:text-5xl font-extrabold text-[var(--text-main)] text-center">
-            Smart Tax Deductions & Harvesting
+          <h2 className="text-2xl sm:text-4xl font-extrabold text-[var(--text-main)] text-center">
+            Smart Tax Deductions
           </h2>
-          <p className="text-sm sm:text-base text-[var(--text-muted)] font-medium text-center">
-            Maximize Section 80C/80D tax savings and capture short-term tax-loss harvesting up to ₹1.12 Lakhs/year.
+          <p className="text-xs sm:text-sm text-[var(--text-muted)] font-semibold text-center">
+            Sec 80C ELSS • Sec 80D Health • Tax-Loss Harvesting
           </p>
         </div>
 
-        {/* Systematic 50/50 Uniform Card */}
-        <div className="bg-[var(--bg-card)] border border-[var(--border-card)] rounded-[12px] p-8 sm:p-12 shadow-xl text-center max-w-5xl mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center justify-center">
+        {/* Moderate Sized Card */}
+        <div className="bg-[var(--bg-card)] border border-[var(--border-card)] rounded-[10px] p-6 sm:p-8 shadow-lg text-center max-w-4xl mx-auto">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center justify-center">
             
-            {/* Matching Uniform Text Container */}
-            <div className="lg:col-span-6 space-y-6 text-center flex flex-col items-center justify-center order-2 lg:order-1 mx-auto">
-              <div className="w-12 h-12 rounded-xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-center mx-auto">
-                <FileText className="w-6 h-6 text-amber-400" />
+            {/* Content & Action */}
+            <div className="lg:col-span-6 space-y-4 text-center flex flex-col items-center justify-center order-2 lg:order-1 mx-auto">
+              <div className="w-10 h-10 rounded-lg bg-amber-500/10 border border-amber-500/30 flex items-center justify-center mx-auto">
+                <FileText className="w-5 h-5 text-amber-400" />
               </div>
 
-              <h3 className="text-2xl font-bold text-[var(--text-main)] text-center">
-                Automated Tax Optimization Engine
+              <h3 className="text-xl font-bold text-[var(--text-main)] text-center">
+                Tax Liability Reduction
               </h3>
 
-              <p className="text-xs sm:text-sm text-[var(--text-muted)] leading-relaxed text-center">
-                Instantly scan your portfolio for ELSS tax-saving funds, municipal bonds, and tax-loss harvesting opportunities to optimize total tax liabilities.
-              </p>
-
-              <div className="w-full grid grid-cols-3 gap-3 text-xs font-bold text-[var(--text-main)] text-center">
-                <div className="p-3 rounded bg-[var(--bg-card-inner)] border border-[var(--border-card)] text-center">
-                  <div className="text-[10px] text-slate-400 uppercase text-center">Sec 80C ELSS</div>
-                  <div className="text-emerald-400 text-sm mt-1 font-bold text-center">₹1,50,000</div>
+              <div className="w-full grid grid-cols-3 gap-2 text-xs font-bold text-[var(--text-main)] text-center">
+                <div className="p-2 rounded bg-[var(--bg-card-inner)] border border-[var(--border-card)] text-center">
+                  <div className="text-[9px] text-slate-400 uppercase text-center">80C ELSS</div>
+                  <div className="text-emerald-400 text-xs mt-0.5 font-bold text-center">₹1.5L</div>
                 </div>
-                <div className="p-3 rounded bg-[var(--bg-card-inner)] border border-[var(--border-card)] text-center">
-                  <div className="text-[10px] text-slate-400 uppercase text-center">Sec 80D Health</div>
-                  <div className="text-cyan-400 text-sm mt-1 font-bold text-center">₹75,000</div>
+                <div className="p-2 rounded bg-[var(--bg-card-inner)] border border-[var(--border-card)] text-center">
+                  <div className="text-[9px] text-slate-400 uppercase text-center">80D Health</div>
+                  <div className="text-cyan-400 text-xs mt-0.5 font-bold text-center">₹75k</div>
                 </div>
-                <div className="p-3 rounded bg-[var(--bg-card-inner)] border border-[var(--border-card)] text-center">
-                  <div className="text-[10px] text-slate-400 uppercase text-center">Tax Saved</div>
-                  <div className="text-amber-400 text-sm mt-1 font-bold text-center">₹1,12,500</div>
+                <div className="p-2 rounded bg-[var(--bg-card-inner)] border border-[var(--border-card)] text-center">
+                  <div className="text-[9px] text-slate-400 uppercase text-center">Saved</div>
+                  <div className="text-amber-400 text-xs mt-0.5 font-bold text-center">₹1.12L</div>
                 </div>
               </div>
 
               <button
                 onClick={() => setActiveTab('analyzer')}
-                className="px-8 py-3.5 bg-amber-600 hover:bg-amber-500 text-white font-bold text-sm rounded-lg shadow-lg hover:scale-105 transition-all flex items-center justify-center gap-2 cursor-pointer border border-amber-400/30 mx-auto"
+                className="px-6 py-2.5 bg-amber-600 hover:bg-amber-500 text-white font-bold text-xs rounded-lg shadow hover:scale-105 transition-all flex items-center justify-center gap-1.5 cursor-pointer border border-amber-400/30 mx-auto"
               >
-                <span>Run AI Tax Optimization</span>
-                <ArrowRight className="w-4 h-4" />
+                <span>Run AI Tax Scan</span>
+                <ArrowRight className="w-3.5 h-3.5" />
               </button>
             </div>
 
-            {/* Uniform Visual Photo Container (16:9 Aspect Ratio) */}
-            <div className="lg:col-span-6 relative w-full aspect-[16/9] rounded-[10px] overflow-hidden border border-[var(--border-card)] shadow-md order-1 lg:order-2 mx-auto">
+            {/* Moderate Sized Photo Container */}
+            <div className="lg:col-span-6 relative w-full max-w-md h-44 sm:h-52 rounded-[8px] overflow-hidden border border-[var(--border-card)] shadow-md order-1 lg:order-2 mx-auto">
               <img 
                 src="/images/tax_advisor.jpg" 
-                alt="AI Tax Optimizer & Wealth Advisor Dashboard" 
+                alt="AI Tax Optimizer Dashboard" 
                 className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
               />
-              <div className="absolute bottom-3 right-3 bg-[#0a0f1d]/90 px-3.5 py-1.5 rounded border border-amber-500/40 text-amber-300 text-xs font-mono font-bold">
-                Tax Savings Identified: 28.5%
+              <div className="absolute bottom-2 right-2 bg-[#0a0f1d]/90 px-2.5 py-1 rounded border border-amber-500/40 text-amber-300 text-[11px] font-mono font-bold">
+                Tax Savings: 28.5%
               </div>
             </div>
 
@@ -433,76 +420,72 @@ export default function LandingPage({ setActiveTab, onOpenAuthModal, onOpenRiskM
       </section>
 
       {/* SECTION DIVIDER */}
-      <div className="w-full border-t border-[var(--border-card)] my-12" />
+      <div className="w-full border-t border-[var(--border-card)] my-8" />
 
       {/* ========================================================================= */}
-      {/* SECTION 05 // FINANCIAL JOURNEY PHASE 2 - PORTFOLIO CONSOLIDATION VAULT   */}
+      {/* SECTION 05 // PORTFOLIO CONSOLIDATION VAULT                              */}
       {/* ========================================================================= */}
-      <section className="mb-40 space-y-12 text-center">
+      <section className="mb-32 space-y-8 text-center">
         
-        <div className="text-center max-w-2xl mx-auto space-y-3">
-          <span className="text-xs font-mono font-bold text-emerald-400 uppercase tracking-widest px-3 py-1 rounded bg-emerald-500/10 border border-emerald-500/20 mx-auto">
-            SECTION 05 // FINANCIAL JOURNEY PHASE 2
+        <div className="text-center max-w-xl mx-auto space-y-2">
+          <span className="text-xs font-mono font-bold text-emerald-400 uppercase tracking-wider px-3 py-1 rounded bg-emerald-500/10 border border-emerald-500/20 mx-auto">
+            SECTION 05 // MULTI-ASSET VAULT
           </span>
-          <h2 className="text-3xl sm:text-5xl font-extrabold text-[var(--text-main)] text-center">
-            Multi-Asset Portfolio Consolidation
+          <h2 className="text-2xl sm:text-4xl font-extrabold text-[var(--text-main)] text-center">
+            Portfolio Consolidation
           </h2>
-          <p className="text-sm sm:text-base text-[var(--text-muted)] font-medium text-center">
-            Unify stocks, mutual funds, crypto, real estate, and fixed deposits into a single-pane vault.
+          <p className="text-xs sm:text-sm text-[var(--text-muted)] font-semibold text-center">
+            Stocks • Mutual Funds • Gold • Crypto • Real Estate
           </p>
         </div>
 
-        {/* Systematic 50/50 Uniform Card */}
-        <div className="bg-[var(--bg-card)] border border-[var(--border-card)] rounded-[12px] p-8 sm:p-12 shadow-xl text-center max-w-5xl mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center justify-center">
+        {/* Moderate Sized Card */}
+        <div className="bg-[var(--bg-card)] border border-[var(--border-card)] rounded-[10px] p-6 sm:p-8 shadow-lg text-center max-w-4xl mx-auto">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center justify-center">
             
-            {/* Uniform Visual Photo Container (16:9 Aspect Ratio) */}
-            <div className="lg:col-span-6 relative w-full aspect-[16/9] rounded-[10px] overflow-hidden border border-[var(--border-card)] shadow-md mx-auto">
+            {/* Moderate Sized Photo Container */}
+            <div className="lg:col-span-6 relative w-full max-w-md h-44 sm:h-52 rounded-[8px] overflow-hidden border border-[var(--border-card)] shadow-md mx-auto">
               <img 
                 src="/images/portfolio_journey.jpg" 
-                alt="Multi-Asset Portfolio Consolidation Vault Dashboard" 
+                alt="Portfolio Vault Dashboard" 
                 className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
               />
-              <div className="absolute bottom-3 left-3 bg-[#0a0f1d]/90 px-3.5 py-1.5 rounded border border-emerald-500/40 text-emerald-300 text-xs font-mono font-bold">
-                Net Worth: $18.7M (+14.3% YTD)
+              <div className="absolute bottom-2 left-2 bg-[#0a0f1d]/90 px-2.5 py-1 rounded border border-emerald-500/40 text-emerald-300 text-[11px] font-mono font-bold">
+                Net Worth: $18.7M (+14.3%)
               </div>
             </div>
 
-            {/* Matching Uniform Text Container */}
-            <div className="lg:col-span-6 space-y-6 text-center flex flex-col items-center justify-center mx-auto">
-              <div className="w-12 h-12 rounded-xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center mx-auto">
-                <PieChart className="w-6 h-6 text-emerald-400" />
+            {/* Content & Action */}
+            <div className="lg:col-span-6 space-y-4 text-center flex flex-col items-center justify-center mx-auto">
+              <div className="w-10 h-10 rounded-lg bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center mx-auto">
+                <PieChart className="w-5 h-5 text-emerald-400" />
               </div>
 
-              <h3 className="text-2xl font-bold text-[var(--text-main)] text-center">
+              <h3 className="text-xl font-bold text-[var(--text-main)] text-center">
                 Single-Pane Net Worth Vault
               </h3>
 
-              <p className="text-xs sm:text-sm text-[var(--text-muted)] leading-relaxed text-center">
-                Track true net worth in real-time. Automated rebalancing alerts warn you when equity allocation drifts beyond your target risk tolerance.
-              </p>
-
-              <div className="w-full grid grid-cols-3 gap-3 text-xs font-bold text-[var(--text-main)] text-center">
-                <div className="p-3 rounded bg-[var(--bg-card-inner)] border border-[var(--border-card)] text-center">
-                  <div className="text-[10px] text-slate-400 uppercase text-center">Stocks</div>
-                  <div className="text-indigo-400 text-sm mt-1 font-bold text-center">45%</div>
+              <div className="w-full grid grid-cols-3 gap-2 text-xs font-bold text-[var(--text-main)] text-center">
+                <div className="p-2 rounded bg-[var(--bg-card-inner)] border border-[var(--border-card)] text-center">
+                  <div className="text-[9px] text-slate-400 uppercase text-center">Stocks</div>
+                  <div className="text-indigo-400 text-xs mt-0.5 font-bold text-center">45%</div>
                 </div>
-                <div className="p-3 rounded bg-[var(--bg-card-inner)] border border-[var(--border-card)] text-center">
-                  <div className="text-[10px] text-slate-400 uppercase text-center">MFs</div>
-                  <div className="text-emerald-400 text-sm mt-1 font-bold text-center">30%</div>
+                <div className="p-2 rounded bg-[var(--bg-card-inner)] border border-[var(--border-card)] text-center">
+                  <div className="text-[9px] text-slate-400 uppercase text-center">MFs</div>
+                  <div className="text-emerald-400 text-xs mt-0.5 font-bold text-center">30%</div>
                 </div>
-                <div className="p-3 rounded bg-[var(--bg-card-inner)] border border-[var(--border-card)] text-center">
-                  <div className="text-[10px] text-slate-400 uppercase text-center">Gold/Debt</div>
-                  <div className="text-amber-400 text-sm mt-1 font-bold text-center">25%</div>
+                <div className="p-2 rounded bg-[var(--bg-card-inner)] border border-[var(--border-card)] text-center">
+                  <div className="text-[9px] text-slate-400 uppercase text-center">Gold/Debt</div>
+                  <div className="text-amber-400 text-xs mt-0.5 font-bold text-center">25%</div>
                 </div>
               </div>
 
               <button
                 onClick={() => setActiveTab('dashboard')}
-                className="px-8 py-3.5 bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-sm rounded-lg shadow-lg hover:scale-105 transition-all flex items-center justify-center gap-2 cursor-pointer border border-emerald-400/30 mx-auto"
+                className="px-6 py-2.5 bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs rounded-lg shadow hover:scale-105 transition-all flex items-center justify-center gap-1.5 cursor-pointer border border-emerald-400/30 mx-auto"
               >
                 <span>Launch Asset Vault</span>
-                <ArrowRight className="w-4 h-4" />
+                <ArrowRight className="w-3.5 h-3.5" />
               </button>
             </div>
 
@@ -512,72 +495,68 @@ export default function LandingPage({ setActiveTab, onOpenAuthModal, onOpenRiskM
       </section>
 
       {/* SECTION DIVIDER */}
-      <div className="w-full border-t border-[var(--border-card)] my-12" />
+      <div className="w-full border-t border-[var(--border-card)] my-8" />
 
       {/* ========================================================================= */}
-      {/* SECTION 06 // FINANCIAL JOURNEY PHASE 3 - GOAL-BASED SIP PLANNING ENGINE  */}
+      {/* SECTION 06 // GOAL-BASED SIP PLANNING ENGINE                             */}
       {/* ========================================================================= */}
-      <section className="mb-40 space-y-12 text-center">
+      <section className="mb-32 space-y-8 text-center">
         
-        <div className="text-center max-w-2xl mx-auto space-y-3">
-          <span className="text-xs font-mono font-bold text-cyan-400 uppercase tracking-widest px-3 py-1 rounded bg-cyan-500/10 border border-cyan-500/20 mx-auto">
-            SECTION 06 // FINANCIAL JOURNEY PHASE 3
+        <div className="text-center max-w-xl mx-auto space-y-2">
+          <span className="text-xs font-mono font-bold text-cyan-400 uppercase tracking-wider px-3 py-1 rounded bg-cyan-500/10 border border-cyan-500/20 mx-auto">
+            SECTION 06 // GOAL ROADMAP
           </span>
-          <h2 className="text-3xl sm:text-5xl font-extrabold text-[var(--text-main)] text-center">
-            Goal-Based Wealth Accumulation
+          <h2 className="text-2xl sm:text-4xl font-extrabold text-[var(--text-main)] text-center">
+            Goal-Based SIP Engine
           </h2>
-          <p className="text-sm sm:text-base text-[var(--text-muted)] font-medium text-center">
-            Align investments with life milestones: Retirement, Home Purchase, and Education.
+          <p className="text-xs sm:text-sm text-[var(--text-muted)] font-semibold text-center">
+            Retirement • Home Purchase • Child Education
           </p>
         </div>
 
-        {/* Systematic 50/50 Uniform Card */}
-        <div className="bg-[var(--bg-card)] border border-[var(--border-card)] rounded-[12px] p-8 sm:p-12 shadow-xl text-center max-w-5xl mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center justify-center">
+        {/* Moderate Sized Card */}
+        <div className="bg-[var(--bg-card)] border border-[var(--border-card)] rounded-[10px] p-6 sm:p-8 shadow-lg text-center max-w-4xl mx-auto">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center justify-center">
             
-            {/* Matching Uniform Text Container */}
-            <div className="lg:col-span-6 space-y-6 text-center flex flex-col items-center justify-center order-2 lg:order-1 mx-auto">
-              <div className="w-12 h-12 rounded-xl bg-cyan-500/10 border border-cyan-500/30 flex items-center justify-center mx-auto">
-                <Target className="w-6 h-6 text-cyan-400" />
+            {/* Content & Action */}
+            <div className="lg:col-span-6 space-y-4 text-center flex flex-col items-center justify-center order-2 lg:order-1 mx-auto">
+              <div className="w-10 h-10 rounded-lg bg-cyan-500/10 border border-cyan-500/30 flex items-center justify-center mx-auto">
+                <Target className="w-5 h-5 text-cyan-400" />
               </div>
 
-              <h3 className="text-2xl font-bold text-[var(--text-main)] text-center">
-                Inflation-Adjusted Milestone SIPs
+              <h3 className="text-xl font-bold text-[var(--text-main)] text-center">
+                Inflation-Adjusted SIPs
               </h3>
 
-              <p className="text-xs sm:text-sm text-[var(--text-muted)] leading-relaxed text-center">
-                Factor in 6.0% CPI inflation to calculate true future milestone costs, paired with a 10% annual SIP step-up strategy.
-              </p>
-
-              <div className="w-full grid grid-cols-2 gap-3 text-xs font-bold text-[var(--text-main)] text-center">
-                <div className="p-3.5 rounded bg-[var(--bg-card-inner)] border border-[var(--border-card)] text-center">
-                  <div className="text-[10px] text-[var(--text-muted)] uppercase text-center">Retirement SIP</div>
-                  <div className="text-cyan-400 text-sm mt-1 font-bold text-center">₹45,000 / mo</div>
+              <div className="w-full grid grid-cols-2 gap-2 text-xs font-bold text-[var(--text-main)] text-center">
+                <div className="p-2.5 rounded bg-[var(--bg-card-inner)] border border-[var(--border-card)] text-center">
+                  <div className="text-[9px] text-[var(--text-muted)] uppercase text-center">Retirement SIP</div>
+                  <div className="text-cyan-400 text-xs mt-0.5 font-bold text-center">₹45k/mo</div>
                 </div>
-                <div className="p-3.5 rounded bg-[var(--bg-card-inner)] border border-[var(--border-card)] text-center">
-                  <div className="text-[10px] text-[var(--text-muted)] uppercase text-center">Home Downpayment</div>
-                  <div className="text-amber-400 text-sm mt-1 font-bold text-center">₹25,000 / mo</div>
+                <div className="p-2.5 rounded bg-[var(--bg-card-inner)] border border-[var(--border-card)] text-center">
+                  <div className="text-[9px] text-[var(--text-muted)] uppercase text-center">Home Downpayment</div>
+                  <div className="text-amber-400 text-xs mt-0.5 font-bold text-center">₹25k/mo</div>
                 </div>
               </div>
 
               <button
                 onClick={() => setActiveTab('goals')}
-                className="px-8 py-3.5 bg-cyan-600 hover:bg-cyan-500 text-white font-bold text-sm rounded-lg shadow-lg hover:scale-105 transition-all flex items-center justify-center gap-2 cursor-pointer border border-cyan-400/30 mx-auto"
+                className="px-6 py-2.5 bg-cyan-600 hover:bg-cyan-500 text-white font-bold text-xs rounded-lg shadow hover:scale-105 transition-all flex items-center justify-center gap-1.5 cursor-pointer border border-cyan-400/30 mx-auto"
               >
-                <span>Plan Goal SIP Roadmap</span>
-                <ArrowRight className="w-4 h-4" />
+                <span>Plan Goal Roadmap</span>
+                <ArrowRight className="w-3.5 h-3.5" />
               </button>
             </div>
 
-            {/* Uniform Visual Photo Container (16:9 Aspect Ratio) */}
-            <div className="lg:col-span-6 relative w-full aspect-[16/9] rounded-[10px] overflow-hidden border border-[var(--border-card)] shadow-md order-1 lg:order-2 mx-auto">
+            {/* Moderate Sized Photo Container */}
+            <div className="lg:col-span-6 relative w-full max-w-md h-44 sm:h-52 rounded-[8px] overflow-hidden border border-[var(--border-card)] shadow-md order-1 lg:order-2 mx-auto">
               <img 
                 src="/images/goal_journey.jpg" 
-                alt="Financial Goal Planning Roadmap & Milestones" 
+                alt="Goal Planning Roadmap" 
                 className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
               />
-              <div className="absolute bottom-3 right-3 bg-[#0a0f1d]/90 px-3.5 py-1.5 rounded border border-cyan-500/40 text-cyan-300 text-xs font-mono font-bold">
-                Retirement Target: $2.85M (2055)
+              <div className="absolute bottom-2 right-2 bg-[#0a0f1d]/90 px-2.5 py-1 rounded border border-cyan-500/40 text-cyan-300 text-[11px] font-mono font-bold">
+                Retirement: $2.85M
               </div>
             </div>
 
@@ -587,32 +566,32 @@ export default function LandingPage({ setActiveTab, onOpenAuthModal, onOpenRiskM
       </section>
 
       {/* SECTION DIVIDER */}
-      <div className="w-full border-t border-[var(--border-card)] my-12" />
+      <div className="w-full border-t border-[var(--border-card)] my-8" />
 
       {/* ========================================================================= */}
       {/* SECTION 07 // COLOUR-MARKED 3D FINANCIAL TERM FLASHCARDS DECK             */}
       {/* ========================================================================= */}
-      <section className="mb-40 space-y-12 text-center">
+      <section className="mb-32 space-y-8 text-center">
         
-        <div className="text-center max-w-2xl mx-auto space-y-3">
-          <span className="text-xs font-mono font-bold text-violet-400 uppercase tracking-widest px-3 py-1 rounded bg-violet-500/10 border border-violet-500/20 mx-auto">
-            SECTION 07 // INTERACTIVE CONCEPTS
+        <div className="text-center max-w-xl mx-auto space-y-2">
+          <span className="text-xs font-mono font-bold text-violet-400 uppercase tracking-wider px-3 py-1 rounded bg-violet-500/10 border border-violet-500/20 mx-auto">
+            SECTION 07 // INTERACTIVE FLASHCARDS
           </span>
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-[var(--text-main)] text-center">
-            Core Wealth Flashcards (Colour-Coded Boundaries)
+          <h2 className="text-2xl sm:text-4xl font-extrabold text-[var(--text-main)] text-center">
+            Core Wealth Flashcards
           </h2>
-          <p className="text-sm text-[var(--text-muted)] font-medium text-center">
-            Click any flashcard to flip and reveal exact formulas, calculations, and financial takeaways.
+          <p className="text-xs sm:text-sm text-[var(--text-muted)] font-semibold text-center">
+            Click any flashcard to flip answer & formula
           </p>
         </div>
 
-        {/* 3D Flip Cards Grid with Distinct Colour Marking Borders */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {/* 3D Flip Cards Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {financialFlashcards.map((fc) => (
             <div 
               key={fc.id}
               onClick={() => toggleFlip(fc.id)}
-              className="perspective-1000 h-[320px] w-full cursor-pointer group"
+              className="perspective-1000 h-[280px] w-full cursor-pointer group"
             >
               <div 
                 className={`relative w-full h-full duration-500 transform-style-3d transition-transform ${
@@ -621,53 +600,53 @@ export default function LandingPage({ setActiveTab, onOpenAuthModal, onOpenRiskM
               >
                 
                 {/* FRONT SIDE */}
-                <div className={`absolute inset-0 w-full h-full backface-hidden rounded-[12px] p-7 flex flex-col justify-between text-center items-center bg-[var(--bg-card)] ${fc.colorClass}`}>
+                <div className={`absolute inset-0 w-full h-full backface-hidden rounded-[10px] p-6 flex flex-col justify-between text-center items-center bg-[var(--bg-card)] ${fc.colorClass}`}>
                   <div className="flex items-center justify-between w-full">
-                    <span className="text-[11px] font-bold uppercase tracking-wider text-indigo-400 px-2.5 py-0.5 rounded bg-indigo-500/10 border border-indigo-500/20">
+                    <span className="text-[10px] font-bold uppercase tracking-wider text-indigo-400 px-2 py-0.5 rounded bg-indigo-500/10 border border-indigo-500/20">
                       {fc.category}
                     </span>
-                    <span className="text-[11px] font-bold text-emerald-400 px-2.5 py-0.5 rounded bg-emerald-500/10 border border-emerald-500/20">
+                    <span className="text-[10px] font-bold text-emerald-400 px-2 py-0.5 rounded bg-emerald-500/10 border border-emerald-500/20">
                       {fc.badge}
                     </span>
                   </div>
 
-                  <div className="my-auto space-y-3 text-center">
-                    <h3 className="text-2xl font-bold text-[var(--text-main)] text-center">
+                  <div className="my-auto space-y-2 text-center">
+                    <h3 className="text-xl font-bold text-[var(--text-main)] text-center">
                       {fc.term}
                     </h3>
-                    <p className="text-sm text-[var(--text-muted)] font-medium leading-relaxed text-center">
+                    <p className="text-xs text-[var(--text-muted)] font-semibold leading-relaxed text-center">
                       {fc.question}
                     </p>
-                    <div className="p-3 rounded bg-[var(--bg-card-inner)] border border-[var(--border-card)] text-xs font-mono text-cyan-300 font-semibold text-center">
+                    <div className="p-2 rounded bg-[var(--bg-card-inner)] border border-[var(--border-card)] text-[11px] font-mono text-cyan-300 font-semibold text-center">
                       {fc.formula}
                     </div>
                   </div>
 
-                  <div className="pt-3 border-t border-[var(--border-card)] flex items-center justify-between w-full text-xs font-bold text-indigo-400 group-hover:translate-x-0.5 transition-transform">
-                    <span>Click to Flip Answer</span>
-                    <RotateCw className="w-4 h-4" />
+                  <div className="pt-2 border-t border-[var(--border-card)] flex items-center justify-between w-full text-xs font-bold text-indigo-400 group-hover:translate-x-0.5 transition-transform">
+                    <span>Flip Answer</span>
+                    <RotateCw className="w-3.5 h-3.5" />
                   </div>
                 </div>
 
                 {/* BACK SIDE */}
-                <div className={`absolute inset-0 w-full h-full backface-hidden rotate-y-180 rounded-[12px] p-7 flex flex-col justify-between text-center items-center bg-[var(--bg-card-inner)] ${fc.colorClass}`}>
-                  <div className="flex items-center justify-between w-full border-b border-[var(--border-card)] pb-2">
-                    <span className="text-xs font-bold text-emerald-400">
-                      Formula & Calculation
+                <div className={`absolute inset-0 w-full h-full backface-hidden rotate-y-180 rounded-[10px] p-6 flex flex-col justify-between text-center items-center bg-[var(--bg-card-inner)] ${fc.colorClass}`}>
+                  <div className="flex items-center justify-between w-full border-b border-[var(--border-card)] pb-1.5">
+                    <span className="text-[11px] font-bold text-emerald-400">
+                      Calculation
                     </span>
-                    <span className="text-[11px] text-[var(--text-muted)]">Verified Rule</span>
+                    <span className="text-[10px] text-[var(--text-muted)]">Verified</span>
                   </div>
 
-                  <div className="my-auto space-y-3 text-xs sm:text-sm text-[var(--text-main)] leading-relaxed font-medium text-center">
+                  <div className="my-auto space-y-2 text-xs text-[var(--text-main)] leading-relaxed font-semibold text-center">
                     <p className="whitespace-pre-line text-center">{fc.answer}</p>
-                    <div className="p-2.5 rounded bg-emerald-500/10 border border-emerald-500/20 text-xs text-emerald-300 font-bold text-center">
+                    <div className="p-2 rounded bg-emerald-500/10 border border-emerald-500/20 text-[11px] text-emerald-300 font-bold text-center">
                       {fc.calculativeInsight}
                     </div>
                   </div>
 
-                  <div className="pt-3 border-t border-[var(--border-card)] flex items-center justify-between w-full text-xs font-bold text-emerald-400">
-                    <span>Click to Return to Question</span>
-                    <RotateCw className="w-4 h-4" />
+                  <div className="pt-2 border-t border-[var(--border-card)] flex items-center justify-between w-full text-xs font-bold text-emerald-400">
+                    <span>Return to Question</span>
+                    <RotateCw className="w-3.5 h-3.5" />
                   </div>
                 </div>
 
@@ -679,140 +658,113 @@ export default function LandingPage({ setActiveTab, onOpenAuthModal, onOpenRiskM
       </section>
 
       {/* SECTION DIVIDER */}
-      <div className="w-full border-t border-[var(--border-card)] my-12" />
+      <div className="w-full border-t border-[var(--border-card)] my-8" />
 
       {/* ========================================================================= */}
-      {/* SECTION 08 // CALCULATIVE FINANCIAL CONCEPTS WITH UNIFORM IMAGES          */}
+      {/* SECTION 08 // WEALTH BUILDING PRINCIPLES                                  */}
       {/* ========================================================================= */}
-      <section className="mb-40 space-y-12 text-center">
+      <section className="mb-32 space-y-8 text-center">
         
-        <div className="text-center max-w-xl mx-auto space-y-3">
-          <span className="text-xs font-mono font-bold text-amber-400 uppercase tracking-widest px-3 py-1 rounded bg-amber-500/10 border border-amber-500/20 mx-auto">
-            SECTION 08 // WEALTH BUILDING PRINCIPLES
+        <div className="text-center max-w-xl mx-auto space-y-2">
+          <span className="text-xs font-mono font-bold text-amber-400 uppercase tracking-wider px-3 py-1 rounded bg-amber-500/10 border border-amber-500/20 mx-auto">
+            SECTION 08 // WEALTH PRINCIPLES
           </span>
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-[var(--text-main)] text-center">
-            Investing, Saving & Budgeting Framework
+          <h2 className="text-2xl sm:text-4xl font-extrabold text-[var(--text-main)] text-center">
+            Investing, Saving & Budgeting
           </h2>
-          <p className="text-sm text-[var(--text-muted)] font-medium text-center">
-            Calculative principles for disciplined wealth compounding and risk mitigation.
+          <p className="text-xs sm:text-sm text-[var(--text-muted)] font-semibold text-center">
+            CAGR Growth • Emergency Cushion • 50/30/20 Rule
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           
           {/* Card 1: Investing */}
-          <div className="bento-module-card p-8 text-center space-y-6 flex flex-col justify-between items-center rounded-[12px]">
-            <div className="space-y-4 w-full text-center flex flex-col items-center">
+          <div className="bento-module-card p-6 text-center space-y-4 flex flex-col justify-between items-center rounded-[10px]">
+            <div className="space-y-3 w-full text-center flex flex-col items-center">
               <div className="flex items-center justify-between w-full">
-                <span className="badge badge-green text-[11px]">Investing Matrix</span>
-                <TrendingUp className="w-5 h-5 text-indigo-400" />
+                <span className="badge badge-green text-[10px]">Investing</span>
+                <TrendingUp className="w-4 h-4 text-indigo-400" />
               </div>
 
               <div className="text-center">
-                <h3 className="text-xl font-bold text-[var(--text-main)] text-center">
-                  Asset Allocation & CAGR
+                <h3 className="text-lg font-bold text-[var(--text-main)] text-center">
+                  Asset Mix & CAGR
                 </h3>
-                <p className="text-xs text-[var(--text-muted)] mt-1 text-center">
-                  Compound interest doubles wealth systematically via asset allocation.
-                </p>
               </div>
 
-              {/* Uniform Image Container (16:9 Aspect Ratio) */}
-              <div className="relative w-full aspect-[16/9] rounded-[8px] overflow-hidden border border-[var(--border-card)] mx-auto">
+              {/* Moderate Sized Photo (16:9 Aspect Ratio) */}
+              <div className="relative w-full h-36 rounded-[6px] overflow-hidden border border-[var(--border-card)] mx-auto">
                 <img 
                   src="/images/wealth_compounding.jpg" 
-                  alt="Wealth Compounding Exponential Chart" 
+                  alt="Wealth Compounding Chart" 
                   className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
                 />
               </div>
 
-              <ul className="space-y-2.5 text-xs text-[var(--text-muted)] font-semibold text-center w-full">
-                <li className="flex items-center justify-center gap-2">
-                  <span className="w-1.5 h-1.5 rounded-full bg-indigo-400 shrink-0" />
-                  <span><strong>Rule of 72:</strong> Capital doubles in 72 ÷ CAGR yrs</span>
-                </li>
-                <li className="flex items-center justify-center gap-2">
-                  <span className="w-1.5 h-1.5 rounded-full bg-indigo-400 shrink-0" />
-                  <span><strong>Sharpe Ratio:</strong> Risk-adjusted excess return benchmark</span>
-                </li>
+              <ul className="space-y-1.5 text-xs text-[var(--text-muted)] font-semibold text-center w-full">
+                <li>• <strong>Rule of 72:</strong> Double in 72 ÷ CAGR yrs</li>
+                <li>• <strong>Sharpe Ratio:</strong> Risk-adjusted alpha</li>
               </ul>
             </div>
           </div>
 
           {/* Card 2: Saving */}
-          <div className="bento-module-card p-8 text-center space-y-6 flex flex-col justify-between items-center rounded-[12px]">
-            <div className="space-y-4 w-full text-center flex flex-col items-center">
+          <div className="bento-module-card p-6 text-center space-y-4 flex flex-col justify-between items-center rounded-[10px]">
+            <div className="space-y-3 w-full text-center flex flex-col items-center">
               <div className="flex items-center justify-between w-full">
-                <span className="badge badge-blue text-[11px]">Savings Vault</span>
-                <ShieldCheck className="w-5 h-5 text-emerald-400" />
+                <span className="badge badge-blue text-[10px]">Saving</span>
+                <ShieldCheck className="w-4 h-4 text-emerald-400" />
               </div>
 
               <div className="text-center">
-                <h3 className="text-xl font-bold text-[var(--text-main)] text-center">
-                  Asset Allocation Vault
+                <h3 className="text-lg font-bold text-[var(--text-main)] text-center">
+                  Asset Vault
                 </h3>
-                <p className="text-xs text-[var(--text-muted)] mt-1 text-center">
-                  Single-pane consolidation for Equities, Debt Funds, and Cash reserves.
-                </p>
               </div>
 
-              {/* Uniform Image Container (16:9 Aspect Ratio) */}
-              <div className="relative w-full aspect-[16/9] rounded-[8px] overflow-hidden border border-[var(--border-card)] mx-auto">
+              {/* Moderate Sized Photo (16:9 Aspect Ratio) */}
+              <div className="relative w-full h-36 rounded-[6px] overflow-hidden border border-[var(--border-card)] mx-auto">
                 <img 
                   src="/images/asset_vault.jpg" 
-                  alt="Asset Allocation Vault Portfolio Breakdown" 
+                  alt="Asset Vault Breakdown" 
                   className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
                 />
               </div>
 
-              <ul className="space-y-2.5 text-xs text-[var(--text-muted)] font-semibold text-center w-full">
-                <li className="flex items-center justify-center gap-2">
-                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 shrink-0" />
-                  <span><strong>Buffer Target:</strong> 6x Monthly Essential Needs</span>
-                </li>
-                <li className="flex items-center justify-center gap-2">
-                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 shrink-0" />
-                  <span><strong>Real Yield:</strong> Nominal Rate - CPI Inflation (6%)</span>
-                </li>
+              <ul className="space-y-1.5 text-xs text-[var(--text-muted)] font-semibold text-center w-full">
+                <li>• <strong>Emergency:</strong> 6x Fixed Needs</li>
+                <li>• <strong>Real Yield:</strong> Rate - 6% CPI</li>
               </ul>
             </div>
           </div>
 
           {/* Card 3: Anti-Hype AI Audit */}
-          <div className="bento-module-card p-8 text-center space-y-6 flex flex-col justify-between items-center rounded-[12px]">
-            <div className="space-y-4 w-full text-center flex flex-col items-center">
+          <div className="bento-module-card p-6 text-center space-y-4 flex flex-col justify-between items-center rounded-[10px]">
+            <div className="space-y-3 w-full text-center flex flex-col items-center">
               <div className="flex items-center justify-between w-full">
-                <span className="badge badge-amber text-[11px]">Anti-Hype AI</span>
-                <BrainCircuit className="w-5 h-5 text-cyan-400" />
+                <span className="badge badge-amber text-[10px]">AI Audit</span>
+                <BrainCircuit className="w-4 h-4 text-cyan-400" />
               </div>
 
               <div className="text-center">
-                <h3 className="text-xl font-bold text-[var(--text-main)] text-center">
-                  AI Financial Stock Audit
+                <h3 className="text-lg font-bold text-[var(--text-main)] text-center">
+                  AI Stock Audit
                 </h3>
-                <p className="text-xs text-[var(--text-muted)] mt-1 text-center">
-                  Real-time Groq Llama-3 AI social media noise & pump detection.
-                </p>
               </div>
 
-              {/* Uniform Image Container (16:9 Aspect Ratio) */}
-              <div className="relative w-full aspect-[16/9] rounded-[8px] overflow-hidden border border-[var(--border-card)] mx-auto">
+              {/* Moderate Sized Photo (16:9 Aspect Ratio) */}
+              <div className="relative w-full h-36 rounded-[6px] overflow-hidden border border-[var(--border-card)] mx-auto">
                 <img 
                   src="/images/ai_radar.jpg" 
-                  alt="AI Financial Stock Audit Shield" 
+                  alt="AI Stock Audit Shield" 
                   className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
                 />
               </div>
 
-              <ul className="space-y-2.5 text-xs text-[var(--text-muted)] font-semibold text-center w-full">
-                <li className="flex items-center justify-center gap-2">
-                  <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 shrink-0" />
-                  <span><strong>50/30/20 Rule:</strong> 50% Needs, 30% Wants, 20% SIPs</span>
-                </li>
-                <li className="flex items-center justify-center gap-2">
-                  <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 shrink-0" />
-                  <span><strong>Debt Cap:</strong> Maximum 30% net income allocated to EMIs</span>
-                </li>
+              <ul className="space-y-1.5 text-xs text-[var(--text-muted)] font-semibold text-center w-full">
+                <li>• <strong>50/30/20:</strong> Needs, Wants, SIPs</li>
+                <li>• <strong>Debt Cap:</strong> &lt; 30% Net Pay</li>
               </ul>
             </div>
           </div>
@@ -822,36 +774,36 @@ export default function LandingPage({ setActiveTab, onOpenAuthModal, onOpenRiskM
       </section>
 
       {/* SECTION DIVIDER */}
-      <div className="w-full border-t border-[var(--border-card)] my-12" />
+      <div className="w-full border-t border-[var(--border-card)] my-8" />
 
       {/* ========================================================================= */}
-      {/* SECTION 09 // INTERACTIVE FORECASTING PLAYGROUND                          */}
+      {/* SECTION 09 // DYNAMIC COMPOUNDING ENGINE                                  */}
       {/* ========================================================================= */}
-      <section className="mb-40 text-center">
-        <div className="text-center max-w-xl mx-auto mb-10">
-          <span className="text-xs font-mono font-bold text-cyan-400 uppercase tracking-widest px-3 py-1 rounded bg-cyan-500/10 border border-cyan-500/20 mx-auto">
-            SECTION 09 // DYNAMIC COMPOUNDING ENGINE
+      <section className="mb-32 text-center">
+        <div className="text-center max-w-xl mx-auto mb-8">
+          <span className="text-xs font-mono font-bold text-cyan-400 uppercase tracking-wider px-3 py-1 rounded bg-cyan-500/10 border border-cyan-500/20 mx-auto">
+            SECTION 09 // COMPOUNDING ENGINE
           </span>
         </div>
 
-        <div className="bg-[var(--bg-card)] border border-[var(--border-card)] rounded-[12px] p-8 sm:p-14 shadow-xl text-center">
+        <div className="bg-[var(--bg-card)] border border-[var(--border-card)] rounded-[10px] p-6 sm:p-10 shadow-lg text-center">
           
-          <div className="flex items-center gap-2 mb-10 justify-center text-center">
+          <div className="flex items-center gap-2 mb-8 justify-center text-center">
             <Sliders className="w-5 h-5 text-emerald-400" />
             <h2 className="text-2xl sm:text-3xl font-extrabold text-[var(--text-main)] text-center">
-              Interactive Compounding Playground
+              Compounding Simulator
             </h2>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center justify-center">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center justify-center">
             
             {/* Slider Controls */}
-            <div className="lg:col-span-5 space-y-6 bg-[var(--bg-card-inner)] p-8 rounded-[10px] border border-[var(--border-card)] text-center">
+            <div className="lg:col-span-5 space-y-5 bg-[var(--bg-card-inner)] p-6 rounded-[8px] border border-[var(--border-card)] text-center">
               
-              <div className="space-y-2 text-center">
+              <div className="space-y-1.5 text-center">
                 <div className="flex justify-between items-center text-xs font-bold">
-                  <span className="text-[var(--text-muted)] uppercase tracking-wider">Monthly Investment Goal</span>
-                  <span className="text-emerald-400 font-mono text-base">₹{sipAmount.toLocaleString()}/mo</span>
+                  <span className="text-[var(--text-muted)] uppercase tracking-wider">Monthly SIP</span>
+                  <span className="text-emerald-400 font-mono text-sm">₹{sipAmount.toLocaleString()}/mo</span>
                 </div>
                 <input
                   type="range"
@@ -860,14 +812,14 @@ export default function LandingPage({ setActiveTab, onOpenAuthModal, onOpenRiskM
                   step="5000"
                   value={sipAmount}
                   onChange={(e) => setSipAmount(Number(e.target.value))}
-                  className="w-full h-2.5 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-emerald-400"
+                  className="w-full h-2 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-emerald-400"
                 />
               </div>
 
-              <div className="space-y-2 text-center">
+              <div className="space-y-1.5 text-center">
                 <div className="flex justify-between items-center text-xs font-bold">
-                  <span className="text-[var(--text-muted)] uppercase tracking-wider">Investment Horizon</span>
-                  <span className="text-cyan-400 font-mono text-base">{horizonYears} Years</span>
+                  <span className="text-[var(--text-muted)] uppercase tracking-wider">Horizon</span>
+                  <span className="text-cyan-400 font-mono text-sm">{horizonYears} Years</span>
                 </div>
                 <input
                   type="range"
@@ -876,14 +828,14 @@ export default function LandingPage({ setActiveTab, onOpenAuthModal, onOpenRiskM
                   step="1"
                   value={horizonYears}
                   onChange={(e) => setHorizonYears(Number(e.target.value))}
-                  className="w-full h-2.5 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-cyan-400"
+                  className="w-full h-2 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-cyan-400"
                 />
               </div>
 
-              <div className="space-y-2 text-center">
+              <div className="space-y-1.5 text-center">
                 <div className="flex justify-between items-center text-xs font-bold">
-                  <span className="text-[var(--text-muted)] uppercase tracking-wider">Expected Return</span>
-                  <span className="text-amber-400 font-mono text-base">{cagrRate}% P.A.</span>
+                  <span className="text-[var(--text-muted)] uppercase tracking-wider">Expected CAGR</span>
+                  <span className="text-amber-400 font-mono text-sm">{cagrRate}% P.A.</span>
                 </div>
                 <input
                   type="range"
@@ -892,14 +844,14 @@ export default function LandingPage({ setActiveTab, onOpenAuthModal, onOpenRiskM
                   step="0.5"
                   value={cagrRate}
                   onChange={(e) => setCagrRate(Number(e.target.value))}
-                  className="w-full h-2.5 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-amber-400"
+                  className="w-full h-2 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-amber-400"
                 />
               </div>
 
-              <div className="p-5 rounded-[8px] bg-emerald-500/10 border border-emerald-500/30 flex justify-between items-center text-center">
+              <div className="p-4 rounded-[6px] bg-emerald-500/10 border border-emerald-500/30 flex justify-between items-center text-center">
                 <div className="text-center">
-                  <div className="text-[11px] font-bold text-[var(--text-muted)] uppercase tracking-wider">Projected Corpus</div>
-                  <div className="text-2xl font-extrabold text-emerald-400 font-mono mt-0.5">
+                  <div className="text-[10px] font-bold text-[var(--text-muted)] uppercase tracking-wider">Projected Corpus</div>
+                  <div className="text-xl font-extrabold text-emerald-400 font-mono mt-0.5">
                     ₹{(finalCorpus / 100000).toFixed(2)} Lakhs
                   </div>
                 </div>
@@ -912,13 +864,13 @@ export default function LandingPage({ setActiveTab, onOpenAuthModal, onOpenRiskM
             </div>
 
             {/* Dynamic Real-Time Bending SVG Chart */}
-            <div className="lg:col-span-7 space-y-4 text-center">
+            <div className="lg:col-span-7 space-y-3 text-center">
               <div className="flex justify-between items-center text-xs font-bold text-[var(--text-muted)] uppercase">
-                <span>DYNAMIC GROWTH CURVE ({horizonYears} YRS)</span>
-                <span className="text-emerald-400 font-mono">{cagrRate}% CAGR RATE</span>
+                <span>GROWTH CURVE ({horizonYears} YRS)</span>
+                <span className="text-emerald-400 font-mono">{cagrRate}% CAGR</span>
               </div>
 
-              <div className="relative w-full h-88 bg-[var(--bg-card-inner)] p-5 rounded-[10px] border border-[var(--border-card)] flex items-center justify-center overflow-hidden">
+              <div className="relative w-full h-72 bg-[var(--bg-card-inner)] p-4 rounded-[8px] border border-[var(--border-card)] flex items-center justify-center overflow-hidden">
                 <svg className="w-full h-full" viewBox="0 0 500 220" preserveAspectRatio="none">
                   <defs>
                     <linearGradient id="curveLineGrad" x1="0" y1="0" x2="1" y2="0">
@@ -956,7 +908,7 @@ export default function LandingPage({ setActiveTab, onOpenAuthModal, onOpenRiskM
                   )}
                 </svg>
 
-                <div className="absolute top-4 right-4 bg-[var(--bg-card)] px-3.5 py-1.5 rounded border border-emerald-500/30 text-emerald-400 font-mono text-xs font-bold">
+                <div className="absolute top-3 right-3 bg-[var(--bg-card)] px-3 py-1 rounded border border-emerald-500/30 text-emerald-400 font-mono text-xs font-bold">
                   ₹{(finalCorpus / 100000).toFixed(2)} Lakhs
                 </div>
               </div>
@@ -968,122 +920,95 @@ export default function LandingPage({ setActiveTab, onOpenAuthModal, onOpenRiskM
       </section>
 
       {/* SECTION DIVIDER */}
-      <div className="w-full border-t border-[var(--border-card)] my-12" />
+      <div className="w-full border-t border-[var(--border-card)] my-8" />
 
       {/* ========================================================================= */}
-      {/* SECTION 10 // ORGANIZED BENTO FEATURE MODULES                             */}
+      {/* SECTION 10 // PLATFORM CAPABILITIES                                      */}
       {/* ========================================================================= */}
-      <section className="mb-40 text-center">
-        <div className="text-center max-w-xl mx-auto mb-10">
-          <span className="text-xs font-mono font-bold text-indigo-400 uppercase tracking-widest px-3 py-1 rounded bg-indigo-500/10 border border-indigo-500/20 mx-auto">
+      <section className="mb-32 text-center">
+        <div className="text-center max-w-xl mx-auto mb-8">
+          <span className="text-xs font-mono font-bold text-indigo-400 uppercase tracking-wider px-3 py-1 rounded bg-indigo-500/10 border border-indigo-500/20 mx-auto">
             SECTION 10 // PLATFORM CAPABILITIES
           </span>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           
           <div 
             onClick={() => setActiveTab('analyzer')}
-            className="bento-module-card p-8 flex flex-col justify-between text-center items-center cursor-pointer group min-h-[340px] rounded-[12px]"
+            className="bento-module-card p-6 flex flex-col justify-between text-center items-center cursor-pointer group min-h-[300px] rounded-[10px]"
           >
-            <div className="space-y-4 w-full flex flex-col items-center text-center">
-              <div className="w-10 h-10 rounded-[8px] bg-indigo-500/10 border border-indigo-500/30 flex items-center justify-center mx-auto">
-                <BrainCircuit className="w-5 h-5 text-indigo-400" />
+            <div className="space-y-3 w-full flex flex-col items-center text-center">
+              <div className="w-9 h-9 rounded-[6px] bg-indigo-500/10 border border-indigo-500/30 flex items-center justify-center mx-auto">
+                <BrainCircuit className="w-4.5 h-4.5 text-indigo-400" />
               </div>
               
-              <h3 className="text-xl font-bold text-[var(--text-main)] text-center">
+              <h3 className="text-lg font-bold text-[var(--text-main)] text-center">
                 Anti-Hype AI Detection
               </h3>
 
-              <ul className="space-y-2.5 text-xs text-[var(--text-muted)] font-semibold text-center w-full">
-                <li className="flex items-center justify-center gap-2">
-                  <span className="w-1.5 h-1.5 rounded-full bg-indigo-400 shrink-0" />
-                  <span>Real-time Groq LLM social audit</span>
-                </li>
-                <li className="flex items-center justify-center gap-2">
-                  <span className="w-1.5 h-1.5 rounded-full bg-indigo-400 shrink-0" />
-                  <span>Automated SEBI/SEC risk scoring</span>
-                </li>
-                <li className="flex items-center justify-center gap-2">
-                  <span className="w-1.5 h-1.5 rounded-full bg-indigo-400 shrink-0" />
-                  <span>Instant pump & dump detection</span>
-                </li>
+              <ul className="space-y-1.5 text-xs text-[var(--text-muted)] font-semibold text-center w-full">
+                <li>• Real-time Groq LLM social audit</li>
+                <li>• Automated SEBI/SEC risk scoring</li>
+                <li>• Instant pump & dump detection</li>
               </ul>
             </div>
 
-            <div className="pt-6 flex items-center justify-center gap-2 text-xs font-bold text-indigo-400 group-hover:translate-x-1 transition-transform">
+            <div className="pt-4 flex items-center justify-center gap-1.5 text-xs font-bold text-indigo-400 group-hover:translate-x-1 transition-transform">
               <span>Explore AI Engine</span>
-              <ArrowRight className="w-4 h-4" />
+              <ArrowRight className="w-3.5 h-3.5" />
             </div>
           </div>
 
           <div 
             onClick={() => setActiveTab('dashboard')}
-            className="bento-module-card p-8 flex flex-col justify-between text-center items-center cursor-pointer group min-h-[340px] rounded-[12px]"
+            className="bento-module-card p-6 flex flex-col justify-between text-center items-center cursor-pointer group min-h-[300px] rounded-[10px]"
           >
-            <div className="space-y-4 w-full flex flex-col items-center text-center">
-              <div className="w-10 h-10 rounded-[8px] bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center mx-auto">
-                <Layers className="w-5 h-5 text-emerald-400" />
+            <div className="space-y-3 w-full flex flex-col items-center text-center">
+              <div className="w-9 h-9 rounded-[6px] bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center mx-auto">
+                <Layers className="w-4.5 h-4.5 text-emerald-400" />
               </div>
 
-              <h3 className="text-xl font-bold text-[var(--text-main)] text-center">
+              <h3 className="text-lg font-bold text-[var(--text-main)] text-center">
                 Consolidated Asset Vault
               </h3>
 
-              <ul className="space-y-2.5 text-xs text-[var(--text-muted)] font-semibold text-center w-full">
-                <li className="flex items-center justify-center gap-2">
-                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 shrink-0" />
-                  <span>Single-pane multi-asset vault</span>
-                </li>
-                <li className="flex items-center justify-center gap-2">
-                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 shrink-0" />
-                  <span>Unified net worth tracking</span>
-                </li>
-                <li className="flex items-center justify-center gap-2">
-                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 shrink-0" />
-                  <span>Real-time portfolio rebalancing</span>
-                </li>
+              <ul className="space-y-1.5 text-xs text-[var(--text-muted)] font-semibold text-center w-full">
+                <li>• Single-pane multi-asset vault</li>
+                <li>• Unified net worth tracking</li>
+                <li>• Real-time portfolio rebalancing</li>
               </ul>
             </div>
 
-            <div className="pt-6 flex items-center justify-center gap-2 text-xs font-bold text-emerald-400 group-hover:translate-x-1 transition-transform">
+            <div className="pt-4 flex items-center justify-center gap-1.5 text-xs font-bold text-emerald-400 group-hover:translate-x-1 transition-transform">
               <span>Launch Asset Vault</span>
-              <ArrowRight className="w-4 h-4" />
+              <ArrowRight className="w-3.5 h-3.5" />
             </div>
           </div>
 
           <div 
             onClick={() => setActiveTab('goals')}
-            className="bento-module-card p-8 flex flex-col justify-between text-center items-center cursor-pointer group min-h-[340px] rounded-[12px]"
+            className="bento-module-card p-6 flex flex-col justify-between text-center items-center cursor-pointer group min-h-[300px] rounded-[10px]"
           >
-            <div className="space-y-4 w-full flex flex-col items-center text-center">
-              <div className="w-10 h-10 rounded-[8px] bg-cyan-500/10 border border-cyan-500/30 flex items-center justify-center mx-auto">
-                <Target className="w-5 h-5 text-cyan-400" />
+            <div className="space-y-3 w-full flex flex-col items-center text-center">
+              <div className="w-9 h-9 rounded-[6px] bg-cyan-500/10 border border-cyan-500/30 flex items-center justify-center mx-auto">
+                <Target className="w-4.5 h-4.5 text-cyan-400" />
               </div>
 
-              <h3 className="text-xl font-bold text-[var(--text-main)] text-center">
+              <h3 className="text-lg font-bold text-[var(--text-main)] text-center">
                 Automated Goal Engine
               </h3>
 
-              <ul className="space-y-2.5 text-xs text-[var(--text-muted)] font-semibold text-center w-full">
-                <li className="flex items-center justify-center gap-2">
-                  <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 shrink-0" />
-                  <span>Inflation-adjusted target goals</span>
-                </li>
-                <li className="flex items-center justify-center gap-2">
-                  <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 shrink-0" />
-                  <span>Dynamic SIP compounding curve</span>
-                </li>
-                <li className="flex items-center justify-center gap-2">
-                  <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 shrink-0" />
-                  <span>Automated wealth accumulation</span>
-                </li>
+              <ul className="space-y-1.5 text-xs text-[var(--text-muted)] font-semibold text-center w-full">
+                <li>• Inflation-adjusted target goals</li>
+                <li>• Dynamic SIP compounding curve</li>
+                <li>• Automated wealth accumulation</li>
               </ul>
             </div>
 
-            <div className="pt-6 flex items-center justify-center gap-2 text-xs font-bold text-cyan-400 group-hover:translate-x-1 transition-transform">
+            <div className="pt-4 flex items-center justify-center gap-1.5 text-xs font-bold text-cyan-400 group-hover:translate-x-1 transition-transform">
               <span>Plan Goal SIPs</span>
-              <ArrowRight className="w-4 h-4" />
+              <ArrowRight className="w-3.5 h-3.5" />
             </div>
           </div>
 
@@ -1091,17 +1016,17 @@ export default function LandingPage({ setActiveTab, onOpenAuthModal, onOpenRiskM
       </section>
 
       {/* FOOTER BADGES */}
-      <footer className="pb-20 pt-10 border-t border-[var(--border-card)] flex flex-col sm:flex-row items-center justify-between gap-6 text-xs font-semibold text-[var(--text-muted)] text-center">
+      <footer className="pb-16 pt-8 border-t border-[var(--border-card)] flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-semibold text-[var(--text-muted)] text-center">
         <div className="flex items-center justify-center gap-2 mx-auto sm:mx-0">
-          <Lock className="w-4 h-4 text-emerald-400" />
+          <Lock className="w-3.5 h-3.5 text-emerald-400" />
           <span>256-Bit Institutional Grade Encryption</span>
         </div>
         <div className="flex items-center justify-center gap-2 mx-auto sm:mx-0">
-          <ShieldCheck className="w-4 h-4 text-indigo-400" />
+          <ShieldCheck className="w-3.5 h-3.5 text-indigo-400" />
           <span>SEC/SEBI Institutional Framework</span>
         </div>
         <div className="flex items-center justify-center gap-2 mx-auto sm:mx-0">
-          <Cpu className="w-4 h-4 text-cyan-400" />
+          <Cpu className="w-3.5 h-3.5 text-cyan-400" />
           <span>Real-Time Groq AI Engine</span>
         </div>
       </footer>
