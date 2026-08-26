@@ -210,9 +210,113 @@ Keep responses well-formatted with markdown, bold key takeaways, bullet points, 
 }
 
 function fallbackChatbotResponse(message, riskCategory, riskScore) {
-  const query = message.toLowerCase();
+  const query = message.toLowerCase().trim();
 
-  if (query.includes('sip') || query.includes('systematic investment') || query.includes('monthly investment')) {
+  // 1. Greetings & Onboarding
+  if (query === 'hi' || query === 'hello' || query === 'hey' || query.includes('who are you') || query.includes('what can you do')) {
+    return `### 👋 **Hello! I'm Miracle, Your AI Wealth Co-Pilot**
+
+I am integrated into **CredoMetrics AI** to assist you with:
+- 📈 **Smart SIP Planning & Compounding Strategies**
+- 🛡️ **Anti-Hype Social Audit & Scam Detection**
+- 📊 **Portfolio Allocation for ${riskCategory} (Score: ${riskScore}/100)**
+- 💡 **Tax Optimization, Emergency Funds & Wealth Education**
+
+*What financial goal or question would you like to explore today?*`;
+  }
+
+  // 2. Gold & Sovereign Gold Bonds (SGB)
+  if (query.includes('gold') || query.includes('sgb') || query.includes('sovereign gold') || query.includes('silver')) {
+    return `### 🪙 **Gold & Sovereign Gold Bonds (SGB) Strategy**
+
+Gold acts as a classic **inflation hedge** and portfolio stabilization anchor.
+
+**Key Allocation Guidelines for ${riskCategory}:**
+1. **Target Allocation**: Allocate **5% - 10%** of your overall wealth to gold.
+2. **Sovereign Gold Bonds (SGB)**: 
+   - Yields an extra **2.5% annual interest** paid semi-annually.
+   - **100% Tax-Free** capital gains if held until 8-year maturity.
+3. **Gold ETFs / Sovereign Gold Funds**: Ideal if you require higher liquidity over physical jewelry.
+
+*Pro Tip: Avoid physical gold jewelry for investment due to 15-25% making charge losses.*`;
+  }
+
+  // 3. Mutual Funds & ETFs
+  if (query.includes('mutual fund') || query.includes('etf') || query.includes('index fund') || query.includes('nav') || query.includes('flexi cap')) {
+    return `### 📦 **Mutual Fund & Index Allocation**
+
+Mutual funds allow instant diversification across hundreds of institutional-grade securities.
+
+**Recommended Fund Structure for Your Profile (${riskCategory}):**
+- 🏛️ **Large-Cap / Nifty 50 Index (45%)**: Core stability with top 50 audited Indian enterprises.
+- 🚀 **Flexi-Cap / Mid-Cap Funds (35%)**: Dynamic market cap allocation for high CAGR growth.
+- 🛡️ **Short-Duration Debt Funds (20%)**: Downside cushion and liquid rebalancing buffer.
+
+*Always look for **Direct Plans** (0.5% - 1.0% lower expense ratio) over Regular Plans.*`;
+  }
+
+  // 4. Stocks & Equities
+  if (query.includes('stock') || query.includes('share') || query.includes('equity') || query.includes('nifty') || query.includes('sensex') || query.includes('ipo')) {
+    return `### 📊 **Equity Stock Selection & Valuation Framework**
+
+Direct stock investing requires disciplined fundamental scrutiny rather than emotional momentum.
+
+**Institutional Checklist Before Buying Any Stock:**
+1. **Revenue & EPS Growth**: Consistent 12%+ YoY net profit growth over 5 years.
+2. **Return on Equity (ROE)**: ROE > 15% with manageable Debt-to-Equity (< 0.5).
+3. **Valuation Benchmark**: Price-to-Earnings (P/E) compared against sector 5-year average.
+4. **Position Sizing**: Limit individual stock exposure to **max 5%** of net worth.`;
+  }
+
+  // 5. Tax Harvesting & Deductions
+  if (query.includes('tax') || query.includes('80c') || query.includes('80d') || query.includes('elss') || query.includes('ltcg') || query.includes('stcg')) {
+    return `### 💡 **Smart Tax Optimization & Deductions**
+
+Maximize your net take-home returns legally using key tax provisions:
+
+- 📑 **Sec 80C (up to ₹1.5 Lakhs)**: Invest via **ELSS Mutual Funds** (shortest 3-year lock-in with equity CAGR upside).
+- 🏥 **Sec 80D (up to ₹75,000)**: Health insurance premium deductions for self & senior citizen parents.
+- 🌾 **Tax-Loss Harvesting**: Offset capital gains against realized losses before March 31st annually.
+- 📈 **Equity LTCG**: Tax-free up to ₹1.25 Lakhs per financial year.`;
+  }
+
+  // 6. Debt & Fixed Income (FD, PPF, NPS)
+  if (query.includes('fd') || query.includes('fixed deposit') || query.includes('ppf') || query.includes('nps') || query.includes('bond') || query.includes('debt')) {
+    return `### 🔒 **Fixed Income & Capital Preservation**
+
+Fixed income instruments protect your portfolio against market drawdowns.
+
+**Comparison of Capital Preservation Assets:**
+- 🏛️ **Public Provident Fund (PPF)**: EEE tax-free status, 15-year horizon, guaranteed sovereign returns.
+- 🏦 **Corporate & Bank FDs**: High liquidity, ideal for short-term goals (< 3 years).
+- 👴 **National Pension System (NPS)**: Additional **₹50,000 tax deduction under Sec 80CCD(1B)** with low-cost equity-debt options.`;
+  }
+
+  // 7. Loans, EMIs & Debt Payoff
+  if (query.includes('loan') || query.includes('emi') || query.includes('credit card') || query.includes('mortgage') || query.includes('debt repayment')) {
+    return `### 💳 **Debt Repayment & EMI Optimization**
+
+Managing debt effectively accelerates your journey toward financial independence.
+
+**Recommended Payoff Rules:**
+1. **High-Interest Debt First (Credit Cards >18% APR)**: Pay off aggressively using the **Avalanche Method**.
+2. **EMI Cap Rule**: Total monthly debt EMIs should never exceed **30-35% of net monthly income**.
+3. **Prepayment vs Investment**: If loan interest rate is < 8.5% (e.g. Home Loan), continuing equities SIPs often outperforms lump-sum loan prepayment.`;
+  }
+
+  // 8. Real Estate & REITs
+  if (query.includes('real estate') || query.includes('property') || query.includes('reit') || query.includes('house') || query.includes('land')) {
+    return `### 🏠 **Real Estate vs Real Estate Investment Trusts (REITs)**
+
+Real estate provides physical tangible wealth, but comes with illiquidity and high ticket sizes.
+
+**Modern Real Estate Strategy:**
+- 🏢 **REITs (Real Estate Investment Trusts)**: Invest in Grade-A commercial office parks starting at ₹300 with 6-8% quarterly dividend yields.
+- 📑 **Residential Property**: Residential rental yield averages 2.5% - 3.5% in major metros. Factor in maintenance costs and property taxes.`;
+  }
+
+  // 9. SIPs & Compounding
+  if (query.includes('sip') || query.includes('systematic investment') || query.includes('compounding') || query.includes('rule of 72') || query.includes('step up')) {
     return `### 📈 **Smart SIP Strategy & Compounding**
 
 Automated monthly SIPs (Systematic Investment Plans) are the single most effective tool for long-term wealth creation.
@@ -225,7 +329,8 @@ Automated monthly SIPs (Systematic Investment Plans) are the single most effecti
 *Tip: Increasing your SIP contribution by just **10% annually** reduces the time to reach ₹1 Crore by up to 4 years!*`;
   }
 
-  if (query.includes('hype') || query.includes('crypto') || query.includes('memecoin') || query.includes('pump') || query.includes('telegram')) {
+  // 10. Anti-Hype & Social Scams
+  if (query.includes('hype') || query.includes('crypto') || query.includes('memecoin') || query.includes('pump') || query.includes('telegram') || query.includes('10x') || query.includes('tip')) {
     return `### 🚨 **Anti-Hype & Volatility Protection Notice**
 
 Social media "tips" and Telegram pump groups disproportionately target retail investors.
@@ -236,7 +341,8 @@ Social media "tips" and Telegram pump groups disproportionately target retail in
 - **Core Defense**: Keep 90%+ of capital anchored in audited index funds, equities, and real estate.`;
   }
 
-  if (query.includes('emergency') || query.includes('fund') || query.includes('savings')) {
+  // 11. Emergency Fund
+  if (query.includes('emergency') || query.includes('savings') || query.includes('buffer')) {
     return `### 🛡️ **Emergency Fund Blueprint**
 
 Before aggressive equity investing, secure a financial safety net:
@@ -246,37 +352,43 @@ Before aggressive equity investing, secure a financial safety net:
 - **Rule**: Never invest your emergency fund in volatile stocks or crypto!`;
   }
 
-  if (query.includes('retirement') || query.includes('goal') || query.includes('50l') || query.includes('crore')) {
-    return `### 🎯 **Goal Planning & Target Asset Strategy**
+  // 12. Retirement & FIRE
+  if (query.includes('retirement') || query.includes('swp') || query.includes('fire') || query.includes('4% rule') || query.includes('pension')) {
+    return `### 🏖️ **Retirement Planning & The 4% SWP Rule**
 
-Achieving major milestones requires disciplined asset mapping:
+Building a sustainable retirement corpus ensures lifetime financial freedom.
 
-1. **Calculate Inflation-Adjusted Target**: At 6% inflation, ₹50 Lakhs in 15 years requires ~₹1.2 Crore nominal value.
-2. **SIP Needed**: Investing ~₹22,500/month at an assumed 12% annual equity return will achieve this goal.
-3. **FinAura Goal Tracker**: You can track and adjust this directly in our **Goal Planner** section!`;
+**The 4% Safe Withdrawal Rate (SWP):**
+1. **Corpus Target**: Multiply annual retirement expenses by **25×** (e.g., ₹12 Lakhs annual expense requires ₹3 Crore corpus).
+2. **Asset Split**: Keep 50% in Equity Mutual Funds for growth and 50% in Sovereign Bonds/Debt for steady monthly cashflow.
+3. **Systematic Withdrawal**: Withdraw 4% annually adjusted for inflation.`;
   }
 
-  if (query.includes('p/e') || query.includes('pe ratio') || query.includes('valuation') || query.includes('metric')) {
-    return `### 📊 **Understanding Financial Metrics: P/E Ratio**
+  // 13. Metrics & Valuation (P/E Ratio, Sharpe, ROE)
+  if (query.includes('p/e') || query.includes('pe ratio') || query.includes('valuation') || query.includes('sharpe') || query.includes('roe')) {
+    return `### 📊 **Financial Valuation Metrics: P/E & Sharpe Ratio**
 
-The **Price-to-Earnings (P/E) Ratio** measures how much investors are paying per ₹1 of company profit.
-
-- **Trailing P/E**: Shares price ÷ Last 12 months EPS.
-- **Benchmark**: Compare a stock's P/E against its **5-year historical average** and its **industry peer group**.
-- **Caution**: High P/E (>50) isn't always bad if earnings growth is >30% (PEG ratio < 1), but requires deep scrutiny.`;
+- **Price-to-Earnings (P/E)**: Shares price ÷ Last 12 months EPS. Compare a stock's P/E against its **5-year historical average** and its **industry peer group**.
+- **Sharpe Ratio**: Measures risk-adjusted excess returns over risk-free rate. A Sharpe ratio > 1.0 indicates institutional excellence.
+- **PEG Ratio**: P/E divided by Annual EPS Growth. A PEG < 1.0 signals attractive growth at reasonable price.`;
   }
 
-  return `### ✨ **Miracle AI Assistant**
+  // 14. Dynamic Query Specific Response for Unlisted Topics
+  const words = message.replace(/[^a-zA-Z0-9 ]/g, '').split(' ').filter(w => w.length > 3);
+  const keyTopic = words.length > 0 ? words.join(' ') : message;
 
-Thank you for your inquiry regarding *"${message}"*. 
+  return `### 💡 **Miracle AI Financial Advisory: ${keyTopic.charAt(0).toUpperCase() + keyTopic.slice(1)}**
 
-As a **${riskCategory}** investor (Risk Score: **${riskScore}/100**), here are key guidelines:
+Here is a structured financial analysis for your query regarding **"${message}"**:
 
-- **Disciplined Execution**: Stick to asset allocation targets rather than timing market swings.
-- **Anti-Hype Filtering**: Run speculative asset recommendations through our **Hype Analyzer** tab to check risk scores.
-- **Portfolio Health**: Ensure broad diversification across large-cap index funds, mid-caps, and debt instruments.
+1. **Risk Alignment**: Tailored for your **${riskCategory}** investor profile (Risk Score: **${riskScore}/100**).
+2. **Empirical Discipline**: Ensure any investment decision around *"${keyTopic}"* is based on audited disclosures rather than market hype.
+3. **Portfolio Action**:
+   - Verify sector valuation metrics before allocating capital.
+   - Maintain disciplined position sizing (max 5% single exposure).
+   - Use our **Hype Analyzer** tab to audit social media claims.
 
-*How else can Miracle assist you with your financial planning, portfolio, or investment learning today?*`;
+*Would you like to analyze a specific asset ticker, run a SIP calculation, or take a risk profiling quiz?*`;
 }
 
 module.exports = { analyzeFinancialTrend, generateFlashcards, chatWithAI };

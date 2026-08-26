@@ -218,16 +218,16 @@ export default function AIChatbot({ user, externalOpenState, setExternalOpenStat
 
   return (
     <div ref={chatbotRef} className="font-sans">
-      {/* 1. 50px x 50px CIRCULAR FLOATING ACTION BUTTON (FAB) - Pinned at bottom: 20px, left: 20px, z-index: 9999 */}
+      {/* 1. 50px x 50px CIRCULAR FLOATING ACTION BUTTON (FAB) - Pinned at bottom: 20px, right: 20px, z-index: 9999 */}
       <div 
-        className="fixed bottom-[20px] left-[20px] z-[9999]"
-        style={{ position: 'fixed', bottom: '20px', left: '20px', zIndex: 9999 }}
+        className="fixed bottom-[20px] right-[20px] z-[9999]"
+        style={{ position: 'fixed', bottom: '20px', right: '20px', zIndex: 9999 }}
       >
         <div className="relative group">
           {showBadge && !isOpen && (
-            <div className="absolute -top-11 left-0 bg-slate-900/95 text-slate-200 backdrop-blur-md px-3 py-1 rounded-xl border border-indigo-500/40 text-[11px] shadow-2xl flex items-center gap-1.5 whitespace-nowrap animate-bounce">
+            <div className="absolute -top-11 right-0 bg-slate-900/95 text-white backdrop-blur-md px-3 py-1 rounded-xl border border-indigo-500/40 text-[11px] shadow-2xl flex items-center gap-1.5 whitespace-nowrap animate-bounce">
               <Wand2 className="w-3 h-3 text-amber-400" />
-              <span>Ask <strong>Miracle</strong></span>
+              <span className="text-white">Ask <strong className="text-white">Miracle</strong></span>
               <button 
                 onClick={(e) => { e.stopPropagation(); setShowBadge(false); }}
                 className="text-slate-400 hover:text-white ml-0.5"
@@ -254,20 +254,20 @@ export default function AIChatbot({ user, externalOpenState, setExternalOpenStat
         </div>
       </div>
 
-      {/* 2. ENLARGED POP-UP CHAT WINDOW - Positioned fixed above FAB at bottom: 80px, left: 20px, z-index: 9999 */}
+      {/* 2. ENLARGED POP-UP CHAT WINDOW - Positioned fixed above FAB at bottom: 80px, right: 20px, z-index: 9999 */}
       {isOpen && (
         <div 
-          className="miracle-chat-window fixed bottom-[80px] left-[20px] z-[9999] w-[420px] max-w-[92vw] h-[560px] max-h-[82vh] bg-[#0f172a] text-white border border-slate-700 rounded-2xl shadow-2xl flex flex-col overflow-hidden transition-all duration-300 animate-in fade-in slide-in-from-bottom-4"
+          className="miracle-chat-window fixed bottom-[80px] right-[20px] z-[9999] w-[420px] max-w-[92vw] h-[560px] max-h-[82vh] bg-[#0f172a] text-white border border-slate-700 rounded-2xl shadow-2xl flex flex-col overflow-hidden transition-all duration-300 animate-in fade-in slide-in-from-bottom-4"
           style={{ 
             position: 'fixed', 
             bottom: '80px', 
-            left: '20px', 
+            right: '20px', 
             zIndex: 9999,
             boxShadow: '0 20px 25px -5px rgba(0, 0, 0, 0.5), 0 8px 10px -6px rgba(0, 0, 0, 0.5)'
           }}
         >
-          {/* HEADER */}
-          <div className="bg-slate-950 px-4 py-3 border-b border-slate-800 flex items-center justify-between shrink-0">
+          {/* HEADER (ALWAYS BRIGHT WHITE & EMERALD IN BOTH THEMES) */}
+          <div className="bg-[#090e17] px-4 py-3 border-b border-slate-800 flex items-center justify-between shrink-0">
             <div className="flex items-center gap-2.5">
               <div className="w-8 h-8 rounded-xl bg-gradient-to-tr from-indigo-600 to-emerald-400 flex items-center justify-center text-white shadow-md relative">
                 <Sparkles className="w-4 h-4 text-amber-300" />
@@ -275,12 +275,12 @@ export default function AIChatbot({ user, externalOpenState, setExternalOpenStat
               </div>
               <div>
                 <div className="flex items-center gap-1.5">
-                  <h3 className="font-bold text-white text-sm tracking-wide">Miracle AI</h3>
-                  <span className="text-[9px] font-bold bg-emerald-500/20 text-emerald-300 px-1.5 py-0.5 rounded border border-emerald-500/30">
+                  <h3 className="font-extrabold text-white text-sm tracking-wide" style={{ color: '#ffffff' }}>Miracle AI</h3>
+                  <span className="text-[9px] font-extrabold bg-emerald-500/20 text-emerald-300 px-1.5 py-0.5 rounded border border-emerald-500/30">
                     Online
                   </span>
                 </div>
-                <p className="text-[11px] text-slate-400">Anti-Hype Wealth Co-Pilot</p>
+                <p className="text-[11px] text-slate-300 font-medium" style={{ color: '#cbd5e1' }}>Anti-Hype Wealth Co-Pilot</p>
               </div>
             </div>
 
