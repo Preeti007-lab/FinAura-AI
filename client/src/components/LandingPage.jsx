@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { 
-  Sparkles, BrainCircuit, ArrowRight, TrendingUp, ShieldCheck, Zap, Sliders, Layers, Target, Lock, Cpu, RotateCw, BookOpen, Calculator, ShieldAlert, BarChart2
+  Sparkles, BrainCircuit, ArrowRight, TrendingUp, ShieldCheck, Zap, Sliders, Layers, Target, Lock, Cpu, RotateCw, BookOpen, Calculator, ShieldAlert, BarChart2, Compass, PieChart, CheckCircle2, AlertTriangle
 } from 'lucide-react';
 import { useUser, SignUpButton } from '@clerk/clerk-react';
 
-export default function LandingPage({ setActiveTab, onOpenAuthModal }) {
+export default function LandingPage({ setActiveTab, onOpenAuthModal, onOpenRiskModal }) {
   let isSignedIn = false;
   try {
     const clerk = useUser();
@@ -72,7 +72,7 @@ export default function LandingPage({ setActiveTab, onOpenAuthModal }) {
 
   const { totalInvested, finalCorpus, totalGain, pathD, areaD, lastPoint } = calculateCompounding();
 
-  // Financial Terms Flashcards Data with Distinct Colour Markings & Uniform Sans-Serif Font
+  // Financial Terms Flashcards Data
   const financialFlashcards = [
     {
       id: 'rule72',
@@ -152,23 +152,28 @@ export default function LandingPage({ setActiveTab, onOpenAuthModal }) {
     <div className="w-full min-h-screen text-[var(--text-main)] px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto text-center font-sans">
       
       {/* ========================================================================= */}
-      {/* SECTION 1: SPACIOUS UNIFORM HERO VIEW (ELONGATED SPACING)                 */}
+      {/* SECTION 1: SPACIOUS CENTER-JUSTIFIED HERO VIEW                            */}
       {/* ========================================================================= */}
       <section className="flex flex-col items-center justify-center text-center max-w-4xl mx-auto pt-28 pb-16 mb-40">
         
         {/* Center Badge Pill */}
-        <div className="inline-flex items-center gap-2.5 px-4 py-2 rounded-full bg-[var(--bg-card-inner)] border border-[var(--border-card)] text-indigo-400 text-xs font-bold shadow-md mb-8">
+        <div className="inline-flex items-center gap-2.5 px-4 py-2 rounded-full bg-[var(--bg-card-inner)] border border-[var(--border-card)] text-indigo-400 text-xs font-bold shadow-md mb-8 mx-auto justify-center">
           <Sparkles className="w-4 h-4 text-cyan-400 animate-pulse" />
           <span>INSTITUTIONAL WEALTHTECH & ANTI-HYPE AI PLATFORM</span>
         </div>
 
-        {/* Massive Center Headline - Uniform Sans-Serif Typography */}
+        {/* Massive Center Headline */}
         <h1 className="text-5xl sm:text-7xl lg:text-8xl font-extrabold tracking-tight text-[var(--text-main)] leading-[1.1] max-w-4xl mx-auto text-center">
           Turn Finfluencer Noise into <span className="bg-gradient-to-r from-indigo-400 via-cyan-400 to-emerald-400 bg-clip-text text-transparent">Actionable Wealth</span>
         </h1>
 
+        {/* Center Subtext */}
+        <p className="mt-6 text-base sm:text-xl text-[var(--text-muted)] font-medium max-w-2xl mx-auto leading-relaxed text-center">
+          A disciplined, quantitative wealth management engine. Eliminate social hype, profile institutional risk, consolidate multi-asset vaults, and automate goal SIPs.
+        </p>
+
         {/* Center CTA Button */}
-        <div className="mt-14 flex justify-center">
+        <div className="mt-12 flex justify-center mx-auto">
           {isSignedIn ? (
             <button 
               onClick={() => setActiveTab('dashboard')}
@@ -190,7 +195,7 @@ export default function LandingPage({ setActiveTab, onOpenAuthModal }) {
       </section>
 
       {/* ========================================================================= */}
-      {/* SECTION 2: PROOF COUNTERS (ELONGATED SPACING)                            */}
+      {/* SECTION 2: PROOF COUNTERS (STRICT CENTER ALIGNMENT)                       */}
       {/* ========================================================================= */}
       <section className="mb-40">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -226,7 +231,226 @@ export default function LandingPage({ setActiveTab, onOpenAuthModal }) {
       </section>
 
       {/* ========================================================================= */}
-      {/* SECTION 3: COLOUR-MARKED 3D FINANCIAL TERM FLASHCARDS DECK                */}
+      {/* SECTION 3: FINANCIAL JOURNEY PHASE 1 - RISK PROFILING ENGINE              */}
+      {/* ========================================================================= */}
+      <section className="mb-40 space-y-12">
+        
+        <div className="text-center max-w-2xl mx-auto space-y-3">
+          <div className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-indigo-400 justify-center">
+            <Compass className="w-4 h-4" /> FINANCIAL JOURNEY PHASE 1
+          </div>
+          <h2 className="text-3xl sm:text-5xl font-extrabold text-[var(--text-main)] text-center">
+            Institutional Risk Profiling
+          </h2>
+          <p className="text-sm sm:text-base text-[var(--text-muted)] font-medium text-center">
+            Determine your exact risk tolerance score before allocating capital to equities or debt.
+          </p>
+        </div>
+
+        <div className="bg-[var(--bg-card)] border border-[var(--border-card)] rounded-[8px] p-8 sm:p-14 shadow-xl text-center max-w-5xl mx-auto">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+            
+            {/* Visual Risk Journey Image */}
+            <div className="lg:col-span-6 relative w-full h-80 rounded-lg overflow-hidden border border-[var(--border-card)] shadow-md">
+              <img 
+                src="/images/risk_journey.jpg" 
+                alt="Institutional Risk Profile Gauge & Spectrum" 
+                className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+              />
+              <div className="absolute bottom-3 left-3 bg-[#0a0f1d]/90 px-3.5 py-1.5 rounded border border-indigo-500/40 text-indigo-300 text-xs font-mono font-bold">
+                Risk Score: 68 / 100 (Growth)
+              </div>
+            </div>
+
+            {/* Content & Action Points */}
+            <div className="lg:col-span-6 space-y-6 text-center flex flex-col items-center">
+              <div className="w-12 h-12 rounded-xl bg-indigo-500/10 border border-indigo-500/30 flex items-center justify-center mx-auto">
+                <ShieldCheck className="w-6 h-6 text-indigo-400" />
+              </div>
+
+              <h3 className="text-2xl font-bold text-[var(--text-main)] text-center">
+                Quantified Risk Band Assessment
+              </h3>
+
+              <p className="text-xs sm:text-sm text-[var(--text-muted)] leading-relaxed text-center">
+                Our algorithm evaluates market drawdown tolerance, investment horizon, and loss limits according to SEBI/SEC institutional framework guidelines.
+              </p>
+
+              <div className="w-full grid grid-cols-2 gap-3 text-xs font-bold text-[var(--text-main)]">
+                <div className="p-3 rounded bg-[var(--bg-card-inner)] border border-[var(--border-card)] text-center">
+                  <div className="text-[10px] text-[var(--text-muted)] uppercase">Max Drawdown</div>
+                  <div className="text-rose-400 text-sm mt-0.5">-15% Limit</div>
+                </div>
+                <div className="p-3 rounded bg-[var(--bg-card-inner)] border border-[var(--border-card)] text-center">
+                  <div className="text-[10px] text-[var(--text-muted)] uppercase">Equity Band</div>
+                  <div className="text-emerald-400 text-sm mt-0.5">70% Target</div>
+                </div>
+              </div>
+
+              {onOpenRiskModal && (
+                <button
+                  onClick={onOpenRiskModal}
+                  className="px-8 py-3.5 bg-indigo-600 hover:bg-indigo-500 text-white font-bold text-sm rounded-lg shadow-lg hover:scale-105 transition-all flex items-center justify-center gap-2 cursor-pointer border border-indigo-400/30 mx-auto"
+                >
+                  <span>Take 2-Min Risk Assessment</span>
+                  <ArrowRight className="w-4 h-4" />
+                </button>
+              )}
+            </div>
+
+          </div>
+        </div>
+
+      </section>
+
+      {/* ========================================================================= */}
+      {/* SECTION 4: FINANCIAL JOURNEY PHASE 2 - PORTFOLIO CONSOLIDATION VAULT     */}
+      {/* ========================================================================= */}
+      <section className="mb-40 space-y-12">
+        
+        <div className="text-center max-w-2xl mx-auto space-y-3">
+          <div className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-emerald-400 justify-center">
+            <Layers className="w-4 h-4" /> FINANCIAL JOURNEY PHASE 2
+          </div>
+          <h2 className="text-3xl sm:text-5xl font-extrabold text-[var(--text-main)] text-center">
+            Multi-Asset Portfolio Consolidation
+          </h2>
+          <p className="text-sm sm:text-base text-[var(--text-muted)] font-medium text-center">
+            Unify stocks, mutual funds, crypto, real estate, and fixed deposits into a single-pane vault.
+          </p>
+        </div>
+
+        <div className="bg-[var(--bg-card)] border border-[var(--border-card)] rounded-[8px] p-8 sm:p-14 shadow-xl text-center max-w-5xl mx-auto">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+            
+            {/* Content & Action Points */}
+            <div className="lg:col-span-6 space-y-6 text-center flex flex-col items-center order-2 lg:order-1">
+              <div className="w-12 h-12 rounded-xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center mx-auto">
+                <PieChart className="w-6 h-6 text-emerald-400" />
+              </div>
+
+              <h3 className="text-2xl font-bold text-[var(--text-main)] text-center">
+                Single-Pane Net Worth Vault
+              </h3>
+
+              <p className="text-xs sm:text-sm text-[var(--text-muted)] leading-relaxed text-center">
+                Track true net worth in real-time. Automated rebalancing alerts warn you when equity allocation drifts beyond your target risk tolerance.
+              </p>
+
+              <div className="w-full grid grid-cols-3 gap-2 text-xs font-bold text-[var(--text-main)]">
+                <div className="p-2.5 rounded bg-[var(--bg-card-inner)] border border-[var(--border-card)] text-center">
+                  <div className="text-[10px] text-slate-400">Stocks</div>
+                  <div className="text-indigo-400 mt-0.5">45%</div>
+                </div>
+                <div className="p-2.5 rounded bg-[var(--bg-card-inner)] border border-[var(--border-card)] text-center">
+                  <div className="text-[10px] text-slate-400">MFs</div>
+                  <div className="text-emerald-400 mt-0.5">30%</div>
+                </div>
+                <div className="p-2.5 rounded bg-[var(--bg-card-inner)] border border-[var(--border-card)] text-center">
+                  <div className="text-[10px] text-slate-400">Gold/Debt</div>
+                  <div className="text-amber-400 mt-0.5">25%</div>
+                </div>
+              </div>
+
+              <button
+                onClick={() => setActiveTab('dashboard')}
+                className="px-8 py-3.5 bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-sm rounded-lg shadow-lg hover:scale-105 transition-all flex items-center justify-center gap-2 cursor-pointer border border-emerald-400/30 mx-auto"
+              >
+                <span>Launch Asset Vault</span>
+                <ArrowRight className="w-4 h-4" />
+              </button>
+            </div>
+
+            {/* Visual Portfolio Consolidation Image */}
+            <div className="lg:col-span-6 relative w-full h-80 rounded-lg overflow-hidden border border-[var(--border-card)] shadow-md order-1 lg:order-2">
+              <img 
+                src="/images/portfolio_journey.jpg" 
+                alt="Multi-Asset Portfolio Consolidation Vault Dashboard" 
+                className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+              />
+              <div className="absolute bottom-3 right-3 bg-[#0a0f1d]/90 px-3.5 py-1.5 rounded border border-emerald-500/40 text-emerald-300 text-xs font-mono font-bold">
+                Net Worth: $18.7M (+14.3% YTD)
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </section>
+
+      {/* ========================================================================= */}
+      {/* SECTION 5: FINANCIAL JOURNEY PHASE 3 - GOAL-BASED SIP PLANNING ENGINE     */}
+      {/* ========================================================================= */}
+      <section className="mb-40 space-y-12">
+        
+        <div className="text-center max-w-2xl mx-auto space-y-3">
+          <div className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-cyan-400 justify-center">
+            <Target className="w-4 h-4" /> FINANCIAL JOURNEY PHASE 3
+          </div>
+          <h2 className="text-3xl sm:text-5xl font-extrabold text-[var(--text-main)] text-center">
+            Goal-Based Wealth Accumulation
+          </h2>
+          <p className="text-sm sm:text-base text-[var(--text-muted)] font-medium text-center">
+            Align investments with life milestones: Retirement, Home Purchase, and Education.
+          </p>
+        </div>
+
+        <div className="bg-[var(--bg-card)] border border-[var(--border-card)] rounded-[8px] p-8 sm:p-14 shadow-xl text-center max-w-5xl mx-auto">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+            
+            {/* Visual Goal Planning Roadmap Image */}
+            <div className="lg:col-span-6 relative w-full h-80 rounded-lg overflow-hidden border border-[var(--border-card)] shadow-md">
+              <img 
+                src="/images/goal_journey.jpg" 
+                alt="Financial Goal Planning Roadmap & Milestones" 
+                className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+              />
+              <div className="absolute bottom-3 left-3 bg-[#0a0f1d]/90 px-3.5 py-1.5 rounded border border-cyan-500/40 text-cyan-300 text-xs font-mono font-bold">
+                Retirement Target: $2.85M (2055)
+              </div>
+            </div>
+
+            {/* Content & Action Points */}
+            <div className="lg:col-span-6 space-y-6 text-center flex flex-col items-center">
+              <div className="w-12 h-12 rounded-xl bg-cyan-500/10 border border-cyan-500/30 flex items-center justify-center mx-auto">
+                <Target className="w-6 h-6 text-cyan-400" />
+              </div>
+
+              <h3 className="text-2xl font-bold text-[var(--text-main)] text-center">
+                Inflation-Adjusted Milestone SIPs
+              </h3>
+
+              <p className="text-xs sm:text-sm text-[var(--text-muted)] leading-relaxed text-center">
+                Factor in 6.0% CPI inflation to calculate true future milestone costs, paired with a 10% annual SIP step-up strategy.
+              </p>
+
+              <div className="w-full grid grid-cols-2 gap-3 text-xs font-bold text-[var(--text-main)]">
+                <div className="p-3 rounded bg-[var(--bg-card-inner)] border border-[var(--border-card)] text-center">
+                  <div className="text-[10px] text-[var(--text-muted)] uppercase">Retirement SIP</div>
+                  <div className="text-cyan-400 text-sm mt-0.5">₹45,000 / mo</div>
+                </div>
+                <div className="p-3 rounded bg-[var(--bg-card-inner)] border border-[var(--border-card)] text-center">
+                  <div className="text-[10px] text-[var(--text-muted)] uppercase">Home Downpayment</div>
+                  <div className="text-amber-400 text-sm mt-0.5">₹25,000 / mo</div>
+                </div>
+              </div>
+
+              <button
+                onClick={() => setActiveTab('goals')}
+                className="px-8 py-3.5 bg-cyan-600 hover:bg-cyan-500 text-white font-bold text-sm rounded-lg shadow-lg hover:scale-105 transition-all flex items-center justify-center gap-2 cursor-pointer border border-cyan-400/30 mx-auto"
+              >
+                <span>Plan Goal SIP Roadmap</span>
+                <ArrowRight className="w-4 h-4" />
+              </button>
+            </div>
+
+          </div>
+        </div>
+
+      </section>
+
+      {/* ========================================================================= */}
+      {/* SECTION 6: COLOUR-MARKED 3D FINANCIAL TERM FLASHCARDS DECK                */}
       {/* ========================================================================= */}
       <section className="mb-40 space-y-12">
         
@@ -234,10 +458,10 @@ export default function LandingPage({ setActiveTab, onOpenAuthModal }) {
           <div className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-indigo-400 justify-center">
             <BookOpen className="w-4 h-4" /> INTERACTIVE FINANCIAL CONCEPTS
           </div>
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-[var(--text-main)]">
+          <h2 className="text-3xl sm:text-4xl font-extrabold text-[var(--text-main)] text-center">
             Core Wealth Flashcards (Colour-Coded Boundaries)
           </h2>
-          <p className="text-sm text-[var(--text-muted)] font-medium">
+          <p className="text-sm text-[var(--text-muted)] font-medium text-center">
             Click any flashcard to flip and reveal exact formulas, calculations, and financial takeaways.
           </p>
         </div>
@@ -315,16 +539,16 @@ export default function LandingPage({ setActiveTab, onOpenAuthModal }) {
       </section>
 
       {/* ========================================================================= */}
-      {/* SECTION 4: CALCULATIVE FINANCIAL CONCEPTS WITH REAL IMAGES                */}
+      {/* SECTION 7: CALCULATIVE FINANCIAL CONCEPTS WITH REAL IMAGES                */}
       {/* ========================================================================= */}
       <section className="mb-40 space-y-12">
         
         <div className="text-center max-w-xl mx-auto space-y-3">
           <span className="text-xs font-bold uppercase tracking-wider text-emerald-400">DATA-BACKED FINANCIAL GUIDANCE</span>
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-[var(--text-main)]">
+          <h2 className="text-3xl sm:text-4xl font-extrabold text-[var(--text-main)] text-center">
             Investing, Saving & Budgeting Principles
           </h2>
-          <p className="text-sm text-[var(--text-muted)] font-medium">
+          <p className="text-sm text-[var(--text-muted)] font-medium text-center">
             Calculative framework for disciplined wealth compounding and risk mitigation.
           </p>
         </div>
@@ -453,7 +677,7 @@ export default function LandingPage({ setActiveTab, onOpenAuthModal }) {
       </section>
 
       {/* ========================================================================= */}
-      {/* SECTION 5: INTERACTIVE FORECASTING PLAYGROUND                             */}
+      {/* SECTION 8: INTERACTIVE FORECASTING PLAYGROUND                             */}
       {/* ========================================================================= */}
       <section className="mb-40">
         <div className="bg-[var(--bg-card)] border border-[var(--border-card)] rounded-[8px] p-8 sm:p-14 shadow-xl text-left">
@@ -590,7 +814,7 @@ export default function LandingPage({ setActiveTab, onOpenAuthModal }) {
       </section>
 
       {/* ========================================================================= */}
-      {/* SECTION 6: ORGANIZED BENTO FEATURE MODULES                                */}
+      {/* SECTION 9: ORGANIZED BENTO FEATURE MODULES                                */}
       {/* ========================================================================= */}
       <section className="mb-40">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">

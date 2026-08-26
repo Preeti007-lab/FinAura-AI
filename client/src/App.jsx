@@ -161,6 +161,7 @@ export default function App() {
           <LandingPage
             setActiveTab={setActiveTab}
             onOpenAuthModal={handleOpenAuthModal}
+            onOpenRiskModal={() => setIsRiskModalOpen(true)}
           />
         )}
 
