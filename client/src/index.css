@@ -44,21 +44,22 @@
   font-family: var(--font-family);
 }
 
-/* 1. LAYOUT ARCHITECTURE (FLEXBOX / GRID VIEWPORT) */
+/* 1. LAYOUT ARCHITECTURE (UNLOCKED SMOOTH SCROLLING VIEWPORT) */
 html, body {
-  height: 100vh;
+  min-height: 100vh;
   width: 100vw;
   margin: 0;
   padding: 0;
-  overflow: hidden;
+  overflow-y: auto !important;
+  overflow-x: hidden;
   background-color: var(--bg-canvas);
   color: var(--text-main);
+  scroll-behavior: smooth;
 }
 
 .dashboard-viewport {
-  height: 100vh;
+  min-height: 100vh;
   width: 100vw;
-  overflow: hidden;
   display: flex;
   flex-direction: column;
   background-color: var(--bg-canvas);
@@ -78,21 +79,27 @@ html, body {
   align-items: center;
   justify-content: space-between;
   padding: 0 20px;
+  position: sticky;
+  top: 0;
 }
 
-/* 3. STRUCTURED SUB-PAGE CARD CONTAINERS */
-.card-grid-container, .glass-card, .terminal-card {
+/* 3. SIDE-BY-SIDE FLASHCARD GRID STYLING */
+.flashcard-grid-card, .card-grid-container, .glass-card, .terminal-card {
   background-color: var(--bg-card-inner);
   border: 1px solid var(--border-card);
-  border-radius: 6px;
+  border-radius: 12px;
   padding: 20px;
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
-  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
-.card-grid-container:hover, .glass-card:hover, .terminal-card:hover {
-  border-color: rgba(99, 102, 241, 0.4);
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5);
+.flashcard-grid-card:hover, .card-grid-container:hover, .glass-card:hover, .terminal-card:hover {
+  border-color: rgba(16, 185, 129, 0.5);
+  box-shadow: 0 8px 24px rgba(16, 185, 129, 0.15);
+  transform: translateY(-2px);
 }
 
 /* Button Utilities */
@@ -100,7 +107,7 @@ html, body {
   background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
   color: #ffffff;
   font-weight: 700;
-  border-radius: 6px;
+  border-radius: 8px;
   padding: 10px 20px;
   border: 1px solid rgba(255, 255, 255, 0.2);
   box-shadow: 0 4px 14px rgba(99, 102, 241, 0.3);
@@ -122,7 +129,7 @@ html, body {
   color: var(--text-main);
   border: 1px solid var(--border-card);
   font-weight: 600;
-  border-radius: 6px;
+  border-radius: 8px;
   padding: 10px 18px;
   transition: all 0.2s ease;
   display: inline-flex;
@@ -134,24 +141,24 @@ html, body {
 
 .btn-glass:hover, .btn-slate:hover {
   background-color: var(--bg-card-hover);
-  border-color: rgba(99, 102, 241, 0.4);
+  border-color: rgba(16, 185, 129, 0.4);
   color: #ffffff;
 }
 
 /* High-Contrast Active Navigation Tab */
 .active-nav {
-  background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%) !important;
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%) !important;
   color: #ffffff !important;
-  box-shadow: 0 4px 14px rgba(99, 102, 241, 0.4) !important;
+  box-shadow: 0 4px 14px rgba(16, 185, 129, 0.4) !important;
   border: 1px solid rgba(255, 255, 255, 0.25) !important;
   font-weight: 800 !important;
-  border-radius: 6px !important;
+  border-radius: 8px !important;
 }
 
 [data-theme='light'] .active-nav {
-  background: linear-gradient(135deg, #4f46e5 0%, #4338ca 100%) !important;
+  background: linear-gradient(135deg, #059669 0%, #047857 100%) !important;
   color: #ffffff !important;
-  box-shadow: 0 4px 14px rgba(79, 70, 229, 0.35) !important;
+  box-shadow: 0 4px 14px rgba(5, 150, 105, 0.35) !important;
 }
 
 /* Badges */
@@ -160,7 +167,7 @@ html, body {
   align-items: center;
   gap: 4px;
   padding: 3px 10px;
-  border-radius: 4px;
+  border-radius: 6px;
   font-size: 0.75rem;
   font-weight: 700;
   font-family: var(--font-mono);
@@ -194,7 +201,7 @@ html, body {
 .input-glass {
   background: var(--bg-card-inner);
   border: 1px solid var(--border-card);
-  border-radius: 6px;
+  border-radius: 8px;
   color: var(--text-main);
   padding: 12px 16px;
   font-size: 0.95rem;
@@ -204,8 +211,8 @@ html, body {
 }
 
 .input-glass:focus {
-  border-color: #6366f1;
-  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.2);
+  border-color: #10b981;
+  box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.2);
 }
 
 /* Modal Overlay */
@@ -235,8 +242,8 @@ html, body {
 
 /* Scrollbars */
 ::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
+  width: 8px;
+  height: 8px;
 }
 ::-webkit-scrollbar-track {
   background: var(--bg-canvas);
@@ -246,5 +253,5 @@ html, body {
   border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--primary-indigo);
+  background: var(--primary-emerald);
 }

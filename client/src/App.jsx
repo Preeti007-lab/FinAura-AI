@@ -135,7 +135,7 @@ export default function App() {
   };
 
   return (
-    <div className="dashboard-viewport font-sans relative">
+    <div className="min-h-screen flex flex-col bg-[var(--bg-canvas)] text-[var(--text-main)] font-sans relative selection:bg-emerald-500 selection:text-white">
       
       {/* Navigation Header (Fixed 60px height) */}
       <Navbar

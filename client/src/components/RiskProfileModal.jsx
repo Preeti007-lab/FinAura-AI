@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { X, ShieldCheck, ArrowRight, ArrowLeft, CheckCircle2, PieChart, ShieldAlert, Award, Sparkles, TrendingUp } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { X, ShieldCheck, ArrowRight, ArrowLeft, CheckCircle2, PieChart, ShieldAlert, Award, Sparkles, Save, Check } from 'lucide-react';
 import { apiService } from '../services/api';
 
 const QUESTIONS = [
@@ -59,24 +59,52 @@ const QUESTIONS = [
 export default function RiskProfileModal({ isOpen, onClose, user, onUpdateSuccess }) {
   const [step, setStep] = useState(0);
   const [answers, setAnswers] = useState({
-    goalType: user?.riskProfile?.answers?.goalType || 'growth',
-    horizon: user?.riskProfile?.answers?.horizon || 'long',
-    dipReaction: user?.riskProfile?.answers?.dipReaction || 'buy',
-    incomeStability: user?.riskProfile?.answers?.incomeStability || 'stable',
-    knowledge: user?.riskProfile?.answers?.knowledge || 'intermediate'
+    goalType: 'growth',
+    horizon: 'long',
+    dipReaction: 'buy',
+    incomeStability: 'stable',
+    knowledge: 'intermediate'
   });
   const [resultProfile, setResultProfile] = useState(null);
   const [submitting, setSubmitting] = useState(false);
+  const [isSaved, setIsSaved] = useState(false);
+
+  // Restore saved quiz progress from localStorage on mount
+  useEffect(() => {
+    try {
+      const saved = localStorage.getItem('risk_quiz_progress');
+      if (saved) {
+        const parsed = JSON.parse(saved);
+        if (parsed.answers) setAnswers(parsed.answers);
+        if (typeof parsed.step === 'number') setStep(parsed.step);
+      } else if (user?.riskProfile?.answers) {
+        setAnswers(user.riskProfile.answers);
+      }
+    } catch (e) {}
+  }, [user]);
 
   if (!isOpen) return null;
 
   const handleSelectOption = (key) => {
-    setAnswers(prev => ({ ...prev, [QUESTIONS[step].id]: key }));
+    const newAnswers = { ...answers, [QUESTIONS[step].id]: key };
+    setAnswers(newAnswers);
+    setIsSaved(true);
+
+    // Save to localStorage
+    try {
+      localStorage.setItem('risk_quiz_progress', JSON.stringify({ answers: newAnswers, step }));
+    } catch (e) {}
+
+    setTimeout(() => setIsSaved(false), 2000);
   };
 
   const handleNext = () => {
     if (step < QUESTIONS.length - 1) {
-      setStep(step + 1);
+      const nextStep = step + 1;
+      setStep(nextStep);
+      try {
+        localStorage.setItem('risk_quiz_progress', JSON.stringify({ answers, step: nextStep }));
+      } catch (e) {}
     } else {
       handleSubmit();
     }
@@ -86,7 +114,11 @@ export default function RiskProfileModal({ isOpen, onClose, user, onUpdateSucces
     if (resultProfile) {
       setResultProfile(null);
     } else if (step > 0) {
-      setStep(step - 1);
+      const prevStep = step - 1;
+      setStep(prevStep);
+      try {
+        localStorage.setItem('risk_quiz_progress', JSON.stringify({ answers, step: prevStep }));
+      } catch (e) {}
     }
   };
 
@@ -115,7 +147,7 @@ export default function RiskProfileModal({ isOpen, onClose, user, onUpdateSucces
 
   return (
     <div className="modal-overlay">
-      <div className="glass-card w-full max-w-2xl p-6 md:p-8 relative bg-[var(--bg-card)] border border-indigo-500/30 rounded-2xl shadow-2xl">
+      <div className="glass-card w-full max-w-2xl p-6 md:p-8 relative bg-[#0f172a] border border-[#1e293b] rounded-xl shadow-2xl">
         
         <button
           onClick={onClose}
@@ -125,39 +157,55 @@ export default function RiskProfileModal({ isOpen, onClose, user, onUpdateSucces
         </button>
 
         {/* ========================================================================= */}
-        {/* VIEW 01 // SURVEY QUESTIONNAIRE                                           */}
+        {/* VIEW 01 // SURVEY QUESTIONNAIRE WITH EXPLICIT QUESTION DEMARCATION        */}
         {/* ========================================================================= */}
         {!resultProfile ? (
           <>
             {/* Header */}
-            <div className="flex items-center gap-3 mb-6 border-b border-[var(--border-card)] pb-4">
-              <div className="w-10 h-10 rounded-xl bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 flex items-center justify-center">
-                <ShieldCheck className="w-5 h-5" />
+            <div className="flex items-center justify-between border-b border-[#1e293b] pb-4 mb-5">
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 rounded-xl bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 flex items-center justify-center">
+                  <ShieldCheck className="w-5 h-5" />
+                </div>
+                <div>
+                  <h3 className="text-xl font-extrabold text-white font-['Outfit']">Investor Risk Profiling Quiz</h3>
+                  <p className="text-xs text-slate-400">Question {step + 1} of {QUESTIONS.length} • Evaluates Goals, Horizon & Risk Tolerance</p>
+                </div>
               </div>
-              <div>
-                <h3 className="text-xl font-extrabold text-[var(--text-main)] font-['Outfit']">Investor Risk Profiling Survey</h3>
-                <p className="text-xs text-[var(--text-muted)]">Step {step + 1} of {QUESTIONS.length} • Evaluates Goals, Horizon & Risk Tolerance</p>
+
+              {/* Progress Saved Badge */}
+              <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-mono font-bold">
+                <Save className="w-3.5 h-3.5" />
+                <span>{isSaved ? 'Saving...' : 'Progress Saved'}</span>
               </div>
             </div>
 
             {/* Step Progress Bar */}
-            <div className="w-full bg-[var(--bg-card-inner)] h-2 rounded-full mb-6 overflow-hidden border border-[var(--border-card)]">
+            <div className="w-full bg-[#162032] h-2 rounded-full mb-6 overflow-hidden border border-[#1e293b]">
               <div 
                 className="bg-gradient-to-r from-indigo-500 via-purple-500 to-emerald-400 h-full transition-all duration-300"
                 style={{ width: `${((step + 1) / QUESTIONS.length) * 100}%` }}
               />
             </div>
 
-            {/* Question */}
-            <div className="mb-4">
-              <span className="text-[10px] font-mono font-bold text-indigo-400 uppercase tracking-wider px-2 py-0.5 rounded bg-indigo-500/10 border border-indigo-500/20">
-                {QUESTIONS[step].title}
-              </span>
-              <h4 className="text-lg font-bold text-[var(--text-main)] mt-2">{QUESTIONS[step].question}</h4>
+            {/* EXPLICIT QUESTION DEMARCATION CARD */}
+            <div className="p-4 rounded-xl bg-[#162032] border border-[#1e293b] mb-5">
+              <div className="flex items-center justify-between mb-2">
+                <span className="text-[10px] font-mono font-bold text-emerald-400 uppercase tracking-wider px-2.5 py-0.5 rounded bg-emerald-500/10 border border-emerald-500/20">
+                  QUESTION 0{step + 1} // {QUESTIONS[step].title}
+                </span>
+                <span className="text-xs font-mono text-slate-400 font-bold">
+                  {Math.round(((step + 1) / QUESTIONS.length) * 100)}% Completed
+                </span>
+              </div>
+
+              <h4 className="text-base sm:text-lg font-bold text-white mt-1">
+                {QUESTIONS[step].question}
+              </h4>
             </div>
 
-            {/* Options */}
-            <div className="space-y-3 mb-8">
+            {/* OPTIONS GRID WITH CLEAR DEMARCATION & SELECTED HIGHLIGHT */}
+            <div className="space-y-3 mb-6">
               {QUESTIONS[step].options.map((opt) => {
                 const isSelected = answers[QUESTIONS[step].id] === opt.key;
                 return (
@@ -166,26 +214,33 @@ export default function RiskProfileModal({ isOpen, onClose, user, onUpdateSucces
                     onClick={() => handleSelectOption(opt.key)}
                     className={`p-4 rounded-xl border cursor-pointer transition-all flex items-start justify-between ${
                       isSelected
-                        ? 'bg-indigo-600/20 border-indigo-500 text-[var(--text-main)] shadow-lg shadow-indigo-500/10'
-                        : 'bg-[var(--bg-card-inner)] border-[var(--border-card)] text-[var(--text-muted)] hover:border-indigo-500/40 hover:text-[var(--text-main)]'
+                        ? 'bg-emerald-500/15 border-emerald-500 text-white font-bold shadow-[0_0_15px_rgba(16,185,129,0.25)]'
+                        : 'bg-[#162032] border-[#1e293b] text-slate-300 hover:border-emerald-500/50 hover:text-white'
                     }`}
                   >
                     <div>
-                      <div className="font-semibold text-sm mb-1">{opt.label}</div>
-                      <div className="text-xs text-[var(--text-muted)] leading-relaxed">{opt.detail}</div>
+                      <div className="font-semibold text-sm mb-1 flex items-center gap-2">
+                        <span>{opt.label}</span>
+                        {isSelected && <span className="badge badge-green text-[9px] py-0 px-1.5">Selected</span>}
+                      </div>
+                      <div className="text-xs text-slate-400 leading-relaxed font-normal">{opt.detail}</div>
                     </div>
-                    {isSelected && <CheckCircle2 className="w-5 h-5 text-indigo-400 shrink-0 mt-0.5" />}
+                    {isSelected && (
+                      <div className="w-6 h-6 rounded-full bg-emerald-500 text-white flex items-center justify-center shrink-0 mt-0.5 shadow-md">
+                        <Check className="w-3.5 h-3.5 stroke-[3]" />
+                      </div>
+                    )}
                   </div>
                 );
               })}
             </div>
 
             {/* Footer Navigation */}
-            <div className="flex items-center justify-between pt-4 border-t border-[var(--border-card)]">
+            <div className="flex items-center justify-between pt-4 border-t border-[#1e293b]">
               <button
                 onClick={handleBack}
                 disabled={step === 0}
-                className={`btn-glass text-xs py-2.5 px-4 ${step === 0 ? 'opacity-40 cursor-not-allowed' : ''}`}
+                className={`btn-slate text-xs py-2.5 px-4 ${step === 0 ? 'opacity-40 cursor-not-allowed' : ''}`}
               >
                 <ArrowLeft className="w-4 h-4" /> Back
               </button>
@@ -193,7 +248,7 @@ export default function RiskProfileModal({ isOpen, onClose, user, onUpdateSucces
               <button
                 onClick={handleNext}
                 disabled={submitting}
-                className="btn-primary text-xs py-2.5 px-5 flex items-center gap-2"
+                className="btn-emerald text-xs py-2.5 px-5 flex items-center gap-2"
               >
                 {submitting ? 'Calculating Profile...' : step === QUESTIONS.length - 1 ? 'Evaluate Risk Assessment' : 'Next Question'}
                 {step < QUESTIONS.length - 1 && <ArrowRight className="w-4 h-4" />}
@@ -208,21 +263,21 @@ export default function RiskProfileModal({ isOpen, onClose, user, onUpdateSucces
           <div className="space-y-6">
             
             {/* Header */}
-            <div className="flex items-center justify-between border-b border-[var(--border-card)] pb-4">
+            <div className="flex items-center justify-between border-b border-[#1e293b] pb-4">
               <div className="flex items-center gap-3">
                 <div className="w-10 h-10 rounded-xl bg-indigo-500/20 text-indigo-400 border border-indigo-500/30 flex items-center justify-center">
                   <Award className="w-5 h-5" />
                 </div>
                 <div>
-                  <h3 className="text-xl font-extrabold text-[var(--text-main)] font-['Outfit']">Personalized Risk Profile Assessment</h3>
-                  <p className="text-xs text-[var(--text-muted)]">Evaluated against your goals, horizon & drawdown tolerance</p>
+                  <h3 className="text-xl font-extrabold text-white font-['Outfit']">Personalized Risk Profile Assessment</h3>
+                  <p className="text-xs text-slate-400">Evaluated against your goals, horizon & drawdown tolerance</p>
                 </div>
               </div>
               <span className="badge badge-green text-xs font-mono py-1 px-3">Official SEBI/SEC Assessment</span>
             </div>
 
             {/* Score & Tier Banner */}
-            <div className="bg-gradient-to-r from-indigo-950/80 via-slate-900 to-purple-950/80 border border-indigo-500/40 rounded-2xl p-6 shadow-xl">
+            <div className="bg-gradient-to-r from-indigo-950/80 via-slate-900 to-purple-950/80 border border-indigo-500/40 rounded-xl p-6 shadow-xl">
               <div className="grid grid-cols-1 md:grid-cols-12 gap-6 items-center">
                 
                 <div className="md:col-span-5 text-center md:text-left space-y-1">
@@ -260,23 +315,23 @@ export default function RiskProfileModal({ isOpen, onClose, user, onUpdateSucces
               </h4>
 
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
-                <div className="p-3 bg-[var(--bg-card-inner)] border border-[var(--border-card)] rounded-xl text-center">
-                  <div className="text-[10px] text-[var(--text-muted)] font-bold uppercase">Equities</div>
+                <div className="p-3 bg-[#162032] border border-[#1e293b] rounded-xl text-center">
+                  <div className="text-[10px] text-slate-400 font-bold uppercase">Equities</div>
                   <div className="text-lg font-extrabold text-indigo-400 mt-1">{resultProfile.recommendedAllocation?.equity || 75}%</div>
                 </div>
 
-                <div className="p-3 bg-[var(--bg-card-inner)] border border-[var(--border-card)] rounded-xl text-center">
-                  <div className="text-[10px] text-[var(--text-muted)] font-bold uppercase">Debt / Bonds</div>
+                <div className="p-3 bg-[#162032] border border-[#1e293b] rounded-xl text-center">
+                  <div className="text-[10px] text-slate-400 font-bold uppercase">Debt / Bonds</div>
                   <div className="text-lg font-extrabold text-emerald-400 mt-1">{resultProfile.recommendedAllocation?.debt || 15}%</div>
                 </div>
 
-                <div className="p-3 bg-[var(--bg-card-inner)] border border-[var(--border-card)] rounded-xl text-center">
-                  <div className="text-[10px] text-[var(--text-muted)] font-bold uppercase">Gold / Commodities</div>
+                <div className="p-3 bg-[#162032] border border-[#1e293b] rounded-xl text-center">
+                  <div className="text-[10px] text-slate-400 font-bold uppercase">Gold / Commodities</div>
                   <div className="text-lg font-extrabold text-amber-400 mt-1">{resultProfile.recommendedAllocation?.gold || 5}%</div>
                 </div>
 
-                <div className="p-3 bg-[var(--bg-card-inner)] border border-[var(--border-card)] rounded-xl text-center">
-                  <div className="text-[10px] text-[var(--text-muted)] font-bold uppercase">Liquid Cash</div>
+                <div className="p-3 bg-[#162032] border border-[#1e293b] rounded-xl text-center">
+                  <div className="text-[10px] text-slate-400 font-bold uppercase">Liquid Cash</div>
                   <div className="text-lg font-extrabold text-cyan-400 mt-1">{resultProfile.recommendedAllocation?.liquid || 5}%</div>
                 </div>
               </div>
@@ -294,17 +349,17 @@ export default function RiskProfileModal({ isOpen, onClose, user, onUpdateSucces
             </div>
 
             {/* Action Footer */}
-            <div className="flex items-center justify-between pt-4 border-t border-[var(--border-card)]">
+            <div className="flex items-center justify-between pt-4 border-t border-[#1e293b]">
               <button
                 onClick={handleBack}
-                className="btn-glass text-xs py-2.5 px-4 flex items-center gap-1.5"
+                className="btn-slate text-xs py-2.5 px-4 flex items-center gap-1.5"
               >
                 <ArrowLeft className="w-4 h-4" /> Retake Survey
               </button>
 
               <button
                 onClick={onClose}
-                className="btn-primary text-xs py-2.5 px-6"
+                className="btn-emerald text-xs py-2.5 px-6"
               >
                 Apply Profile to Portfolio
               </button>
