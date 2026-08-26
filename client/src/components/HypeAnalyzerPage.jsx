@@ -80,24 +80,24 @@ export default function HypeAnalyzerPage({ user, onOpenRiskModal }) {
     <div className="space-y-10 max-w-5xl mx-auto px-4 py-8">
       
       {/* PAGE HEADER (CENTER ALIGNED) */}
-      <div className="text-center max-w-2xl mx-auto space-y-3 pb-2 border-b border-white/10">
-        <div className="inline-flex items-center justify-center gap-2 px-3.5 py-1 rounded-full bg-emerald-500/10 text-emerald-400 text-xs font-bold border border-emerald-500/20">
+      <div className="flex flex-col items-center justify-center text-center max-w-3xl mx-auto space-y-3 pb-3 border-b border-[var(--border-card)]">
+        <div className="inline-flex items-center justify-center gap-2 px-3.5 py-1 rounded-full bg-emerald-500/10 text-emerald-400 text-xs font-bold border border-emerald-500/20 mx-auto">
           <BrainCircuit className="w-4 h-4" /> Anti-Hype Financial Intelligence
         </div>
-        <h1 className="text-3xl md:text-5xl font-extrabold text-white font-['Outfit'] tracking-tight">
+        <h1 className="text-3xl md:text-5xl font-extrabold text-[var(--text-main)] font-['Outfit'] tracking-tight text-center">
           AI Social Hype & Trend Analyzer
         </h1>
-        <p className="text-xs sm:text-sm text-slate-400 font-medium">
+        <p className="text-xs sm:text-sm text-[var(--text-muted)] font-medium text-center">
           Evaluates Finfluencer tips, social media trends & stocks against factual data and your risk profile
         </p>
 
         {/* User Risk Context Banner */}
         <div 
           onClick={onOpenRiskModal}
-          className="inline-flex items-center gap-3 px-4 py-2 rounded-2xl bg-[var(--bg-card-inner)] border border-emerald-500/30 hover:border-emerald-400 cursor-pointer transition-all shrink-0 mt-2 shadow-md"
+          className="inline-flex items-center justify-center gap-3 px-4 py-2 rounded-2xl bg-[var(--bg-card-inner)] border border-emerald-500/30 hover:border-emerald-400 cursor-pointer transition-all shrink-0 mt-2 shadow-md mx-auto"
         >
           <ShieldCheck className="w-5 h-5 text-emerald-400" />
-          <div className="text-xs text-left">
+          <div className="text-xs text-center">
             <div className="text-[var(--text-muted)] font-mono">Target Risk Profile</div>
             <div className="font-bold text-[var(--text-main)]">
               {user?.riskProfile?.category || 'Growth / Moderate-Aggressive'} ({user?.riskProfile?.score || 68}/100)

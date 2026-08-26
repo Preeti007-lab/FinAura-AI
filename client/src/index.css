@@ -24,18 +24,42 @@
   --font-mono: 'JetBrains Mono', monospace;
 }
 
-/* Light Theme Variable Overrides */
+/* Light Theme Variable Overrides (High Contrast Visibility) */
 [data-theme='light'] {
-  --bg-canvas: #f8fafc;
+  --bg-canvas: #f1f5f9;
   --bg-card: #ffffff;
-  --bg-card-inner: #f1f5f9;
+  --bg-card-inner: #f8fafc;
   --bg-card-hover: #e2e8f0;
   --border-card: #cbd5e1;
-  --border-hover: #6366f1;
+  --border-hover: #4f46e5;
 
   --text-main: #0f172a;
-  --text-muted: #475569;
-  --text-dim: #64748b;
+  --text-muted: #1e293b;
+  --text-dim: #334155;
+}
+
+[data-theme='light'] .text-slate-300,
+[data-theme='light'] .text-slate-400 {
+  color: #334155 !important;
+}
+
+[data-theme='light'] .text-slate-200,
+[data-theme='light'] .text-white {
+  color: #0f172a !important;
+}
+
+[data-theme='light'] .bg-\[\#162032\],
+[data-theme='light'] .bg-\[\#0f172a\],
+[data-theme='light'] .bg-\[\#0d1321\],
+[data-theme='light'] .bg-slate-900,
+[data-theme='light'] .bg-slate-950 {
+  background-color: #ffffff !important;
+  color: #0f172a !important;
+  border-color: #cbd5e1 !important;
+}
+
+[data-theme='light'] .border-\[\#1e293b\] {
+  border-color: #cbd5e1 !important;
 }
 
 * {

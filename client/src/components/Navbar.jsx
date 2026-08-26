@@ -43,53 +43,53 @@ export default function Navbar({ activeTab, setActiveTab, user, theme, setTheme,
           </div>
         </div>
 
-        {/* CENTER: Dynamic JS SPA Navigation Tabs */}
-        <nav className="hidden md:flex items-center gap-1 bg-[#162032] p-1 rounded-lg border border-[#1e293b]">
+        {/* CENTER: Dynamic JS SPA Navigation Tabs (Expanded Text Size & Length) */}
+        <nav className="hidden md:flex items-center gap-2 bg-[#162032] p-1.5 rounded-xl border border-[#1e293b]">
           <button
             onClick={() => handleNavClick('landing')}
-            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-md text-xs font-bold transition-all ${
+            className={`flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-extrabold transition-all ${
               activeTab === 'landing' 
                 ? 'active-nav' 
-                : 'text-slate-400 hover:text-white hover:bg-white/5'
+                : 'text-slate-300 hover:text-white hover:bg-white/5'
             }`}
           >
-            <Home className="w-3.5 h-3.5" />
+            <Home className="w-4 h-4" />
             <span>Home</span>
           </button>
 
           <button
             onClick={() => handleNavClick('features')}
-            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-md text-xs font-bold transition-all ${
+            className={`flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-extrabold transition-all ${
               activeTab === 'features' || activeTab === 'analyzer'
                 ? 'active-nav' 
-                : 'text-slate-400 hover:text-white hover:bg-white/5'
+                : 'text-slate-300 hover:text-white hover:bg-white/5'
             }`}
           >
-            <BrainCircuit className="w-3.5 h-3.5 text-cyan-400" />
+            <BrainCircuit className="w-4 h-4 text-cyan-400" />
             <span>Features</span>
           </button>
 
           <button
             onClick={() => handleNavClick('files')}
-            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-md text-xs font-bold transition-all ${
+            className={`flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-extrabold transition-all ${
               activeTab === 'files' || activeTab === 'dashboard'
                 ? 'active-nav' 
-                : 'text-slate-400 hover:text-white hover:bg-white/5'
+                : 'text-slate-300 hover:text-white hover:bg-white/5'
             }`}
           >
-            <FolderGit2 className="w-3.5 h-3.5 text-emerald-400" />
+            <FolderGit2 className="w-4 h-4 text-emerald-400" />
             <span>Files & Holdings</span>
           </button>
 
           <button
             onClick={() => handleNavClick('goals')}
-            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-md text-xs font-bold transition-all ${
+            className={`flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-extrabold transition-all ${
               activeTab === 'goals' 
                 ? 'active-nav' 
-                : 'text-slate-400 hover:text-white hover:bg-white/5'
+                : 'text-slate-300 hover:text-white hover:bg-white/5'
             }`}
           >
-            <Target className="w-3.5 h-3.5 text-amber-400" />
+            <Target className="w-4 h-4 text-amber-400" />
             <span>Goal SIPs</span>
           </button>
 
@@ -97,11 +97,11 @@ export default function Navbar({ activeTab, setActiveTab, user, theme, setTheme,
             onClick={() => {
               if (onOpenMiracle) onOpenMiracle();
             }}
-            className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-md text-xs font-extrabold text-amber-300 bg-gradient-to-r from-indigo-900/90 to-purple-900/90 border border-purple-500/40 hover:border-amber-400/60 shadow-md hover:scale-105 transition-all ml-1"
+            className="flex items-center gap-2 px-3.5 py-2 rounded-lg text-sm font-extrabold text-amber-300 bg-gradient-to-r from-indigo-900/90 to-purple-900/90 border border-purple-500/40 hover:border-amber-400/60 shadow-md hover:scale-105 transition-all ml-1"
           >
-            <Sparkles className="w-3.5 h-3.5 text-amber-400 animate-pulse" />
+            <Sparkles className="w-4 h-4 text-amber-400 animate-pulse" />
             <span>Miracle AI</span>
-            <span className="text-[8px] bg-emerald-500/20 text-emerald-300 px-1 py-0.2 rounded font-mono uppercase">Chat</span>
+            <span className="text-[9px] bg-emerald-500/20 text-emerald-300 px-1.5 py-0.2 rounded font-mono uppercase">Chat</span>
           </button>
         </nav>
 
