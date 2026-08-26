@@ -12,6 +12,7 @@ const analyzeRoutes = require('./routes/analyze');
 const goalsRoutes = require('./routes/goals');
 const riskProfileRoutes = require('./routes/riskProfile');
 const flashcardRoutes = require('./routes/flashcards');
+const chatRoutes = require('./routes/chat');
 const authMiddleware = require('./middleware/auth');
 
 const app = express();
@@ -72,16 +73,20 @@ app.use(express.static(distPath));
 
 // DIRECT ROOT ENDPOINTS FOR WEALTHTECH & FLASHCARDS
 app.use('/analyze-trend', analyzeRoutes);
+app.use('/analyzer', analyzeRoutes);
 app.use('/portfolio', portfolioRoutes);
 app.use('/goals', goalsRoutes);
 app.use('/risk-profile', riskProfileRoutes);
+app.use('/chat', chatRoutes);
 app.use('/', flashcardRoutes); // /generate, /getcards, /deletecard
 
 // API PREFIXED ALIASES
 app.use('/api/analyze-trend', analyzeRoutes);
+app.use('/api/analyzer', analyzeRoutes);
 app.use('/api/portfolio', portfolioRoutes);
 app.use('/api/goals', goalsRoutes);
 app.use('/api/risk-profile', riskProfileRoutes);
+app.use('/api/chat', chatRoutes);
 app.use('/api', flashcardRoutes);
 
 // PROTECTED CLERK DASHBOARD ENDPOINT WITH CRASH-PROOF WRAPPER
@@ -105,7 +110,7 @@ app.get('/api/dashboard', (req, res, next) => {
 });
 
 // System Health Check
-app.get('/api/health', (req, res) => {
+app.get(['/health', '/api/health'], (req, res) => {
   res.json({
     status: 'online',
     app: 'CredoMetrics AI WealthTech Platform',
@@ -125,6 +130,7 @@ app.use((req, res, next) => {
     !req.path.startsWith('/portfolio') && 
     !req.path.startsWith('/goals') && 
     !req.path.startsWith('/risk-profile') &&
+    !req.path.startsWith('/chat') &&
     !req.path.startsWith('/generate') &&
     !req.path.startsWith('/getcards') &&
     !req.path.startsWith('/deletecard')

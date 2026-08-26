@@ -149,4 +149,135 @@ Output JSON: { "cards": [{ "question": "...", "answer": "...", "difficulty": "Ea
   ];
 }
 
-module.exports = { analyzeFinancialTrend, generateFlashcards };
+/**
+ * 3. AI Chatbot Assistant Engine
+ */
+async function chatWithAI(userMessage, conversationHistory = [], userContext = {}) {
+  const riskCategory = userContext?.riskProfile?.category || 'Growth / Moderate-Aggressive';
+  const riskScore = userContext?.riskProfile?.score || 68;
+
+  const systemMessage = {
+    role: 'system',
+    content: `You are FinAura AI Assistant, an elite institutional financial advisor and anti-hype wealth assistant integrated into the FinAura AI Platform.
+Your job is to provide actionable, empirical, clear, and anti-hype wealth management guidance.
+User Profile Context: Risk Score ${riskScore}/100 (${riskCategory}).
+Keep responses well-formatted with markdown, bold key takeaways, bullet points, and concise actionable steps. Always warn against unverified social media hype or guaranteed return claims.`
+  };
+
+  // Standardize history formatting
+  const formattedHistory = Array.isArray(conversationHistory) 
+    ? conversationHistory.slice(-8).map(m => ({
+        role: m.role === 'user' ? 'user' : 'assistant',
+        content: m.content || m.text || ''
+      }))
+    : [];
+
+  const apiMessages = [
+    systemMessage,
+    ...formattedHistory,
+    { role: 'user', content: userMessage }
+  ];
+
+  if (groqClient) {
+    try {
+      const completion = await groqClient.chat.completions.create({
+        messages: apiMessages,
+        model: 'llama-3.3-70b-versatile',
+        temperature: 0.4,
+        max_tokens: 800
+      });
+
+      const responseText = completion.choices[0]?.message?.content;
+      if (responseText) {
+        return {
+          success: true,
+          response: responseText,
+          model: 'llama-3.3-70b-versatile',
+          timestamp: new Date().toISOString()
+        };
+      }
+    } catch (err) {
+      console.warn('Groq Chatbot API call failed, using intelligent financial fallback:', err.message);
+    }
+  }
+
+  return {
+    success: true,
+    response: fallbackChatbotResponse(userMessage, riskCategory, riskScore),
+    model: 'finaura-financial-intelligence-engine',
+    timestamp: new Date().toISOString()
+  };
+}
+
+function fallbackChatbotResponse(message, riskCategory, riskScore) {
+  const query = message.toLowerCase();
+
+  if (query.includes('sip') || query.includes('systematic investment') || query.includes('monthly investment')) {
+    return `### 📈 **Smart SIP Strategy & Compounding**
+
+Automated monthly SIPs (Systematic Investment Plans) are the single most effective tool for long-term wealth creation.
+
+**Key Rule of Thumb for Your Profile (${riskCategory}):**
+1. **Core Allocation (75-80%)**: Nifty 50 Index / Sensex Bluechip funds + Flexi-cap funds.
+2. **Growth Allocation (15-20%)**: Mid-cap / Tech Sectoral funds for alpha generation.
+3. **Emergency Cushion (5%)**: Liquid / Debt funds or high-yield savings.
+
+*Tip: Increasing your SIP contribution by just **10% annually** reduces the time to reach ₹1 Crore by up to 4 years!*`;
+  }
+
+  if (query.includes('hype') || query.includes('crypto') || query.includes('memecoin') || query.includes('pump') || query.includes('telegram')) {
+    return `### 🚨 **Anti-Hype & Volatility Protection Notice**
+
+Social media "tips" and Telegram pump groups disproportionately target retail investors.
+
+**FinAura Risk Assessment for ${riskCategory} (Score: ${riskScore}/100):**
+- **Red Flags**: Unrealistic 10x promises, emotional urgency, unverified SEBI/SEC registration.
+- **Actionable Advice**: Never allocate more than **2% of net worth** into speculative assets. 
+- **Core Defense**: Keep 90%+ of capital anchored in audited index funds, equities, and real estate.`;
+  }
+
+  if (query.includes('emergency') || query.includes('fund') || query.includes('savings')) {
+    return `### 🛡️ **Emergency Fund Blueprint**
+
+Before aggressive equity investing, secure a financial safety net:
+
+- **Target Amount**: **6 months** of essential expenses (rent, groceries, EMIs, insurance).
+- **Placement**: Keep 50% in instant-access savings accounts and 50% in Liquid/Short-term Debt Mutual Funds.
+- **Rule**: Never invest your emergency fund in volatile stocks or crypto!`;
+  }
+
+  if (query.includes('retirement') || query.includes('goal') || query.includes('50l') || query.includes('crore')) {
+    return `### 🎯 **Goal Planning & Target Asset Strategy**
+
+Achieving major milestones requires disciplined asset mapping:
+
+1. **Calculate Inflation-Adjusted Target**: At 6% inflation, ₹50 Lakhs in 15 years requires ~₹1.2 Crore nominal value.
+2. **SIP Needed**: Investing ~₹22,500/month at an assumed 12% annual equity return will achieve this goal.
+3. **FinAura Goal Tracker**: You can track and adjust this directly in our **Goal Planner** section!`;
+  }
+
+  if (query.includes('p/e') || query.includes('pe ratio') || query.includes('valuation') || query.includes('metric')) {
+    return `### 📊 **Understanding Financial Metrics: P/E Ratio**
+
+The **Price-to-Earnings (P/E) Ratio** measures how much investors are paying per ₹1 of company profit.
+
+- **Trailing P/E**: Shares price ÷ Last 12 months EPS.
+- **Benchmark**: Compare a stock's P/E against its **5-year historical average** and its **industry peer group**.
+- **Caution**: High P/E (>50) isn't always bad if earnings growth is >30% (PEG ratio < 1), but requires deep scrutiny.`;
+  }
+
+  return `### 🤖 **FinAura AI Wealth Assistant**
+
+Thank you for your inquiry regarding *"${message}"*. 
+
+As a **${riskCategory}** investor (Risk Score: **${riskScore}/100**), here are key guidelines:
+
+- **Disciplined Execution**: Stick to asset allocation targets rather than timing market swings.
+- **Anti-Hype Filtering**: Run speculative asset recommendations through our **Hype Analyzer** tab to check risk scores.
+- **Portfolio Health**: Ensure broad diversification across large-cap index funds, mid-caps, and debt instruments.
+
+*How else can I assist you with your financial planning, portfolio, or investment learning today?*`;
+}
+
+module.exports = { analyzeFinancialTrend, generateFlashcards, chatWithAI };
+

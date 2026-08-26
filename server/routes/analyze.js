@@ -5,8 +5,8 @@ const { analyzeFinancialTrend } = require('../services/aiService');
 const Analysis = require('../models/Analysis');
 const { memoryDb, getMongoConnected } = require('../services/dbStore');
 
-// POST /api/analyze-trend
-router.post('/', authMiddleware, async (req, res) => {
+// POST /api/analyze-trend or /api/analyzer/analyze
+router.post(['/', '/analyze'], authMiddleware, async (req, res) => {
   try {
     const { queryText, customRiskScore } = req.body;
     if (!queryText || queryText.trim() === '') {

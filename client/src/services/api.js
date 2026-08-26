@@ -151,5 +151,25 @@ export const apiService = {
       });
       return await res.json();
     } catch (err) { return { success: false }; }
+  },
+
+  // AI Chatbot
+  async chatWithAI(message, conversationHistory = [], riskProfile = null, token = '', userId = '') {
+    try {
+      const res = await fetch(`${getBaseUrl()}/api/chat`, {
+        method: 'POST',
+        headers: getHeaders(token, userId),
+        body: JSON.stringify({ message, history: conversationHistory, riskProfile })
+      });
+      return await res.json();
+    } catch (err) {
+      console.error('API Error (chatWithAI):', err);
+      return { 
+        success: false, 
+        response: 'Connecting to offline intelligence mode. Please check network or try again.',
+        error: err.message 
+      };
+    }
   }
 };
+

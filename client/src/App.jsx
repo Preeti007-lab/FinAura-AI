@@ -9,6 +9,7 @@ import GoalPlannerPage from './components/GoalPlannerPage';
 import AuthModal from './components/AuthModal';
 import RiskProfileModal from './components/RiskProfileModal';
 import AddAssetModal from './components/AddAssetModal';
+import AIChatbot from './components/AIChatbot';
 import { apiService } from './services/api';
 
 export default function App() {
@@ -212,6 +213,9 @@ export default function App() {
         user={user}
         onItemAdded={() => {}}
       />
+
+      {/* Global AI Floating Chatbot Widget */}
+      <AIChatbot user={user} />
 
     </div>
   );
