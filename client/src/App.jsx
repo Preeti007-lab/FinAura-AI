@@ -158,8 +158,8 @@ export default function App() {
         onLogout={handleLogout}
       />
 
-      {/* Main Content View with Dynamic Left Margin for Miracle Dedicated Panel */}
-      <main className={`flex-1 pt-20 relative z-10 transition-all duration-300 ${isMiracleOpen ? 'pl-0 lg:pl-[430px]' : 'pl-0'}`}>
+      {/* Main Content View */}
+      <main className="flex-1 pt-20 relative z-10">
         {activeTab === 'landing' && (
           <LandingPage
             setActiveTab={setActiveTab}
