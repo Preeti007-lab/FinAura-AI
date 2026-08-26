@@ -195,12 +195,13 @@ export default function LandingPage({ setActiveTab, onOpenAuthModal, onOpenRiskM
           Risk Profiling • Multi-Asset Vault • Goal SIPs • AI Social Audit
         </p>
 
-        {/* SMALL COMPACT HERO IMAGE */}
-        <div className="mt-6 mb-4 w-full max-w-xs h-28 sm:h-32 rounded-[6px] overflow-hidden border border-[var(--border-card)] shadow-sm mx-auto">
+        {/* STRICT SMALL INLINE PIXEL IMAGE */}
+        <div className="mt-6 mb-4 flex justify-center mx-auto">
           <img 
             src="/images/ticker_banner.jpg" 
             alt="Real-time Stock Market Banner" 
-            className="w-full h-full object-cover hover:scale-105 transition-transform duration-300 mx-auto"
+            style={{ width: '180px', height: '100px', objectFit: 'cover', borderRadius: '8px', border: '1px solid var(--border-card)' }}
+            className="hover:scale-105 transition-transform duration-300 shadow-sm"
           />
         </div>
 
@@ -295,16 +296,14 @@ export default function LandingPage({ setActiveTab, onOpenAuthModal, onOpenRiskM
         <div className="bg-[var(--bg-card)] border border-[var(--border-card)] rounded-[8px] p-5 sm:p-6 shadow-md text-center max-w-3xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center justify-center">
             
-            {/* SMALL COMPACT IMAGE */}
-            <div className="lg:col-span-5 relative w-full max-w-xs h-28 sm:h-32 rounded-[6px] overflow-hidden border border-[var(--border-card)] shadow-sm mx-auto">
+            {/* STRICT SMALL INLINE PIXEL IMAGE */}
+            <div className="lg:col-span-5 flex justify-center mx-auto">
               <img 
                 src="/images/risk_journey.jpg" 
                 alt="Institutional Risk Profile Gauge" 
-                className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+                style={{ width: '180px', height: '100px', objectFit: 'cover', borderRadius: '8px', border: '1px solid var(--border-card)' }}
+                className="hover:scale-105 transition-transform duration-300 shadow-sm"
               />
-              <div className="absolute bottom-1.5 left-1.5 bg-[#0a0f1d]/90 px-2 py-0.5 rounded border border-indigo-500/40 text-indigo-300 text-[10px] font-mono font-bold">
-                Score: 68/100
-              </div>
             </div>
 
             {/* Content & Action */}
@@ -402,16 +401,14 @@ export default function LandingPage({ setActiveTab, onOpenAuthModal, onOpenRiskM
               </button>
             </div>
 
-            {/* SMALL COMPACT IMAGE */}
-            <div className="lg:col-span-5 relative w-full max-w-xs h-28 sm:h-32 rounded-[6px] overflow-hidden border border-[var(--border-card)] shadow-sm order-1 lg:order-2 mx-auto">
+            {/* STRICT SMALL INLINE PIXEL IMAGE */}
+            <div className="lg:col-span-5 flex justify-center order-1 lg:order-2 mx-auto">
               <img 
                 src="/images/tax_advisor.jpg" 
                 alt="AI Tax Optimizer Dashboard" 
-                className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+                style={{ width: '180px', height: '100px', objectFit: 'cover', borderRadius: '8px', border: '1px solid var(--border-card)' }}
+                className="hover:scale-105 transition-transform duration-300 shadow-sm"
               />
-              <div className="absolute bottom-1.5 right-1.5 bg-[#0a0f1d]/90 px-2 py-0.5 rounded border border-amber-500/40 text-amber-300 text-[10px] font-mono font-bold">
-                Savings: 28.5%
-              </div>
             </div>
 
           </div>
@@ -443,16 +440,14 @@ export default function LandingPage({ setActiveTab, onOpenAuthModal, onOpenRiskM
         <div className="bg-[var(--bg-card)] border border-[var(--border-card)] rounded-[8px] p-5 sm:p-6 shadow-md text-center max-w-3xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center justify-center">
             
-            {/* SMALL COMPACT IMAGE */}
-            <div className="lg:col-span-5 relative w-full max-w-xs h-28 sm:h-32 rounded-[6px] overflow-hidden border border-[var(--border-card)] shadow-sm mx-auto">
+            {/* STRICT SMALL INLINE PIXEL IMAGE */}
+            <div className="lg:col-span-5 flex justify-center mx-auto">
               <img 
                 src="/images/portfolio_journey.jpg" 
                 alt="Portfolio Vault Dashboard" 
-                className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+                style={{ width: '180px', height: '100px', objectFit: 'cover', borderRadius: '8px', border: '1px solid var(--border-card)' }}
+                className="hover:scale-105 transition-transform duration-300 shadow-sm"
               />
-              <div className="absolute bottom-1.5 left-1.5 bg-[#0a0f1d]/90 px-2 py-0.5 rounded border border-emerald-500/40 text-emerald-300 text-[10px] font-mono font-bold">
-                Worth: $18.7M
-              </div>
             </div>
 
             {/* Content & Action */}
@@ -548,16 +543,14 @@ export default function LandingPage({ setActiveTab, onOpenAuthModal, onOpenRiskM
               </button>
             </div>
 
-            {/* SMALL COMPACT IMAGE */}
-            <div className="lg:col-span-5 relative w-full max-w-xs h-28 sm:h-32 rounded-[6px] overflow-hidden border border-[var(--border-card)] shadow-sm order-1 lg:order-2 mx-auto">
+            {/* STRICT SMALL INLINE PIXEL IMAGE */}
+            <div className="lg:col-span-5 flex justify-center order-1 lg:order-2 mx-auto">
               <img 
                 src="/images/goal_journey.jpg" 
                 alt="Goal Planning Roadmap" 
-                className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+                style={{ width: '180px', height: '100px', objectFit: 'cover', borderRadius: '8px', border: '1px solid var(--border-card)' }}
+                className="hover:scale-105 transition-transform duration-300 shadow-sm"
               />
-              <div className="absolute bottom-1.5 right-1.5 bg-[#0a0f1d]/90 px-2 py-0.5 rounded border border-cyan-500/40 text-cyan-300 text-[10px] font-mono font-bold">
-                Goal: $2.85M
-              </div>
             </div>
 
           </div>
@@ -693,12 +686,13 @@ export default function LandingPage({ setActiveTab, onOpenAuthModal, onOpenRiskM
                 </h3>
               </div>
 
-              {/* SMALL COMPACT IMAGE */}
-              <div className="relative w-full h-24 rounded-[6px] overflow-hidden border border-[var(--border-card)] mx-auto">
+              {/* STRICT SMALL INLINE PIXEL IMAGE */}
+              <div className="flex justify-center mx-auto">
                 <img 
                   src="/images/wealth_compounding.jpg" 
                   alt="Wealth Compounding Chart" 
-                  className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+                  style={{ width: '140px', height: '80px', objectFit: 'cover', borderRadius: '6px', border: '1px solid var(--border-card)' }}
+                  className="hover:scale-105 transition-transform duration-300 shadow-sm"
                 />
               </div>
 
@@ -723,12 +717,13 @@ export default function LandingPage({ setActiveTab, onOpenAuthModal, onOpenRiskM
                 </h3>
               </div>
 
-              {/* SMALL COMPACT IMAGE */}
-              <div className="relative w-full h-24 rounded-[6px] overflow-hidden border border-[var(--border-card)] mx-auto">
+              {/* STRICT SMALL INLINE PIXEL IMAGE */}
+              <div className="flex justify-center mx-auto">
                 <img 
                   src="/images/asset_vault.jpg" 
                   alt="Asset Vault Breakdown" 
-                  className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+                  style={{ width: '140px', height: '80px', objectFit: 'cover', borderRadius: '6px', border: '1px solid var(--border-card)' }}
+                  className="hover:scale-105 transition-transform duration-300 shadow-sm"
                 />
               </div>
 
@@ -753,12 +748,13 @@ export default function LandingPage({ setActiveTab, onOpenAuthModal, onOpenRiskM
                 </h3>
               </div>
 
-              {/* SMALL COMPACT IMAGE */}
-              <div className="relative w-full h-24 rounded-[6px] overflow-hidden border border-[var(--border-card)] mx-auto">
+              {/* STRICT SMALL INLINE PIXEL IMAGE */}
+              <div className="flex justify-center mx-auto">
                 <img 
                   src="/images/ai_radar.jpg" 
                   alt="AI Stock Audit Shield" 
-                  className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+                  style={{ width: '140px', height: '80px', objectFit: 'cover', borderRadius: '6px', border: '1px solid var(--border-card)' }}
+                  className="hover:scale-105 transition-transform duration-300 shadow-sm"
                 />
               </div>
 
