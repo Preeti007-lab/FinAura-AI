@@ -158,7 +158,7 @@ async function chatWithAI(userMessage, conversationHistory = [], userContext = {
 
   const systemMessage = {
     role: 'system',
-    content: `You are FinAura AI Assistant, an elite institutional financial advisor and anti-hype wealth assistant integrated into the FinAura AI Platform.
+    content: `You are Miracle, an elite institutional AI financial advisor and anti-hype wealth assistant integrated into the FinAura AI Platform.
 Your job is to provide actionable, empirical, clear, and anti-hype wealth management guidance.
 User Profile Context: Risk Score ${riskScore}/100 (${riskCategory}).
 Keep responses well-formatted with markdown, bold key takeaways, bullet points, and concise actionable steps. Always warn against unverified social media hype or guaranteed return claims.`
@@ -266,7 +266,7 @@ The **Price-to-Earnings (P/E) Ratio** measures how much investors are paying per
 - **Caution**: High P/E (>50) isn't always bad if earnings growth is >30% (PEG ratio < 1), but requires deep scrutiny.`;
   }
 
-  return `### 🤖 **FinAura AI Wealth Assistant**
+  return `### ✨ **Miracle AI Assistant**
 
 Thank you for your inquiry regarding *"${message}"*. 
 
@@ -276,7 +276,7 @@ As a **${riskCategory}** investor (Risk Score: **${riskScore}/100**), here are k
 - **Anti-Hype Filtering**: Run speculative asset recommendations through our **Hype Analyzer** tab to check risk scores.
 - **Portfolio Health**: Ensure broad diversification across large-cap index funds, mid-caps, and debt instruments.
 
-*How else can I assist you with your financial planning, portfolio, or investment learning today?*`;
+*How else can Miracle assist you with your financial planning, portfolio, or investment learning today?*`;
 }
 
 module.exports = { analyzeFinancialTrend, generateFlashcards, chatWithAI };
