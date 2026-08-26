@@ -3,8 +3,12 @@ import {
   Sparkles, BrainCircuit, LayoutDashboard, Target, ShieldCheck, ArrowRight, TrendingUp, CheckCircle2, Flame, ShieldAlert, Cpu, Lock, Layers, BarChart2, Zap, ArrowUpRight, Activity, Calculator, ChevronRight, ExternalLink, Sliders
 } from 'lucide-react';
 import { PieChart, Pie, Cell, ResponsiveContainer, AreaChart, Area, BarChart, Bar, XAxis, YAxis, Tooltip } from 'recharts';
+import { SignedIn, SignedOut, SignUpButton, SignInButton } from '@clerk/clerk-react';
 
 export default function LandingPage({ setActiveTab, onOpenAuthModal }) {
+  const clerkPubKey = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY;
+  const isClerkActive = clerkPubKey && !clerkPubKey.includes('your_clerk_publishable_key_here');
+
   const [demoPrompt, setDemoPrompt] = useState('🔥 GUARANTEED 10X RETURNS on XYZ Penny Stock! Buy before YouTube explosion!');
   const [analyzingDemo, setAnalyzingDemo] = useState(false);
   const [demoResult, setDemoResult] = useState(null);
@@ -13,9 +17,6 @@ export default function LandingPage({ setActiveTab, onOpenAuthModal }) {
   const [sipAmount, setSipAmount] = useState(30000);
   const [horizonYears, setHorizonYears] = useState(15);
   const [cagrRate, setCagrRate] = useState(14);
-
-  // Module 3 Goal Slider State
-  const [moduleSipAmount, setModuleSipAmount] = useState(32500);
 
   const handleRunDemo = () => {
     setAnalyzingDemo(true);
@@ -114,7 +115,7 @@ export default function LandingPage({ setActiveTab, onOpenAuthModal }) {
     <div className="space-y-36 pb-36 max-w-7xl mx-auto px-4 text-center">
       
       {/* ========================================================================= */}
-      {/* BLOCK 1: HERO SECTION                                                     */}
+      {/* BLOCK 1: HERO SECTION WITH CLERK AUTHENTICATION WRAPPER                 */}
       {/* ========================================================================= */}
       <section className="section-tower space-y-8 max-w-4xl mx-auto pt-6">
         
@@ -131,13 +132,34 @@ export default function LandingPage({ setActiveTab, onOpenAuthModal }) {
           Audit social hype with real-time AI, consolidate multi-asset holdings into a single dashboard, and automate inflation-adjusted SIP goals.
         </p>
 
+        {/* Hero Action Button Wrapped in Official Clerk SignUpButton Component */}
         <div>
-          <button
-            onClick={() => onOpenAuthModal('signup')}
-            className="btn-hero-cta"
-          >
-            Get Started Free <ArrowRight className="w-5 h-5" />
-          </button>
+          {isClerkActive ? (
+            <>
+              <SignedOut>
+                <SignUpButton mode="modal">
+                  <button className="btn-hero-cta">
+                    Get Started Free <ArrowRight className="w-5 h-5" />
+                  </button>
+                </SignUpButton>
+              </SignedOut>
+              <SignedIn>
+                <button
+                  onClick={() => setActiveTab('dashboard')}
+                  className="btn-hero-cta"
+                >
+                  Launch Dashboard <ArrowRight className="w-5 h-5" />
+                </button>
+              </SignedIn>
+            </>
+          ) : (
+            <button
+              onClick={() => onOpenAuthModal('signup')}
+              className="btn-hero-cta"
+            >
+              Get Started Free <ArrowRight className="w-5 h-5" />
+            </button>
+          )}
         </div>
 
         <div className="flex flex-wrap items-center justify-center gap-3 pt-2">
