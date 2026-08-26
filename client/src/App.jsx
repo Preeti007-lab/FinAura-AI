@@ -124,7 +124,6 @@ export default function App() {
         setActiveTab={setActiveTab}
         user={user}
         onOpenRiskModal={() => setIsRiskModalOpen(true)}
-        onOpenAuthModal={handleOpenAuthModal}
         onLogout={handleLogout}
       />
 
@@ -133,7 +132,6 @@ export default function App() {
         {activeTab === 'landing' && (
           <LandingPage
             setActiveTab={setActiveTab}
-            onOpenAuthModal={handleOpenAuthModal}
           />
         )}
 
@@ -168,7 +166,6 @@ export default function App() {
         isOpen={isAuthModalOpen}
         onClose={() => setIsAuthModalOpen(false)}
         mode={authMode}
-        onLoginSuccess={handleLoginSuccess}
       />
 
       <RiskProfileModal

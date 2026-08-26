@@ -83,35 +83,23 @@ export default function LandingPage({ setActiveTab, onOpenAuthModal }) {
 
         {/* Exactly ONE Large Rounded Call-to-Action Button Wrapped in Clerk's SignUpButton */}
         <div className="mt-12 mb-[120px] flex justify-center">
-          {isClerkActive ? (
-            <>
-              <SignedIn>
-                <button 
-                  onClick={() => setActiveTab('dashboard')}
-                  className="px-10 py-5 bg-gradient-to-r from-indigo-600 via-blue-600 to-cyan-500 hover:from-indigo-500 hover:to-cyan-400 text-white font-bold text-lg sm:text-xl rounded-full shadow-[0_10px_35px_rgba(99,102,241,0.45)] hover:shadow-[0_15px_45px_rgba(99,102,241,0.65)] hover:scale-105 transition-all duration-300 flex items-center justify-center gap-3 cursor-pointer border border-white/20"
-                >
-                  <span>Launch Dashboard</span>
-                  <ArrowRight className="w-6 h-6" />
-                </button>
-              </SignedIn>
-              <SignedOut>
-                <SignUpButton mode="modal">
-                  <button className="px-10 py-5 bg-gradient-to-r from-indigo-600 via-blue-600 to-cyan-500 hover:from-indigo-500 hover:to-cyan-400 text-white font-bold text-lg sm:text-xl rounded-full shadow-[0_10px_35px_rgba(99,102,241,0.45)] hover:shadow-[0_15px_45px_rgba(99,102,241,0.65)] hover:scale-105 transition-all duration-300 flex items-center justify-center gap-3 cursor-pointer border border-white/20">
-                    <span>Get Started Free</span>
-                    <ArrowRight className="w-6 h-6" />
-                  </button>
-                </SignUpButton>
-              </SignedOut>
-            </>
-          ) : (
+          <SignedIn>
             <button 
-              onClick={() => onOpenAuthModal('signup')}
+              onClick={() => setActiveTab('dashboard')}
               className="px-10 py-5 bg-gradient-to-r from-indigo-600 via-blue-600 to-cyan-500 hover:from-indigo-500 hover:to-cyan-400 text-white font-bold text-lg sm:text-xl rounded-full shadow-[0_10px_35px_rgba(99,102,241,0.45)] hover:shadow-[0_15px_45px_rgba(99,102,241,0.65)] hover:scale-105 transition-all duration-300 flex items-center justify-center gap-3 cursor-pointer border border-white/20"
             >
-              <span>Get Started Free</span>
+              <span>Launch Dashboard</span>
               <ArrowRight className="w-6 h-6" />
             </button>
-          )}
+          </SignedIn>
+          <SignedOut>
+            <SignUpButton mode="modal">
+              <button className="px-10 py-5 bg-gradient-to-r from-indigo-600 via-blue-600 to-cyan-500 hover:from-indigo-500 hover:to-cyan-400 text-white font-bold text-lg sm:text-xl rounded-full shadow-[0_10px_35px_rgba(99,102,241,0.45)] hover:shadow-[0_15px_45px_rgba(99,102,241,0.65)] hover:scale-105 transition-all duration-300 flex items-center justify-center gap-3 cursor-pointer border border-white/20">
+                <span>Get Started Free</span>
+                <ArrowRight className="w-6 h-6" />
+              </button>
+            </SignUpButton>
+          </SignedOut>
         </div>
 
       </section>
