@@ -67,9 +67,17 @@ mongoose.connect(mongoURI, {
   setMongoConnected(false);
 });
 
-// Serve Frontend Static Build
+// Serve Frontend Static Build with No-Cache Headers for Immediate Live Updates
 const distPath = path.join(__dirname, '../client/dist');
-app.use(express.static(distPath));
+app.use(express.static(distPath, {
+  etag: false,
+  lastModified: false,
+  setHeaders: (res) => {
+    res.setHeader('Cache-Control', 'no-store, no-cache, must-revalidate, proxy-revalidate');
+    res.setHeader('Pragma', 'no-cache');
+    res.setHeader('Expires', '0');
+  }
+}));
 
 // DIRECT ROOT ENDPOINTS FOR WEALTHTECH & FLASHCARDS
 app.use('/analyze-trend', analyzeRoutes);
