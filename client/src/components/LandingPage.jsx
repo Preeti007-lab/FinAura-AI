@@ -89,7 +89,7 @@ export default function LandingPage({ setActiveTab, onOpenRiskModal }) {
   ];
 
   return (
-    <div className="space-y-12 max-w-7xl mx-auto px-4 py-6 font-sans text-center">
+    <div className="space-y-12 max-w-5xl mx-auto px-4 py-6 font-sans text-center flex flex-col items-center justify-center">
       
       {/* ========================================================================= */}
       {/* SECTION 01 // OVERVIEW HERO VIEW                                         */}

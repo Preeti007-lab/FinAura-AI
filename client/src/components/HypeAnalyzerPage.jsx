@@ -77,7 +77,7 @@ export default function HypeAnalyzerPage({ user, onOpenRiskModal }) {
   };
 
   return (
-    <div className="space-y-10 max-w-5xl mx-auto px-4 py-8">
+    <div className="space-y-10 max-w-4xl mx-auto px-4 py-8 flex flex-col items-center justify-center text-center">
       
       {/* PAGE HEADER (CENTER ALIGNED) */}
       <div className="flex flex-col items-center justify-center text-center max-w-3xl mx-auto space-y-3 pb-3 border-b border-[var(--border-card)]">

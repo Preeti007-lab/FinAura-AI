@@ -75,7 +75,7 @@ export default function DashboardPage({ user, onOpenAddModal, onOpenRiskModal })
   const filteredHoldings = holdings.filter(h => selectedAssetFilter === 'All' || h.assetClass === selectedAssetFilter);
 
   return (
-    <div className="space-y-8 max-w-7xl mx-auto px-4 py-8 text-center font-sans">
+    <div className="space-y-8 max-w-5xl mx-auto px-4 py-8 text-center font-sans flex flex-col items-center justify-center">
       
       {/* HEADER BAR (STRICTLY CENTER ALIGNED) */}
       <div className="w-full flex flex-col items-center justify-center text-center space-y-3 pb-6 border-b border-[var(--border-card)] mx-auto max-w-3xl">
