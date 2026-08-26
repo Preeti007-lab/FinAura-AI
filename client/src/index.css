@@ -48,7 +48,7 @@ html {
   scroll-behavior: smooth;
 }
 
-/* Unified Theme Responsive Canvas */
+/* Unified Theme Responsive Canvas & Strict Universal Center Alignment */
 body {
   background-color: var(--bg-canvas) !important;
   color: var(--text-main);
@@ -56,7 +56,28 @@ body {
   min-height: 100vh;
   overflow-x: hidden;
   line-height: 1.6;
+  text-align: center !important;
   transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+/* Strict Universal Center Alignment Overrides */
+main, section, div, h1, h2, h3, h4, h5, h6, p, ul, li, span, button, form, article, header, footer {
+  text-align: center !important;
+}
+
+.bento-module-card,
+.bento-card,
+.glass-card {
+  text-align: center !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+ul {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
 }
 
 /* Elongated Section & Card Spacing */
