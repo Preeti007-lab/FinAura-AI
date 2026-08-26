@@ -38,7 +38,8 @@ export default function App() {
 
   // Sync route pathname or Clerk sign-in state
   useEffect(() => {
-    if (window.location.pathname === '/dashboard' || clerkIsSignedIn) {
+    const path = window.location.pathname;
+    if (path === '/dashboard' || path === '/sign-up' || path === '/sign-in' || clerkIsSignedIn) {
       setActiveTab('dashboard');
     }
   }, [clerkIsSignedIn]);
