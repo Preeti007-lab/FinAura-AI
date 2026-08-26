@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { 
-  Sparkles, BrainCircuit, LayoutDashboard, Target, ShieldCheck, ArrowRight, TrendingUp, CheckCircle2, Flame, ShieldAlert, Cpu, Lock, Layers, BarChart2, Zap, ArrowUpRight, Activity, Calculator, ChevronRight, ExternalLink
+  Sparkles, BrainCircuit, LayoutDashboard, Target, ShieldCheck, ArrowRight, TrendingUp, CheckCircle2, Flame, ShieldAlert, Cpu, Lock, Layers, BarChart2, Zap, ArrowUpRight, Activity, Calculator, ChevronRight, ExternalLink, Sliders
 } from 'lucide-react';
 import { PieChart, Pie, Cell, ResponsiveContainer, AreaChart, Area, BarChart, Bar, XAxis, YAxis, Tooltip } from 'recharts';
 
@@ -9,12 +9,12 @@ export default function LandingPage({ setActiveTab, onOpenAuthModal }) {
   const [analyzingDemo, setAnalyzingDemo] = useState(false);
   const [demoResult, setDemoResult] = useState(null);
 
-  // Wealth Simulator Interactive Dual Slider States
-  const [simSip, setSimSip] = useState(25000);
-  const [simYears, setSimYears] = useState(15);
-  const [simRate, setSimRate] = useState(14);
+  // Compounding Interest Slider States (Real-time dynamic SVG curve)
+  const [sipAmount, setSipAmount] = useState(30000);
+  const [horizonYears, setHorizonYears] = useState(15);
+  const [cagrRate, setCagrRate] = useState(14);
 
-  // Module 3 Interactive Goal Slider State
+  // Module 3 Goal Slider State
   const [moduleSipAmount, setModuleSipAmount] = useState(32500);
 
   const handleRunDemo = () => {
@@ -61,62 +61,76 @@ export default function LandingPage({ setActiveTab, onOpenAuthModal }) {
     { name: 'Gold & Cash', value: 10, color: '#f59e0b' }
   ];
 
-  // Compound Growth Curve Data for Module 03
-  const moduleGrowthData = [
-    { year: 'Yr 1', wealth: (moduleSipAmount * 12 * 1.12) / 1000 },
-    { year: 'Yr 3', wealth: (moduleSipAmount * 36 * 1.35) / 1000 },
-    { year: 'Yr 5', wealth: (moduleSipAmount * 60 * 1.65) / 1000 },
-    { year: 'Yr 10', wealth: (moduleSipAmount * 120 * 2.5) / 1000 }
-  ];
-
-  // Simulator Compound Projection Data
-  const generateSimData = () => {
-    const data = [];
-    const monthlyRate = simRate / 12 / 100;
-    let totalInvested = 0;
+  // Real-Time SVG Compounding Curve Generator (Smooth Bezier Smoothing)
+  const calculateCompounding = () => {
+    const totalInvested = sipAmount * 12 * horizonYears;
+    const monthlyRate = cagrRate / 12 / 100;
     let corpus = 0;
+    const points = [{ yr: 0, corpus: 0 }];
 
-    for (let yr = 1; yr <= simYears; yr++) {
+    for (let yr = 1; yr <= horizonYears; yr++) {
       for (let m = 1; m <= 12; m++) {
-        totalInvested += simSip;
-        corpus = (corpus + simSip) * (1 + monthlyRate);
+        corpus = (corpus + sipAmount) * (1 + monthlyRate);
       }
-      data.push({
-        year: `Yr ${yr}`,
-        Invested: Math.round(totalInvested / 100000),
-        WealthCorpus: Math.round(corpus / 100000)
-      });
+      points.push({ yr, corpus });
     }
-    return { data, finalCorpus: corpus, totalInvested };
+
+    const finalCorpus = corpus;
+    const totalGain = Math.max(0, finalCorpus - totalInvested);
+
+    // Build SVG Path Coordinates (500x220 canvas)
+    const maxVal = Math.max(1, points[points.length - 1].corpus);
+    const width = 500;
+    const height = 220;
+    const padding = 24;
+
+    const coords = points.map((p, i) => {
+      const x = padding + (i / (points.length - 1)) * (width - 2 * padding);
+      const y = height - padding - (p.corpus / maxVal) * (height - 2 * padding);
+      return { x, y };
+    });
+
+    let pathD = `M ${coords[0].x} ${coords[0].y}`;
+    for (let i = 0; i < coords.length - 1; i++) {
+      const p0 = coords[i];
+      const p1 = coords[i + 1];
+      const cp1x = p0.x + (p1.x - p0.x) * 0.5;
+      const cp1y = p0.y;
+      const cp2x = p0.x + (p1.x - p0.x) * 0.5;
+      const cp2y = p1.y;
+      pathD += ` C ${cp1x} ${cp1y}, ${cp2x} ${cp2y}, ${p1.x} ${p1.y}`;
+    }
+
+    const last = coords[coords.length - 1];
+    const first = coords[0];
+    const areaD = `${pathD} L ${last.x} ${height - padding} L ${first.x} ${height - padding} Z`;
+
+    return { totalInvested, finalCorpus, totalGain, pathD, areaD, lastPoint: last };
   };
 
-  const { data: simChartData, finalCorpus, totalInvested } = generateSimData();
+  const { totalInvested, finalCorpus, totalGain, pathD, areaD, lastPoint } = calculateCompounding();
 
   return (
     <div className="space-y-36 pb-36 max-w-7xl mx-auto px-4 text-center">
       
       {/* ========================================================================= */}
-      {/* BLOCK 1 (TOP SECTION): SPACIOUS HERO WITH 24PX MARGIN BUFFER             */}
+      {/* BLOCK 1: HERO SECTION                                                     */}
       {/* ========================================================================= */}
       <section className="section-tower space-y-8 max-w-4xl mx-auto pt-6">
         
-        {/* Glow Tag Badge */}
         <div className="inline-flex items-center gap-2.5 px-4 py-2 rounded-md bg-[#111827] border border-[#1e293b] text-indigo-300 text-xs font-bold shadow-md">
           <Sparkles className="w-4 h-4 text-cyan-400 animate-pulse" />
           <span>Institutional WealthTech & Anti-Hype AI Platform</span>
         </div>
 
-        {/* Massive Dominant Hero Headline */}
         <h1 className="text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight text-white font-['Outfit'] leading-[1.08] max-w-4xl mx-auto">
           Turn Finfluencer Noise into <span className="gradient-hero-text">Actionable Wealth</span>
         </h1>
 
-        {/* Short 2-Line Sub-headline */}
         <p className="text-base sm:text-lg text-slate-300 font-medium max-w-2xl mx-auto leading-relaxed">
           Audit social hype with real-time AI, consolidate multi-asset holdings into a single dashboard, and automate inflation-adjusted SIP goals.
         </p>
 
-        {/* Primary CTA Button */}
         <div>
           <button
             onClick={() => onOpenAuthModal('signup')}
@@ -126,7 +140,6 @@ export default function LandingPage({ setActiveTab, onOpenAuthModal }) {
           </button>
         </div>
 
-        {/* Stacked Pill Status Badges */}
         <div className="flex flex-wrap items-center justify-center gap-3 pt-2">
           <div className="flex items-center gap-2 px-4 py-2 rounded-md bg-[#111827] border border-[#1e293b] text-xs font-semibold text-slate-300">
             <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
@@ -144,7 +157,7 @@ export default function LandingPage({ setActiveTab, onOpenAuthModal }) {
           </div>
         </div>
 
-        {/* Centered Rectangular Dashboard Preview Anchor Card */}
+        {/* Dashboard Preview Card */}
         <div className="pt-6 max-w-4xl mx-auto">
           <div 
             onClick={() => setActiveTab('dashboard')}
@@ -203,7 +216,7 @@ export default function LandingPage({ setActiveTab, onOpenAuthModal }) {
       </section>
 
       {/* ========================================================================= */}
-      {/* SECTION 2: METRIC COUNTERS & EVIDENCE BADGES                             */}
+      {/* SECTION 2: METRIC COUNTERS                                                */}
       {/* ========================================================================= */}
       <section className="section-tower space-y-12">
         
@@ -299,7 +312,7 @@ export default function LandingPage({ setActiveTab, onOpenAuthModal }) {
       </section>
 
       {/* ========================================================================= */}
-      {/* SECTION 3: ONLY MODULE 01 (ANTI-HYPE AI SOCIAL & RISK DETECTOR)          */}
+      {/* SECTION 3: MODULE 01 (ANTI-HYPE DETECTOR)                                */}
       {/* ========================================================================= */}
       <section className="section-tower space-y-10 max-w-5xl mx-auto">
         
@@ -359,7 +372,7 @@ export default function LandingPage({ setActiveTab, onOpenAuthModal }) {
       </section>
 
       {/* ========================================================================= */}
-      {/* SECTION 4: ONLY MODULE 02 (CONSOLIDATED NET WORTH DASHBOARD)               */}
+      {/* SECTION 4: MODULE 02 (NET WORTH VAULT)                                   */}
       {/* ========================================================================= */}
       <section className="section-tower space-y-10 max-w-5xl mx-auto">
         
@@ -438,112 +451,156 @@ export default function LandingPage({ setActiveTab, onOpenAuthModal }) {
       </section>
 
       {/* ========================================================================= */}
-      {/* SECTION 5: ONLY MODULE 03 (COMPOUND WEALTH CALCULATOR SIMULATOR)          */}
+      {/* SECTION 5: INTERACTIVE COMPOUNDING INTEREST SLIDER CARD (REAL-TIME SVG)   */}
       {/* ========================================================================= */}
       <section className="section-tower space-y-10 max-w-5xl mx-auto">
         
         <div className="text-center space-y-2">
           <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-md bg-emerald-500/10 text-emerald-400 text-xs font-bold border border-emerald-500/20">
-            <Calculator className="w-4 h-4" /> DYNAMIC WEALTH ENGINE
+            <Sliders className="w-4 h-4" /> REAL-TIME COMPOUNDING ENGINE
           </div>
-          <h2 className="text-3xl sm:text-5xl font-extrabold text-white font-['Outfit']">Interactive Compound Wealth Calculator</h2>
+          <h2 className="text-3xl sm:text-5xl font-extrabold text-white font-['Outfit']">Compounding Interest Simulator</h2>
           <p className="text-sm text-slate-400 max-w-xl mx-auto">
-            Drag the dual slider handles to dynamically morph the wealth accumulation curve.
+            Drag the monthly investment handle to watch the SVG curve dynamically smooth-curve upward in real-time.
           </p>
         </div>
 
-        <div className="bento-card p-8 sm:p-10 border-[#1e293b] rounded-lg text-left">
+        <div className="bento-card p-8 sm:p-10 border-[#1e293b] rounded-lg text-left shadow-2xl">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
             
+            {/* Interactive Sliders (5 Cols) */}
             <div className="lg:col-span-5 space-y-6 bg-[#0a0f1d] p-6 rounded-lg border border-[#1e293b]">
+              
+              {/* Slider 1: Monthly Investment (Drag handle) */}
               <div className="space-y-2">
                 <div className="flex justify-between text-xs font-bold">
-                  <span className="text-slate-300">Monthly SIP Investment</span>
-                  <span className="text-emerald-400 font-mono text-base">₹{simSip.toLocaleString()}/mo</span>
+                  <span className="text-slate-300">Monthly Investment (SIP)</span>
+                  <span className="text-emerald-400 font-mono text-base">₹{sipAmount.toLocaleString()}/mo</span>
                 </div>
                 <input
                   type="range"
-                  min="5000"
-                  max="100000"
+                  min="2500"
+                  max="150000"
                   step="2500"
-                  value={simSip}
-                  onChange={(e) => setSimSip(Number(e.target.value))}
-                  className="w-full h-2 bg-slate-800 rounded-md appearance-none cursor-pointer accent-emerald-400"
+                  value={sipAmount}
+                  onChange={(e) => setSipAmount(Number(e.target.value))}
+                  className="w-full h-2.5 bg-slate-800 rounded-md appearance-none cursor-pointer accent-emerald-400"
                 />
               </div>
 
+              {/* Slider 2: Horizon */}
               <div className="space-y-2">
                 <div className="flex justify-between text-xs font-bold">
-                  <span className="text-slate-300">Years to Goal / Horizon</span>
-                  <span className="text-cyan-300 font-mono text-base">{simYears} Years</span>
+                  <span className="text-slate-300">Investment Horizon</span>
+                  <span className="text-cyan-300 font-mono text-base">{horizonYears} Years</span>
                 </div>
                 <input
                   type="range"
                   min="1"
                   max="30"
                   step="1"
-                  value={simYears}
-                  onChange={(e) => setSimYears(Number(e.target.value))}
-                  className="w-full h-2 bg-slate-800 rounded-md appearance-none cursor-pointer accent-cyan-400"
+                  value={horizonYears}
+                  onChange={(e) => setHorizonYears(Number(e.target.value))}
+                  className="w-full h-2.5 bg-slate-800 rounded-md appearance-none cursor-pointer accent-cyan-400"
                 />
               </div>
 
+              {/* Slider 3: Expected CAGR */}
               <div className="space-y-2">
                 <div className="flex justify-between text-xs font-bold">
-                  <span className="text-slate-300">Expected Annual Return</span>
-                  <span className="text-amber-300 font-mono text-base">{simRate}% P.A.</span>
+                  <span className="text-slate-300">Expected CAGR Return</span>
+                  <span className="text-amber-300 font-mono text-base">{cagrRate}% P.A.</span>
                 </div>
                 <input
                   type="range"
                   min="8"
                   max="18"
                   step="0.5"
-                  value={simRate}
-                  onChange={(e) => setSimRate(Number(e.target.value))}
-                  className="w-full h-2 bg-slate-800 rounded-md appearance-none cursor-pointer accent-amber-400"
+                  value={cagrRate}
+                  onChange={(e) => setCagrRate(Number(e.target.value))}
+                  className="w-full h-2.5 bg-slate-800 rounded-md appearance-none cursor-pointer accent-amber-400"
                 />
               </div>
 
+              {/* Real-time Calculated Metrics */}
               <div className="p-4 rounded-lg bg-emerald-500/10 border border-emerald-500/30 flex justify-between items-center text-xs">
                 <div>
-                  <div className="text-slate-400 text-[10px]">Projected Wealth Corpus</div>
-                  <div className="text-2xl font-extrabold text-emerald-300 font-mono">
+                  <div className="text-slate-400 text-[10px] uppercase font-bold tracking-wider">Total Projected Corpus</div>
+                  <div className="text-2xl font-extrabold text-emerald-300 font-mono mt-0.5">
                     ₹{(finalCorpus / 100000).toFixed(2)} Lakhs
                   </div>
                 </div>
                 <div className="text-right text-[11px] text-slate-300">
                   <div>Invested: ₹{(totalInvested / 100000).toFixed(1)}L</div>
-                  <div className="text-emerald-400 font-bold">Gain: ₹{((finalCorpus - totalInvested) / 100000).toFixed(1)}L</div>
+                  <div className="text-emerald-400 font-bold">Wealth Gain: ₹{(totalGain / 100000).toFixed(1)}L</div>
                 </div>
               </div>
+
             </div>
 
+            {/* DYNAMIC REAL-TIME MORPHING SVG LINE GRAPH (7 Cols) */}
             <div className="lg:col-span-7 space-y-4">
               <div className="flex items-center justify-between text-xs font-bold text-slate-300">
-                <span>Morphing Compounding Path ({simYears} Years)</span>
-                <span className="text-emerald-400 font-mono">Rate: {simRate}% CAGR</span>
+                <span>Real-Time Compounding Curve ({horizonYears} Years)</span>
+                <span className="text-emerald-400 font-mono">CAGR Rate: {cagrRate}%</span>
               </div>
 
-              <div className="h-72 w-full bg-[#0a0f1d] p-4 rounded-lg border border-[#1e293b]">
-                <ResponsiveContainer width="100%" height="100%">
-                  <AreaChart data={simChartData}>
-                    <defs>
-                      <linearGradient id="corpusGradSec5" x1="0" y1="0" x2="0" y2="1">
-                        <stop offset="5%" stopColor="#10b981" stopOpacity={0.7}/>
-                        <stop offset="95%" stopColor="#10b981" stopOpacity={0}/>
-                      </linearGradient>
-                      <linearGradient id="investedGradSec5" x1="0" y1="0" x2="0" y2="1">
-                        <stop offset="5%" stopColor="#6366f1" stopOpacity={0.4}/>
-                        <stop offset="95%" stopColor="#6366f1" stopOpacity={0}/>
-                      </linearGradient>
-                    </defs>
-                    <XAxis dataKey="year" stroke="#64748b" fontSize={11} />
-                    <YAxis stroke="#64748b" fontSize={11} unit="L" />
-                    <Tooltip contentStyle={{ backgroundColor: '#0a0f1d', borderColor: '#1e293b', borderRadius: '8px', fontSize: '12px' }} />
-                    <Area type="monotone" dataKey="Invested" stroke="#6366f1" strokeWidth={2} fill="url(#investedGradSec5)" />
-                    <Area type="monotone" dataKey="WealthCorpus" stroke="#10b981" strokeWidth={3} fill="url(#corpusGradSec5)" />
-                  </AreaChart>
-                </ResponsiveContainer>
+              {/* Dynamic SVG Box */}
+              <div className="relative w-full h-72 bg-[#0a0f1d] p-4 rounded-lg border border-[#1e293b] flex items-center justify-center overflow-hidden">
+                
+                {/* SVG Curve Canvas */}
+                <svg className="w-full h-full" viewBox="0 0 500 220" preserveAspectRatio="none">
+                  <defs>
+                    <linearGradient id="svgLineGrad" x1="0" y1="0" x2="1" y2="0">
+                      <stop offset="0%" stopColor="#6366f1" />
+                      <stop offset="50%" stopColor="#06b6d4" />
+                      <stop offset="100%" stopColor="#10b981" />
+                    </linearGradient>
+
+                    <linearGradient id="svgAreaGrad" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="5%" stopColor="#10b981" stopOpacity={0.45} />
+                      <stop offset="95%" stopColor="#10b981" stopOpacity={0.0} />
+                    </linearGradient>
+                  </defs>
+
+                  {/* Faint Background Grid Lines */}
+                  <line x1="24" y1="50" x2="476" y2="50" stroke="#1e293b" strokeDasharray="4 4" />
+                  <line x1="24" y1="100" x2="476" y2="100" stroke="#1e293b" strokeDasharray="4 4" />
+                  <line x1="24" y1="150" x2="476" y2="150" stroke="#1e293b" strokeDasharray="4 4" />
+
+                  {/* Gradient Area Fill */}
+                  <path d={areaD} fill="url(#svgAreaGrad)" transition="all 0.15s ease-out" />
+
+                  {/* Smooth Curved Line Path */}
+                  <path
+                    d={pathD}
+                    fill="none"
+                    stroke="url(#svgLineGrad)"
+                    strokeWidth="4"
+                    strokeLinecap="round"
+                    style={{ transition: 'd 0.15s ease-out' }}
+                  />
+
+                  {/* Pulsing End Node Marker */}
+                  {lastPoint && (
+                    <g className="animate-pulse">
+                      <circle cx={lastPoint.x} cy={lastPoint.y} r="7" fill="#10b981" />
+                      <circle cx={lastPoint.x} cy={lastPoint.y} r="12" fill="#10b981" opacity="0.3" />
+                    </g>
+                  )}
+                </svg>
+
+                {/* Floating Real-Time Badge */}
+                <div className="absolute top-4 right-4 bg-[#111827]/90 backdrop-blur-md px-3 py-1.5 rounded-md border border-emerald-500/30 text-emerald-400 font-mono text-xs font-bold shadow-lg">
+                  ₹{(finalCorpus / 100000).toFixed(2)} Lakhs
+                </div>
+
+              </div>
+
+              <div className="flex justify-between text-[11px] text-slate-400 font-semibold px-2">
+                <span>Start: Yr 0 (₹0)</span>
+                <span>Mid Horizon: Yr {Math.round(horizonYears / 2)}</span>
+                <span className="text-emerald-400 font-bold">Goal: Yr {horizonYears} (₹{(finalCorpus / 100000).toFixed(1)}L)</span>
               </div>
             </div>
 
@@ -553,7 +610,7 @@ export default function LandingPage({ setActiveTab, onOpenAuthModal }) {
       </section>
 
       {/* ========================================================================= */}
-      {/* SECTION 6: CASE STUDIES, LIVE AI SANDBOX & FOOTERS                       */}
+      {/* SECTION 6: CASE STUDIES & FOOTERS                                         */}
       {/* ========================================================================= */}
       <section className="section-tower space-y-12 max-w-5xl mx-auto">
         
