@@ -177,7 +177,7 @@ export default function LandingPage({ setActiveTab, onOpenAuthModal, onOpenRiskM
       {/* ========================================================================= */}
       {/* SECTION 01 // OVERVIEW HERO VIEW                                         */}
       {/* ========================================================================= */}
-      <section className="flex flex-col items-center justify-center text-center max-w-3xl mx-auto pt-8 pb-10 mb-24">
+      <section id="hero" className="flex flex-col items-center justify-center text-center max-w-3xl mx-auto pt-8 pb-10 mb-24 scroll-mt-24">
         
         {/* Section Header Tag */}
         <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-md bg-[var(--bg-card-inner)] border border-[var(--border-card)] text-indigo-400 text-xs font-bold shadow-md mb-6 mx-auto justify-center font-mono">
@@ -233,7 +233,7 @@ export default function LandingPage({ setActiveTab, onOpenAuthModal, onOpenRiskM
       {/* ========================================================================= */}
       {/* SECTION 02 // PROOF METRICS                                              */}
       {/* ========================================================================= */}
-      <section className="mb-24 text-center">
+      <section id="features" className="mb-24 text-center scroll-mt-24">
         <div className="text-center max-w-xl mx-auto mb-6">
           <span className="text-xs font-mono font-bold text-indigo-400 uppercase tracking-wider px-3 py-1 rounded bg-indigo-500/10 border border-indigo-500/20 mx-auto">
             SECTION 02 // VERIFIED PROOF
@@ -278,7 +278,7 @@ export default function LandingPage({ setActiveTab, onOpenAuthModal, onOpenRiskM
       {/* ========================================================================= */}
       {/* SECTION 03 // RISK PROFILING ENGINE                                       */}
       {/* ========================================================================= */}
-      <section className="mb-24 space-y-6 text-center">
+      <section id="calculator" className="mb-24 space-y-6 text-center scroll-mt-24">
         
         <div className="text-center max-w-xl mx-auto space-y-1.5">
           <span className="text-xs font-mono font-bold text-indigo-400 uppercase tracking-wider px-3 py-1 rounded bg-indigo-500/10 border border-indigo-500/20 mx-auto">
