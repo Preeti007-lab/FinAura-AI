@@ -2,6 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const mongoose = require('mongoose');
 const path = require('path');
+const { clerkMiddleware } = require('@clerk/express');
 require('dotenv').config();
 
 const { setMongoConnected } = require('./services/dbStore');
@@ -11,6 +12,7 @@ const analyzeRoutes = require('./routes/analyze');
 const goalsRoutes = require('./routes/goals');
 const riskProfileRoutes = require('./routes/riskProfile');
 const flashcardRoutes = require('./routes/flashcards');
+const authMiddleware = require('./middleware/auth');
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -22,6 +24,11 @@ app.use(cors({
   allowedHeaders: ['Content-Type', 'Authorization', 'x-user-id', 'x-clerk-user-id']
 }));
 app.use(express.json());
+
+// Official Clerk Middleware Handler
+if (process.env.CLERK_SECRET_KEY) {
+  app.use(clerkMiddleware());
+}
 
 // MongoDB Connection with Fallback Memory Store
 const mongoURI = process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017/finaura_db';
@@ -54,18 +61,34 @@ app.use('/api/goals', goalsRoutes);
 app.use('/api/risk-profile', riskProfileRoutes);
 app.use('/api', flashcardRoutes);
 
+// PROTECTED CLERK DASHBOARD ENDPOINT
+app.get('/api/dashboard', authMiddleware, (req, res) => {
+  res.json({
+    success: true,
+    message: 'Access granted to Clerk authenticated dashboard endpoint',
+    user: req.user,
+    dashboard: {
+      totalNetWorth: 657645,
+      activeSip: 32500,
+      riskScore: 68,
+      status: 'Secured with Clerk'
+    }
+  });
+});
+
 // System Health Check
 app.get('/api/health', (req, res) => {
   res.json({
     status: 'online',
     app: 'FinAura AI WealthTech Platform',
+    clerkAuth: !!process.env.CLERK_SECRET_KEY,
     timestamp: new Date(),
     environment: process.env.NODE_ENV || 'development',
     version: '3.0.0'
   });
 });
 
-// SPA Fallback Handler for any non-API GET requests
+// SPA Fallback Handler
 app.use((req, res, next) => {
   if (
     req.method === 'GET' && 

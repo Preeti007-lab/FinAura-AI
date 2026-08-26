@@ -1,7 +1,11 @@
 import React from 'react';
 import { Shield, Sparkles, BrainCircuit, LayoutDashboard, Target, LogOut, Home, Layers, User } from 'lucide-react';
+import { SignedIn, SignedOut, SignInButton, UserButton, useUser } from '@clerk/clerk-react';
 
 export default function Navbar({ activeTab, setActiveTab, user, onOpenRiskModal, onOpenAuthModal, onLogout }) {
+  const clerkPubKey = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY;
+  const isClerkActive = clerkPubKey && !clerkPubKey.includes('your_clerk_publishable_key_here');
+
   return (
     <header className="fixed top-0 left-0 right-0 z-50 backdrop-blur-xl bg-[#0a0f1d]/90 border-b border-[#1e293b] px-4 lg:px-8 py-3 transition-all">
       <div className="max-w-7xl mx-auto flex items-center justify-between gap-4">
@@ -29,7 +33,7 @@ export default function Navbar({ activeTab, setActiveTab, user, onOpenRiskModal,
           </div>
         </div>
 
-        {/* CENTER: Clean Nav Links (No loose text!) */}
+        {/* CENTER: Clean Nav Links */}
         <nav className="hidden md:flex items-center gap-1 bg-[#111827] p-1 rounded-lg border border-[#1e293b]">
           <button
             onClick={() => setActiveTab('landing')}
@@ -80,48 +84,75 @@ export default function Navbar({ activeTab, setActiveTab, user, onOpenRiskModal,
           </button>
         </nav>
 
-        {/* FAR-RIGHT: Compact User Profile Badge & Session Controls */}
+        {/* FAR-RIGHT: Clerk Auth Controls & Profile Photo Avatars */}
         <div className="flex items-center gap-3 shrink-0">
-          
-          {user ? (
-            <div className="flex items-center gap-2">
-              <div 
-                onClick={onOpenRiskModal}
-                className="flex items-center gap-2 px-3 py-1.5 rounded-md bg-[#111827] border border-[#1e293b] text-xs cursor-pointer hover:border-indigo-500 transition-all"
-                title="View Investor Risk Profile"
-              >
-                <div className="w-5 h-5 rounded-full bg-indigo-600 flex items-center justify-center font-bold text-white text-[10px]">
-                  {user.name ? user.name[0] : 'A'}
+          {isClerkActive ? (
+            <>
+              <SignedOut>
+                <div className="flex items-center gap-2">
+                  <SignInButton mode="modal">
+                    <button className="btn-primary text-xs py-1.5 px-4">
+                      Log In with Clerk
+                    </button>
+                  </SignInButton>
                 </div>
-                <span className="font-bold text-slate-200 hidden sm:inline">{user.name || 'Alex Vance'}</span>
-                <span className="badge badge-green text-[9px] py-0 px-1.5 hidden lg:inline">Risk: {user.riskProfile?.score || 68}</span>
-              </div>
+              </SignedOut>
 
-              <button
-                onClick={onLogout}
-                className="p-2 rounded-md bg-[#111827] border border-[#1e293b] hover:bg-rose-500/10 hover:border-rose-500/30 text-slate-400 hover:text-rose-400 transition-all"
-                title="Log Out Session"
-              >
-                <LogOut className="w-4 h-4" />
-              </button>
-            </div>
+              <SignedIn>
+                <div className="flex items-center gap-3">
+                  <div 
+                    onClick={onOpenRiskModal}
+                    className="flex items-center gap-2 px-3 py-1.5 rounded-md bg-[#111827] border border-[#1e293b] text-xs cursor-pointer hover:border-indigo-500 transition-all"
+                  >
+                    <span className="font-bold text-slate-200">{user?.name || 'Clerk User'}</span>
+                    <span className="badge badge-green text-[9px] py-0 px-1.5">Risk: {user?.riskProfile?.score || 68}</span>
+                  </div>
+                  
+                  {/* Official Clerk UserAvatar & Profile Dropdown */}
+                  <UserButton afterSignOutUrl="/" />
+                </div>
+              </SignedIn>
+            </>
           ) : (
-            <div className="flex items-center gap-2">
-              <button
-                onClick={() => onOpenAuthModal('login')}
-                className="btn-glass text-xs py-1.5 px-3.5"
-              >
-                Log In
-              </button>
-              <button
-                onClick={() => onOpenAuthModal('signup')}
-                className="btn-primary text-xs py-1.5 px-4"
-              >
-                Sign Up
-              </button>
-            </div>
-          )}
+            user ? (
+              <div className="flex items-center gap-2">
+                <div 
+                  onClick={onOpenRiskModal}
+                  className="flex items-center gap-2 px-3 py-1.5 rounded-md bg-[#111827] border border-[#1e293b] text-xs cursor-pointer hover:border-indigo-500 transition-all"
+                  title="View Investor Risk Profile"
+                >
+                  <div className="w-5 h-5 rounded-full bg-indigo-600 flex items-center justify-center font-bold text-white text-[10px]">
+                    {user.name ? user.name[0] : 'A'}
+                  </div>
+                  <span className="font-bold text-slate-200 hidden sm:inline">{user.name || 'Alex Vance'}</span>
+                  <span className="badge badge-green text-[9px] py-0 px-1.5 hidden lg:inline">Risk: {user.riskProfile?.score || 68}</span>
+                </div>
 
+                <button
+                  onClick={onLogout}
+                  className="p-2 rounded-md bg-[#111827] border border-[#1e293b] hover:bg-rose-500/10 hover:border-rose-500/30 text-slate-400 hover:text-rose-400 transition-all"
+                  title="Log Out Session"
+                >
+                  <LogOut className="w-4 h-4" />
+                </button>
+              </div>
+            ) : (
+              <div className="flex items-center gap-2">
+                <button
+                  onClick={() => onOpenAuthModal('login')}
+                  className="btn-glass text-xs py-1.5 px-3.5"
+                >
+                  Log In
+                </button>
+                <button
+                  onClick={() => onOpenAuthModal('signup')}
+                  className="btn-primary text-xs py-1.5 px-4"
+                >
+                  Sign Up
+                </button>
+              </div>
+            )
+          )}
         </div>
 
       </div>
