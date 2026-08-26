@@ -77,26 +77,24 @@ export default function DashboardPage({ user, onOpenAddModal, onOpenRiskModal })
   return (
     <div className="space-y-8 max-w-7xl mx-auto px-4 py-8 text-center font-sans">
       
-      {/* HEADER BAR (CENTER ALIGNED) */}
-      <div className="flex flex-col items-center justify-center text-center gap-3 pb-4 border-b border-[var(--border-card)] mx-auto max-w-2xl">
-        <div className="flex flex-col items-center justify-center text-center">
-          <div className="flex items-center justify-center gap-2">
-            <span className="badge badge-green text-xs font-mono">Verified Portfolio</span>
-            <span className="text-xs text-[var(--text-muted)] font-mono">ID: {user?.id || 'clerk_user'}</span>
-          </div>
-          <h1 className="text-2xl sm:text-4xl font-extrabold text-[var(--text-main)] mt-1.5 text-center font-['Outfit']">
-            Consolidated Portfolio Tracker
-          </h1>
-          <p className="text-xs sm:text-sm text-slate-400 font-medium text-center mt-1">
-            Real-time multi-asset aggregation across stocks, mutual funds, gold & crypto
-          </p>
+      {/* HEADER BAR (STRICTLY CENTER ALIGNED) */}
+      <div className="w-full flex flex-col items-center justify-center text-center space-y-3 pb-6 border-b border-[var(--border-card)] mx-auto max-w-3xl">
+        <div className="flex items-center justify-center gap-2 mx-auto">
+          <span className="badge badge-green text-xs font-mono">Verified Portfolio</span>
+          <span className="text-xs text-[var(--text-muted)] font-mono">ID: {user?.id || 'clerk_user'}</span>
         </div>
+        <h1 className="text-3xl sm:text-5xl font-extrabold text-[var(--text-main)] text-center font-['Outfit'] tracking-tight w-full">
+          Consolidated Portfolio Tracker
+        </h1>
+        <p className="text-xs sm:text-sm text-[var(--text-muted)] font-semibold text-center w-full max-w-xl mx-auto">
+          Real-time multi-asset aggregation across stocks, mutual funds, gold & crypto
+        </p>
 
-        <div className="flex items-center justify-center gap-3 mt-1">
+        <div className="flex items-center justify-center gap-3 pt-1 mx-auto">
           {onOpenAddModal && (
             <button
               onClick={onOpenAddModal}
-              className="px-4 py-2 bg-indigo-600 hover:bg-indigo-500 text-white font-bold text-xs rounded-lg shadow-sm hover:scale-105 transition-all flex items-center justify-center gap-2 cursor-pointer border border-indigo-400/30"
+              className="px-5 py-2.5 bg-indigo-600 hover:bg-indigo-500 text-white font-bold text-xs rounded-xl shadow-md hover:scale-105 transition-all flex items-center justify-center gap-2 cursor-pointer border border-indigo-400/30"
             >
               <Plus className="w-4 h-4" />
               <span>Add Investment</span>

@@ -131,27 +131,27 @@ export default function GoalPlannerPage({ user, onOpenRiskModal }) {
   return (
     <div className="space-y-10 max-w-7xl mx-auto px-4 py-8">
       
-      {/* PAGE HEADER (CENTER ALIGNED) */}
-      <div className="flex flex-col items-center justify-center text-center max-w-2xl mx-auto space-y-3 pb-2 border-b border-white/10">
+      {/* PAGE HEADER (STRICTLY CENTER ALIGNED) */}
+      <div className="w-full flex flex-col items-center justify-center text-center max-w-3xl mx-auto space-y-3 pb-4 border-b border-[var(--border-card)]">
         <div className="inline-flex items-center justify-center gap-2 px-3.5 py-1 rounded-full bg-pink-500/10 text-pink-400 text-xs font-bold border border-pink-500/20 mx-auto">
           <Target className="w-4 h-4" /> Goal-Based Wealth Advisory
         </div>
-        <h1 className="text-3xl md:text-5xl font-extrabold text-white font-['Outfit'] tracking-tight text-center">
+        <h1 className="text-3xl md:text-5xl font-extrabold text-[var(--text-main)] font-['Outfit'] tracking-tight text-center w-full">
           Smart SIP & Goal Advisory
         </h1>
-        <p className="text-xs sm:text-sm text-slate-400 font-medium text-center">
+        <p className="text-xs sm:text-sm text-[var(--text-muted)] font-semibold text-center w-full max-w-xl mx-auto">
           Simulate compound interest growth curves, step-up SIPs, and risk-adjusted asset splits
         </p>
 
         {/* User Risk Context Badge */}
         <div 
           onClick={onOpenRiskModal}
-          className="inline-flex items-center justify-center gap-3 px-4 py-2 rounded-2xl bg-slate-900 border border-indigo-500/30 hover:border-indigo-400 cursor-pointer transition-all shrink-0 mt-2 mx-auto"
+          className="inline-flex items-center justify-center gap-3 px-4 py-2 rounded-2xl bg-[var(--bg-card-inner)] border border-indigo-500/30 hover:border-indigo-400 cursor-pointer transition-all shrink-0 mt-2 mx-auto shadow-md"
         >
           <ShieldCheck className="w-5 h-5 text-emerald-400" />
           <div className="text-xs text-center">
-            <div className="text-slate-400 font-medium">Risk Profile Context</div>
-            <div className="font-bold text-white">
+            <div className="text-[var(--text-muted)] font-mono">Risk Profile Context</div>
+            <div className="font-bold text-[var(--text-main)]">
               {user?.riskProfile?.score || 68}/100 • {user?.riskProfile?.category || 'Growth'}
             </div>
           </div>

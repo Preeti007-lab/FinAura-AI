@@ -257,7 +257,7 @@ export default function AIChatbot({ user, externalOpenState, setExternalOpenStat
       {/* 2. ENLARGED POP-UP CHAT WINDOW - Positioned fixed above FAB at bottom: 80px, left: 20px, z-index: 9999 */}
       {isOpen && (
         <div 
-          className="fixed bottom-[80px] left-[20px] z-[9999] w-[420px] max-w-[92vw] h-[560px] max-h-[82vh] bg-slate-900/98 backdrop-blur-2xl border border-slate-700/80 rounded-2xl shadow-2xl flex flex-col overflow-hidden transition-all duration-300 animate-in fade-in slide-in-from-bottom-4"
+          className="miracle-chat-window fixed bottom-[80px] left-[20px] z-[9999] w-[420px] max-w-[92vw] h-[560px] max-h-[82vh] bg-[#0f172a] text-white border border-slate-700 rounded-2xl shadow-2xl flex flex-col overflow-hidden transition-all duration-300 animate-in fade-in slide-in-from-bottom-4"
           style={{ 
             position: 'fixed', 
             bottom: '80px', 

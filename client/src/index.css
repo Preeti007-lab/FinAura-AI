@@ -62,6 +62,31 @@
   border-color: #cbd5e1 !important;
 }
 
+/* Miracle AI Chatbot Pop-up High-Contrast Overrides */
+.miracle-chat-window,
+[data-theme='light'] .miracle-chat-window {
+  background-color: #0f172a !important;
+  color: #ffffff !important;
+  border-color: #334155 !important;
+}
+
+.miracle-chat-window .text-white,
+[data-theme='light'] .miracle-chat-window .text-white {
+  color: #ffffff !important;
+}
+
+.miracle-chat-window .text-slate-200,
+[data-theme='light'] .miracle-chat-window .text-slate-200,
+.miracle-chat-window .text-slate-300,
+[data-theme='light'] .miracle-chat-window .text-slate-300 {
+  color: #cbd5e1 !important;
+}
+
+.miracle-chat-window .text-slate-400,
+[data-theme='light'] .miracle-chat-window .text-slate-400 {
+  color: #94a3b8 !important;
+}
+
 * {
   box-sizing: border-box;
   margin: 0;
