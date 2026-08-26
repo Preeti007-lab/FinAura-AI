@@ -91,17 +91,74 @@ export default function HypeAnalyzerPage({ user, onOpenRiskModal }) {
           Evaluates Finfluencer tips, social media trends & stocks against factual data and your risk profile
         </p>
 
-        {/* User Risk Context Badge */}
+        {/* User Risk Context Banner */}
         <div 
           onClick={onOpenRiskModal}
-          className="inline-flex items-center gap-3 px-4 py-2 rounded-2xl bg-slate-900 border border-indigo-500/30 hover:border-indigo-400 cursor-pointer transition-all shrink-0 mt-2"
+          className="inline-flex items-center gap-3 px-4 py-2 rounded-2xl bg-[var(--bg-card-inner)] border border-emerald-500/30 hover:border-emerald-400 cursor-pointer transition-all shrink-0 mt-2 shadow-md"
         >
           <ShieldCheck className="w-5 h-5 text-emerald-400" />
           <div className="text-xs text-left">
-            <div className="text-slate-400">Target Risk Profile</div>
-            <div className="font-bold text-white">
-              {user?.riskProfile?.category || 'Growth'} ({user?.riskProfile?.score || 68}/100)
+            <div className="text-[var(--text-muted)] font-mono">Target Risk Profile</div>
+            <div className="font-bold text-[var(--text-main)]">
+              {user?.riskProfile?.category || 'Growth / Moderate-Aggressive'} ({user?.riskProfile?.score || 68}/100)
             </div>
+          </div>
+        </div>
+      </div>
+
+      {/* RISK PROFILING ASSESSMENT CARD BANNER */}
+      <div className="terminal-card p-6 border-emerald-500/30 bg-gradient-to-r from-emerald-950/40 via-[var(--bg-card)] to-slate-900">
+        <div className="flex flex-col md:flex-row items-center justify-between gap-6">
+          
+          <div className="flex items-center gap-4">
+            <div className="w-12 h-12 rounded-2xl bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 flex items-center justify-center shrink-0">
+              <ShieldAlert className="w-6 h-6 text-emerald-400" />
+            </div>
+            <div>
+              <div className="flex items-center gap-2">
+                <h3 className="text-base font-extrabold text-[var(--text-main)] font-['Outfit']">Personalized Risk Profile Assessment</h3>
+                <span className="badge badge-green text-[10px]">Score: {user?.riskProfile?.score || 68}/100</span>
+              </div>
+              <p className="text-xs text-[var(--text-muted)] mt-0.5 max-w-lg">
+                {user?.riskProfile?.personalizedAssessment || 'Evaluated based on your financial goals, investment horizon, and risk tolerance for maximum compounding efficiency.'}
+              </p>
+            </div>
+          </div>
+
+          <div className="flex items-center gap-3 shrink-0">
+            <div className="text-right hidden sm:block">
+              <div className="text-[10px] font-mono text-[var(--text-muted)] uppercase">Max Loss Cap</div>
+              <div className="text-sm font-extrabold text-rose-400 font-mono">{user?.riskProfile?.maxDrawdown || '-22%'}</div>
+            </div>
+
+            <button
+              onClick={onOpenRiskModal}
+              className="btn-emerald text-xs py-2.5 px-4 flex items-center gap-1.5 shadow-md"
+            >
+              <ShieldCheck className="w-4 h-4" />
+              <span>Retake Risk Quiz</span>
+            </button>
+          </div>
+
+        </div>
+
+        {/* Recommended Asset Allocation Grid */}
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mt-4 pt-4 border-t border-[var(--border-card)]">
+          <div className="p-2.5 rounded-xl bg-[var(--bg-card-inner)] border border-[var(--border-card)] text-center">
+            <div className="text-[10px] text-[var(--text-muted)] uppercase font-mono font-bold">Equities Target</div>
+            <div className="text-sm font-extrabold text-emerald-400 mt-0.5">{user?.riskProfile?.recommendedAllocation?.equity || 75}%</div>
+          </div>
+          <div className="p-2.5 rounded-xl bg-[var(--bg-card-inner)] border border-[var(--border-card)] text-center">
+            <div className="text-[10px] text-[var(--text-muted)] uppercase font-mono font-bold">Debt & Bonds</div>
+            <div className="text-sm font-extrabold text-teal-400 mt-0.5">{user?.riskProfile?.recommendedAllocation?.debt || 15}%</div>
+          </div>
+          <div className="p-2.5 rounded-xl bg-[var(--bg-card-inner)] border border-[var(--border-card)] text-center">
+            <div className="text-[10px] text-[var(--text-muted)] uppercase font-mono font-bold">Gold / Shield</div>
+            <div className="text-sm font-extrabold text-amber-400 mt-0.5">{user?.riskProfile?.recommendedAllocation?.gold || 5}%</div>
+          </div>
+          <div className="p-2.5 rounded-xl bg-[var(--bg-card-inner)] border border-[var(--border-card)] text-center">
+            <div className="text-[10px] text-[var(--text-muted)] uppercase font-mono font-bold">Liquid Cash</div>
+            <div className="text-sm font-extrabold text-cyan-400 mt-0.5">{user?.riskProfile?.recommendedAllocation?.liquid || 5}%</div>
           </div>
         </div>
       </div>
