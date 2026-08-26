@@ -1,16 +1,14 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { 
-  MessageSquare, Sparkles, X, Send, Bot, User, Trash2, Maximize2, 
-  Minimize2, Copy, Check, Zap, RefreshCw, ShieldAlert, ArrowRight, Wand2
+  MessageSquare, Sparkles, X, Send, User, Trash2, Copy, Check, Zap, Wand2
 } from 'lucide-react';
 import { apiService } from '../services/api';
 
 const QUICK_PROMPTS = [
-  { icon: '📈', label: 'SIP Optimization', text: 'How do I optimize my monthly SIP strategy for 15% CAGR?' },
-  { icon: '🚨', label: 'Crypto & Hype Check', text: 'Is this 10x Telegram crypto tip safe or a pump & dump scheme?' },
-  { icon: '🎯', label: 'Goal Planning', text: 'How much monthly investment do I need to reach ₹50 Lakhs in 10 years?' },
-  { icon: '🛡️', label: 'Emergency Fund', text: 'What is the best way to calculate and store an emergency fund?' },
-  { icon: '📊', label: 'Financial Metrics', text: 'Explain P/E Ratio and how to use it when analyzing bluechip stocks.' }
+  { icon: '📈', label: 'SIP Plan', text: 'How do I optimize my monthly SIP strategy for 15% CAGR?' },
+  { icon: '🚨', label: 'Crypto Hype', text: 'Is this 10x Telegram crypto tip safe or a pump & dump scheme?' },
+  { icon: '🎯', label: 'Goal Target', text: 'How much monthly investment do I need to reach ₹50 Lakhs in 10 years?' },
+  { icon: '🛡️', label: 'Emergency Fund', text: 'What is the best way to calculate and store an emergency fund?' }
 ];
 
 export default function AIChatbot({ user, externalOpenState, setExternalOpenState }) {
@@ -20,13 +18,35 @@ export default function AIChatbot({ user, externalOpenState, setExternalOpenStat
   const [copiedIndex, setCopiedIndex] = useState(null);
   const [showBadge, setShowBadge] = useState(true);
 
-  // Sync external open triggers (e.g. Navbar click)
+  const chatbotRef = useRef(null);
+  const chatEndRef = useRef(null);
+
+  // Sync external open state (e.g., from Navbar button)
   useEffect(() => {
     if (externalOpenState !== undefined && externalOpenState !== null) {
       setIsOpen(externalOpenState);
       if (externalOpenState) setShowBadge(false);
     }
   }, [externalOpenState]);
+
+  // Outside click listener: close chat pop-up when user clicks outside chatbot container
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (chatbotRef.current && !chatbotRef.current.contains(event.target)) {
+        setIsOpen(false);
+        if (setExternalOpenState) setExternalOpenState(false);
+      }
+    };
+
+    if (isOpen) {
+      document.addEventListener('mousedown', handleClickOutside);
+      document.addEventListener('touchstart', handleClickOutside);
+    }
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener('touchstart', handleClickOutside);
+    };
+  }, [isOpen, setExternalOpenState]);
 
   const toggleOpen = (newState) => {
     const target = newState !== undefined ? newState : !isOpen;
@@ -35,7 +55,7 @@ export default function AIChatbot({ user, externalOpenState, setExternalOpenStat
     if (target) setShowBadge(false);
   };
 
-  // Encapsulated state: Persist message history in localStorage
+  // Encapsulated chat history state in localStorage
   const [messages, setMessages] = useState(() => {
     const saved = localStorage.getItem('miracle_chat_history');
     if (saved) {
@@ -45,15 +65,13 @@ export default function AIChatbot({ user, externalOpenState, setExternalOpenStat
       {
         id: 'msg_welcome',
         role: 'assistant',
-        text: `Hello ${user?.name ? user.name.split(' ')[0] : 'Investor'}! 👋\n\nI am **Miracle**, your personal AI financial co-pilot powered by anti-hype wealth intelligence.\n\nAsk me anything about **SIP strategies, portfolio health, crypto hype analysis, goal calculations, or financial metrics**!`,
+        text: `Hello ${user?.name ? user.name.split(' ')[0] : 'Investor'}! 👋\n\nI am **Miracle**, your AI financial co-pilot.\n\nAsk me about **SIP strategies, anti-hype crypto tips, goal calculations, or metrics**!`,
         timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
       }
     ];
   });
 
-  const chatEndRef = useRef(null);
-
-  // Save conversation history to component-level localStorage
+  // Save history to localStorage
   useEffect(() => {
     if (messages.length > 0) {
       localStorage.setItem('miracle_chat_history', JSON.stringify(messages.slice(-20)));
@@ -87,7 +105,6 @@ export default function AIChatbot({ user, externalOpenState, setExternalOpenStat
     setLoading(true);
 
     try {
-      // Build conversation history for API call
       const historyForApi = messages
         .filter(m => m.id !== 'msg_welcome')
         .map(m => ({ role: m.role, content: m.text }));
@@ -126,7 +143,7 @@ export default function AIChatbot({ user, externalOpenState, setExternalOpenStat
   };
 
   const handleClearChat = () => {
-    if (confirm('Clear all conversation history with Miracle?')) {
+    if (confirm('Clear Miracle chat history?')) {
       const reset = [
         {
           id: 'msg_welcome_reset',
@@ -146,7 +163,7 @@ export default function AIChatbot({ user, externalOpenState, setExternalOpenStat
     setTimeout(() => setCopiedIndex(null), 2000);
   };
 
-  // Markdown renderer helper
+  // Markdown renderer
   const formatMarkdown = (content) => {
     if (!content) return null;
 
@@ -162,7 +179,7 @@ export default function AIChatbot({ user, externalOpenState, setExternalOpenStat
       }
       if (line.startsWith('## ')) {
         return (
-          <h3 key={idx} className="text-sm font-bold text-white mt-2 mb-1">
+          <h3 key={idx} className="text-xs font-bold text-white mt-2 mb-1">
             {line.replace('## ', '')}
           </h3>
         );
@@ -200,20 +217,20 @@ export default function AIChatbot({ user, externalOpenState, setExternalOpenStat
   };
 
   return (
-    <div className="font-sans">
-      {/* 1. FLOATING ACTION BUTTON (FAB) - Pinned at bottom: 20px, left: 20px, z-index: 1000 */}
+    <div ref={chatbotRef} className="font-sans">
+      {/* 1. 50px x 50px CIRCULAR FLOATING ACTION BUTTON (FAB) - Pinned at bottom: 20px, left: 20px, z-index: 9999 */}
       <div 
-        className="fixed bottom-[20px] left-[20px] z-[1000]"
-        style={{ position: 'fixed', bottom: '20px', left: '20px', zIndex: 1000 }}
+        className="fixed bottom-[20px] left-[20px] z-[9999]"
+        style={{ position: 'fixed', bottom: '20px', left: '20px', zIndex: 9999 }}
       >
         <div className="relative group">
           {showBadge && !isOpen && (
-            <div className="absolute -top-12 left-0 bg-slate-900/95 text-slate-200 backdrop-blur-md px-3 py-1.5 rounded-xl border border-indigo-500/40 text-xs shadow-2xl flex items-center gap-2 whitespace-nowrap animate-bounce">
-              <Wand2 className="w-3.5 h-3.5 text-amber-400" />
-              <span>Ask <strong>Miracle AI</strong></span>
+            <div className="absolute -top-11 left-0 bg-slate-900/95 text-slate-200 backdrop-blur-md px-3 py-1 rounded-xl border border-indigo-500/40 text-[11px] shadow-2xl flex items-center gap-1.5 whitespace-nowrap animate-bounce">
+              <Wand2 className="w-3 h-3 text-amber-400" />
+              <span>Ask <strong>Miracle</strong></span>
               <button 
                 onClick={(e) => { e.stopPropagation(); setShowBadge(false); }}
-                className="text-slate-400 hover:text-white ml-1"
+                className="text-slate-400 hover:text-white ml-0.5"
               >
                 <X className="w-3 h-3" />
               </button>
@@ -222,60 +239,63 @@ export default function AIChatbot({ user, externalOpenState, setExternalOpenStat
 
           <button
             onClick={() => toggleOpen(!isOpen)}
-            className="w-14 h-14 rounded-full bg-gradient-to-tr from-indigo-600 via-purple-600 to-emerald-500 text-white shadow-2xl flex items-center justify-center hover:scale-105 active:scale-95 transition-all duration-300 ring-4 ring-indigo-500/30 group-hover:ring-indigo-500/60 relative overflow-hidden"
-            aria-label="Toggle Miracle AI Assistant"
-            title="Toggle Miracle AI Assistant"
+            className="w-[50px] h-[50px] rounded-full bg-gradient-to-tr from-indigo-600 via-purple-600 to-emerald-500 text-white shadow-2xl flex items-center justify-center hover:scale-105 active:scale-95 transition-all duration-300 ring-4 ring-indigo-500/30 group-hover:ring-indigo-500/60 relative overflow-hidden"
+            aria-label="Toggle Miracle AI Chat"
+            title="Toggle Miracle AI Chat"
           >
             <div className="absolute inset-0 bg-white/20 opacity-0 group-hover:opacity-100 transition-opacity" />
             {isOpen ? (
-              <X className="w-6 h-6 text-white" />
+              <X className="w-5 h-5 text-white" />
             ) : (
-              <Sparkles className="w-6 h-6 text-white animate-pulse" />
+              <MessageSquare className="w-5 h-5 text-white" />
             )}
-            <span className="absolute top-1 right-1 w-3 h-3 bg-emerald-400 rounded-full border-2 border-slate-900 animate-pulse" />
+            <span className="absolute top-1 right-1 w-2.5 h-2.5 bg-emerald-400 rounded-full border-2 border-slate-900 animate-pulse" />
           </button>
         </div>
       </div>
 
-      {/* 2. LEFT-SIDE INTERACTIVE CHAT WINDOW - Positioned fixed above FAB at bottom: 84px, left: 20px, z-index: 1000 */}
+      {/* 2. COMPACT COLLAPSIBLE POP-UP CHAT WINDOW - Positioned fixed above FAB at bottom: 80px, left: 20px, z-index: 9999 */}
       {isOpen && (
         <div 
-          className="fixed bottom-[84px] left-[20px] z-[1000] w-[400px] max-w-[90vw] h-[580px] max-h-[80vh] bg-slate-950/95 backdrop-blur-2xl border border-indigo-500/40 rounded-3xl shadow-2xl flex flex-col overflow-hidden transition-all duration-300 animate-in fade-in slide-in-from-bottom-5"
-          style={{ position: 'fixed', bottom: '84px', left: '20px', zIndex: 1000 }}
+          className="fixed bottom-[80px] left-[20px] z-[9999] w-[350px] max-w-[90vw] h-[480px] max-h-[75vh] bg-slate-900/98 backdrop-blur-2xl border border-slate-700/80 rounded-2xl shadow-2xl flex flex-col overflow-hidden transition-all duration-300 animate-in fade-in slide-in-from-bottom-4"
+          style={{ 
+            position: 'fixed', 
+            bottom: '80px', 
+            left: '20px', 
+            zIndex: 9999,
+            boxShadow: '0 20px 25px -5px rgba(0, 0, 0, 0.5), 0 8px 10px -6px rgba(0, 0, 0, 0.5)'
+          }}
         >
           {/* HEADER */}
-          <div className="bg-gradient-to-r from-slate-950 via-slate-900 to-indigo-950 px-4 py-3 border-b border-slate-800/80 flex items-center justify-between shrink-0">
-            <div className="flex items-center gap-2.5">
-              <div className="w-9 h-9 rounded-2xl bg-gradient-to-tr from-indigo-600 via-purple-600 to-emerald-400 flex items-center justify-center text-white shadow-md relative">
-                <Sparkles className="w-4.5 h-4.5 text-amber-300" />
-                <span className="absolute bottom-0 right-0 w-2 h-2 bg-emerald-400 rounded-full ring-2 ring-slate-900" />
+          <div className="bg-slate-950 px-3.5 py-2.5 border-b border-slate-800 flex items-center justify-between shrink-0">
+            <div className="flex items-center gap-2">
+              <div className="w-7 h-7 rounded-xl bg-gradient-to-tr from-indigo-600 to-emerald-400 flex items-center justify-center text-white shadow-md relative">
+                <Sparkles className="w-4 h-4 text-amber-300" />
+                <span className="absolute bottom-0 right-0 w-1.5 h-1.5 bg-emerald-400 rounded-full ring-1 ring-slate-950" />
               </div>
               <div>
                 <div className="flex items-center gap-1.5">
-                  <h3 className="font-extrabold text-white text-sm tracking-wide">Miracle AI</h3>
-                  <span className="text-[9px] font-bold bg-emerald-500/20 text-emerald-300 px-1.5 py-0.5 rounded-full border border-emerald-500/30">
+                  <h3 className="font-bold text-white text-xs tracking-wide">Miracle AI</h3>
+                  <span className="text-[8px] font-bold bg-emerald-500/20 text-emerald-300 px-1 py-0.2 rounded border border-emerald-500/30">
                     Online
                   </span>
                 </div>
-                <p className="text-[10px] text-indigo-300 flex items-center gap-1 font-medium">
-                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-                  Anti-Hype Wealth Co-Pilot
-                </p>
+                <p className="text-[10px] text-slate-400">Anti-Hype Wealth Co-Pilot</p>
               </div>
             </div>
 
-            {/* CONTROLS */}
+            {/* CONTROLS: Clear & Close Buttons */}
             <div className="flex items-center gap-1 text-slate-400">
               <button 
                 onClick={handleClearChat}
-                className="p-1.5 hover:text-rose-400 hover:bg-slate-800/80 rounded-lg transition-colors"
+                className="p-1 hover:text-rose-400 hover:bg-slate-800 rounded transition-colors"
                 title="Clear Chat History"
               >
                 <Trash2 className="w-3.5 h-3.5" />
               </button>
               <button 
                 onClick={() => toggleOpen(false)}
-                className="p-1.5 hover:text-white hover:bg-slate-800/80 rounded-lg transition-colors"
+                className="p-1 hover:text-white hover:bg-slate-800 rounded transition-colors"
                 title="Close Window"
               >
                 <X className="w-4 h-4" />
@@ -285,10 +305,10 @@ export default function AIChatbot({ user, externalOpenState, setExternalOpenStat
 
           {/* RISK CONTEXT BANNER */}
           {user?.riskProfile && (
-            <div className="bg-indigo-950/70 px-3.5 py-1.5 border-b border-indigo-800/40 flex items-center justify-between text-[10px] text-indigo-200 shrink-0">
+            <div className="bg-indigo-950/80 px-3 py-1 border-b border-indigo-800/40 flex items-center justify-between text-[10px] text-indigo-200 shrink-0">
               <span className="flex items-center gap-1">
                 <Wand2 className="w-3 h-3 text-amber-400" />
-                <span>Profile Context: <strong>{user.riskProfile.category}</strong></span>
+                <span>Context: <strong>{user.riskProfile.category}</strong></span>
               </span>
               <span className="text-[9px] text-emerald-400 font-mono">Tailored</span>
             </div>
@@ -297,7 +317,7 @@ export default function AIChatbot({ user, externalOpenState, setExternalOpenStat
           {/* TARGETED CHAT MESSAGES CONTAINER: id="chat-messages" */}
           <div 
             id="chat-messages"
-            className="flex-1 p-3.5 overflow-y-auto space-y-3 scrollbar-thin scrollbar-thumb-slate-700/60"
+            className="flex-1 p-3 overflow-y-auto space-y-2.5 scrollbar-thin scrollbar-thumb-slate-700/60"
           >
             {messages.map((msg, idx) => {
               const isUser = msg.role === 'user';
@@ -316,7 +336,7 @@ export default function AIChatbot({ user, externalOpenState, setExternalOpenStat
                     className={`max-w-[88%] rounded-2xl p-2.5 text-xs relative group shadow-md ${
                       isUser
                         ? 'bg-gradient-to-r from-indigo-600 via-purple-600 to-indigo-700 text-white rounded-br-none'
-                        : 'bg-slate-900/90 border border-slate-800/90 text-slate-100 rounded-bl-none'
+                        : 'bg-slate-800/90 border border-slate-700/70 text-slate-100 rounded-bl-none'
                     }`}
                   >
                     <div className="pr-4">
@@ -330,7 +350,7 @@ export default function AIChatbot({ user, externalOpenState, setExternalOpenStat
                     {!isUser && (
                       <button
                         onClick={() => handleCopyText(msg.text, idx)}
-                        className="absolute top-1.5 right-1.5 p-1 text-slate-400 hover:text-white opacity-0 group-hover:opacity-100 transition-opacity bg-slate-950/80 rounded"
+                        className="absolute top-1.5 right-1.5 p-0.5 text-slate-400 hover:text-white opacity-0 group-hover:opacity-100 transition-opacity bg-slate-950/80 rounded"
                         title="Copy text"
                       >
                         {copiedIndex === idx ? (
@@ -342,12 +362,12 @@ export default function AIChatbot({ user, externalOpenState, setExternalOpenStat
                     )}
 
                     <div 
-                      className={`text-[9px] mt-1 flex items-center justify-between gap-2 ${
+                      className={`text-[8px] mt-1 flex items-center justify-between gap-1.5 ${
                         isUser ? 'text-indigo-200' : 'text-slate-400'
                       }`}
                     >
                       <span>{msg.timestamp}</span>
-                      {msg.model && <span className="font-mono text-[9px] opacity-75">{msg.model}</span>}
+                      {msg.model && <span className="font-mono text-[8px] opacity-75">{msg.model}</span>}
                     </div>
                   </div>
 
@@ -366,8 +386,8 @@ export default function AIChatbot({ user, externalOpenState, setExternalOpenStat
                 <div className="w-6 h-6 rounded-lg bg-indigo-600/30 border border-indigo-500/40 flex items-center justify-center text-indigo-400 flex-shrink-0">
                   <Sparkles className="w-3.5 h-3.5 text-amber-400 animate-spin" />
                 </div>
-                <div className="bg-slate-900/90 border border-slate-800 rounded-2xl rounded-bl-none p-2.5 flex items-center gap-1.5">
-                  <span className="text-[11px] text-indigo-300 font-medium mr-1">Miracle thinking...</span>
+                <div className="bg-slate-800/90 border border-slate-700/70 rounded-2xl rounded-bl-none p-2 flex items-center gap-1.5">
+                  <span className="text-[10px] text-indigo-300 font-medium mr-1">Thinking...</span>
                   <span className="w-1.5 h-1.5 bg-indigo-400 rounded-full animate-bounce [animation-delay:-0.3s]" />
                   <span className="w-1.5 h-1.5 bg-purple-400 rounded-full animate-bounce [animation-delay:-0.15s]" />
                   <span className="w-1.5 h-1.5 bg-emerald-400 rounded-full animate-bounce" />
@@ -379,7 +399,7 @@ export default function AIChatbot({ user, externalOpenState, setExternalOpenStat
           </div>
 
           {/* QUICK PROMPTS CAROUSEL */}
-          <div className="px-2.5 py-1.5 bg-slate-950/90 border-t border-slate-800/80 overflow-x-auto whitespace-nowrap scrollbar-none flex gap-1.5 shrink-0">
+          <div className="px-2 py-1.5 bg-slate-950 border-t border-slate-800 overflow-x-auto whitespace-nowrap scrollbar-none flex gap-1 shrink-0">
             {QUICK_PROMPTS.map((prompt, pIdx) => (
               <button
                 key={pIdx}
@@ -396,15 +416,15 @@ export default function AIChatbot({ user, externalOpenState, setExternalOpenStat
           {/* INPUT FORM */}
           <form 
             onSubmit={(e) => { e.preventDefault(); handleSendMessage(); }}
-            className="p-2.5 bg-slate-950 border-t border-slate-800 flex items-center gap-2 shrink-0"
+            className="p-2 bg-slate-950 border-t border-slate-800 flex items-center gap-1.5 shrink-0"
           >
             <input
               type="text"
               value={inputMessage}
               onChange={(e) => setInputMessage(e.target.value)}
-              placeholder="Ask Miracle about SIPs, crypto, goals..."
+              placeholder="Ask Miracle about SIPs, crypto..."
               disabled={loading}
-              className="flex-1 bg-slate-900 text-white placeholder-slate-400 text-xs px-3 py-2 rounded-xl border border-slate-700/80 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-colors"
+              className="flex-1 bg-slate-900 text-white placeholder-slate-400 text-xs px-3 py-1.5 rounded-xl border border-slate-700 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-colors"
             />
 
             <button
@@ -415,11 +435,6 @@ export default function AIChatbot({ user, externalOpenState, setExternalOpenStat
               <Send className="w-3.5 h-3.5" />
             </button>
           </form>
-
-          {/* FOOTER */}
-          <div className="bg-slate-950 border-t border-slate-900 px-2 py-1 text-[9px] text-center text-slate-500 shrink-0">
-            Miracle AI Assistant • Anti-Hype Financial Intelligence
-          </div>
         </div>
       )}
     </div>

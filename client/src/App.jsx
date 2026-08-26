@@ -101,7 +101,7 @@ export default function App() {
   const [authMode, setAuthMode] = useState('login');
   const [isRiskModalOpen, setIsRiskModalOpen] = useState(false);
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
-  const [isMiracleOpen, setIsMiracleOpen] = useState(true);
+  const [isMiracleOpen, setIsMiracleOpen] = useState(false);
 
   useEffect(() => {
     async function syncRisk() {
