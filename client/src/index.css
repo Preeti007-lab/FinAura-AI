@@ -1,12 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700;800&display=swap');
 
 :root {
-  --bg-dark: #0b1120;
-  --bg-card: rgba(17, 24, 39, 0.85);
-  --bg-card-hover: rgba(26, 37, 62, 0.95);
-  --border-subtle: rgba(255, 255, 255, 0.1);
-  --border-glow: #6366f1;
-
+  --bg-canvas: #0a0f1d;
+  --bg-card: #0a0f1d;
+  --bg-card-inner: #111827;
+  --bg-card-hover: #161f32;
+  --border-card: #1e293b;
+  --border-hover: #8b5cf6;
+  
   --primary-violet: #6366f1;
   --primary-blue: #3b82f6;
   --primary-cyan: #06b6d4;
@@ -22,6 +23,20 @@
   --font-heading: 'Outfit', sans-serif;
 }
 
+/* Light Theme Variable Overrides */
+[data-theme='light'] {
+  --bg-canvas: #f8fafc;
+  --bg-card: #ffffff;
+  --bg-card-inner: #f1f5f9;
+  --bg-card-hover: #e2e8f0;
+  --border-card: #cbd5e1;
+  --border-hover: #6366f1;
+
+  --text-main: #0f172a;
+  --text-muted: #475569;
+  --text-dim: #64748b;
+}
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -32,76 +47,71 @@ html {
   scroll-behavior: smooth;
 }
 
-/* Unified Institutional Deep Midnight Slate Tone Canvas (#0A0F1D) */
+/* Unified Theme Responsive Canvas */
 body {
-  background-color: #0a0f1d !important;
-  background-image:
-    radial-gradient(ellipse at 50% 0%, rgba(99, 102, 241, 0.12) 0%, transparent 60%),
-    radial-gradient(circle at 100% 40%, rgba(6, 182, 212, 0.08) 0%, transparent 50%),
-    radial-gradient(circle at 0% 70%, rgba(139, 92, 246, 0.08) 0%, transparent 50%),
-    linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px) !important;
-  background-size: 100% 100%, 100% 100%, 100% 100%, 40px 40px, 40px 40px !important;
-  background-attachment: fixed !important;
+  background-color: var(--bg-canvas) !important;
   color: var(--text-main);
   font-family: var(--font-family);
   min-height: 100vh;
   overflow-x: hidden;
-  line-height: 1.6;
-  text-align: center;
+  line-height: 1.5;
+  transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+/* 3D Flip Card Perspective Utilities */
+.perspective-1000 {
+  perspective: 1000px;
+}
+.transform-style-3d {
+  transform-style: preserve-3d;
+}
+.backface-hidden {
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+.rotate-y-180 {
+  transform: rotateY(180deg);
 }
 
 /* Custom Scrollbar */
 ::-webkit-scrollbar {
-  width: 7px;
-  height: 7px;
+  width: 6px;
+  height: 6px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #0a0f1d;
+  background: var(--bg-canvas);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #1e293b;
+  background: var(--border-card);
   border-radius: 4px;
 }
 
-::-webkit-scrollbar-thumb:hover {
-  background: #334155;
-}
-
-/* Towering Section Boundaries with Generous Vertical Spacing */
-.section-tower {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  margin-bottom: 120px;
-}
-
-/* Aesthetic Glassmorphic Rectangular Container Cards */
+/* Aesthetic Container Cards */
 .glass-card,
 .bento-card {
-  background: #0a0f1d;
-  border: 1px solid #1e293b;
+  background: var(--bg-card);
+  border: 1px solid var(--border-card);
   border-radius: 8px;
-  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.6);
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 20px -5px rgba(0, 0, 0, 0.25);
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
   overflow: hidden;
 }
 
-/* Section 4 Symmetrical Bento Feature Module Card (1.02x scale + Electric Violet Glow) */
+/* Section Symmetrical Bento Feature Module Card (1.02x scale + Electric Violet Glow) */
 .bento-module-card {
-  background: #0a0f1d;
-  border: 1px solid #1e293b;
+  background: var(--bg-card);
+  border: 1px solid var(--border-card);
   border-radius: 8px;
-  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.25s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.25s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .bento-module-card:hover {
   transform: scale(1.02);
-  border-color: #8b5cf6 !important;
-  box-shadow: 0 0 25px rgba(139, 92, 246, 0.35);
+  border-color: var(--border-hover) !important;
+  box-shadow: 0 0 20px rgba(139, 92, 246, 0.3);
 }
 
 .glass-card:hover,

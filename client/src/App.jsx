@@ -36,6 +36,31 @@ export default function App() {
     return () => window.removeEventListener('mousemove', handleMouseMove);
   }, []);
 
+  // Theme Management: 'dark' | 'light' | 'system'
+  const [theme, setTheme] = useState(() => localStorage.getItem('finaura_theme') || 'system');
+
+  useEffect(() => {
+    localStorage.setItem('finaura_theme', theme);
+    
+    const applyTheme = () => {
+      let active = theme;
+      if (theme === 'system') {
+        active = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      }
+      document.documentElement.setAttribute('data-theme', active);
+    };
+
+    applyTheme();
+
+    const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+    const handleSystemChange = () => {
+      if (theme === 'system') applyTheme();
+    };
+
+    mediaQuery.addEventListener('change', handleSystemChange);
+    return () => mediaQuery.removeEventListener('change', handleSystemChange);
+  }, [theme]);
+
   // Sync route pathname or Clerk sign-in state
   useEffect(() => {
     const path = window.location.pathname;
@@ -123,6 +148,8 @@ export default function App() {
         activeTab={activeTab}
         setActiveTab={setActiveTab}
         user={user}
+        theme={theme}
+        setTheme={setTheme}
         onOpenRiskModal={() => setIsRiskModalOpen(true)}
         onOpenAuthModal={handleOpenAuthModal}
         onLogout={handleLogout}
