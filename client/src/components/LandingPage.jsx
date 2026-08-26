@@ -71,7 +71,7 @@ export default function LandingPage({ setActiveTab, onOpenAuthModal, onOpenRiskM
 
   const { totalInvested, finalCorpus, totalGain, pathD, areaD, lastPoint } = calculateCompounding();
 
-  // Financial Terms Flashcards Data with Short Precise Takeaways
+  // Financial Terms Flashcards Data
   const financialFlashcards = [
     {
       id: 'rule72',
@@ -177,9 +177,9 @@ export default function LandingPage({ setActiveTab, onOpenAuthModal, onOpenRiskM
       {/* ========================================================================= */}
       {/* SECTION 01 // OVERVIEW HERO VIEW                                         */}
       {/* ========================================================================= */}
-      <section className="flex flex-col items-center justify-center text-center max-w-3xl mx-auto pt-10 pb-12 mb-32">
+      <section className="flex flex-col items-center justify-center text-center max-w-3xl mx-auto pt-8 pb-10 mb-24">
         
-        {/* Section Header Tag - Uniform Pill Size */}
+        {/* Section Header Tag */}
         <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-md bg-[var(--bg-card-inner)] border border-[var(--border-card)] text-indigo-400 text-xs font-bold shadow-md mb-6 mx-auto justify-center font-mono">
           <Sparkles className="w-3.5 h-3.5 text-cyan-400 animate-pulse" />
           <span>SECTION 01 // WEALTHTECH OVERVIEW</span>
@@ -195,8 +195,8 @@ export default function LandingPage({ setActiveTab, onOpenAuthModal, onOpenRiskM
           Risk Profiling • Multi-Asset Vault • Goal SIPs • AI Social Audit
         </p>
 
-        {/* Moderate Sized Hero Visual Banner */}
-        <div className="mt-8 mb-6 w-full max-w-md h-44 sm:h-52 rounded-[10px] overflow-hidden border border-[var(--border-card)] shadow-lg mx-auto">
+        {/* SMALL COMPACT HERO IMAGE */}
+        <div className="mt-6 mb-4 w-full max-w-xs h-28 sm:h-32 rounded-[6px] overflow-hidden border border-[var(--border-card)] shadow-sm mx-auto">
           <img 
             src="/images/ticker_banner.jpg" 
             alt="Real-time Stock Market Banner" 
@@ -205,20 +205,20 @@ export default function LandingPage({ setActiveTab, onOpenAuthModal, onOpenRiskM
         </div>
 
         {/* Center CTA Buttons */}
-        <div className="mt-6 flex flex-col sm:flex-row items-center justify-center gap-3 mx-auto">
+        <div className="mt-4 flex flex-col sm:flex-row items-center justify-center gap-3 mx-auto">
           {isSignedIn ? (
             <button 
               onClick={() => setActiveTab('dashboard')}
-              className="px-8 py-3.5 bg-gradient-to-r from-indigo-600 via-blue-600 to-cyan-500 hover:from-indigo-500 hover:to-cyan-400 text-white font-bold text-sm rounded-full shadow-lg hover:scale-105 transition-all flex items-center justify-center gap-2 cursor-pointer border border-white/20"
+              className="px-6 py-2.5 bg-gradient-to-r from-indigo-600 via-blue-600 to-cyan-500 hover:from-indigo-500 hover:to-cyan-400 text-white font-bold text-xs rounded-full shadow hover:scale-105 transition-all flex items-center justify-center gap-2 cursor-pointer border border-white/20"
             >
               <span>Launch Dashboard</span>
-              <ArrowRight className="w-4 h-4" />
+              <ArrowRight className="w-3.5 h-3.5" />
             </button>
           ) : (
             <SignUpButton mode="modal">
-              <button className="px-8 py-3.5 bg-gradient-to-r from-indigo-600 via-blue-600 to-cyan-500 hover:from-indigo-500 hover:to-cyan-400 text-white font-bold text-sm rounded-full shadow-lg hover:scale-105 transition-all flex items-center justify-center gap-2 cursor-pointer border border-white/20">
+              <button className="px-6 py-2.5 bg-gradient-to-r from-indigo-600 via-blue-600 to-cyan-500 hover:from-indigo-500 hover:to-cyan-400 text-white font-bold text-xs rounded-full shadow hover:scale-105 transition-all flex items-center justify-center gap-2 cursor-pointer border border-white/20">
                 <span>Get Started Free</span>
-                <ArrowRight className="w-4 h-4" />
+                <ArrowRight className="w-3.5 h-3.5" />
               </button>
             </SignUpButton>
           )}
@@ -227,43 +227,43 @@ export default function LandingPage({ setActiveTab, onOpenAuthModal, onOpenRiskM
       </section>
 
       {/* SECTION DIVIDER */}
-      <div className="w-full border-t border-[var(--border-card)] my-8" />
+      <div className="w-full border-t border-[var(--border-card)] my-6" />
 
       {/* ========================================================================= */}
       {/* SECTION 02 // PROOF METRICS                                              */}
       {/* ========================================================================= */}
-      <section className="mb-32 text-center">
-        <div className="text-center max-w-xl mx-auto mb-8">
+      <section className="mb-24 text-center">
+        <div className="text-center max-w-xl mx-auto mb-6">
           <span className="text-xs font-mono font-bold text-indigo-400 uppercase tracking-wider px-3 py-1 rounded bg-indigo-500/10 border border-indigo-500/20 mx-auto">
             SECTION 02 // VERIFIED PROOF
           </span>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
           
-          <div className="bg-[var(--bg-card)] border border-[var(--border-card)] rounded-[10px] p-8 flex flex-col items-center justify-center text-center shadow-md hover:border-emerald-500/50 transition-all">
-            <div className="text-4xl sm:text-5xl font-extrabold text-emerald-400 tracking-tight text-center">
+          <div className="bg-[var(--bg-card)] border border-[var(--border-card)] rounded-[8px] p-6 flex flex-col items-center justify-center text-center shadow-sm hover:border-emerald-500/50 transition-all">
+            <div className="text-3xl sm:text-4xl font-extrabold text-emerald-400 tracking-tight text-center">
               $48M+
             </div>
-            <div className="text-xs font-bold text-[var(--text-muted)] uppercase tracking-wider mt-2 text-center">
+            <div className="text-xs font-bold text-[var(--text-muted)] uppercase tracking-wider mt-1.5 text-center">
               Assets Verified
             </div>
           </div>
 
-          <div className="bg-[var(--bg-card)] border border-[var(--border-card)] rounded-[10px] p-8 flex flex-col items-center justify-center text-center shadow-md hover:border-indigo-500/50 transition-all">
-            <div className="text-4xl sm:text-5xl font-extrabold text-indigo-400 tracking-tight text-center">
+          <div className="bg-[var(--bg-card)] border border-[var(--border-card)] rounded-[8px] p-6 flex flex-col items-center justify-center text-center shadow-sm hover:border-indigo-500/50 transition-all">
+            <div className="text-3xl sm:text-4xl font-extrabold text-indigo-400 tracking-tight text-center">
               14,200+
             </div>
-            <div className="text-xs font-bold text-[var(--text-muted)] uppercase tracking-wider mt-2 text-center">
+            <div className="text-xs font-bold text-[var(--text-muted)] uppercase tracking-wider mt-1.5 text-center">
               Portfolios Protected
             </div>
           </div>
 
-          <div className="bg-[var(--bg-card)] border border-[var(--border-card)] rounded-[10px] p-8 flex flex-col items-center justify-center text-center shadow-md hover:border-cyan-400/50 transition-all">
-            <div className="text-4xl sm:text-5xl font-extrabold text-cyan-400 tracking-tight text-center">
+          <div className="bg-[var(--bg-card)] border border-[var(--border-card)] rounded-[8px] p-6 flex flex-col items-center justify-center text-center shadow-sm hover:border-cyan-400/50 transition-all">
+            <div className="text-3xl sm:text-4xl font-extrabold text-cyan-400 tracking-tight text-center">
               98.4%
             </div>
-            <div className="text-xs font-bold text-[var(--text-muted)] uppercase tracking-wider mt-2 text-center">
+            <div className="text-xs font-bold text-[var(--text-muted)] uppercase tracking-wider mt-1.5 text-center">
               Filtering Accuracy
             </div>
           </div>
@@ -272,58 +272,58 @@ export default function LandingPage({ setActiveTab, onOpenAuthModal, onOpenRiskM
       </section>
 
       {/* SECTION DIVIDER */}
-      <div className="w-full border-t border-[var(--border-card)] my-8" />
+      <div className="w-full border-t border-[var(--border-card)] my-6" />
 
       {/* ========================================================================= */}
       {/* SECTION 03 // RISK PROFILING ENGINE                                       */}
       {/* ========================================================================= */}
-      <section className="mb-32 space-y-8 text-center">
+      <section className="mb-24 space-y-6 text-center">
         
-        <div className="text-center max-w-xl mx-auto space-y-2">
+        <div className="text-center max-w-xl mx-auto space-y-1.5">
           <span className="text-xs font-mono font-bold text-indigo-400 uppercase tracking-wider px-3 py-1 rounded bg-indigo-500/10 border border-indigo-500/20 mx-auto">
             SECTION 03 // RISK PROFILING
           </span>
-          <h2 className="text-2xl sm:text-4xl font-extrabold text-[var(--text-main)] text-center">
+          <h2 className="text-2xl sm:text-3xl font-extrabold text-[var(--text-main)] text-center">
             Institutional Risk Banding
           </h2>
           <p className="text-xs sm:text-sm text-[var(--text-muted)] font-semibold text-center">
-            SEBI/SEC Risk Scoring • Max Loss Limits • Equity Asset Target
+            SEBI/SEC Risk Scoring • Max Loss Limits • Equity Target
           </p>
         </div>
 
-        {/* Moderate Sized Card */}
-        <div className="bg-[var(--bg-card)] border border-[var(--border-card)] rounded-[10px] p-6 sm:p-8 shadow-lg text-center max-w-4xl mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center justify-center">
+        {/* Card */}
+        <div className="bg-[var(--bg-card)] border border-[var(--border-card)] rounded-[8px] p-5 sm:p-6 shadow-md text-center max-w-3xl mx-auto">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center justify-center">
             
-            {/* Moderate Sized Photo Container */}
-            <div className="lg:col-span-6 relative w-full max-w-md h-44 sm:h-52 rounded-[8px] overflow-hidden border border-[var(--border-card)] shadow-md mx-auto">
+            {/* SMALL COMPACT IMAGE */}
+            <div className="lg:col-span-5 relative w-full max-w-xs h-28 sm:h-32 rounded-[6px] overflow-hidden border border-[var(--border-card)] shadow-sm mx-auto">
               <img 
                 src="/images/risk_journey.jpg" 
                 alt="Institutional Risk Profile Gauge" 
                 className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
               />
-              <div className="absolute bottom-2 left-2 bg-[#0a0f1d]/90 px-2.5 py-1 rounded border border-indigo-500/40 text-indigo-300 text-[11px] font-mono font-bold">
-                Score: 68/100 (Growth)
+              <div className="absolute bottom-1.5 left-1.5 bg-[#0a0f1d]/90 px-2 py-0.5 rounded border border-indigo-500/40 text-indigo-300 text-[10px] font-mono font-bold">
+                Score: 68/100
               </div>
             </div>
 
             {/* Content & Action */}
-            <div className="lg:col-span-6 space-y-4 text-center flex flex-col items-center justify-center mx-auto">
-              <div className="w-10 h-10 rounded-lg bg-indigo-500/10 border border-indigo-500/30 flex items-center justify-center mx-auto">
-                <ShieldCheck className="w-5 h-5 text-indigo-400" />
+            <div className="lg:col-span-7 space-y-3 text-center flex flex-col items-center justify-center mx-auto">
+              <div className="w-8 h-8 rounded-lg bg-indigo-500/10 border border-indigo-500/30 flex items-center justify-center mx-auto">
+                <ShieldCheck className="w-4 h-4 text-indigo-400" />
               </div>
 
-              <h3 className="text-xl font-bold text-[var(--text-main)] text-center">
+              <h3 className="text-lg font-bold text-[var(--text-main)] text-center">
                 Quantified Risk Limits
               </h3>
 
               <div className="w-full grid grid-cols-2 gap-2 text-xs font-bold text-[var(--text-main)] text-center">
-                <div className="p-2.5 rounded bg-[var(--bg-card-inner)] border border-[var(--border-card)] text-center">
-                  <div className="text-[10px] text-[var(--text-muted)] uppercase text-center">Drawdown Limit</div>
+                <div className="p-2 rounded bg-[var(--bg-card-inner)] border border-[var(--border-card)] text-center">
+                  <div className="text-[9px] text-[var(--text-muted)] uppercase text-center">Drawdown Limit</div>
                   <div className="text-rose-400 text-xs mt-0.5 font-bold text-center">-15% Cap</div>
                 </div>
-                <div className="p-2.5 rounded bg-[var(--bg-card-inner)] border border-[var(--border-card)] text-center">
-                  <div className="text-[10px] text-[var(--text-muted)] uppercase text-center">Equity Mix</div>
+                <div className="p-2 rounded bg-[var(--bg-card-inner)] border border-[var(--border-card)] text-center">
+                  <div className="text-[9px] text-[var(--text-muted)] uppercase text-center">Equity Mix</div>
                   <div className="text-emerald-400 text-xs mt-0.5 font-bold text-center">70% Target</div>
                 </div>
               </div>
@@ -331,7 +331,7 @@ export default function LandingPage({ setActiveTab, onOpenAuthModal, onOpenRiskM
               {onOpenRiskModal && (
                 <button
                   onClick={onOpenRiskModal}
-                  className="px-6 py-2.5 bg-indigo-600 hover:bg-indigo-500 text-white font-bold text-xs rounded-lg shadow hover:scale-105 transition-all flex items-center justify-center gap-1.5 cursor-pointer border border-indigo-400/30 mx-auto"
+                  className="px-5 py-2 bg-indigo-600 hover:bg-indigo-500 text-white font-bold text-xs rounded-lg shadow hover:scale-105 transition-all flex items-center justify-center gap-1.5 cursor-pointer border border-indigo-400/30 mx-auto"
                 >
                   <span>2-Min Risk Quiz</span>
                   <ArrowRight className="w-3.5 h-3.5" />
@@ -345,18 +345,18 @@ export default function LandingPage({ setActiveTab, onOpenAuthModal, onOpenRiskM
       </section>
 
       {/* SECTION DIVIDER */}
-      <div className="w-full border-t border-[var(--border-card)] my-8" />
+      <div className="w-full border-t border-[var(--border-card)] my-6" />
 
       {/* ========================================================================= */}
       {/* SECTION 04 // AI TAX OPTIMIZER & WEALTH ADVISOR                          */}
       {/* ========================================================================= */}
-      <section className="mb-32 space-y-8 text-center">
+      <section className="mb-24 space-y-6 text-center">
         
-        <div className="text-center max-w-xl mx-auto space-y-2">
+        <div className="text-center max-w-xl mx-auto space-y-1.5">
           <span className="text-xs font-mono font-bold text-amber-400 uppercase tracking-wider px-3 py-1 rounded bg-amber-500/10 border border-amber-500/20 mx-auto">
             SECTION 04 // AI TAX OPTIMIZER
           </span>
-          <h2 className="text-2xl sm:text-4xl font-extrabold text-[var(--text-main)] text-center">
+          <h2 className="text-2xl sm:text-3xl font-extrabold text-[var(--text-main)] text-center">
             Smart Tax Deductions
           </h2>
           <p className="text-xs sm:text-sm text-[var(--text-muted)] font-semibold text-center">
@@ -364,53 +364,53 @@ export default function LandingPage({ setActiveTab, onOpenAuthModal, onOpenRiskM
           </p>
         </div>
 
-        {/* Moderate Sized Card */}
-        <div className="bg-[var(--bg-card)] border border-[var(--border-card)] rounded-[10px] p-6 sm:p-8 shadow-lg text-center max-w-4xl mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center justify-center">
+        {/* Card */}
+        <div className="bg-[var(--bg-card)] border border-[var(--border-card)] rounded-[8px] p-5 sm:p-6 shadow-md text-center max-w-3xl mx-auto">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center justify-center">
             
             {/* Content & Action */}
-            <div className="lg:col-span-6 space-y-4 text-center flex flex-col items-center justify-center order-2 lg:order-1 mx-auto">
-              <div className="w-10 h-10 rounded-lg bg-amber-500/10 border border-amber-500/30 flex items-center justify-center mx-auto">
-                <FileText className="w-5 h-5 text-amber-400" />
+            <div className="lg:col-span-7 space-y-3 text-center flex flex-col items-center justify-center order-2 lg:order-1 mx-auto">
+              <div className="w-8 h-8 rounded-lg bg-amber-500/10 border border-amber-500/30 flex items-center justify-center mx-auto">
+                <FileText className="w-4 h-4 text-amber-400" />
               </div>
 
-              <h3 className="text-xl font-bold text-[var(--text-main)] text-center">
+              <h3 className="text-lg font-bold text-[var(--text-main)] text-center">
                 Tax Liability Reduction
               </h3>
 
-              <div className="w-full grid grid-cols-3 gap-2 text-xs font-bold text-[var(--text-main)] text-center">
-                <div className="p-2 rounded bg-[var(--bg-card-inner)] border border-[var(--border-card)] text-center">
-                  <div className="text-[9px] text-slate-400 uppercase text-center">80C ELSS</div>
-                  <div className="text-emerald-400 text-xs mt-0.5 font-bold text-center">₹1.5L</div>
+              <div className="w-full grid grid-cols-3 gap-1.5 text-xs font-bold text-[var(--text-main)] text-center">
+                <div className="p-1.5 rounded bg-[var(--bg-card-inner)] border border-[var(--border-card)] text-center">
+                  <div className="text-[8px] text-slate-400 uppercase text-center">80C ELSS</div>
+                  <div className="text-emerald-400 text-[11px] mt-0.5 font-bold text-center">₹1.5L</div>
                 </div>
-                <div className="p-2 rounded bg-[var(--bg-card-inner)] border border-[var(--border-card)] text-center">
-                  <div className="text-[9px] text-slate-400 uppercase text-center">80D Health</div>
-                  <div className="text-cyan-400 text-xs mt-0.5 font-bold text-center">₹75k</div>
+                <div className="p-1.5 rounded bg-[var(--bg-card-inner)] border border-[var(--border-card)] text-center">
+                  <div className="text-[8px] text-slate-400 uppercase text-center">80D Health</div>
+                  <div className="text-cyan-400 text-[11px] mt-0.5 font-bold text-center">₹75k</div>
                 </div>
-                <div className="p-2 rounded bg-[var(--bg-card-inner)] border border-[var(--border-card)] text-center">
-                  <div className="text-[9px] text-slate-400 uppercase text-center">Saved</div>
-                  <div className="text-amber-400 text-xs mt-0.5 font-bold text-center">₹1.12L</div>
+                <div className="p-1.5 rounded bg-[var(--bg-card-inner)] border border-[var(--border-card)] text-center">
+                  <div className="text-[8px] text-slate-400 uppercase text-center">Saved</div>
+                  <div className="text-amber-400 text-[11px] mt-0.5 font-bold text-center">₹1.12L</div>
                 </div>
               </div>
 
               <button
                 onClick={() => setActiveTab('analyzer')}
-                className="px-6 py-2.5 bg-amber-600 hover:bg-amber-500 text-white font-bold text-xs rounded-lg shadow hover:scale-105 transition-all flex items-center justify-center gap-1.5 cursor-pointer border border-amber-400/30 mx-auto"
+                className="px-5 py-2 bg-amber-600 hover:bg-amber-500 text-white font-bold text-xs rounded-lg shadow hover:scale-105 transition-all flex items-center justify-center gap-1.5 cursor-pointer border border-amber-400/30 mx-auto"
               >
                 <span>Run AI Tax Scan</span>
                 <ArrowRight className="w-3.5 h-3.5" />
               </button>
             </div>
 
-            {/* Moderate Sized Photo Container */}
-            <div className="lg:col-span-6 relative w-full max-w-md h-44 sm:h-52 rounded-[8px] overflow-hidden border border-[var(--border-card)] shadow-md order-1 lg:order-2 mx-auto">
+            {/* SMALL COMPACT IMAGE */}
+            <div className="lg:col-span-5 relative w-full max-w-xs h-28 sm:h-32 rounded-[6px] overflow-hidden border border-[var(--border-card)] shadow-sm order-1 lg:order-2 mx-auto">
               <img 
                 src="/images/tax_advisor.jpg" 
                 alt="AI Tax Optimizer Dashboard" 
                 className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
               />
-              <div className="absolute bottom-2 right-2 bg-[#0a0f1d]/90 px-2.5 py-1 rounded border border-amber-500/40 text-amber-300 text-[11px] font-mono font-bold">
-                Tax Savings: 28.5%
+              <div className="absolute bottom-1.5 right-1.5 bg-[#0a0f1d]/90 px-2 py-0.5 rounded border border-amber-500/40 text-amber-300 text-[10px] font-mono font-bold">
+                Savings: 28.5%
               </div>
             </div>
 
@@ -420,18 +420,18 @@ export default function LandingPage({ setActiveTab, onOpenAuthModal, onOpenRiskM
       </section>
 
       {/* SECTION DIVIDER */}
-      <div className="w-full border-t border-[var(--border-card)] my-8" />
+      <div className="w-full border-t border-[var(--border-card)] my-6" />
 
       {/* ========================================================================= */}
       {/* SECTION 05 // PORTFOLIO CONSOLIDATION VAULT                              */}
       {/* ========================================================================= */}
-      <section className="mb-32 space-y-8 text-center">
+      <section className="mb-24 space-y-6 text-center">
         
-        <div className="text-center max-w-xl mx-auto space-y-2">
+        <div className="text-center max-w-xl mx-auto space-y-1.5">
           <span className="text-xs font-mono font-bold text-emerald-400 uppercase tracking-wider px-3 py-1 rounded bg-emerald-500/10 border border-emerald-500/20 mx-auto">
             SECTION 05 // MULTI-ASSET VAULT
           </span>
-          <h2 className="text-2xl sm:text-4xl font-extrabold text-[var(--text-main)] text-center">
+          <h2 className="text-2xl sm:text-3xl font-extrabold text-[var(--text-main)] text-center">
             Portfolio Consolidation
           </h2>
           <p className="text-xs sm:text-sm text-[var(--text-muted)] font-semibold text-center">
@@ -439,50 +439,50 @@ export default function LandingPage({ setActiveTab, onOpenAuthModal, onOpenRiskM
           </p>
         </div>
 
-        {/* Moderate Sized Card */}
-        <div className="bg-[var(--bg-card)] border border-[var(--border-card)] rounded-[10px] p-6 sm:p-8 shadow-lg text-center max-w-4xl mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center justify-center">
+        {/* Card */}
+        <div className="bg-[var(--bg-card)] border border-[var(--border-card)] rounded-[8px] p-5 sm:p-6 shadow-md text-center max-w-3xl mx-auto">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center justify-center">
             
-            {/* Moderate Sized Photo Container */}
-            <div className="lg:col-span-6 relative w-full max-w-md h-44 sm:h-52 rounded-[8px] overflow-hidden border border-[var(--border-card)] shadow-md mx-auto">
+            {/* SMALL COMPACT IMAGE */}
+            <div className="lg:col-span-5 relative w-full max-w-xs h-28 sm:h-32 rounded-[6px] overflow-hidden border border-[var(--border-card)] shadow-sm mx-auto">
               <img 
                 src="/images/portfolio_journey.jpg" 
                 alt="Portfolio Vault Dashboard" 
                 className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
               />
-              <div className="absolute bottom-2 left-2 bg-[#0a0f1d]/90 px-2.5 py-1 rounded border border-emerald-500/40 text-emerald-300 text-[11px] font-mono font-bold">
-                Net Worth: $18.7M (+14.3%)
+              <div className="absolute bottom-1.5 left-1.5 bg-[#0a0f1d]/90 px-2 py-0.5 rounded border border-emerald-500/40 text-emerald-300 text-[10px] font-mono font-bold">
+                Worth: $18.7M
               </div>
             </div>
 
             {/* Content & Action */}
-            <div className="lg:col-span-6 space-y-4 text-center flex flex-col items-center justify-center mx-auto">
-              <div className="w-10 h-10 rounded-lg bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center mx-auto">
-                <PieChart className="w-5 h-5 text-emerald-400" />
+            <div className="lg:col-span-7 space-y-3 text-center flex flex-col items-center justify-center mx-auto">
+              <div className="w-8 h-8 rounded-lg bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center mx-auto">
+                <PieChart className="w-4 h-4 text-emerald-400" />
               </div>
 
-              <h3 className="text-xl font-bold text-[var(--text-main)] text-center">
+              <h3 className="text-lg font-bold text-[var(--text-main)] text-center">
                 Single-Pane Net Worth Vault
               </h3>
 
-              <div className="w-full grid grid-cols-3 gap-2 text-xs font-bold text-[var(--text-main)] text-center">
-                <div className="p-2 rounded bg-[var(--bg-card-inner)] border border-[var(--border-card)] text-center">
-                  <div className="text-[9px] text-slate-400 uppercase text-center">Stocks</div>
-                  <div className="text-indigo-400 text-xs mt-0.5 font-bold text-center">45%</div>
+              <div className="w-full grid grid-cols-3 gap-1.5 text-xs font-bold text-[var(--text-main)] text-center">
+                <div className="p-1.5 rounded bg-[var(--bg-card-inner)] border border-[var(--border-card)] text-center">
+                  <div className="text-[8px] text-slate-400 uppercase text-center">Stocks</div>
+                  <div className="text-indigo-400 text-[11px] mt-0.5 font-bold text-center">45%</div>
                 </div>
-                <div className="p-2 rounded bg-[var(--bg-card-inner)] border border-[var(--border-card)] text-center">
-                  <div className="text-[9px] text-slate-400 uppercase text-center">MFs</div>
-                  <div className="text-emerald-400 text-xs mt-0.5 font-bold text-center">30%</div>
+                <div className="p-1.5 rounded bg-[var(--bg-card-inner)] border border-[var(--border-card)] text-center">
+                  <div className="text-[8px] text-slate-400 uppercase text-center">MFs</div>
+                  <div className="text-emerald-400 text-[11px] mt-0.5 font-bold text-center">30%</div>
                 </div>
-                <div className="p-2 rounded bg-[var(--bg-card-inner)] border border-[var(--border-card)] text-center">
-                  <div className="text-[9px] text-slate-400 uppercase text-center">Gold/Debt</div>
-                  <div className="text-amber-400 text-xs mt-0.5 font-bold text-center">25%</div>
+                <div className="p-1.5 rounded bg-[var(--bg-card-inner)] border border-[var(--border-card)] text-center">
+                  <div className="text-[8px] text-slate-400 uppercase text-center">Gold/Debt</div>
+                  <div className="text-amber-400 text-[11px] mt-0.5 font-bold text-center">25%</div>
                 </div>
               </div>
 
               <button
                 onClick={() => setActiveTab('dashboard')}
-                className="px-6 py-2.5 bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs rounded-lg shadow hover:scale-105 transition-all flex items-center justify-center gap-1.5 cursor-pointer border border-emerald-400/30 mx-auto"
+                className="px-5 py-2 bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs rounded-lg shadow hover:scale-105 transition-all flex items-center justify-center gap-1.5 cursor-pointer border border-emerald-400/30 mx-auto"
               >
                 <span>Launch Asset Vault</span>
                 <ArrowRight className="w-3.5 h-3.5" />
@@ -495,18 +495,18 @@ export default function LandingPage({ setActiveTab, onOpenAuthModal, onOpenRiskM
       </section>
 
       {/* SECTION DIVIDER */}
-      <div className="w-full border-t border-[var(--border-card)] my-8" />
+      <div className="w-full border-t border-[var(--border-card)] my-6" />
 
       {/* ========================================================================= */}
       {/* SECTION 06 // GOAL-BASED SIP PLANNING ENGINE                             */}
       {/* ========================================================================= */}
-      <section className="mb-32 space-y-8 text-center">
+      <section className="mb-24 space-y-6 text-center">
         
-        <div className="text-center max-w-xl mx-auto space-y-2">
+        <div className="text-center max-w-xl mx-auto space-y-1.5">
           <span className="text-xs font-mono font-bold text-cyan-400 uppercase tracking-wider px-3 py-1 rounded bg-cyan-500/10 border border-cyan-500/20 mx-auto">
             SECTION 06 // GOAL ROADMAP
           </span>
-          <h2 className="text-2xl sm:text-4xl font-extrabold text-[var(--text-main)] text-center">
+          <h2 className="text-2xl sm:text-3xl font-extrabold text-[var(--text-main)] text-center">
             Goal-Based SIP Engine
           </h2>
           <p className="text-xs sm:text-sm text-[var(--text-muted)] font-semibold text-center">
@@ -514,49 +514,49 @@ export default function LandingPage({ setActiveTab, onOpenAuthModal, onOpenRiskM
           </p>
         </div>
 
-        {/* Moderate Sized Card */}
-        <div className="bg-[var(--bg-card)] border border-[var(--border-card)] rounded-[10px] p-6 sm:p-8 shadow-lg text-center max-w-4xl mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center justify-center">
+        {/* Card */}
+        <div className="bg-[var(--bg-card)] border border-[var(--border-card)] rounded-[8px] p-5 sm:p-6 shadow-md text-center max-w-3xl mx-auto">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center justify-center">
             
             {/* Content & Action */}
-            <div className="lg:col-span-6 space-y-4 text-center flex flex-col items-center justify-center order-2 lg:order-1 mx-auto">
-              <div className="w-10 h-10 rounded-lg bg-cyan-500/10 border border-cyan-500/30 flex items-center justify-center mx-auto">
-                <Target className="w-5 h-5 text-cyan-400" />
+            <div className="lg:col-span-7 space-y-3 text-center flex flex-col items-center justify-center order-2 lg:order-1 mx-auto">
+              <div className="w-8 h-8 rounded-lg bg-cyan-500/10 border border-cyan-500/30 flex items-center justify-center mx-auto">
+                <Target className="w-4 h-4 text-cyan-400" />
               </div>
 
-              <h3 className="text-xl font-bold text-[var(--text-main)] text-center">
+              <h3 className="text-lg font-bold text-[var(--text-main)] text-center">
                 Inflation-Adjusted SIPs
               </h3>
 
               <div className="w-full grid grid-cols-2 gap-2 text-xs font-bold text-[var(--text-main)] text-center">
-                <div className="p-2.5 rounded bg-[var(--bg-card-inner)] border border-[var(--border-card)] text-center">
-                  <div className="text-[9px] text-[var(--text-muted)] uppercase text-center">Retirement SIP</div>
+                <div className="p-2 rounded bg-[var(--bg-card-inner)] border border-[var(--border-card)] text-center">
+                  <div className="text-[8px] text-[var(--text-muted)] uppercase text-center">Retirement SIP</div>
                   <div className="text-cyan-400 text-xs mt-0.5 font-bold text-center">₹45k/mo</div>
                 </div>
-                <div className="p-2.5 rounded bg-[var(--bg-card-inner)] border border-[var(--border-card)] text-center">
-                  <div className="text-[9px] text-[var(--text-muted)] uppercase text-center">Home Downpayment</div>
+                <div className="p-2 rounded bg-[var(--bg-card-inner)] border border-[var(--border-card)] text-center">
+                  <div className="text-[8px] text-[var(--text-muted)] uppercase text-center">Home Downpayment</div>
                   <div className="text-amber-400 text-xs mt-0.5 font-bold text-center">₹25k/mo</div>
                 </div>
               </div>
 
               <button
                 onClick={() => setActiveTab('goals')}
-                className="px-6 py-2.5 bg-cyan-600 hover:bg-cyan-500 text-white font-bold text-xs rounded-lg shadow hover:scale-105 transition-all flex items-center justify-center gap-1.5 cursor-pointer border border-cyan-400/30 mx-auto"
+                className="px-5 py-2 bg-cyan-600 hover:bg-cyan-500 text-white font-bold text-xs rounded-lg shadow hover:scale-105 transition-all flex items-center justify-center gap-1.5 cursor-pointer border border-cyan-400/30 mx-auto"
               >
                 <span>Plan Goal Roadmap</span>
                 <ArrowRight className="w-3.5 h-3.5" />
               </button>
             </div>
 
-            {/* Moderate Sized Photo Container */}
-            <div className="lg:col-span-6 relative w-full max-w-md h-44 sm:h-52 rounded-[8px] overflow-hidden border border-[var(--border-card)] shadow-md order-1 lg:order-2 mx-auto">
+            {/* SMALL COMPACT IMAGE */}
+            <div className="lg:col-span-5 relative w-full max-w-xs h-28 sm:h-32 rounded-[6px] overflow-hidden border border-[var(--border-card)] shadow-sm order-1 lg:order-2 mx-auto">
               <img 
                 src="/images/goal_journey.jpg" 
                 alt="Goal Planning Roadmap" 
                 className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
               />
-              <div className="absolute bottom-2 right-2 bg-[#0a0f1d]/90 px-2.5 py-1 rounded border border-cyan-500/40 text-cyan-300 text-[11px] font-mono font-bold">
-                Retirement: $2.85M
+              <div className="absolute bottom-1.5 right-1.5 bg-[#0a0f1d]/90 px-2 py-0.5 rounded border border-cyan-500/40 text-cyan-300 text-[10px] font-mono font-bold">
+                Goal: $2.85M
               </div>
             </div>
 
@@ -566,18 +566,18 @@ export default function LandingPage({ setActiveTab, onOpenAuthModal, onOpenRiskM
       </section>
 
       {/* SECTION DIVIDER */}
-      <div className="w-full border-t border-[var(--border-card)] my-8" />
+      <div className="w-full border-t border-[var(--border-card)] my-6" />
 
       {/* ========================================================================= */}
       {/* SECTION 07 // COLOUR-MARKED 3D FINANCIAL TERM FLASHCARDS DECK             */}
       {/* ========================================================================= */}
-      <section className="mb-32 space-y-8 text-center">
+      <section className="mb-24 space-y-6 text-center">
         
-        <div className="text-center max-w-xl mx-auto space-y-2">
+        <div className="text-center max-w-xl mx-auto space-y-1.5">
           <span className="text-xs font-mono font-bold text-violet-400 uppercase tracking-wider px-3 py-1 rounded bg-violet-500/10 border border-violet-500/20 mx-auto">
             SECTION 07 // INTERACTIVE FLASHCARDS
           </span>
-          <h2 className="text-2xl sm:text-4xl font-extrabold text-[var(--text-main)] text-center">
+          <h2 className="text-2xl sm:text-3xl font-extrabold text-[var(--text-main)] text-center">
             Core Wealth Flashcards
           </h2>
           <p className="text-xs sm:text-sm text-[var(--text-muted)] font-semibold text-center">
@@ -586,12 +586,12 @@ export default function LandingPage({ setActiveTab, onOpenAuthModal, onOpenRiskM
         </div>
 
         {/* 3D Flip Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
           {financialFlashcards.map((fc) => (
             <div 
               key={fc.id}
               onClick={() => toggleFlip(fc.id)}
-              className="perspective-1000 h-[280px] w-full cursor-pointer group"
+              className="perspective-1000 h-[260px] w-full cursor-pointer group"
             >
               <div 
                 className={`relative w-full h-full duration-500 transform-style-3d transition-transform ${
@@ -600,7 +600,7 @@ export default function LandingPage({ setActiveTab, onOpenAuthModal, onOpenRiskM
               >
                 
                 {/* FRONT SIDE */}
-                <div className={`absolute inset-0 w-full h-full backface-hidden rounded-[10px] p-6 flex flex-col justify-between text-center items-center bg-[var(--bg-card)] ${fc.colorClass}`}>
+                <div className={`absolute inset-0 w-full h-full backface-hidden rounded-[8px] p-5 flex flex-col justify-between text-center items-center bg-[var(--bg-card)] ${fc.colorClass}`}>
                   <div className="flex items-center justify-between w-full">
                     <span className="text-[10px] font-bold uppercase tracking-wider text-indigo-400 px-2 py-0.5 rounded bg-indigo-500/10 border border-indigo-500/20">
                       {fc.category}
@@ -610,14 +610,14 @@ export default function LandingPage({ setActiveTab, onOpenAuthModal, onOpenRiskM
                     </span>
                   </div>
 
-                  <div className="my-auto space-y-2 text-center">
-                    <h3 className="text-xl font-bold text-[var(--text-main)] text-center">
+                  <div className="my-auto space-y-1.5 text-center">
+                    <h3 className="text-lg font-bold text-[var(--text-main)] text-center">
                       {fc.term}
                     </h3>
                     <p className="text-xs text-[var(--text-muted)] font-semibold leading-relaxed text-center">
                       {fc.question}
                     </p>
-                    <div className="p-2 rounded bg-[var(--bg-card-inner)] border border-[var(--border-card)] text-[11px] font-mono text-cyan-300 font-semibold text-center">
+                    <div className="p-1.5 rounded bg-[var(--bg-card-inner)] border border-[var(--border-card)] text-[10px] font-mono text-cyan-300 font-semibold text-center">
                       {fc.formula}
                     </div>
                   </div>
@@ -629,17 +629,17 @@ export default function LandingPage({ setActiveTab, onOpenAuthModal, onOpenRiskM
                 </div>
 
                 {/* BACK SIDE */}
-                <div className={`absolute inset-0 w-full h-full backface-hidden rotate-y-180 rounded-[10px] p-6 flex flex-col justify-between text-center items-center bg-[var(--bg-card-inner)] ${fc.colorClass}`}>
-                  <div className="flex items-center justify-between w-full border-b border-[var(--border-card)] pb-1.5">
-                    <span className="text-[11px] font-bold text-emerald-400">
+                <div className={`absolute inset-0 w-full h-full backface-hidden rotate-y-180 rounded-[8px] p-5 flex flex-col justify-between text-center items-center bg-[var(--bg-card-inner)] ${fc.colorClass}`}>
+                  <div className="flex items-center justify-between w-full border-b border-[var(--border-card)] pb-1">
+                    <span className="text-[10px] font-bold text-emerald-400">
                       Calculation
                     </span>
-                    <span className="text-[10px] text-[var(--text-muted)]">Verified</span>
+                    <span className="text-[9px] text-[var(--text-muted)]">Verified</span>
                   </div>
 
-                  <div className="my-auto space-y-2 text-xs text-[var(--text-main)] leading-relaxed font-semibold text-center">
+                  <div className="my-auto space-y-1.5 text-xs text-[var(--text-main)] leading-relaxed font-semibold text-center">
                     <p className="whitespace-pre-line text-center">{fc.answer}</p>
-                    <div className="p-2 rounded bg-emerald-500/10 border border-emerald-500/20 text-[11px] text-emerald-300 font-bold text-center">
+                    <div className="p-1.5 rounded bg-emerald-500/10 border border-emerald-500/20 text-[10px] text-emerald-300 font-bold text-center">
                       {fc.calculativeInsight}
                     </div>
                   </div>
@@ -658,18 +658,18 @@ export default function LandingPage({ setActiveTab, onOpenAuthModal, onOpenRiskM
       </section>
 
       {/* SECTION DIVIDER */}
-      <div className="w-full border-t border-[var(--border-card)] my-8" />
+      <div className="w-full border-t border-[var(--border-card)] my-6" />
 
       {/* ========================================================================= */}
       {/* SECTION 08 // WEALTH BUILDING PRINCIPLES                                  */}
       {/* ========================================================================= */}
-      <section className="mb-32 space-y-8 text-center">
+      <section className="mb-24 space-y-6 text-center">
         
-        <div className="text-center max-w-xl mx-auto space-y-2">
+        <div className="text-center max-w-xl mx-auto space-y-1.5">
           <span className="text-xs font-mono font-bold text-amber-400 uppercase tracking-wider px-3 py-1 rounded bg-amber-500/10 border border-amber-500/20 mx-auto">
             SECTION 08 // WEALTH PRINCIPLES
           </span>
-          <h2 className="text-2xl sm:text-4xl font-extrabold text-[var(--text-main)] text-center">
+          <h2 className="text-2xl sm:text-3xl font-extrabold text-[var(--text-main)] text-center">
             Investing, Saving & Budgeting
           </h2>
           <p className="text-xs sm:text-sm text-[var(--text-muted)] font-semibold text-center">
@@ -677,24 +677,24 @@ export default function LandingPage({ setActiveTab, onOpenAuthModal, onOpenRiskM
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
           
           {/* Card 1: Investing */}
-          <div className="bento-module-card p-6 text-center space-y-4 flex flex-col justify-between items-center rounded-[10px]">
-            <div className="space-y-3 w-full text-center flex flex-col items-center">
+          <div className="bento-module-card p-5 text-center space-y-3 flex flex-col justify-between items-center rounded-[8px]">
+            <div className="space-y-2.5 w-full text-center flex flex-col items-center">
               <div className="flex items-center justify-between w-full">
-                <span className="badge badge-green text-[10px]">Investing</span>
-                <TrendingUp className="w-4 h-4 text-indigo-400" />
+                <span className="badge badge-green text-[9px]">Investing</span>
+                <TrendingUp className="w-3.5 h-3.5 text-indigo-400" />
               </div>
 
               <div className="text-center">
-                <h3 className="text-lg font-bold text-[var(--text-main)] text-center">
+                <h3 className="text-base font-bold text-[var(--text-main)] text-center">
                   Asset Mix & CAGR
                 </h3>
               </div>
 
-              {/* Moderate Sized Photo (16:9 Aspect Ratio) */}
-              <div className="relative w-full h-36 rounded-[6px] overflow-hidden border border-[var(--border-card)] mx-auto">
+              {/* SMALL COMPACT IMAGE */}
+              <div className="relative w-full h-24 rounded-[6px] overflow-hidden border border-[var(--border-card)] mx-auto">
                 <img 
                   src="/images/wealth_compounding.jpg" 
                   alt="Wealth Compounding Chart" 
@@ -702,29 +702,29 @@ export default function LandingPage({ setActiveTab, onOpenAuthModal, onOpenRiskM
                 />
               </div>
 
-              <ul className="space-y-1.5 text-xs text-[var(--text-muted)] font-semibold text-center w-full">
-                <li>• <strong>Rule of 72:</strong> Double in 72 ÷ CAGR yrs</li>
-                <li>• <strong>Sharpe Ratio:</strong> Risk-adjusted alpha</li>
+              <ul className="space-y-1 text-xs text-[var(--text-muted)] font-semibold text-center w-full">
+                <li>• <strong>Rule of 72:</strong> 72 ÷ CAGR yrs</li>
+                <li>• <strong>Sharpe:</strong> Excess alpha</li>
               </ul>
             </div>
           </div>
 
           {/* Card 2: Saving */}
-          <div className="bento-module-card p-6 text-center space-y-4 flex flex-col justify-between items-center rounded-[10px]">
-            <div className="space-y-3 w-full text-center flex flex-col items-center">
+          <div className="bento-module-card p-5 text-center space-y-3 flex flex-col justify-between items-center rounded-[8px]">
+            <div className="space-y-2.5 w-full text-center flex flex-col items-center">
               <div className="flex items-center justify-between w-full">
-                <span className="badge badge-blue text-[10px]">Saving</span>
-                <ShieldCheck className="w-4 h-4 text-emerald-400" />
+                <span className="badge badge-blue text-[9px]">Saving</span>
+                <ShieldCheck className="w-3.5 h-3.5 text-emerald-400" />
               </div>
 
               <div className="text-center">
-                <h3 className="text-lg font-bold text-[var(--text-main)] text-center">
+                <h3 className="text-base font-bold text-[var(--text-main)] text-center">
                   Asset Vault
                 </h3>
               </div>
 
-              {/* Moderate Sized Photo (16:9 Aspect Ratio) */}
-              <div className="relative w-full h-36 rounded-[6px] overflow-hidden border border-[var(--border-card)] mx-auto">
+              {/* SMALL COMPACT IMAGE */}
+              <div className="relative w-full h-24 rounded-[6px] overflow-hidden border border-[var(--border-card)] mx-auto">
                 <img 
                   src="/images/asset_vault.jpg" 
                   alt="Asset Vault Breakdown" 
@@ -732,29 +732,29 @@ export default function LandingPage({ setActiveTab, onOpenAuthModal, onOpenRiskM
                 />
               </div>
 
-              <ul className="space-y-1.5 text-xs text-[var(--text-muted)] font-semibold text-center w-full">
-                <li>• <strong>Emergency:</strong> 6x Fixed Needs</li>
-                <li>• <strong>Real Yield:</strong> Rate - 6% CPI</li>
+              <ul className="space-y-1 text-xs text-[var(--text-muted)] font-semibold text-center w-full">
+                <li>• <strong>Emergency:</strong> 6x Needs</li>
+                <li>• <strong>Yield:</strong> Rate - 6% CPI</li>
               </ul>
             </div>
           </div>
 
           {/* Card 3: Anti-Hype AI Audit */}
-          <div className="bento-module-card p-6 text-center space-y-4 flex flex-col justify-between items-center rounded-[10px]">
-            <div className="space-y-3 w-full text-center flex flex-col items-center">
+          <div className="bento-module-card p-5 text-center space-y-3 flex flex-col justify-between items-center rounded-[8px]">
+            <div className="space-y-2.5 w-full text-center flex flex-col items-center">
               <div className="flex items-center justify-between w-full">
-                <span className="badge badge-amber text-[10px]">AI Audit</span>
-                <BrainCircuit className="w-4 h-4 text-cyan-400" />
+                <span className="badge badge-amber text-[9px]">AI Audit</span>
+                <BrainCircuit className="w-3.5 h-3.5 text-cyan-400" />
               </div>
 
               <div className="text-center">
-                <h3 className="text-lg font-bold text-[var(--text-main)] text-center">
+                <h3 className="text-base font-bold text-[var(--text-main)] text-center">
                   AI Stock Audit
                 </h3>
               </div>
 
-              {/* Moderate Sized Photo (16:9 Aspect Ratio) */}
-              <div className="relative w-full h-36 rounded-[6px] overflow-hidden border border-[var(--border-card)] mx-auto">
+              {/* SMALL COMPACT IMAGE */}
+              <div className="relative w-full h-24 rounded-[6px] overflow-hidden border border-[var(--border-card)] mx-auto">
                 <img 
                   src="/images/ai_radar.jpg" 
                   alt="AI Stock Audit Shield" 
@@ -762,9 +762,9 @@ export default function LandingPage({ setActiveTab, onOpenAuthModal, onOpenRiskM
                 />
               </div>
 
-              <ul className="space-y-1.5 text-xs text-[var(--text-muted)] font-semibold text-center w-full">
-                <li>• <strong>50/30/20:</strong> Needs, Wants, SIPs</li>
-                <li>• <strong>Debt Cap:</strong> &lt; 30% Net Pay</li>
+              <ul className="space-y-1 text-xs text-[var(--text-muted)] font-semibold text-center w-full">
+                <li>• <strong>50/30/20:</strong> Needs/Wants/SIPs</li>
+                <li>• <strong>Cap:</strong> &lt; 30% Net Pay</li>
               </ul>
             </div>
           </div>
@@ -774,36 +774,36 @@ export default function LandingPage({ setActiveTab, onOpenAuthModal, onOpenRiskM
       </section>
 
       {/* SECTION DIVIDER */}
-      <div className="w-full border-t border-[var(--border-card)] my-8" />
+      <div className="w-full border-t border-[var(--border-card)] my-6" />
 
       {/* ========================================================================= */}
       {/* SECTION 09 // DYNAMIC COMPOUNDING ENGINE                                  */}
       {/* ========================================================================= */}
-      <section className="mb-32 text-center">
-        <div className="text-center max-w-xl mx-auto mb-8">
+      <section className="mb-24 text-center">
+        <div className="text-center max-w-xl mx-auto mb-6">
           <span className="text-xs font-mono font-bold text-cyan-400 uppercase tracking-wider px-3 py-1 rounded bg-cyan-500/10 border border-cyan-500/20 mx-auto">
             SECTION 09 // COMPOUNDING ENGINE
           </span>
         </div>
 
-        <div className="bg-[var(--bg-card)] border border-[var(--border-card)] rounded-[10px] p-6 sm:p-10 shadow-lg text-center">
+        <div className="bg-[var(--bg-card)] border border-[var(--border-card)] rounded-[8px] p-5 sm:p-8 shadow-md text-center">
           
-          <div className="flex items-center gap-2 mb-8 justify-center text-center">
-            <Sliders className="w-5 h-5 text-emerald-400" />
-            <h2 className="text-2xl sm:text-3xl font-extrabold text-[var(--text-main)] text-center">
+          <div className="flex items-center gap-2 mb-6 justify-center text-center">
+            <Sliders className="w-4.5 h-4.5 text-emerald-400" />
+            <h2 className="text-xl sm:text-2xl font-extrabold text-[var(--text-main)] text-center">
               Compounding Simulator
             </h2>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center justify-center">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center justify-center">
             
             {/* Slider Controls */}
-            <div className="lg:col-span-5 space-y-5 bg-[var(--bg-card-inner)] p-6 rounded-[8px] border border-[var(--border-card)] text-center">
+            <div className="lg:col-span-5 space-y-4 bg-[var(--bg-card-inner)] p-5 rounded-[6px] border border-[var(--border-card)] text-center">
               
-              <div className="space-y-1.5 text-center">
+              <div className="space-y-1 text-center">
                 <div className="flex justify-between items-center text-xs font-bold">
                   <span className="text-[var(--text-muted)] uppercase tracking-wider">Monthly SIP</span>
-                  <span className="text-emerald-400 font-mono text-sm">₹{sipAmount.toLocaleString()}/mo</span>
+                  <span className="text-emerald-400 font-mono text-xs font-bold">₹{sipAmount.toLocaleString()}/mo</span>
                 </div>
                 <input
                   type="range"
@@ -816,10 +816,10 @@ export default function LandingPage({ setActiveTab, onOpenAuthModal, onOpenRiskM
                 />
               </div>
 
-              <div className="space-y-1.5 text-center">
+              <div className="space-y-1 text-center">
                 <div className="flex justify-between items-center text-xs font-bold">
                   <span className="text-[var(--text-muted)] uppercase tracking-wider">Horizon</span>
-                  <span className="text-cyan-400 font-mono text-sm">{horizonYears} Years</span>
+                  <span className="text-cyan-400 font-mono text-xs font-bold">{horizonYears} Years</span>
                 </div>
                 <input
                   type="range"
@@ -832,10 +832,10 @@ export default function LandingPage({ setActiveTab, onOpenAuthModal, onOpenRiskM
                 />
               </div>
 
-              <div className="space-y-1.5 text-center">
+              <div className="space-y-1 text-center">
                 <div className="flex justify-between items-center text-xs font-bold">
                   <span className="text-[var(--text-muted)] uppercase tracking-wider">Expected CAGR</span>
-                  <span className="text-amber-400 font-mono text-sm">{cagrRate}% P.A.</span>
+                  <span className="text-amber-400 font-mono text-xs font-bold">{cagrRate}% P.A.</span>
                 </div>
                 <input
                   type="range"
@@ -848,14 +848,14 @@ export default function LandingPage({ setActiveTab, onOpenAuthModal, onOpenRiskM
                 />
               </div>
 
-              <div className="p-4 rounded-[6px] bg-emerald-500/10 border border-emerald-500/30 flex justify-between items-center text-center">
+              <div className="p-3 rounded bg-emerald-500/10 border border-emerald-500/30 flex justify-between items-center text-center">
                 <div className="text-center">
-                  <div className="text-[10px] font-bold text-[var(--text-muted)] uppercase tracking-wider">Projected Corpus</div>
-                  <div className="text-xl font-extrabold text-emerald-400 font-mono mt-0.5">
+                  <div className="text-[9px] font-bold text-[var(--text-muted)] uppercase tracking-wider">Projected Corpus</div>
+                  <div className="text-lg font-extrabold text-emerald-400 font-mono mt-0.5">
                     ₹{(finalCorpus / 100000).toFixed(2)} Lakhs
                   </div>
                 </div>
-                <div className="text-right text-xs text-[var(--text-muted)] space-y-0.5">
+                <div className="text-right text-[11px] text-[var(--text-muted)] space-y-0.5">
                   <div>Invested: ₹{(totalInvested / 100000).toFixed(1)}L</div>
                   <div className="text-emerald-400 font-bold">Gain: ₹{(totalGain / 100000).toFixed(1)}L</div>
                 </div>
@@ -864,13 +864,13 @@ export default function LandingPage({ setActiveTab, onOpenAuthModal, onOpenRiskM
             </div>
 
             {/* Dynamic Real-Time Bending SVG Chart */}
-            <div className="lg:col-span-7 space-y-3 text-center">
-              <div className="flex justify-between items-center text-xs font-bold text-[var(--text-muted)] uppercase">
+            <div className="lg:col-span-7 space-y-2.5 text-center">
+              <div className="flex justify-between items-center text-[11px] font-bold text-[var(--text-muted)] uppercase">
                 <span>GROWTH CURVE ({horizonYears} YRS)</span>
                 <span className="text-emerald-400 font-mono">{cagrRate}% CAGR</span>
               </div>
 
-              <div className="relative w-full h-72 bg-[var(--bg-card-inner)] p-4 rounded-[8px] border border-[var(--border-card)] flex items-center justify-center overflow-hidden">
+              <div className="relative w-full h-60 bg-[var(--bg-card-inner)] p-3 rounded-[6px] border border-[var(--border-card)] flex items-center justify-center overflow-hidden">
                 <svg className="w-full h-full" viewBox="0 0 500 220" preserveAspectRatio="none">
                   <defs>
                     <linearGradient id="curveLineGrad" x1="0" y1="0" x2="1" y2="0">
@@ -908,7 +908,7 @@ export default function LandingPage({ setActiveTab, onOpenAuthModal, onOpenRiskM
                   )}
                 </svg>
 
-                <div className="absolute top-3 right-3 bg-[var(--bg-card)] px-3 py-1 rounded border border-emerald-500/30 text-emerald-400 font-mono text-xs font-bold">
+                <div className="absolute top-2.5 right-2.5 bg-[var(--bg-card)] px-2.5 py-0.5 rounded border border-emerald-500/30 text-emerald-400 font-mono text-[11px] font-bold">
                   ₹{(finalCorpus / 100000).toFixed(2)} Lakhs
                 </div>
               </div>
@@ -920,41 +920,41 @@ export default function LandingPage({ setActiveTab, onOpenAuthModal, onOpenRiskM
       </section>
 
       {/* SECTION DIVIDER */}
-      <div className="w-full border-t border-[var(--border-card)] my-8" />
+      <div className="w-full border-t border-[var(--border-card)] my-6" />
 
       {/* ========================================================================= */}
       {/* SECTION 10 // PLATFORM CAPABILITIES                                      */}
       {/* ========================================================================= */}
-      <section className="mb-32 text-center">
-        <div className="text-center max-w-xl mx-auto mb-8">
+      <section className="mb-24 text-center">
+        <div className="text-center max-w-xl mx-auto mb-6">
           <span className="text-xs font-mono font-bold text-indigo-400 uppercase tracking-wider px-3 py-1 rounded bg-indigo-500/10 border border-indigo-500/20 mx-auto">
             SECTION 10 // PLATFORM CAPABILITIES
           </span>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
           
           <div 
             onClick={() => setActiveTab('analyzer')}
-            className="bento-module-card p-6 flex flex-col justify-between text-center items-center cursor-pointer group min-h-[300px] rounded-[10px]"
+            className="bento-module-card p-5 flex flex-col justify-between text-center items-center cursor-pointer group min-h-[260px] rounded-[8px]"
           >
-            <div className="space-y-3 w-full flex flex-col items-center text-center">
-              <div className="w-9 h-9 rounded-[6px] bg-indigo-500/10 border border-indigo-500/30 flex items-center justify-center mx-auto">
-                <BrainCircuit className="w-4.5 h-4.5 text-indigo-400" />
+            <div className="space-y-2.5 w-full flex flex-col items-center text-center">
+              <div className="w-8 h-8 rounded-[6px] bg-indigo-500/10 border border-indigo-500/30 flex items-center justify-center mx-auto">
+                <BrainCircuit className="w-4 h-4 text-indigo-400" />
               </div>
               
-              <h3 className="text-lg font-bold text-[var(--text-main)] text-center">
+              <h3 className="text-base font-bold text-[var(--text-main)] text-center">
                 Anti-Hype AI Detection
               </h3>
 
-              <ul className="space-y-1.5 text-xs text-[var(--text-muted)] font-semibold text-center w-full">
-                <li>• Real-time Groq LLM social audit</li>
+              <ul className="space-y-1 text-xs text-[var(--text-muted)] font-semibold text-center w-full">
+                <li>• Real-time Groq social audit</li>
                 <li>• Automated SEBI/SEC risk scoring</li>
                 <li>• Instant pump & dump detection</li>
               </ul>
             </div>
 
-            <div className="pt-4 flex items-center justify-center gap-1.5 text-xs font-bold text-indigo-400 group-hover:translate-x-1 transition-transform">
+            <div className="pt-3 flex items-center justify-center gap-1.5 text-xs font-bold text-indigo-400 group-hover:translate-x-1 transition-transform">
               <span>Explore AI Engine</span>
               <ArrowRight className="w-3.5 h-3.5" />
             </div>
@@ -962,25 +962,25 @@ export default function LandingPage({ setActiveTab, onOpenAuthModal, onOpenRiskM
 
           <div 
             onClick={() => setActiveTab('dashboard')}
-            className="bento-module-card p-6 flex flex-col justify-between text-center items-center cursor-pointer group min-h-[300px] rounded-[10px]"
+            className="bento-module-card p-5 flex flex-col justify-between text-center items-center cursor-pointer group min-h-[260px] rounded-[8px]"
           >
-            <div className="space-y-3 w-full flex flex-col items-center text-center">
-              <div className="w-9 h-9 rounded-[6px] bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center mx-auto">
-                <Layers className="w-4.5 h-4.5 text-emerald-400" />
+            <div className="space-y-2.5 w-full flex flex-col items-center text-center">
+              <div className="w-8 h-8 rounded-[6px] bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center mx-auto">
+                <Layers className="w-4 h-4 text-emerald-400" />
               </div>
 
-              <h3 className="text-lg font-bold text-[var(--text-main)] text-center">
+              <h3 className="text-base font-bold text-[var(--text-main)] text-center">
                 Consolidated Asset Vault
               </h3>
 
-              <ul className="space-y-1.5 text-xs text-[var(--text-muted)] font-semibold text-center w-full">
+              <ul className="space-y-1 text-xs text-[var(--text-muted)] font-semibold text-center w-full">
                 <li>• Single-pane multi-asset vault</li>
                 <li>• Unified net worth tracking</li>
                 <li>• Real-time portfolio rebalancing</li>
               </ul>
             </div>
 
-            <div className="pt-4 flex items-center justify-center gap-1.5 text-xs font-bold text-emerald-400 group-hover:translate-x-1 transition-transform">
+            <div className="pt-3 flex items-center justify-center gap-1.5 text-xs font-bold text-emerald-400 group-hover:translate-x-1 transition-transform">
               <span>Launch Asset Vault</span>
               <ArrowRight className="w-3.5 h-3.5" />
             </div>
@@ -988,25 +988,25 @@ export default function LandingPage({ setActiveTab, onOpenAuthModal, onOpenRiskM
 
           <div 
             onClick={() => setActiveTab('goals')}
-            className="bento-module-card p-6 flex flex-col justify-between text-center items-center cursor-pointer group min-h-[300px] rounded-[10px]"
+            className="bento-module-card p-5 flex flex-col justify-between text-center items-center cursor-pointer group min-h-[260px] rounded-[8px]"
           >
-            <div className="space-y-3 w-full flex flex-col items-center text-center">
-              <div className="w-9 h-9 rounded-[6px] bg-cyan-500/10 border border-cyan-500/30 flex items-center justify-center mx-auto">
-                <Target className="w-4.5 h-4.5 text-cyan-400" />
+            <div className="space-y-2.5 w-full flex flex-col items-center text-center">
+              <div className="w-8 h-8 rounded-[6px] bg-cyan-500/10 border border-cyan-500/30 flex items-center justify-center mx-auto">
+                <Target className="w-4 h-4 text-cyan-400" />
               </div>
 
-              <h3 className="text-lg font-bold text-[var(--text-main)] text-center">
+              <h3 className="text-base font-bold text-[var(--text-main)] text-center">
                 Automated Goal Engine
               </h3>
 
-              <ul className="space-y-1.5 text-xs text-[var(--text-muted)] font-semibold text-center w-full">
+              <ul className="space-y-1 text-xs text-[var(--text-muted)] font-semibold text-center w-full">
                 <li>• Inflation-adjusted target goals</li>
                 <li>• Dynamic SIP compounding curve</li>
                 <li>• Automated wealth accumulation</li>
               </ul>
             </div>
 
-            <div className="pt-4 flex items-center justify-center gap-1.5 text-xs font-bold text-cyan-400 group-hover:translate-x-1 transition-transform">
+            <div className="pt-3 flex items-center justify-center gap-1.5 text-xs font-bold text-cyan-400 group-hover:translate-x-1 transition-transform">
               <span>Plan Goal SIPs</span>
               <ArrowRight className="w-3.5 h-3.5" />
             </div>
@@ -1016,16 +1016,16 @@ export default function LandingPage({ setActiveTab, onOpenAuthModal, onOpenRiskM
       </section>
 
       {/* FOOTER BADGES */}
-      <footer className="pb-16 pt-8 border-t border-[var(--border-card)] flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-semibold text-[var(--text-muted)] text-center">
-        <div className="flex items-center justify-center gap-2 mx-auto sm:mx-0">
+      <footer className="pb-12 pt-6 border-t border-[var(--border-card)] flex flex-col sm:flex-row items-center justify-between gap-3 text-xs font-semibold text-[var(--text-muted)] text-center">
+        <div className="flex items-center justify-center gap-1.5 mx-auto sm:mx-0">
           <Lock className="w-3.5 h-3.5 text-emerald-400" />
           <span>256-Bit Institutional Grade Encryption</span>
         </div>
-        <div className="flex items-center justify-center gap-2 mx-auto sm:mx-0">
+        <div className="flex items-center justify-center gap-1.5 mx-auto sm:mx-0">
           <ShieldCheck className="w-3.5 h-3.5 text-indigo-400" />
           <span>SEC/SEBI Institutional Framework</span>
         </div>
-        <div className="flex items-center justify-center gap-2 mx-auto sm:mx-0">
+        <div className="flex items-center justify-center gap-1.5 mx-auto sm:mx-0">
           <Cpu className="w-3.5 h-3.5 text-cyan-400" />
           <span>Real-Time Groq AI Engine</span>
         </div>
