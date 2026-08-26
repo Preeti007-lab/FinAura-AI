@@ -13,13 +13,25 @@ const QUICK_PROMPTS = [
   { icon: '📊', label: 'Financial Metrics', text: 'Explain P/E Ratio and how to use it when analyzing bluechip stocks.' }
 ];
 
-export default function AIChatbot({ user }) {
+export default function AIChatbot({ user, externalOpenState, setExternalOpenState }) {
   const [isOpen, setIsOpen] = useState(false);
   const [isExpanded, setIsExpanded] = useState(false);
   const [inputMessage, setInputMessage] = useState('');
   const [loading, setLoading] = useState(false);
   const [copiedIndex, setCopiedIndex] = useState(null);
   const [showBadge, setShowBadge] = useState(true);
+
+  useEffect(() => {
+    if (externalOpenState) {
+      setIsOpen(true);
+      setShowBadge(false);
+    }
+  }, [externalOpenState]);
+
+  const handleCloseChat = () => {
+    setIsOpen(false);
+    if (setExternalOpenState) setExternalOpenState(false);
+  };
 
   // Default welcome message for Miracle AI
   const [messages, setMessages] = useState(() => {
@@ -187,7 +199,7 @@ export default function AIChatbot({ user }) {
   };
 
   return (
-    <div className="fixed bottom-6 left-6 z-50 font-sans">
+    <div className="fixed bottom-6 left-6 z-[99999] font-sans">
 
       {/* FLOATING LAUNCHER BUTTON - ALWAYS FLOATS ON THE LEFT AS YOU SCROLL */}
       {!isOpen && (
@@ -222,8 +234,8 @@ export default function AIChatbot({ user }) {
         <div 
           className={`bg-slate-900/95 backdrop-blur-2xl border border-indigo-500/40 rounded-3xl shadow-2xl flex flex-col transition-all duration-300 overflow-hidden ${
             isExpanded 
-              ? 'fixed inset-4 sm:inset-6 z-50 w-auto h-auto' 
-              : 'w-[92vw] sm:w-[420px] lg:w-[450px] h-[600px] max-h-[85vh] fixed bottom-4 sm:bottom-6 left-4 sm:left-6 z-50'
+              ? 'fixed inset-4 sm:inset-6 z-[99999] w-auto h-auto' 
+              : 'w-[92vw] sm:w-[420px] lg:w-[450px] h-[600px] max-h-[85vh] fixed bottom-4 sm:bottom-6 left-4 sm:left-6 z-[99999]'
           }`}
         >
           {/* MIRACLE CHAT HEADER */}

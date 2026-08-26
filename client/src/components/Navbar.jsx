@@ -2,7 +2,7 @@ import React from 'react';
 import { Sparkles, BrainCircuit, LayoutDashboard, Target, Home, Sun, Moon, Laptop } from 'lucide-react';
 import { SignedIn, SignedOut, SignInButton, SignUpButton, UserButton, useUser } from '@clerk/clerk-react';
 
-export default function Navbar({ activeTab, setActiveTab, user, theme, setTheme, onOpenRiskModal }) {
+export default function Navbar({ activeTab, setActiveTab, user, theme, setTheme, onOpenRiskModal, onOpenMiracle }) {
   let clerkUser = null;
   try {
     const clerk = useUser();
@@ -84,6 +84,17 @@ export default function Navbar({ activeTab, setActiveTab, user, theme, setTheme,
           >
             <Target className="w-3.5 h-3.5 text-amber-400" />
             Goal SIPs
+          </button>
+
+          <button
+            onClick={() => {
+              if (onOpenMiracle) onOpenMiracle();
+            }}
+            className="flex items-center gap-1.5 px-3 py-1.5 rounded-md text-xs font-extrabold text-amber-300 bg-gradient-to-r from-indigo-900/80 to-purple-900/80 border border-purple-500/40 hover:border-amber-400/60 shadow-md hover:scale-105 transition-all"
+          >
+            <Sparkles className="w-3.5 h-3.5 text-amber-400 animate-pulse" />
+            <span>Miracle AI</span>
+            <span className="text-[9px] bg-emerald-500/20 text-emerald-300 px-1 py-0.2 rounded font-mono uppercase">New</span>
           </button>
         </nav>
 

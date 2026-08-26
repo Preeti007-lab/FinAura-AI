@@ -96,11 +96,12 @@ export default function App() {
     }
   }, [clerkIsSignedIn, clerkUserObj]);
 
-  // Modal Controls
+  // Modal & Widget Controls
   const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
   const [authMode, setAuthMode] = useState('login');
   const [isRiskModalOpen, setIsRiskModalOpen] = useState(false);
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
+  const [isMiracleOpen, setIsMiracleOpen] = useState(false);
 
   useEffect(() => {
     async function syncRisk() {
@@ -134,7 +135,7 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col justify-between selection:bg-indigo-500 selection:text-white relative overflow-hidden">
+    <div className="min-h-screen flex flex-col justify-between selection:bg-indigo-500 selection:text-white relative overflow-x-hidden">
       
       {/* INTERACTIVE MOUSE-TRACKING AMBIENT GLOW LAYER */}
       <div 
@@ -153,6 +154,7 @@ export default function App() {
         setTheme={setTheme}
         onOpenRiskModal={() => setIsRiskModalOpen(true)}
         onOpenAuthModal={handleOpenAuthModal}
+        onOpenMiracle={() => setIsMiracleOpen(true)}
         onLogout={handleLogout}
       />
 
@@ -214,8 +216,12 @@ export default function App() {
         onItemAdded={() => {}}
       />
 
-      {/* Global AI Floating Chatbot Widget */}
-      <AIChatbot user={user} />
+      {/* Global AI Floating Chatbot Widget (Miracle AI) */}
+      <AIChatbot 
+        user={user} 
+        externalOpenState={isMiracleOpen}
+        setExternalOpenState={setIsMiracleOpen}
+      />
 
     </div>
   );
