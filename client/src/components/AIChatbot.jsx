@@ -267,7 +267,7 @@ export default function AIChatbot({ user, externalOpenState, setExternalOpenStat
           }}
         >
           {/* HEADER (ALWAYS BRIGHT WHITE & EMERALD IN BOTH THEMES) */}
-          <div className="bg-[#090e17] px-4 py-3 border-b border-slate-800 flex items-center justify-between shrink-0">
+          <div className="chatbot-header bg-[#090e17] px-4 py-3 border-b border-slate-800 flex items-center justify-between shrink-0">
             <div className="flex items-center gap-2.5">
               <div className="w-8 h-8 rounded-xl bg-gradient-to-tr from-indigo-600 to-emerald-400 flex items-center justify-center text-white shadow-md relative">
                 <Sparkles className="w-4 h-4 text-amber-300" />
@@ -275,12 +275,12 @@ export default function AIChatbot({ user, externalOpenState, setExternalOpenStat
               </div>
               <div>
                 <div className="flex items-center gap-1.5">
-                  <h3 className="font-extrabold text-white text-sm tracking-wide" style={{ color: '#ffffff' }}>Miracle AI</h3>
+                  <h3 className="chatbot-title font-extrabold text-white text-sm tracking-wide" style={{ color: '#ffffff !important' }}>Miracle AI</h3>
                   <span className="text-[9px] font-extrabold bg-emerald-500/20 text-emerald-300 px-1.5 py-0.5 rounded border border-emerald-500/30">
                     Online
                   </span>
                 </div>
-                <p className="text-[11px] text-slate-300 font-medium" style={{ color: '#cbd5e1' }}>Anti-Hype Wealth Co-Pilot</p>
+                <p className="chatbot-subtitle text-[11px] text-slate-300 font-medium" style={{ color: '#cbd5e1 !important' }}>Anti-Hype Wealth Co-Pilot</p>
               </div>
             </div>
 

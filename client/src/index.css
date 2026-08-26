@@ -49,10 +49,7 @@
 }
 
 [data-theme='light'] .bg-\[\#162032\],
-[data-theme='light'] .bg-\[\#0f172a\],
-[data-theme='light'] .bg-\[\#0d1321\],
-[data-theme='light'] .bg-slate-900,
-[data-theme='light'] .bg-slate-950 {
+[data-theme='light'] .bg-\[\#0d1321\] {
   background-color: #ffffff !important;
   color: #0f172a !important;
   border-color: #cbd5e1 !important;
@@ -64,10 +61,31 @@
 
 /* Miracle AI Chatbot Pop-up High-Contrast Overrides */
 .miracle-chat-window,
-[data-theme='light'] .miracle-chat-window {
+[data-theme='light'] .miracle-chat-window,
+div.miracle-chat-window {
   background-color: #0f172a !important;
   color: #ffffff !important;
   border-color: #334155 !important;
+}
+
+.chatbot-header,
+[data-theme='light'] .chatbot-header {
+  background-color: #090e17 !important;
+  border-bottom: 1px solid #1e293b !important;
+}
+
+.chatbot-title,
+[data-theme='light'] .chatbot-title,
+.miracle-chat-window h3,
+[data-theme='light'] .miracle-chat-window h3 {
+  color: #ffffff !important;
+  font-weight: 800 !important;
+}
+
+.chatbot-subtitle,
+[data-theme='light'] .chatbot-subtitle,
+.miracle-chat-window p.chatbot-subtitle {
+  color: #cbd5e1 !important;
 }
 
 .miracle-chat-window .text-white,
