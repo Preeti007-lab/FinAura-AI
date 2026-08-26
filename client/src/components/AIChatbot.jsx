@@ -254,10 +254,10 @@ export default function AIChatbot({ user, externalOpenState, setExternalOpenStat
         </div>
       </div>
 
-      {/* 2. COMPACT COLLAPSIBLE POP-UP CHAT WINDOW - Positioned fixed above FAB at bottom: 80px, left: 20px, z-index: 9999 */}
+      {/* 2. ENLARGED POP-UP CHAT WINDOW - Positioned fixed above FAB at bottom: 80px, left: 20px, z-index: 9999 */}
       {isOpen && (
         <div 
-          className="fixed bottom-[80px] left-[20px] z-[9999] w-[350px] max-w-[90vw] h-[480px] max-h-[75vh] bg-slate-900/98 backdrop-blur-2xl border border-slate-700/80 rounded-2xl shadow-2xl flex flex-col overflow-hidden transition-all duration-300 animate-in fade-in slide-in-from-bottom-4"
+          className="fixed bottom-[80px] left-[20px] z-[9999] w-[420px] max-w-[92vw] h-[560px] max-h-[82vh] bg-slate-900/98 backdrop-blur-2xl border border-slate-700/80 rounded-2xl shadow-2xl flex flex-col overflow-hidden transition-all duration-300 animate-in fade-in slide-in-from-bottom-4"
           style={{ 
             position: 'fixed', 
             bottom: '80px', 
@@ -267,35 +267,35 @@ export default function AIChatbot({ user, externalOpenState, setExternalOpenStat
           }}
         >
           {/* HEADER */}
-          <div className="bg-slate-950 px-3.5 py-2.5 border-b border-slate-800 flex items-center justify-between shrink-0">
-            <div className="flex items-center gap-2">
-              <div className="w-7 h-7 rounded-xl bg-gradient-to-tr from-indigo-600 to-emerald-400 flex items-center justify-center text-white shadow-md relative">
+          <div className="bg-slate-950 px-4 py-3 border-b border-slate-800 flex items-center justify-between shrink-0">
+            <div className="flex items-center gap-2.5">
+              <div className="w-8 h-8 rounded-xl bg-gradient-to-tr from-indigo-600 to-emerald-400 flex items-center justify-center text-white shadow-md relative">
                 <Sparkles className="w-4 h-4 text-amber-300" />
                 <span className="absolute bottom-0 right-0 w-1.5 h-1.5 bg-emerald-400 rounded-full ring-1 ring-slate-950" />
               </div>
               <div>
                 <div className="flex items-center gap-1.5">
-                  <h3 className="font-bold text-white text-xs tracking-wide">Miracle AI</h3>
-                  <span className="text-[8px] font-bold bg-emerald-500/20 text-emerald-300 px-1 py-0.2 rounded border border-emerald-500/30">
+                  <h3 className="font-bold text-white text-sm tracking-wide">Miracle AI</h3>
+                  <span className="text-[9px] font-bold bg-emerald-500/20 text-emerald-300 px-1.5 py-0.5 rounded border border-emerald-500/30">
                     Online
                   </span>
                 </div>
-                <p className="text-[10px] text-slate-400">Anti-Hype Wealth Co-Pilot</p>
+                <p className="text-[11px] text-slate-400">Anti-Hype Wealth Co-Pilot</p>
               </div>
             </div>
 
             {/* CONTROLS: Clear & Close Buttons */}
-            <div className="flex items-center gap-1 text-slate-400">
+            <div className="flex items-center gap-1.5 text-slate-400">
               <button 
                 onClick={handleClearChat}
-                className="p-1 hover:text-rose-400 hover:bg-slate-800 rounded transition-colors"
+                className="p-1.5 hover:text-rose-400 hover:bg-slate-800 rounded-lg transition-colors"
                 title="Clear Chat History"
               >
-                <Trash2 className="w-3.5 h-3.5" />
+                <Trash2 className="w-4 h-4" />
               </button>
               <button 
                 onClick={() => toggleOpen(false)}
-                className="p-1 hover:text-white hover:bg-slate-800 rounded transition-colors"
+                className="p-1.5 hover:text-white hover:bg-slate-800 rounded-lg transition-colors"
                 title="Close Window"
               >
                 <X className="w-4 h-4" />
@@ -305,35 +305,35 @@ export default function AIChatbot({ user, externalOpenState, setExternalOpenStat
 
           {/* RISK CONTEXT BANNER */}
           {user?.riskProfile && (
-            <div className="bg-indigo-950/80 px-3 py-1 border-b border-indigo-800/40 flex items-center justify-between text-[10px] text-indigo-200 shrink-0">
-              <span className="flex items-center gap-1">
-                <Wand2 className="w-3 h-3 text-amber-400" />
+            <div className="bg-indigo-950/80 px-4 py-1.5 border-b border-indigo-800/40 flex items-center justify-between text-xs text-indigo-200 shrink-0">
+              <span className="flex items-center gap-1.5">
+                <Wand2 className="w-3.5 h-3.5 text-amber-400" />
                 <span>Context: <strong>{user.riskProfile.category}</strong></span>
               </span>
-              <span className="text-[9px] text-emerald-400 font-mono">Tailored</span>
+              <span className="text-[10px] text-emerald-400 font-mono">Tailored</span>
             </div>
           )}
 
           {/* TARGETED CHAT MESSAGES CONTAINER: id="chat-messages" */}
           <div 
             id="chat-messages"
-            className="flex-1 p-3 overflow-y-auto space-y-2.5 scrollbar-thin scrollbar-thumb-slate-700/60"
+            className="flex-1 p-4 overflow-y-auto space-y-3 scrollbar-thin scrollbar-thumb-slate-700/60"
           >
             {messages.map((msg, idx) => {
               const isUser = msg.role === 'user';
               return (
                 <div 
                   key={msg.id || idx} 
-                  className={`flex gap-2 ${isUser ? 'justify-end' : 'justify-start'}`}
+                  className={`flex gap-2.5 ${isUser ? 'justify-end' : 'justify-start'}`}
                 >
                   {!isUser && (
-                    <div className="w-6 h-6 rounded-lg bg-indigo-600/30 border border-indigo-500/40 flex items-center justify-center text-indigo-400 flex-shrink-0 mt-0.5 shadow-sm">
-                      <Sparkles className="w-3.5 h-3.5 text-amber-300" />
+                    <div className="w-7 h-7 rounded-lg bg-indigo-600/30 border border-indigo-500/40 flex items-center justify-center text-indigo-400 flex-shrink-0 mt-0.5 shadow-sm">
+                      <Sparkles className="w-4 h-4 text-amber-300" />
                     </div>
                   )}
 
                   <div 
-                    className={`max-w-[88%] rounded-2xl p-2.5 text-xs relative group shadow-md ${
+                    className={`max-w-[88%] rounded-2xl p-3 text-xs relative group shadow-md ${
                       isUser
                         ? 'bg-gradient-to-r from-indigo-600 via-purple-600 to-indigo-700 text-white rounded-br-none'
                         : 'bg-slate-800/90 border border-slate-700/70 text-slate-100 rounded-bl-none'
@@ -350,30 +350,30 @@ export default function AIChatbot({ user, externalOpenState, setExternalOpenStat
                     {!isUser && (
                       <button
                         onClick={() => handleCopyText(msg.text, idx)}
-                        className="absolute top-1.5 right-1.5 p-0.5 text-slate-400 hover:text-white opacity-0 group-hover:opacity-100 transition-opacity bg-slate-950/80 rounded"
+                        className="absolute top-2 right-2 p-1 text-slate-400 hover:text-white opacity-0 group-hover:opacity-100 transition-opacity bg-slate-950/80 rounded"
                         title="Copy text"
                       >
                         {copiedIndex === idx ? (
-                          <Check className="w-3 h-3 text-emerald-400" />
+                          <Check className="w-3.5 h-3.5 text-emerald-400" />
                         ) : (
-                          <Copy className="w-3 h-3" />
+                          <Copy className="w-3.5 h-3.5" />
                         )}
                       </button>
                     )}
 
                     <div 
-                      className={`text-[8px] mt-1 flex items-center justify-between gap-1.5 ${
+                      className={`text-[9px] mt-1.5 flex items-center justify-between gap-2 ${
                         isUser ? 'text-indigo-200' : 'text-slate-400'
                       }`}
                     >
                       <span>{msg.timestamp}</span>
-                      {msg.model && <span className="font-mono text-[8px] opacity-75">{msg.model}</span>}
+                      {msg.model && <span className="font-mono text-[9px] opacity-75">{msg.model}</span>}
                     </div>
                   </div>
 
                   {isUser && (
-                    <div className="w-6 h-6 rounded-lg bg-emerald-600/30 border border-emerald-500/40 flex items-center justify-center text-emerald-400 flex-shrink-0 mt-0.5 shadow-sm">
-                      <User className="w-3.5 h-3.5" />
+                    <div className="w-7 h-7 rounded-lg bg-emerald-600/30 border border-emerald-500/40 flex items-center justify-center text-emerald-400 flex-shrink-0 mt-0.5 shadow-sm">
+                      <User className="w-4 h-4" />
                     </div>
                   )}
                 </div>
@@ -382,12 +382,12 @@ export default function AIChatbot({ user, externalOpenState, setExternalOpenStat
 
             {/* TYPING INDICATOR */}
             {loading && (
-              <div className="flex gap-2 justify-start items-center">
-                <div className="w-6 h-6 rounded-lg bg-indigo-600/30 border border-indigo-500/40 flex items-center justify-center text-indigo-400 flex-shrink-0">
-                  <Sparkles className="w-3.5 h-3.5 text-amber-400 animate-spin" />
+              <div className="flex gap-2.5 justify-start items-center">
+                <div className="w-7 h-7 rounded-lg bg-indigo-600/30 border border-indigo-500/40 flex items-center justify-center text-indigo-400 flex-shrink-0">
+                  <Sparkles className="w-4 h-4 text-amber-400 animate-spin" />
                 </div>
-                <div className="bg-slate-800/90 border border-slate-700/70 rounded-2xl rounded-bl-none p-2 flex items-center gap-1.5">
-                  <span className="text-[10px] text-indigo-300 font-medium mr-1">Thinking...</span>
+                <div className="bg-slate-800/90 border border-slate-700/70 rounded-2xl rounded-bl-none p-2.5 flex items-center gap-1.5">
+                  <span className="text-xs text-indigo-300 font-medium mr-1">Thinking...</span>
                   <span className="w-1.5 h-1.5 bg-indigo-400 rounded-full animate-bounce [animation-delay:-0.3s]" />
                   <span className="w-1.5 h-1.5 bg-purple-400 rounded-full animate-bounce [animation-delay:-0.15s]" />
                   <span className="w-1.5 h-1.5 bg-emerald-400 rounded-full animate-bounce" />
@@ -399,13 +399,13 @@ export default function AIChatbot({ user, externalOpenState, setExternalOpenStat
           </div>
 
           {/* QUICK PROMPTS CAROUSEL */}
-          <div className="px-2 py-1.5 bg-slate-950 border-t border-slate-800 overflow-x-auto whitespace-nowrap scrollbar-none flex gap-1 shrink-0">
+          <div className="px-3 py-2 bg-slate-950 border-t border-slate-800 overflow-x-auto whitespace-nowrap scrollbar-none flex gap-1.5 shrink-0">
             {QUICK_PROMPTS.map((prompt, pIdx) => (
               <button
                 key={pIdx}
                 onClick={() => handleSendMessage(prompt.text)}
                 disabled={loading}
-                className="px-2 py-1 rounded-full bg-slate-900 hover:bg-indigo-600/40 border border-slate-700/60 hover:border-indigo-500/50 text-slate-300 hover:text-white text-[10px] font-medium transition-all duration-200 flex items-center gap-1 flex-shrink-0 shadow-sm"
+                className="px-2.5 py-1 rounded-full bg-slate-900 hover:bg-indigo-600/40 border border-slate-700/60 hover:border-indigo-500/50 text-slate-300 hover:text-white text-xs font-medium transition-all duration-200 flex items-center gap-1 flex-shrink-0 shadow-sm"
               >
                 <span>{prompt.icon}</span>
                 <span>{prompt.label}</span>
@@ -413,26 +413,26 @@ export default function AIChatbot({ user, externalOpenState, setExternalOpenStat
             ))}
           </div>
 
-          {/* INPUT FORM */}
+          {/* ENLARGED INPUT FORM */}
           <form 
             onSubmit={(e) => { e.preventDefault(); handleSendMessage(); }}
-            className="p-2 bg-slate-950 border-t border-slate-800 flex items-center gap-1.5 shrink-0"
+            className="p-3 bg-slate-950 border-t border-slate-800 flex items-center gap-2 shrink-0"
           >
             <input
               type="text"
               value={inputMessage}
               onChange={(e) => setInputMessage(e.target.value)}
-              placeholder="Ask Miracle about SIPs, crypto..."
+              placeholder="Ask Miracle about SIPs, crypto, stocks..."
               disabled={loading}
-              className="flex-1 bg-slate-900 text-white placeholder-slate-400 text-xs px-3 py-1.5 rounded-xl border border-slate-700 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-colors"
+              className="flex-1 bg-slate-900 text-white placeholder-slate-400 text-sm px-4 py-2.5 rounded-xl border border-slate-700 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-colors shadow-inner font-medium"
             />
 
             <button
               type="submit"
               disabled={!inputMessage.trim() || loading}
-              className="p-2 rounded-xl bg-gradient-to-r from-indigo-600 via-purple-600 to-emerald-500 text-white font-medium hover:opacity-90 disabled:opacity-40 disabled:cursor-not-allowed transition-all shadow-md flex items-center justify-center flex-shrink-0"
+              className="p-2.5 rounded-xl bg-gradient-to-r from-indigo-600 via-purple-600 to-emerald-500 text-white font-medium hover:opacity-90 disabled:opacity-40 disabled:cursor-not-allowed transition-all shadow-md flex items-center justify-center flex-shrink-0"
             >
-              <Send className="w-3.5 h-3.5" />
+              <Send className="w-4 h-4" />
             </button>
           </form>
         </div>
