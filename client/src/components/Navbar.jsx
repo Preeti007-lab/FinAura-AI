@@ -1,20 +1,13 @@
 import React from 'react';
 import { Sparkles, BrainCircuit, LayoutDashboard, Target, Home } from 'lucide-react';
-import { useUser, UserButton } from '@clerk/clerk-react';
+import { SignedIn, SignedOut, SignInButton, SignUpButton, UserButton, useUser } from '@clerk/clerk-react';
 
 export default function Navbar({ activeTab, setActiveTab, user, onOpenRiskModal, onOpenAuthModal, onLogout }) {
-  let isSignedIn = false;
   let clerkUser = null;
-
   try {
     const clerk = useUser();
-    isSignedIn = clerk?.isSignedIn;
     clerkUser = clerk?.user;
-  } catch (e) {
-    // Graceful fallback when Clerk Context is unconfigured
-  }
-
-  const currentUser = clerkUser || user;
+  } catch (e) {}
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 backdrop-blur-xl bg-[#0a0f1d]/90 border-b border-[#1e293b] px-4 lg:px-8 py-3 transition-all">
@@ -94,36 +87,36 @@ export default function Navbar({ activeTab, setActiveTab, user, onOpenRiskModal,
           </button>
         </nav>
 
-        {/* FAR-RIGHT: Authentication Controls */}
+        {/* FAR-RIGHT: Official Clerk Authentication Controls (Google, GitHub, Email) */}
         <div className="flex items-center gap-3 shrink-0">
-          {isSignedIn ? (
+          <SignedIn>
             <div className="flex items-center gap-3">
               <div 
                 onClick={onOpenRiskModal}
                 className="flex items-center gap-2 px-3 py-1.5 rounded-md bg-[#111827] border border-[#1e293b] text-xs cursor-pointer hover:border-indigo-500 transition-all"
               >
-                <span className="font-bold text-slate-200">{currentUser?.fullName || currentUser?.name || 'Verified Investor'}</span>
+                <span className="font-bold text-slate-200">{clerkUser?.fullName || user?.name || 'Verified Investor'}</span>
                 <span className="badge badge-green text-[9px] py-0 px-1.5">Risk: {user?.riskProfile?.score || 68}</span>
               </div>
               <UserButton afterSignOutUrl="/" />
             </div>
-          ) : (
-            <div className="flex items-center gap-2">
-              <button 
-                onClick={() => onOpenAuthModal('login')}
-                className="btn-glass text-xs py-1.5 px-3.5"
-              >
-                Log In
-              </button>
+          </SignedIn>
 
-              <button 
-                onClick={() => onOpenAuthModal('signup')}
-                className="btn-primary text-xs py-1.5 px-4"
-              >
-                Sign Up with Clerk
-              </button>
+          <SignedOut>
+            <div className="flex items-center gap-2">
+              <SignInButton mode="modal">
+                <button className="btn-glass text-xs py-1.5 px-3.5 cursor-pointer">
+                  Log In
+                </button>
+              </SignInButton>
+
+              <SignUpButton mode="modal">
+                <button className="btn-primary text-xs py-1.5 px-4 cursor-pointer">
+                  Sign Up
+                </button>
+              </SignUpButton>
             </div>
-          )}
+          </SignedOut>
         </div>
 
       </div>
