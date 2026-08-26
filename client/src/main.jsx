@@ -42,7 +42,10 @@ class ErrorBoundary extends Component {
   }
 }
 
-const PUBLISHABLE_KEY = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY;
+const rawKey = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY;
+const PUBLISHABLE_KEY = (rawKey && !rawKey.includes('your_clerk_publishable_key_here')) 
+  ? rawKey 
+  : 'pk_test_dHVtbXktcGxhY2Vob2xkZXItY2xlcmstb2ZmaWNpYWwtY2xpZW50LWtleSQ';
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
