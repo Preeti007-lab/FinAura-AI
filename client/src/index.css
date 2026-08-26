@@ -6,7 +6,7 @@
   --bg-card-hover: rgba(26, 37, 62, 0.95);
   --border-subtle: rgba(255, 255, 255, 0.1);
   --border-glow: #6366f1;
-  
+
   --primary-violet: #6366f1;
   --primary-blue: #3b82f6;
   --primary-cyan: #06b6d4;
@@ -17,7 +17,7 @@
   --text-main: #ffffff;
   --text-muted: #94a3b8;
   --text-dim: #64748b;
-  
+
   --font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
   --font-heading: 'Outfit', sans-serif;
 }
@@ -32,16 +32,16 @@ html {
   scroll-behavior: smooth;
 }
 
-/* Rich Aesthetic Dark Sapphire Canvas (#0B1120) with Ambient HSL Mesh Glows & Geometric Grid Texture */
+/* Unified Institutional Deep Midnight Slate Tone Canvas (#0A0F1D) */
 body {
-  background-color: #0b1120 !important;
-  background-image: 
-    radial-gradient(ellipse at 50% 0%, rgba(99, 102, 241, 0.18) 0%, transparent 60%),
-    radial-gradient(circle at 100% 40%, rgba(6, 182, 212, 0.12) 0%, transparent 50%),
-    radial-gradient(circle at 0% 70%, rgba(16, 185, 129, 0.12) 0%, transparent 50%),
-    linear-gradient(to right, rgba(255, 255, 255, 0.025) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(255, 255, 255, 0.025) 1px, transparent 1px) !important;
-  background-size: 100% 100%, 100% 100%, 100% 100%, 36px 36px, 36px 36px !important;
+  background-color: #0a0f1d !important;
+  background-image:
+    radial-gradient(ellipse at 50% 0%, rgba(99, 102, 241, 0.12) 0%, transparent 60%),
+    radial-gradient(circle at 100% 40%, rgba(6, 182, 212, 0.08) 0%, transparent 50%),
+    radial-gradient(circle at 0% 70%, rgba(139, 92, 246, 0.08) 0%, transparent 50%),
+    linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px) !important;
+  background-size: 100% 100%, 100% 100%, 100% 100%, 40px 40px, 40px 40px !important;
   background-attachment: fixed !important;
   color: var(--text-main);
   font-family: var(--font-family);
@@ -56,41 +56,56 @@ body {
   width: 7px;
   height: 7px;
 }
+
 ::-webkit-scrollbar-track {
-  background: #0b1120;
+  background: #0a0f1d;
 }
+
 ::-webkit-scrollbar-thumb {
   background: #1e293b;
   border-radius: 4px;
 }
+
 ::-webkit-scrollbar-thumb:hover {
   background: #334155;
 }
 
-/* Towering Section Boundaries */
+/* Towering Section Boundaries with Generous Vertical Spacing */
 .section-tower {
-  min-height: 80vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding-top: 80px;
-  padding-bottom: 80px;
+  margin-bottom: 120px;
 }
 
 /* Aesthetic Glassmorphic Rectangular Container Cards */
-.glass-card, .bento-card {
-  background: rgba(17, 24, 39, 0.85);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 12px;
-  box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.08), 0 10px 30px -10px rgba(0, 0, 0, 0.6);
+.glass-card,
+.bento-card {
+  background: #0a0f1d;
+  border: 1px solid #1e293b;
+  border-radius: 8px;
+  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.6);
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
   overflow: hidden;
 }
 
-.glass-card:hover, .bento-card:hover {
+/* Section 4 Symmetrical Bento Feature Module Card (1.02x scale + Electric Violet Glow) */
+.bento-module-card {
+  background: #0a0f1d;
+  border: 1px solid #1e293b;
+  border-radius: 8px;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.bento-module-card:hover {
+  transform: scale(1.02);
+  border-color: #8b5cf6 !important;
+  box-shadow: 0 0 25px rgba(139, 92, 246, 0.35);
+}
+
+.glass-card:hover,
+.bento-card:hover {
   transform: translateY(-6px);
   border-color: rgba(99, 102, 241, 0.6);
   box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.15), 0 20px 40px -10px rgba(99, 102, 241, 0.3);
@@ -107,7 +122,8 @@ body {
   transition: all 0.25s ease;
 }
 
-.bento-card:hover .hover-reveal, .glass-card:hover .hover-reveal {
+.bento-card:hover .hover-reveal,
+.glass-card:hover .hover-reveal {
   opacity: 1;
   transform: translateY(0);
 }
@@ -116,6 +132,7 @@ body {
 .gradient-hero-text {
   background: linear-gradient(135deg, #a5b4fc 0%, #38bdf8 50%, #818cf8 100%);
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
@@ -262,6 +279,13 @@ body {
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; transform: scale(0.98); }
-  to { opacity: 1; transform: scale(1); }
+  from {
+    opacity: 0;
+    transform: scale(0.98);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
