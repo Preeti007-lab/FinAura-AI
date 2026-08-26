@@ -77,19 +77,22 @@ export default function DashboardPage({ user, onOpenAddModal, onOpenRiskModal })
   return (
     <div className="space-y-8 max-w-7xl mx-auto px-4 py-8 text-center font-sans">
       
-      {/* HEADER BAR */}
-      <div className="flex flex-col md:flex-row items-center justify-between gap-4 pb-4 border-b border-[var(--border-card)]">
-        <div>
+      {/* HEADER BAR (CENTER ALIGNED) */}
+      <div className="flex flex-col items-center justify-center text-center gap-3 pb-4 border-b border-[var(--border-card)] mx-auto max-w-2xl">
+        <div className="flex flex-col items-center justify-center text-center">
           <div className="flex items-center justify-center gap-2">
             <span className="badge badge-green text-xs font-mono">Verified Portfolio</span>
             <span className="text-xs text-[var(--text-muted)] font-mono">ID: {user?.id || 'clerk_user'}</span>
           </div>
-          <h1 className="text-2xl sm:text-3xl font-extrabold text-[var(--text-main)] mt-1 text-center">
+          <h1 className="text-2xl sm:text-4xl font-extrabold text-[var(--text-main)] mt-1.5 text-center font-['Outfit']">
             Consolidated Portfolio Tracker
           </h1>
+          <p className="text-xs sm:text-sm text-slate-400 font-medium text-center mt-1">
+            Real-time multi-asset aggregation across stocks, mutual funds, gold & crypto
+          </p>
         </div>
 
-        <div className="flex items-center gap-3">
+        <div className="flex items-center justify-center gap-3 mt-1">
           {onOpenAddModal && (
             <button
               onClick={onOpenAddModal}
