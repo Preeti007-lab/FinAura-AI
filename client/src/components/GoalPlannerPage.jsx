@@ -29,11 +29,13 @@ export default function GoalPlannerPage({ user, onOpenRiskModal }) {
 
   const fetchGoals = async () => {
     setLoading(true);
-    const res = await apiService.getGoals(user?.token, user?.id);
+    try {
+      const res = await apiService.getGoals(user?.token, user?.id);
+      if (res && res.success && Array.isArray(res.goals)) {
+        setGoals(res.goals);
+      }
+    } catch (e) {}
     setLoading(false);
-    if (res.success && res.goals) {
-      setGoals(res.goals);
-    }
   };
 
   useEffect(() => {
