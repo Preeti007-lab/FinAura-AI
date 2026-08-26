@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { 
-  Sparkles, BrainCircuit, ArrowRight, TrendingUp, ShieldCheck, Zap, Sliders, Layers, Target, Lock, Cpu, RotateCw, BookOpen, Calculator, ShieldAlert, BarChart2, Compass, PieChart, CheckCircle2, AlertTriangle
+  Sparkles, BrainCircuit, ArrowRight, TrendingUp, ShieldCheck, Zap, Sliders, Layers, Target, Lock, Cpu, RotateCw, BookOpen, Calculator, ShieldAlert, BarChart2, Compass, PieChart, CheckCircle2, DollarSign, FileText, ArrowUpRight
 } from 'lucide-react';
 import { useUser, SignUpButton } from '@clerk/clerk-react';
 
@@ -11,7 +11,7 @@ export default function LandingPage({ setActiveTab, onOpenAuthModal, onOpenRiskM
     isSignedIn = clerk?.isSignedIn;
   } catch (e) {}
 
-  // Compounding Interest Slider States (Real-time dynamic SVG curve)
+  // Compounding Interest Slider States
   const [sipAmount, setSipAmount] = useState(35000);
   const [horizonYears, setHorizonYears] = useState(15);
   const [cagrRate, setCagrRate] = useState(14);
@@ -23,7 +23,7 @@ export default function LandingPage({ setActiveTab, onOpenAuthModal, onOpenRiskM
     setFlippedCard(prev => ({ ...prev, [id]: !prev[id] }));
   };
 
-  // Real-Time SVG Compounding Curve Generator (Smooth Bezier Curve Bending)
+  // Real-Time SVG Compounding Curve Generator
   const calculateCompounding = () => {
     const totalInvested = sipAmount * 12 * horizonYears;
     const monthlyRate = cagrRate / 12 / 100;
@@ -40,7 +40,6 @@ export default function LandingPage({ setActiveTab, onOpenAuthModal, onOpenRiskM
     const finalCorpus = corpus;
     const totalGain = Math.max(0, finalCorpus - totalInvested);
 
-    // Build SVG Path Coordinates (500x220 canvas)
     const maxVal = Math.max(1, points[points.length - 1].corpus);
     const width = 500;
     const height = 220;
@@ -145,10 +144,45 @@ export default function LandingPage({ setActiveTab, onOpenAuthModal, onOpenRiskM
   return (
     <div className="w-full min-h-screen text-[var(--text-main)] px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto text-center font-sans">
       
+      {/* REAL-TIME LIVE MARKET TICKER WIDGET */}
+      <div className="w-full bg-[var(--bg-card-inner)] border-b border-[var(--border-card)] py-2.5 px-4 mb-8 overflow-hidden rounded-[8px]">
+        <div className="flex items-center justify-between text-xs font-mono gap-6 overflow-x-auto whitespace-nowrap scrollbar-none">
+          <div className="flex items-center gap-2">
+            <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping" />
+            <span className="font-bold text-[var(--text-muted)]">MARKETS LIVE:</span>
+          </div>
+          <div className="flex items-center gap-1.5 text-emerald-400 font-bold">
+            <span>NIFTY 50</span>
+            <span>22,645.70</span>
+            <span className="text-[10px] bg-emerald-500/10 px-1 rounded">▲ +0.69%</span>
+          </div>
+          <div className="flex items-center gap-1.5 text-emerald-400 font-bold">
+            <span>S&P 500</span>
+            <span>5,214.85</span>
+            <span className="text-[10px] bg-emerald-500/10 px-1 rounded">▲ +0.93%</span>
+          </div>
+          <div className="flex items-center gap-1.5 text-cyan-400 font-bold">
+            <span>NASDAQ</span>
+            <span>16,420.30</span>
+            <span className="text-[10px] bg-cyan-500/10 px-1 rounded">▲ +1.21%</span>
+          </div>
+          <div className="flex items-center gap-1.5 text-amber-400 font-bold">
+            <span>GOLD</span>
+            <span>$2,348.60</span>
+            <span className="text-[10px] bg-amber-500/10 px-1 rounded">▲ +0.95%</span>
+          </div>
+          <div className="flex items-center gap-1.5 text-indigo-400 font-bold">
+            <span>BITCOIN</span>
+            <span>$67,420.00</span>
+            <span className="text-[10px] bg-indigo-500/10 px-1 rounded">▲ +2.10%</span>
+          </div>
+        </div>
+      </div>
+
       {/* ========================================================================= */}
       {/* SECTION 01 // OVERVIEW HERO VIEW                                         */}
       {/* ========================================================================= */}
-      <section className="flex flex-col items-center justify-center text-center max-w-4xl mx-auto pt-28 pb-16 mb-40">
+      <section className="flex flex-col items-center justify-center text-center max-w-4xl mx-auto pt-16 pb-16 mb-40">
         
         {/* Section Header Tag */}
         <div className="inline-flex items-center gap-2.5 px-4 py-2 rounded-full bg-[var(--bg-card-inner)] border border-[var(--border-card)] text-indigo-400 text-xs font-bold shadow-md mb-8 mx-auto justify-center">
@@ -166,8 +200,17 @@ export default function LandingPage({ setActiveTab, onOpenAuthModal, onOpenRiskM
           A disciplined, quantitative wealth management engine. Eliminate social hype, profile institutional risk, consolidate multi-asset vaults, and automate goal SIPs.
         </p>
 
-        {/* Center CTA Button */}
-        <div className="mt-12 flex justify-center mx-auto">
+        {/* Hero Visual Ticker Banner */}
+        <div className="mt-10 mb-8 w-full max-w-3xl aspect-[16/9] rounded-[12px] overflow-hidden border border-[var(--border-card)] shadow-2xl mx-auto">
+          <img 
+            src="/images/ticker_banner.jpg" 
+            alt="Real-time Financial Stock Market Ticker Banner" 
+            className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+          />
+        </div>
+
+        {/* Center CTA Buttons */}
+        <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4 mx-auto">
           {isSignedIn ? (
             <button 
               onClick={() => setActiveTab('dashboard')}
@@ -257,7 +300,7 @@ export default function LandingPage({ setActiveTab, onOpenAuthModal, onOpenRiskM
         <div className="bg-[var(--bg-card)] border border-[var(--border-card)] rounded-[12px] p-8 sm:p-12 shadow-xl text-center max-w-5xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
             
-            {/* Uniform Visual Photo Container (16:9 Aspect Ratio) */}
+            {/* Uniform Visual Photo Container */}
             <div className="lg:col-span-6 relative w-full aspect-[16/9] rounded-[10px] overflow-hidden border border-[var(--border-card)] shadow-md">
               <img 
                 src="/images/risk_journey.jpg" 
@@ -314,13 +357,92 @@ export default function LandingPage({ setActiveTab, onOpenAuthModal, onOpenRiskM
       <div className="w-full border-t border-[var(--border-card)] my-12" />
 
       {/* ========================================================================= */}
-      {/* SECTION 04 // FINANCIAL JOURNEY PHASE 2 - PORTFOLIO CONSOLIDATION VAULT   */}
+      {/* SECTION 04 // BRAND NEW FEATURE: AI TAX OPTIMIZER & WEALTH ADVISOR       */}
+      {/* ========================================================================= */}
+      <section className="mb-40 space-y-12">
+        
+        <div className="text-center max-w-2xl mx-auto space-y-3">
+          <span className="text-xs font-mono font-bold text-amber-400 uppercase tracking-widest px-3 py-1 rounded bg-amber-500/10 border border-amber-500/20">
+            SECTION 04 // AI TAX OPTIMIZER & WEALTH ADVISOR
+          </span>
+          <h2 className="text-3xl sm:text-5xl font-extrabold text-[var(--text-main)] text-center">
+            Smart Tax Deductions & Harvesting
+          </h2>
+          <p className="text-sm sm:text-base text-[var(--text-muted)] font-medium text-center">
+            Maximize Section 80C/80D tax savings and capture short-term tax-loss harvesting up to ₹1.12 Lakhs/year.
+          </p>
+        </div>
+
+        {/* Systematic 50/50 Uniform Card */}
+        <div className="bg-[var(--bg-card)] border border-[var(--border-card)] rounded-[12px] p-8 sm:p-12 shadow-xl text-center max-w-5xl mx-auto">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+            
+            {/* Matching Uniform Text Container */}
+            <div className="lg:col-span-6 space-y-6 text-center flex flex-col items-center order-2 lg:order-1">
+              <div className="w-12 h-12 rounded-xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-center mx-auto">
+                <FileText className="w-6 h-6 text-amber-400" />
+              </div>
+
+              <h3 className="text-2xl font-bold text-[var(--text-main)] text-center">
+                Automated Tax Optimization Engine
+              </h3>
+
+              <p className="text-xs sm:text-sm text-[var(--text-muted)] leading-relaxed text-center">
+                Instantly scan your portfolio for ELSS tax-saving funds, municipal bonds, and tax-loss harvesting opportunities to optimize total tax liabilities.
+              </p>
+
+              <div className="w-full grid grid-cols-3 gap-3 text-xs font-bold text-[var(--text-main)]">
+                <div className="p-3 rounded bg-[var(--bg-card-inner)] border border-[var(--border-card)] text-center">
+                  <div className="text-[10px] text-slate-400 uppercase">Sec 80C ELSS</div>
+                  <div className="text-emerald-400 text-sm mt-1 font-bold">₹1,50,000</div>
+                </div>
+                <div className="p-3 rounded bg-[var(--bg-card-inner)] border border-[var(--border-card)] text-center">
+                  <div className="text-[10px] text-slate-400 uppercase">Sec 80D Health</div>
+                  <div className="text-cyan-400 text-sm mt-1 font-bold">₹75,000</div>
+                </div>
+                <div className="p-3 rounded bg-[var(--bg-card-inner)] border border-[var(--border-card)] text-center">
+                  <div className="text-[10px] text-slate-400 uppercase">Tax Saved</div>
+                  <div className="text-amber-400 text-sm mt-1 font-bold">₹1,12,500</div>
+                </div>
+              </div>
+
+              <button
+                onClick={() => setActiveTab('analyzer')}
+                className="px-8 py-3.5 bg-amber-600 hover:bg-amber-500 text-white font-bold text-sm rounded-lg shadow-lg hover:scale-105 transition-all flex items-center justify-center gap-2 cursor-pointer border border-amber-400/30 mx-auto"
+              >
+                <span>Run AI Tax Optimization</span>
+                <ArrowRight className="w-4 h-4" />
+              </button>
+            </div>
+
+            {/* Uniform Visual Photo Container (16:9 Aspect Ratio) */}
+            <div className="lg:col-span-6 relative w-full aspect-[16/9] rounded-[10px] overflow-hidden border border-[var(--border-card)] shadow-md order-1 lg:order-2">
+              <img 
+                src="/images/tax_advisor.jpg" 
+                alt="AI Tax Optimizer & Wealth Advisor Dashboard" 
+                className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+              />
+              <div className="absolute bottom-3 right-3 bg-[#0a0f1d]/90 px-3.5 py-1.5 rounded border border-amber-500/40 text-amber-300 text-xs font-mono font-bold">
+                Tax Savings Identified: 28.5%
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </section>
+
+      {/* SECTION DIVIDER */}
+      <div className="w-full border-t border-[var(--border-card)] my-12" />
+
+      {/* ========================================================================= */}
+      {/* SECTION 05 // FINANCIAL JOURNEY PHASE 2 - PORTFOLIO CONSOLIDATION VAULT   */}
       {/* ========================================================================= */}
       <section className="mb-40 space-y-12">
         
         <div className="text-center max-w-2xl mx-auto space-y-3">
           <span className="text-xs font-mono font-bold text-emerald-400 uppercase tracking-widest px-3 py-1 rounded bg-emerald-500/10 border border-emerald-500/20">
-            SECTION 04 // FINANCIAL JOURNEY PHASE 2
+            SECTION 05 // FINANCIAL JOURNEY PHASE 2
           </span>
           <h2 className="text-3xl sm:text-5xl font-extrabold text-[var(--text-main)] text-center">
             Multi-Asset Portfolio Consolidation
@@ -334,8 +456,20 @@ export default function LandingPage({ setActiveTab, onOpenAuthModal, onOpenRiskM
         <div className="bg-[var(--bg-card)] border border-[var(--border-card)] rounded-[12px] p-8 sm:p-12 shadow-xl text-center max-w-5xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
             
+            {/* Uniform Visual Photo Container (16:9 Aspect Ratio) */}
+            <div className="lg:col-span-6 relative w-full aspect-[16/9] rounded-[10px] overflow-hidden border border-[var(--border-card)] shadow-md">
+              <img 
+                src="/images/portfolio_journey.jpg" 
+                alt="Multi-Asset Portfolio Consolidation Vault Dashboard" 
+                className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+              />
+              <div className="absolute bottom-3 left-3 bg-[#0a0f1d]/90 px-3.5 py-1.5 rounded border border-emerald-500/40 text-emerald-300 text-xs font-mono font-bold">
+                Net Worth: $18.7M (+14.3% YTD)
+              </div>
+            </div>
+
             {/* Matching Uniform Text Container */}
-            <div className="lg:col-span-6 space-y-6 text-center flex flex-col items-center order-2 lg:order-1">
+            <div className="lg:col-span-6 space-y-6 text-center flex flex-col items-center">
               <div className="w-12 h-12 rounded-xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center mx-auto">
                 <PieChart className="w-6 h-6 text-emerald-400" />
               </div>
@@ -372,18 +506,6 @@ export default function LandingPage({ setActiveTab, onOpenAuthModal, onOpenRiskM
               </button>
             </div>
 
-            {/* Uniform Visual Photo Container (16:9 Aspect Ratio) */}
-            <div className="lg:col-span-6 relative w-full aspect-[16/9] rounded-[10px] overflow-hidden border border-[var(--border-card)] shadow-md order-1 lg:order-2">
-              <img 
-                src="/images/portfolio_journey.jpg" 
-                alt="Multi-Asset Portfolio Consolidation Vault Dashboard" 
-                className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
-              />
-              <div className="absolute bottom-3 right-3 bg-[#0a0f1d]/90 px-3.5 py-1.5 rounded border border-emerald-500/40 text-emerald-300 text-xs font-mono font-bold">
-                Net Worth: $18.7M (+14.3% YTD)
-              </div>
-            </div>
-
           </div>
         </div>
 
@@ -393,13 +515,13 @@ export default function LandingPage({ setActiveTab, onOpenAuthModal, onOpenRiskM
       <div className="w-full border-t border-[var(--border-card)] my-12" />
 
       {/* ========================================================================= */}
-      {/* SECTION 05 // FINANCIAL JOURNEY PHASE 3 - GOAL-BASED SIP PLANNING ENGINE  */}
+      {/* SECTION 06 // FINANCIAL JOURNEY PHASE 3 - GOAL-BASED SIP PLANNING ENGINE  */}
       {/* ========================================================================= */}
       <section className="mb-40 space-y-12">
         
         <div className="text-center max-w-2xl mx-auto space-y-3">
           <span className="text-xs font-mono font-bold text-cyan-400 uppercase tracking-widest px-3 py-1 rounded bg-cyan-500/10 border border-cyan-500/20">
-            SECTION 05 // FINANCIAL JOURNEY PHASE 3
+            SECTION 06 // FINANCIAL JOURNEY PHASE 3
           </span>
           <h2 className="text-3xl sm:text-5xl font-extrabold text-[var(--text-main)] text-center">
             Goal-Based Wealth Accumulation
@@ -413,20 +535,8 @@ export default function LandingPage({ setActiveTab, onOpenAuthModal, onOpenRiskM
         <div className="bg-[var(--bg-card)] border border-[var(--border-card)] rounded-[12px] p-8 sm:p-12 shadow-xl text-center max-w-5xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
             
-            {/* Uniform Visual Photo Container (16:9 Aspect Ratio) */}
-            <div className="lg:col-span-6 relative w-full aspect-[16/9] rounded-[10px] overflow-hidden border border-[var(--border-card)] shadow-md">
-              <img 
-                src="/images/goal_journey.jpg" 
-                alt="Financial Goal Planning Roadmap & Milestones" 
-                className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
-              />
-              <div className="absolute bottom-3 left-3 bg-[#0a0f1d]/90 px-3.5 py-1.5 rounded border border-cyan-500/40 text-cyan-300 text-xs font-mono font-bold">
-                Retirement Target: $2.85M (2055)
-              </div>
-            </div>
-
             {/* Matching Uniform Text Container */}
-            <div className="lg:col-span-6 space-y-6 text-center flex flex-col items-center">
+            <div className="lg:col-span-6 space-y-6 text-center flex flex-col items-center order-2 lg:order-1">
               <div className="w-12 h-12 rounded-xl bg-cyan-500/10 border border-cyan-500/30 flex items-center justify-center mx-auto">
                 <Target className="w-6 h-6 text-cyan-400" />
               </div>
@@ -459,6 +569,18 @@ export default function LandingPage({ setActiveTab, onOpenAuthModal, onOpenRiskM
               </button>
             </div>
 
+            {/* Uniform Visual Photo Container (16:9 Aspect Ratio) */}
+            <div className="lg:col-span-6 relative w-full aspect-[16/9] rounded-[10px] overflow-hidden border border-[var(--border-card)] shadow-md order-1 lg:order-2">
+              <img 
+                src="/images/goal_journey.jpg" 
+                alt="Financial Goal Planning Roadmap & Milestones" 
+                className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+              />
+              <div className="absolute bottom-3 right-3 bg-[#0a0f1d]/90 px-3.5 py-1.5 rounded border border-cyan-500/40 text-cyan-300 text-xs font-mono font-bold">
+                Retirement Target: $2.85M (2055)
+              </div>
+            </div>
+
           </div>
         </div>
 
@@ -468,13 +590,13 @@ export default function LandingPage({ setActiveTab, onOpenAuthModal, onOpenRiskM
       <div className="w-full border-t border-[var(--border-card)] my-12" />
 
       {/* ========================================================================= */}
-      {/* SECTION 06 // COLOUR-MARKED 3D FINANCIAL TERM FLASHCARDS DECK             */}
+      {/* SECTION 07 // COLOUR-MARKED 3D FINANCIAL TERM FLASHCARDS DECK             */}
       {/* ========================================================================= */}
       <section className="mb-40 space-y-12">
         
         <div className="text-center max-w-2xl mx-auto space-y-3">
           <span className="text-xs font-mono font-bold text-violet-400 uppercase tracking-widest px-3 py-1 rounded bg-violet-500/10 border border-violet-500/20">
-            SECTION 06 // INTERACTIVE CONCEPTS
+            SECTION 07 // INTERACTIVE CONCEPTS
           </span>
           <h2 className="text-3xl sm:text-4xl font-extrabold text-[var(--text-main)] text-center">
             Core Wealth Flashcards (Colour-Coded Boundaries)
@@ -560,13 +682,13 @@ export default function LandingPage({ setActiveTab, onOpenAuthModal, onOpenRiskM
       <div className="w-full border-t border-[var(--border-card)] my-12" />
 
       {/* ========================================================================= */}
-      {/* SECTION 07 // CALCULATIVE FINANCIAL CONCEPTS WITH UNIFORM IMAGES          */}
+      {/* SECTION 08 // CALCULATIVE FINANCIAL CONCEPTS WITH UNIFORM IMAGES          */}
       {/* ========================================================================= */}
       <section className="mb-40 space-y-12">
         
         <div className="text-center max-w-xl mx-auto space-y-3">
           <span className="text-xs font-mono font-bold text-amber-400 uppercase tracking-widest px-3 py-1 rounded bg-amber-500/10 border border-amber-500/20">
-            SECTION 07 // WEALTH BUILDING PRINCIPLES
+            SECTION 08 // WEALTH BUILDING PRINCIPLES
           </span>
           <h2 className="text-3xl sm:text-4xl font-extrabold text-[var(--text-main)] text-center">
             Investing, Saving & Budgeting Framework
@@ -703,12 +825,12 @@ export default function LandingPage({ setActiveTab, onOpenAuthModal, onOpenRiskM
       <div className="w-full border-t border-[var(--border-card)] my-12" />
 
       {/* ========================================================================= */}
-      {/* SECTION 08 // INTERACTIVE FORECASTING PLAYGROUND                          */}
+      {/* SECTION 09 // INTERACTIVE FORECASTING PLAYGROUND                          */}
       {/* ========================================================================= */}
       <section className="mb-40">
         <div className="text-center max-w-xl mx-auto mb-10">
           <span className="text-xs font-mono font-bold text-cyan-400 uppercase tracking-widest px-3 py-1 rounded bg-cyan-500/10 border border-cyan-500/20">
-            SECTION 08 // DYNAMIC COMPOUNDING ENGINE
+            SECTION 09 // DYNAMIC COMPOUNDING ENGINE
           </span>
         </div>
 
@@ -849,12 +971,12 @@ export default function LandingPage({ setActiveTab, onOpenAuthModal, onOpenRiskM
       <div className="w-full border-t border-[var(--border-card)] my-12" />
 
       {/* ========================================================================= */}
-      {/* SECTION 09 // ORGANIZED BENTO FEATURE MODULES                             */}
+      {/* SECTION 10 // ORGANIZED BENTO FEATURE MODULES                             */}
       {/* ========================================================================= */}
       <section className="mb-40">
         <div className="text-center max-w-xl mx-auto mb-10">
           <span className="text-xs font-mono font-bold text-indigo-400 uppercase tracking-widest px-3 py-1 rounded bg-indigo-500/10 border border-indigo-500/20">
-            SECTION 09 // PLATFORM CAPABILITIES
+            SECTION 10 // PLATFORM CAPABILITIES
           </span>
         </div>
 
