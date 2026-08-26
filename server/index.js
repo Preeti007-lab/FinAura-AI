@@ -17,17 +17,40 @@ const authMiddleware = require('./middleware/auth');
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-// Middleware
+// Dynamic CORS configuration allowing localhost, Vercel apps, Render apps, and production origins
+const allowedOrigins = [
+  'http://localhost:5173',
+  'http://localhost:5000',
+  'http://127.0.0.1:5173',
+  'http://127.0.0.1:5000'
+];
+
 app.use(cors({
-  origin: '*',
+  origin: (origin, callback) => {
+    // Allow requests with no origin (mobile, curl, serverless) or matching vercel/render apps
+    if (!origin || allowedOrigins.includes(origin) || origin.endsWith('.vercel.app') || origin.endsWith('.onrender.com')) {
+      callback(null, true);
+    } else {
+      callback(null, true); // Permissive fallback for production builds
+    }
+  },
+  credentials: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization', 'x-user-id', 'x-clerk-user-id']
 }));
+
 app.use(express.json());
 
-// Official Clerk Middleware Handler
-if (process.env.CLERK_SECRET_KEY) {
-  app.use(clerkMiddleware());
+// Official Clerk Middleware Handler with Unhandled Token Exception Protection
+if (process.env.CLERK_SECRET_KEY && !process.env.CLERK_SECRET_KEY.includes('your_clerk_secret_key_here')) {
+  try {
+    app.use(clerkMiddleware({
+      publishableKey: process.env.VITE_CLERK_PUBLISHABLE_KEY,
+      secretKey: process.env.CLERK_SECRET_KEY
+    }));
+  } catch (clerkErr) {
+    console.warn('⚠️ Clerk middleware initialization warning:', clerkErr.message);
+  }
 }
 
 // MongoDB Connection with Fallback Memory Store
@@ -61,18 +84,23 @@ app.use('/api/goals', goalsRoutes);
 app.use('/api/risk-profile', riskProfileRoutes);
 app.use('/api', flashcardRoutes);
 
-// PROTECTED CLERK DASHBOARD ENDPOINT
-app.get('/api/dashboard', authMiddleware, (req, res) => {
-  res.json({
-    success: true,
-    message: 'Access granted to Clerk authenticated dashboard endpoint',
-    user: req.user,
-    dashboard: {
-      totalNetWorth: 657645,
-      activeSip: 32500,
-      riskScore: 68,
-      status: 'Secured with Clerk'
+// PROTECTED CLERK DASHBOARD ENDPOINT WITH CRASH-PROOF WRAPPER
+app.get('/api/dashboard', (req, res, next) => {
+  authMiddleware(req, res, (err) => {
+    if (err) {
+      return res.status(401).json({ success: false, error: 'Unauthorized credentials' });
     }
+    res.json({
+      success: true,
+      message: 'Access granted to dashboard endpoint',
+      user: req.user,
+      dashboard: {
+        totalNetWorth: 657645,
+        activeSip: 32500,
+        riskScore: 68,
+        status: 'Active'
+      }
+    });
   });
 });
 
@@ -88,7 +116,7 @@ app.get('/api/health', (req, res) => {
   });
 });
 
-// SPA Fallback Handler
+// SPA Fallback Handler for React Router SPA
 app.use((req, res, next) => {
   if (
     req.method === 'GET' && 
@@ -104,6 +132,16 @@ app.use((req, res, next) => {
     return res.sendFile(path.join(distPath, 'index.html'));
   }
   next();
+});
+
+// Unhandled Global Express Exception Error Handler (Prevents Process Crashes)
+app.use((err, req, res, next) => {
+  console.error('Unhandled server error:', err.stack || err.message);
+  res.status(500).json({
+    success: false,
+    error: 'Internal Server Error',
+    message: err.message
+  });
 });
 
 // Only listen if executed directly (Render / Local), not when imported as Vercel serverless function

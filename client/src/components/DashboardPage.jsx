@@ -12,34 +12,34 @@ export default function DashboardPage({ user, onOpenAddModal, onOpenRiskModal })
 
   const fetchPortfolio = async () => {
     setLoading(true);
-    const res = await apiService.getPortfolio(user?.token, user?.id);
-    setLoading(false);
-    if (res.success && res.summary) {
-      setPortfolioData(res);
+    try {
+      const res = await apiService.getPortfolio(user?.token, user?.id);
+      if (res && res.success && res.summary) {
+        setPortfolioData(res);
+      }
+    } catch (err) {
+      console.warn('Backend portfolio fetch warning, using fallback metrics:', err.message);
+    } finally {
+      setLoading(false);
     }
   };
 
   useEffect(() => {
     fetchPortfolio();
-  }, [user]);
+  }, [user?.id]);
 
   const handleDeleteAsset = async (assetId) => {
     if (confirm('Are you sure you want to remove this investment holding?')) {
-      const res = await apiService.deletePortfolioItem(assetId, user?.token, user?.id);
-      if (res.success) {
-        fetchPortfolio();
+      try {
+        const res = await apiService.deletePortfolioItem(assetId, user?.token, user?.id);
+        if (res && res.success) {
+          fetchPortfolio();
+        }
+      } catch (err) {
+        console.error('Delete asset error:', err.message);
       }
     }
   };
-
-  if (loading && !portfolioData) {
-    return (
-      <div className="max-w-7xl mx-auto px-4 py-20 text-center space-y-4">
-        <RefreshCw className="w-8 h-8 text-indigo-400 animate-spin mx-auto" />
-        <p className="text-sm font-semibold text-slate-400">Loading your consolidated portfolio data...</p>
-      </div>
-    );
-  }
 
   const summary = portfolioData?.summary || {
     totalNetWorth: 657645,
@@ -69,6 +69,18 @@ export default function DashboardPage({ user, onOpenAddModal, onOpenRiskModal })
 
   const filteredHoldings = holdings.filter(h => selectedAssetFilter === 'All' || h.assetClass === selectedAssetFilter);
 
+  if (loading && !portfolioData) {
+    return (
+      <div className="max-w-7xl mx-auto px-4 py-28 text-center space-y-4">
+        <div className="w-12 h-12 rounded-full bg-indigo-600/20 border border-indigo-500/40 text-indigo-400 flex items-center justify-center mx-auto animate-spin">
+          <RefreshCw className="w-6 h-6" />
+        </div>
+        <h3 className="text-xl font-bold text-white font-['Outfit']">Loading your custom wealth metrics...</h3>
+        <p className="text-xs text-slate-400">Synchronizing consolidated holdings and MongoDB portfolio analytics.</p>
+      </div>
+    );
+  }
+
   return (
     <div className="space-y-8 max-w-7xl mx-auto px-4 py-8 text-left">
       
@@ -77,7 +89,7 @@ export default function DashboardPage({ user, onOpenAddModal, onOpenRiskModal })
         <div>
           <div className="flex items-center gap-2">
             <span className="badge badge-green text-xs">Verified Portfolio</span>
-            <span className="text-xs text-slate-400">User ID: {user?.id}</span>
+            <span className="text-xs text-slate-400">User ID: {user?.id || 'clerk_user'}</span>
           </div>
           <h1 className="text-2xl sm:text-3xl font-extrabold text-white font-['Outfit'] mt-1">
             Consolidated Portfolio Tracker

@@ -9,7 +9,11 @@ const PUBLISHABLE_KEY = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY;
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     {PUBLISHABLE_KEY && !PUBLISHABLE_KEY.includes('your_clerk_publishable_key_here') ? (
-      <ClerkProvider publishableKey={PUBLISHABLE_KEY}>
+      <ClerkProvider 
+        publishableKey={PUBLISHABLE_KEY}
+        signUpForceRedirectUrl="/dashboard"
+        signInForceRedirectUrl="/dashboard"
+      >
         <App />
       </ClerkProvider>
     ) : (

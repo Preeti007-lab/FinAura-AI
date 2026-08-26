@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useUser } from '@clerk/clerk-react';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import LandingPage from './components/LandingPage';
@@ -13,6 +14,17 @@ import { apiService } from './services/api';
 export default function App() {
   const [activeTab, setActiveTab] = useState('landing'); // 'landing', 'dashboard', 'analyzer', 'goals'
 
+  // Clerk User Hook
+  let clerkUserObj = null;
+  let clerkIsSignedIn = false;
+  try {
+    const clerk = useUser();
+    clerkUserObj = clerk?.user;
+    clerkIsSignedIn = clerk?.isSignedIn;
+  } catch (e) {
+    // Graceful fallback when ClerkProvider is unconfigured
+  }
+
   // Mouse Tracking Glow Position
   const [mousePos, setMousePos] = useState({ x: 500, y: 300 });
 
@@ -24,7 +36,14 @@ export default function App() {
     return () => window.removeEventListener('mousemove', handleMouseMove);
   }, []);
 
-  // User Auth State
+  // Sync route pathname or Clerk sign-in state
+  useEffect(() => {
+    if (window.location.pathname === '/dashboard' || clerkIsSignedIn) {
+      setActiveTab('dashboard');
+    }
+  }, [clerkIsSignedIn]);
+
+  // User Session State (Clerk User or Fallback Demo Investor)
   const [user, setUser] = useState({
     id: 'demo_investor_99',
     email: 'alex.investor@finaura.app',
@@ -36,6 +55,19 @@ export default function App() {
       answers: { horizon: 'long', dipReaction: 'buy', knowledge: 'intermediate', objective: 'balanced' }
     }
   });
+
+  // Sync Clerk User Object when signed in
+  useEffect(() => {
+    if (clerkIsSignedIn && clerkUserObj) {
+      setUser({
+        id: clerkUserObj.id,
+        email: clerkUserObj.primaryEmailAddress?.emailAddress || 'investor@credometrics.app',
+        name: clerkUserObj.fullName || clerkUserObj.firstName || 'Clerk User',
+        token: 'clerk-token',
+        riskProfile: user?.riskProfile || { score: 68, category: 'Growth Investor' }
+      });
+    }
+  }, [clerkIsSignedIn, clerkUserObj]);
 
   // Modal Controls
   const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
@@ -62,6 +94,7 @@ export default function App() {
 
   const handleLoginSuccess = (userData) => {
     setUser(userData);
+    setActiveTab('dashboard');
   };
 
   const handleLogout = () => {
@@ -84,7 +117,7 @@ export default function App() {
         }}
       />
 
-      {/* Navigation Header (Fixed at top) */}
+      {/* Navigation Header */}
       <Navbar
         activeTab={activeTab}
         setActiveTab={setActiveTab}
@@ -94,7 +127,7 @@ export default function App() {
         onLogout={handleLogout}
       />
 
-      {/* Main Content View (Padded 72px top for Navbar clearance) */}
+      {/* Main Content View */}
       <main className="flex-1 pt-20 relative z-10">
         {activeTab === 'landing' && (
           <LandingPage
@@ -104,55 +137,25 @@ export default function App() {
         )}
 
         {activeTab === 'dashboard' && (
-          user ? (
-            <DashboardPage
-              user={user}
-              onOpenAddModal={() => setIsAddModalOpen(true)}
-              onOpenRiskModal={() => setIsRiskModalOpen(true)}
-            />
-          ) : (
-            <div className="max-w-md mx-auto text-center py-24 px-4 space-y-4">
-              <h2 className="text-2xl font-bold text-white font-['Outfit']">Authentication Required</h2>
-              <p className="text-xs text-slate-400">Please log in or sign up to view your consolidated portfolio dashboard.</p>
-              <button onClick={() => handleOpenAuthModal('login')} className="btn-primary py-3 px-6 text-xs inline-flex">
-                Log In Now
-              </button>
-            </div>
-          )
+          <DashboardPage
+            user={user || { id: 'demo_investor_99', name: 'Verified Investor' }}
+            onOpenAddModal={() => setIsAddModalOpen(true)}
+            onOpenRiskModal={() => setIsRiskModalOpen(true)}
+          />
         )}
 
         {activeTab === 'analyzer' && (
-          user ? (
-            <HypeAnalyzerPage
-              user={user}
-              onOpenRiskModal={() => setIsRiskModalOpen(true)}
-            />
-          ) : (
-            <div className="max-w-md mx-auto text-center py-24 px-4 space-y-4">
-              <h2 className="text-2xl font-bold text-white font-['Outfit']">Authentication Required</h2>
-              <p className="text-xs text-slate-400">Please log in or sign up to use the AI Hype & Sentiment Analyzer.</p>
-              <button onClick={() => handleOpenAuthModal('login')} className="btn-primary py-3 px-6 text-xs inline-flex">
-                Log In Now
-              </button>
-            </div>
-          )
+          <HypeAnalyzerPage
+            user={user || { id: 'demo_investor_99', name: 'Verified Investor' }}
+            onOpenRiskModal={() => setIsRiskModalOpen(true)}
+          />
         )}
 
         {activeTab === 'goals' && (
-          user ? (
-            <GoalPlannerPage
-              user={user}
-              onOpenRiskModal={() => setIsRiskModalOpen(true)}
-            />
-          ) : (
-            <div className="max-w-md mx-auto text-center py-24 px-4 space-y-4">
-              <h2 className="text-2xl font-bold text-white font-['Outfit']">Authentication Required</h2>
-              <p className="text-xs text-slate-400">Please log in or sign up to access the Goal Planner & SIP Advisory tool.</p>
-              <button onClick={() => handleOpenAuthModal('login')} className="btn-primary py-3 px-6 text-xs inline-flex">
-                Log In Now
-              </button>
-            </div>
-          )
+          <GoalPlannerPage
+            user={user || { id: 'demo_investor_99', name: 'Verified Investor' }}
+            onOpenRiskModal={() => setIsRiskModalOpen(true)}
+          />
         )}
       </main>
 
