@@ -180,18 +180,18 @@ export default function LandingPage({ setActiveTab, onOpenAuthModal, onOpenRiskM
       <section id="hero" className="flex flex-col items-center justify-center text-center max-w-3xl mx-auto pt-8 pb-10 mb-24 scroll-mt-24">
         
         {/* Section Header Tag */}
-        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-bold shadow-md mb-6 mx-auto justify-center font-mono">
-          <Sparkles className="w-3.5 h-3.5 text-emerald-400 animate-pulse" />
-          <span>SECTION 01 // INSTITUTIONAL WEALTHTECH OVERVIEW</span>
+        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-indigo-500/10 border border-indigo-500/30 text-cyan-400 text-xs font-bold shadow-[0_0_15px_rgba(99,102,241,0.25)] mb-6 mx-auto justify-center font-mono">
+          <Sparkles className="w-3.5 h-3.5 text-cyan-400 animate-pulse" />
+          <span>SECTION 01 // CYBERPUNK WEALTHTECH OVERVIEW</span>
         </div>
 
         {/* Headline */}
         <h1 className="text-4xl sm:text-6xl font-extrabold tracking-tight text-[var(--text-main)] leading-tight max-w-3xl mx-auto text-center font-['Outfit']">
-          Turn Finfluencer Noise into <span className="bg-gradient-to-r from-emerald-400 via-teal-300 to-cyan-400 bg-clip-text text-transparent">Actionable Wealth</span>
+          Turn Finfluencer Noise into <span className="bg-gradient-to-r from-indigo-400 via-purple-400 to-cyan-400 bg-clip-text text-transparent drop-shadow-[0_0_20px_rgba(139,92,246,0.3)]">Actionable Wealth</span>
         </h1>
 
         {/* Short Precise Subtext */}
-        <p className="mt-4 text-sm sm:text-base text-[var(--text-muted)] font-semibold max-w-xl mx-auto text-center">
+        <p className="mt-4 text-sm sm:text-base text-slate-300 font-semibold max-w-xl mx-auto text-center">
           Risk Profiling • Multi-Asset Vault • Goal SIPs • AI Social Audit
         </p>
 
@@ -200,8 +200,8 @@ export default function LandingPage({ setActiveTab, onOpenAuthModal, onOpenRiskM
           <img 
             src="/images/ticker_banner.jpg" 
             alt="Real-time Stock Market Banner" 
-            style={{ width: '180px', height: '100px', objectFit: 'cover', borderRadius: '8px', border: '1px solid var(--border-card)' }}
-            className="hover:scale-105 transition-transform duration-300 shadow-sm"
+            style={{ width: '180px', height: '100px', objectFit: 'cover', borderRadius: '12px', border: '1px solid rgba(139, 92, 246, 0.4)' }}
+            className="hover:scale-105 transition-transform duration-300 shadow-[0_0_20px_rgba(99,102,241,0.3)]"
           />
         </div>
 
@@ -210,14 +210,14 @@ export default function LandingPage({ setActiveTab, onOpenAuthModal, onOpenRiskM
           {isSignedIn ? (
             <button 
               onClick={() => setActiveTab('dashboard')}
-              className="btn-emerald text-xs py-3 px-6 cursor-pointer border border-emerald-400/30"
+              className="btn-neon text-xs py-3 px-7 cursor-pointer"
             >
               <span>Launch Dashboard</span>
               <ArrowRight className="w-3.5 h-3.5" />
             </button>
           ) : (
             <SignUpButton mode="modal">
-              <button className="btn-emerald text-xs py-3 px-6 cursor-pointer border border-emerald-400/30">
+              <button className="btn-neon text-xs py-3 px-7 cursor-pointer">
                 <span>Get Started Free</span>
                 <ArrowRight className="w-3.5 h-3.5" />
               </button>
