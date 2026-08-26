@@ -1,0 +1,55 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "client/package.json",
+      "use": "@vercel/static-build",
+      "config": { "distDir": "dist" }
+    },
+    {
+      "src": "server/index.js",
+      "use": "@vercel/node"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/api/(.*)",
+      "dest": "/server/index.js"
+    },
+    {
+      "src": "/analyze-trend(.*)",
+      "dest": "/server/index.js"
+    },
+    {
+      "src": "/portfolio(.*)",
+      "dest": "/server/index.js"
+    },
+    {
+      "src": "/goals(.*)",
+      "dest": "/server/index.js"
+    },
+    {
+      "src": "/risk-profile(.*)",
+      "dest": "/server/index.js"
+    },
+    {
+      "src": "/generate(.*)",
+      "dest": "/server/index.js"
+    },
+    {
+      "src": "/getcards(.*)",
+      "dest": "/server/index.js"
+    },
+    {
+      "src": "/deletecard(.*)",
+      "dest": "/server/index.js"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/client/$1"
+    }
+  ],
+  "env": {
+    "NODE_ENV": "production"
+  }
+}

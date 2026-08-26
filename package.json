@@ -1,0 +1,25 @@
+{
+  "name": "finaura-ai-wealthtech-platform",
+  "version": "3.0.0",
+  "description": "Gen-AI Powered WealthTech, Personal Finance & Anti-Hype AI Platform",
+  "main": "server/index.js",
+  "scripts": {
+    "postinstall": "cd client && npm install --include=dev && cd ../server && npm install",
+    "build": "cd client && npm run build",
+    "start": "node server/index.js",
+    "server": "node server/index.js",
+    "client": "cd client && npm run dev",
+    "test": "node server/test_endpoints.js && node server/test_flashcard_endpoints.js"
+  },
+  "keywords": [
+    "wealthtech",
+    "express",
+    "react",
+    "mongodb",
+    "groq-ai",
+    "vercel",
+    "render"
+  ],
+  "author": "FinAura AI Team",
+  "license": "MIT"
+}
