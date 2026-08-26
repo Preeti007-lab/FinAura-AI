@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Sparkles, BrainCircuit, LayoutDashboard, Target, Home, Sun, Moon, Laptop, Menu, X, Calculator, BookOpen, Layers } from 'lucide-react';
+import { Sparkles, BrainCircuit, LayoutDashboard, Target, Home, Sun, Moon, Laptop, Menu, X, FolderGit2, Layers } from 'lucide-react';
 import { SignedIn, SignedOut, SignInButton, SignUpButton, UserButton, useUser } from '@clerk/clerk-react';
 
 export default function Navbar({ activeTab, setActiveTab, user, theme, setTheme, onOpenRiskModal, onOpenMiracle }) {
@@ -11,18 +11,9 @@ export default function Navbar({ activeTab, setActiveTab, user, theme, setTheme,
     clerkUser = clerk?.user;
   } catch (e) {}
 
-  const handleNavClick = (tabName, sectionId = null) => {
+  const handleNavClick = (tabName) => {
     setActiveTab(tabName);
     setIsMobileMenuOpen(false);
-
-    if (tabName === 'landing' && sectionId) {
-      setTimeout(() => {
-        const el = document.getElementById(sectionId);
-        if (el) {
-          el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }
-      }, 100);
-    }
   };
 
   return (
@@ -31,7 +22,7 @@ export default function Navbar({ activeTab, setActiveTab, user, theme, setTheme,
         
         {/* FAR-LEFT: Logo & Site Title */}
         <div 
-          onClick={() => handleNavClick('landing', 'hero')}
+          onClick={() => handleNavClick('landing')}
           className="flex items-center gap-3 cursor-pointer group shrink-0"
         >
           <div className="w-9 h-9 rounded-xl bg-gradient-to-tr from-indigo-600 via-purple-600 to-cyan-500 p-0.5 flex items-center justify-center shadow-md group-hover:scale-105 transition-transform">
@@ -52,13 +43,13 @@ export default function Navbar({ activeTab, setActiveTab, user, theme, setTheme,
           </div>
         </div>
 
-        {/* CENTER: Desktop Navigation Menu */}
+        {/* CENTER: Dynamic JS SPA Viewport Navigation Menu */}
         <nav className="hidden lg:flex items-center gap-1 bg-slate-900/90 p-1 rounded-xl border border-slate-800">
           <button
-            onClick={() => handleNavClick('landing', 'hero')}
+            onClick={() => handleNavClick('landing')}
             className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold transition-all ${
               activeTab === 'landing' 
-                ? 'bg-indigo-600 text-white shadow-sm' 
+                ? 'active-nav bg-indigo-600 text-white shadow-sm' 
                 : 'text-slate-400 hover:text-white hover:bg-slate-800/60'
             }`}
           >
@@ -67,50 +58,34 @@ export default function Navbar({ activeTab, setActiveTab, user, theme, setTheme,
           </button>
 
           <button
-            onClick={() => handleNavClick('landing', 'features')}
-            className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold text-slate-400 hover:text-white hover:bg-slate-800/60 transition-all"
+            onClick={() => handleNavClick('features')}
+            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold transition-all ${
+              activeTab === 'features' || activeTab === 'analyzer'
+                ? 'active-nav bg-indigo-600 text-white shadow-sm' 
+                : 'text-slate-400 hover:text-white hover:bg-slate-800/60'
+            }`}
           >
-            <Layers className="w-3.5 h-3.5 text-indigo-400" />
+            <Layers className="w-3.5 h-3.5 text-cyan-400" />
             Features
           </button>
 
           <button
-            onClick={() => handleNavClick('landing', 'calculator')}
-            className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold text-slate-400 hover:text-white hover:bg-slate-800/60 transition-all"
-          >
-            <Calculator className="w-3.5 h-3.5 text-emerald-400" />
-            Calculator
-          </button>
-
-          <button
-            onClick={() => handleNavClick('dashboard')}
+            onClick={() => handleNavClick('files')}
             className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold transition-all ${
-              activeTab === 'dashboard' 
-                ? 'bg-indigo-600 text-white shadow-sm' 
+              activeTab === 'files' || activeTab === 'dashboard'
+                ? 'active-nav bg-indigo-600 text-white shadow-sm' 
                 : 'text-slate-400 hover:text-white hover:bg-slate-800/60'
             }`}
           >
-            <LayoutDashboard className="w-3.5 h-3.5 text-emerald-400" />
-            Dashboard
-          </button>
-
-          <button
-            onClick={() => handleNavClick('analyzer')}
-            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold transition-all ${
-              activeTab === 'analyzer' 
-                ? 'bg-indigo-600 text-white shadow-sm' 
-                : 'text-slate-400 hover:text-white hover:bg-slate-800/60'
-            }`}
-          >
-            <BrainCircuit className="w-3.5 h-3.5 text-cyan-400" />
-            Hype Analyzer
+            <FolderGit2 className="w-3.5 h-3.5 text-emerald-400" />
+            Files & Holdings
           </button>
 
           <button
             onClick={() => handleNavClick('goals')}
             className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold transition-all ${
               activeTab === 'goals' 
-                ? 'bg-indigo-600 text-white shadow-sm' 
+                ? 'active-nav bg-indigo-600 text-white shadow-sm' 
                 : 'text-slate-400 hover:text-white hover:bg-slate-800/60'
             }`}
           >
@@ -130,10 +105,10 @@ export default function Navbar({ activeTab, setActiveTab, user, theme, setTheme,
           </button>
         </nav>
 
-        {/* FAR-RIGHT: Theme Controls, Clerk Auth & Mobile Hamburger */}
+        {/* FAR-RIGHT: Theme Control, Clerk Auth & Mobile Hamburger */}
         <div className="flex items-center gap-2.5 shrink-0">
           
-          {/* Theme Switcher */}
+          {/* Theme Option Switcher */}
           <div className="flex items-center bg-slate-900/90 p-1 rounded-xl border border-slate-800 text-xs hidden sm:flex">
             <button
               onClick={() => setTheme('light')}
@@ -209,59 +184,43 @@ export default function Navbar({ activeTab, setActiveTab, user, theme, setTheme,
       {isMobileMenuOpen && (
         <div className="lg:hidden bg-slate-950/98 border-b border-slate-800 mt-2 p-4 rounded-2xl shadow-2xl flex flex-col gap-1.5 transition-all">
           <button
-            onClick={() => handleNavClick('landing', 'hero')}
+            onClick={() => handleNavClick('landing')}
             className={`flex items-center gap-3 px-4 py-2.5 rounded-xl text-xs font-bold text-left transition-all ${
-              activeTab === 'landing' ? 'bg-indigo-600 text-white' : 'text-slate-300 hover:bg-slate-900'
+              activeTab === 'landing' ? 'active-nav bg-indigo-600 text-white' : 'text-slate-300 hover:bg-slate-900'
             }`}
           >
             <Home className="w-4 h-4" />
-            <span>Home Overview</span>
+            <span>Home View</span>
           </button>
 
           <button
-            onClick={() => handleNavClick('landing', 'features')}
-            className="flex items-center gap-3 px-4 py-2.5 rounded-xl text-xs font-bold text-left text-slate-300 hover:bg-slate-900 transition-all"
-          >
-            <Layers className="w-4 h-4 text-indigo-400" />
-            <span>Features Overview</span>
-          </button>
-
-          <button
-            onClick={() => handleNavClick('landing', 'calculator')}
-            className="flex items-center gap-3 px-4 py-2.5 rounded-xl text-xs font-bold text-left text-slate-300 hover:bg-slate-900 transition-all"
-          >
-            <Calculator className="w-4 h-4 text-emerald-400" />
-            <span>SIP Calculator</span>
-          </button>
-
-          <button
-            onClick={() => handleNavClick('dashboard')}
+            onClick={() => handleNavClick('features')}
             className={`flex items-center gap-3 px-4 py-2.5 rounded-xl text-xs font-bold text-left transition-all ${
-              activeTab === 'dashboard' ? 'bg-indigo-600 text-white' : 'text-slate-300 hover:bg-slate-900'
+              activeTab === 'features' || activeTab === 'analyzer' ? 'active-nav bg-indigo-600 text-white' : 'text-slate-300 hover:bg-slate-900'
             }`}
           >
-            <LayoutDashboard className="w-4 h-4 text-emerald-400" />
-            <span>Dashboard</span>
+            <Layers className="w-4 h-4 text-cyan-400" />
+            <span>Features View</span>
           </button>
 
           <button
-            onClick={() => handleNavClick('analyzer')}
+            onClick={() => handleNavClick('files')}
             className={`flex items-center gap-3 px-4 py-2.5 rounded-xl text-xs font-bold text-left transition-all ${
-              activeTab === 'analyzer' ? 'bg-indigo-600 text-white' : 'text-slate-300 hover:bg-slate-900'
+              activeTab === 'files' || activeTab === 'dashboard' ? 'active-nav bg-indigo-600 text-white' : 'text-slate-300 hover:bg-slate-900'
             }`}
           >
-            <BrainCircuit className="w-4 h-4 text-cyan-400" />
-            <span>Hype Analyzer</span>
+            <FolderGit2 className="w-4 h-4 text-emerald-400" />
+            <span>Files & Holdings View</span>
           </button>
 
           <button
             onClick={() => handleNavClick('goals')}
             className={`flex items-center gap-3 px-4 py-2.5 rounded-xl text-xs font-bold text-left transition-all ${
-              activeTab === 'goals' ? 'bg-indigo-600 text-white' : 'text-slate-300 hover:bg-slate-900'
+              activeTab === 'goals' ? 'active-nav bg-indigo-600 text-white' : 'text-slate-300 hover:bg-slate-900'
             }`}
           >
             <Target className="w-4 h-4 text-amber-400" />
-            <span>Goal SIPs</span>
+            <span>Goal SIPs View</span>
           </button>
 
           <button

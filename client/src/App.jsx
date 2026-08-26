@@ -158,8 +158,8 @@ export default function App() {
         onLogout={handleLogout}
       />
 
-      {/* Main Content View */}
-      <main className="flex-1 pt-20 relative z-10">
+      {/* Main Content Viewport: JS SPA App Content Container */}
+      <main id="app-content" className="flex-1 pt-20 relative z-10">
         {activeTab === 'landing' && (
           <LandingPage
             setActiveTab={setActiveTab}
@@ -168,17 +168,17 @@ export default function App() {
           />
         )}
 
-        {activeTab === 'dashboard' && (
-          <DashboardPage
+        {(activeTab === 'features' || activeTab === 'analyzer') && (
+          <HypeAnalyzerPage
             user={user || { id: 'demo_investor_99', name: 'Verified Investor' }}
-            onOpenAddModal={() => setIsAddModalOpen(true)}
             onOpenRiskModal={() => setIsRiskModalOpen(true)}
           />
         )}
 
-        {activeTab === 'analyzer' && (
-          <HypeAnalyzerPage
+        {(activeTab === 'files' || activeTab === 'dashboard') && (
+          <DashboardPage
             user={user || { id: 'demo_investor_99', name: 'Verified Investor' }}
+            onOpenAddModal={() => setIsAddModalOpen(true)}
             onOpenRiskModal={() => setIsRiskModalOpen(true)}
           />
         )}
