@@ -42,11 +42,7 @@ class ErrorBoundary extends Component {
   }
 }
 
-const rawKey = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY;
-// Always wrap App in ClerkProvider so Clerk components never crash with missing context
-const PUBLISHABLE_KEY = (rawKey && !rawKey.includes('your_clerk_publishable_key_here')) 
-  ? rawKey 
-  : 'pk_test_Y2xlcmsuZmluYXVyYS5kZXYk';
+const PUBLISHABLE_KEY = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY;
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
